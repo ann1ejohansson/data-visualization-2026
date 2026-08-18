@@ -1,0 +1,10 @@
+---
+title: "ggplot Recap"
+format: html
+---
+
+::: {.callout-note}
+**Placeholder worksheet.** Content for this recap has not been written yet.
+:::
+
+This worksheet will recap the basics of building plots with `ggplot2`: the grammar of graphics (data, aesthetics, geoms), common geoms, and styling/theming plots.

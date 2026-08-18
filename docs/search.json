@@ -1,0 +1,737 @@
+[
+  {
+    "objectID": "slides/slides.html#section-1",
+    "href": "slides/slides.html#section-1",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Slides made using quartoCover photo made in R by Danielle Navarro"
+  },
+  {
+    "objectID": "slides/slides.html#section-2",
+    "href": "slides/slides.html#section-2",
+    "title": "Data Visualization",
+    "section": "📌",
+    "text": "📌\ndata-visualization-2025"
+  },
+  {
+    "objectID": "slides/slides.html#tuesday-sept-30",
+    "href": "slides/slides.html#tuesday-sept-30",
+    "title": "Data Visualization",
+    "section": "Tuesday, Sept 30",
+    "text": "Tuesday, Sept 30\n\nWhy visualize data?\nWhat makes a plot good (and bad)?\nGuiding principles\nData Visualization Project"
+  },
+  {
+    "objectID": "slides/slides.html#section-3",
+    "href": "slides/slides.html#section-3",
+    "title": "Data Visualization",
+    "section": "💬",
+    "text": "💬\nWhy visualize data?"
+  },
+  {
+    "objectID": "slides/slides.html#why-visualize-data-2",
+    "href": "slides/slides.html#why-visualize-data-2",
+    "title": "Data Visualization",
+    "section": "Why visualize data?",
+    "text": "Why visualize data?"
+  },
+  {
+    "objectID": "slides/slides.html#why-visualize-data-3",
+    "href": "slides/slides.html#why-visualize-data-3",
+    "title": "Data Visualization",
+    "section": "Why visualize data?",
+    "text": "Why visualize data?"
+  },
+  {
+    "objectID": "slides/slides.html#anscombes-quartet",
+    "href": "slides/slides.html#anscombes-quartet",
+    "title": "Data Visualization",
+    "section": "Anscombe’s quartet",
+    "text": "Anscombe’s quartet\n\n\n \n\n\n\nCode\nlibrary(\"datasauRus\")\nlibrary(scales)\n\ndatasaurus_dozen %&gt;% \n  ggplot2::ggplot(aes(x = x, y = y, color = dataset)) +\n  ggplot2::geom_point() +\n  ggplot2::theme_void() +\n  ggplot2::geom_smooth(method = \"lm\", color = \"gray\", fill = \"gray\", alpha = .5) +\n  ggplot2::theme(legend.position = \"none\", text = element_text(size = 30)) +\n  ggplot2::facet_wrap(~dataset, ncol = 4)\n\n\n\n\n\n\n\n\n\n\n\nPackages: datasauRus, anscombiser.\nMore information: Same Stats, Different Graphs, socviz.co."
+  },
+  {
+    "objectID": "slides/slides.html#section-4",
+    "href": "slides/slides.html#section-4",
+    "title": "Data Visualization",
+    "section": "💬",
+    "text": "💬\nWhat is more important? An eye or an algorithm?\nWhat are the consequences of overrelying on statistical techniques? What are the consequences of overrelying on visualizations?"
+  },
+  {
+    "objectID": "slides/slides.html#what-makes-a-bad-plot-bad",
+    "href": "slides/slides.html#what-makes-a-bad-plot-bad",
+    "title": "Data Visualization",
+    "section": "What makes a bad plot bad?",
+    "text": "What makes a bad plot bad?\n\n\n\nAesthetic (ugly)\nPerceptual (bad)\nSubstantive (wrong)\n\n\n\n\n\nClaus Wilke - Ugly, bad, and wrong figures"
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates",
+    "href": "slides/slides.html#speed-dates",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\nWhat do you think about this plot?\nWhat elements can be improved?\nAre the problems aesthetic, perceptual, or substantive?"
+  },
+  {
+    "objectID": "slides/slides.html#exploratory-versus-explanatory",
+    "href": "slides/slides.html#exploratory-versus-explanatory",
+    "title": "Data Visualization",
+    "section": "Exploratory versus explanatory",
+    "text": "Exploratory versus explanatory\n\nExploratory in the sense of data exploration. Exploratory in the sense of visualization exploration (as in previous example, where the same data can be plotted in several ways). In both cases, you can create ugly plots.\nWe focus on explanatory data viz (also bridge to next). Beautiful plots!\n\n\n\n\n\n\n\n\n\n\nSource: Natalia Kiseleva\n\n\n\n\n\n\n\n\n\n\nSource: Scott McCloud\n\n\n\nExploratory: examine the structure of your data.\nExplanatory: tell a story with your data.\n\n\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory)."
+  },
+  {
+    "objectID": "slides/slides.html#exploratory-versus-explanatory-1",
+    "href": "slides/slides.html#exploratory-versus-explanatory-1",
+    "title": "Data Visualization",
+    "section": "Exploratory versus explanatory",
+    "text": "Exploratory versus explanatory\n\n\n\n\n\n\nSource: storytellingwithdata.com\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory)."
+  },
+  {
+    "objectID": "slides/slides.html#some-good-examples",
+    "href": "slides/slides.html#some-good-examples",
+    "title": "Data Visualization",
+    "section": "Some good examples",
+    "text": "Some good examples\n Distributions are informative\n\n\n\n\n\n\nNYT Graphic - Obamacare spending\nHow to reproduce a NYT graphic"
+  },
+  {
+    "objectID": "slides/slides.html#tips-for-the-best-viz",
+    "href": "slides/slides.html#tips-for-the-best-viz",
+    "title": "Data Visualization",
+    "section": "Tips for the best viz",
+    "text": "Tips for the best viz\n\nIs it explaining data?\nIs the information complete and correct?\nAre axes correct? (+ Should they have a zero-point?)\nDo the colors work? ( + Do they map to a relevant attribute?)\nAre all elements needed?\nWhat is the data to ink ratio?\nIs it understandable & simple?\nDoes it portray one conclusion?"
+  },
+  {
+    "objectID": "slides/slides.html#break",
+    "href": "slides/slides.html#break",
+    "title": "Data Visualization",
+    "section": "Break",
+    "text": "Break\n\n\nCode\nlibrary(\"RXKCD\")\nRXKCD::getXKCD(which = \"833\")"
+  },
+  {
+    "objectID": "slides/slides.html#aims",
+    "href": "slides/slides.html#aims",
+    "title": "Data Visualization",
+    "section": "Aims",
+    "text": "Aims\nYour goal is to go from exploring the Prowise data to telling a story with it.\n\nAssignment 1: Choose a research question. Explore the data and create a set of visualizations to help you understand the data.\nAssignment 2: Create a final data visualization that tells a story with the data. Compiled into a html document, and presented in a GitHub repository."
+  },
+  {
+    "objectID": "slides/slides.html#requirements-assignment-2",
+    "href": "slides/slides.html#requirements-assignment-2",
+    "title": "Data Visualization",
+    "section": "Requirements Assignment 2",
+    "text": "Requirements Assignment 2\n\nUse R Markdown (or Quarto) to create your visualizations.\nThe markdown document should be in the style of a report: explain your research question, and how you came to your conclusion. Not more than 1000 words.\n\nInclude an exploratory graph, and explain how it helped you understand the data.\nOnly your final, explanatory graph, will be graded. Clearly mark which graph this is."
+  },
+  {
+    "objectID": "slides/slides.html#workflow",
+    "href": "slides/slides.html#workflow",
+    "title": "Data Visualization",
+    "section": "Workflow",
+    "text": "Workflow\n\nComment your code clearly. We want to understand your thought process.\nCollaborate within your group using Git & GitHub. You will set up your own project repository connected to the Data Visualization Server.\nMake sure all documents render correctly, and that code is styled and runs.\n️⚠ Do not push any data to GitHub."
+  },
+  {
+    "objectID": "slides/slides.html#workflow-1",
+    "href": "slides/slides.html#workflow-1",
+    "title": "Data Visualization",
+    "section": "Workflow",
+    "text": "Workflow\n\nWorking on the server\nGit setup & workflow"
+  },
+  {
+    "objectID": "slides/slides.html#first-draft-peer-review",
+    "href": "slides/slides.html#first-draft-peer-review",
+    "title": "Data Visualization",
+    "section": "First draft & peer review",
+    "text": "First draft & peer review\n\nFirst draft due Friday 10/10 12.30 – No requirements.\nPeer review due Friday 10/10 23.59 – Review one other group’s work. You will have time for this during Friday’s class."
+  },
+  {
+    "objectID": "slides/slides.html#section-5",
+    "href": "slides/slides.html#section-5",
+    "title": "Data Visualization",
+    "section": "🔗",
+    "text": "🔗\nChoose RQ"
+  },
+  {
+    "objectID": "slides/slides.html#friday-oct-3",
+    "href": "slides/slides.html#friday-oct-3",
+    "title": "Data Visualization",
+    "section": "Friday, Oct 3",
+    "text": "Friday, Oct 3\n\nInteractive visualizations with plotly\nWork on assignment 1"
+  },
+  {
+    "objectID": "slides/slides.html#section-6",
+    "href": "slides/slides.html#section-6",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nSome content\n=======\nSome conflicted content\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch"
+  },
+  {
+    "objectID": "slides/slides.html#git-conflicts",
+    "href": "slides/slides.html#git-conflicts",
+    "title": "Data Visualization",
+    "section": "Git conflicts",
+    "text": "Git conflicts\n\n\nHappens when two people change the same file, and then try to push to GitHub.\nIdentify the content that you want to keep and delete the rest\nDelete the &lt;&lt;&lt;&lt;&lt;&lt;&lt;, =======, and &gt;&gt;&gt;&gt;&gt;&gt;&gt; lines\nSave the file, add, commit, and push again\nNeed to resolve via command line?\nAvoid by always starting you work session with a git pull (and make sure you don’t have uncommitted changes)\nAlso communicate who is working on what"
+  },
+  {
+    "objectID": "slides/slides.html#why-use-interactive-visualizations",
+    "href": "slides/slides.html#why-use-interactive-visualizations",
+    "title": "Data Visualization",
+    "section": "💬 Why use interactive visualizations?",
+    "text": "💬 Why use interactive visualizations?\n\nWhat advantages/disadvantages do interactive visualizations have over static plots?"
+  },
+  {
+    "objectID": "slides/slides.html#advantages",
+    "href": "slides/slides.html#advantages",
+    "title": "Data Visualization",
+    "section": "Advantages",
+    "text": "Advantages\n\n\nExplore data dynamically\nZoom, pan, and hover for details\nReveal extra information without clutter\nEnhance engagement in presentations and reports\nUseful for exploratory analysis and dashboards"
+  },
+  {
+    "objectID": "slides/slides.html#disadvantages",
+    "href": "slides/slides.html#disadvantages",
+    "title": "Data Visualization",
+    "section": "Disadvantages",
+    "text": "Disadvantages\n\n\nHarder to include in static formats (papers, print)\nAccessibility issues (screen readers, non colorblind-friendly defaults)\nCan overwhelm the audience if overused\nLarger file sizes, slower rendering\nRequires additional packages/libraries (e.g., {plotly})"
+  },
+  {
+    "objectID": "slides/slides.html#section-7",
+    "href": "slides/slides.html#section-7",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "🧠 Interactivity enhances, but does not replace,\nthe fundamentals of good data visualization"
+  },
+  {
+    "objectID": "slides/slides.html#plotly",
+    "href": "slides/slides.html#plotly",
+    "title": "Data Visualization",
+    "section": "Plotly",
+    "text": "Plotly\n\n\nFree and open-source interactive graphing library\nR users can access it via the {plotly} package: plotly.com/r"
+  },
+  {
+    "objectID": "slides/slides.html#plotly-in-r",
+    "href": "slides/slides.html#plotly-in-r",
+    "title": "Data Visualization",
+    "section": "Plotly in R",
+    "text": "Plotly in R\n\nTwo main ways to creating a plotly object in R:\n\nConvert a ggplot2 object with ggplotly()\nDirectly initialize a plotly object with plot_ly()\n\n➡️ ggplotly() example with Oefenweb data"
+  },
+  {
+    "objectID": "slides/slides.html#additional-functionalities-in-plotly",
+    "href": "slides/slides.html#additional-functionalities-in-plotly",
+    "title": "Data Visualization",
+    "section": "Additional functionalities in Plotly",
+    "text": "Additional functionalities in Plotly\n\nWith plot_ly(), you can add and control interactive elements such as:\n\nAdding custom controls\nAnimations\n\n\nSource: plotly.com/r"
+  },
+  {
+    "objectID": "slides/slides.html#requirements-assignment-1-part-b-individual",
+    "href": "slides/slides.html#requirements-assignment-1-part-b-individual",
+    "title": "Data Visualization",
+    "section": "Requirements Assignment 1, part B (individual)",
+    "text": "Requirements Assignment 1, part B (individual)\n\nMake the static ggplot object interactive using the {plotly} package\nAdd a customized tooltip that displays additional information when you hover over the plot"
+  },
+  {
+    "objectID": "slides/slides.html#tuesday-oct-7",
+    "href": "slides/slides.html#tuesday-oct-7",
+    "title": "Data Visualization",
+    "section": "Tuesday, Oct 7",
+    "text": "Tuesday, Oct 7\n\nFeedback on assignment 1\nRecap: what makes a good DV?\nMore data visualization features\nWork on assignment 2"
+  },
+  {
+    "objectID": "slides/slides.html#tips-from-assignment-1",
+    "href": "slides/slides.html#tips-from-assignment-1",
+    "title": "Data Visualization",
+    "section": "Tips from Assignment 1",
+    "text": "Tips from Assignment 1\n\nUse coherent color palettes (more on that today!)\nUse informative titles (for example state your conclusion in the title / subtitle). Make it bold and clearly readable.\n\nWhat is the added value of a boxplot or violin plot?\n\nThink about sample size within your groupings and how to communicate its effect.\n\nGo from exploratory to explanatory!\n\nThe audience should be able to infer the main conclusion without reading the description.\n\n\nThe flaw of boxplots: read about it here and here."
+  },
+  {
+    "objectID": "slides/slides.html#patchwork",
+    "href": "slides/slides.html#patchwork",
+    "title": "Data Visualization",
+    "section": "patchwork",
+    "text": "patchwork\n\nPlots are combined with a +\n\nAdd a general title with plot_annotation(title = \"...\")\nAdd a general subtitle with plot_annotation(subtitle = \"...\")\nChange the formatting with plot_annotation(theme = theme(plot.title = element_text(...)))\n\n\n\nCode\nlibrary(patchwork)\n# Two example plots\np1 &lt;- ggplot(mtcars, aes(x = hp, y = mpg)) +\n  geom_point(color = \"steelblue\", size = 3, alpha = 0.7) +\n  theme_minimal() +\n  labs(title = \"Fuel efficiency vs Horsepower\")\n\np2 &lt;- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +\n  geom_boxplot(fill = \"steelblue\", alpha = 0.7) +\n  theme_minimal() +\n  labs(title = \"MPG by Number of Cylinders\") +\n  theme(legend.position = \"none\")\n\n# Combine with patchwork and add title\ncombined &lt;- p1 + p2 + \n  plot_annotation(\n    title = \"Analysis of mtcars dataset\",\n    subtitle = \"Exploring relationships between engine features and fuel efficiency\",\n    caption = \"Data source: mtcars\",\n    theme = theme(plot.title = element_text(face = \"bold\", size = 16),\n                  plot.subtitle = element_text(size = 14))\n  ) \n\ncombined\n\n\n\n\n\n\n\n\n\n\nPatchwork package"
+  },
+  {
+    "objectID": "slides/slides.html#one-dataset-many-visualizations",
+    "href": "slides/slides.html#one-dataset-many-visualizations",
+    "title": "Data Visualization",
+    "section": "One dataset, many visualizations",
+    "text": "One dataset, many visualizations\n\n\n\n\nCode\nlibrary(\"gt\")\ndata(\"pizzaplace\")\npizza_top &lt;- pizzaplace %&gt;%\n  mutate(size = factor(size, levels = c(\"S\", \"M\", \"L\"))) %&gt;%\n  count(name, type, size, price, sort = TRUE) %&gt;%\n  top_n(n = 5)\npizza_top %&gt;%\n  gt() %&gt;%\n  tab_header(title = \"Pizza Top 5\", subtitle = \"2015\") %&gt;%\n  fmt_currency(columns = price, currency = \"USD\") %&gt;%\n  tab_source_note(source_note = md(\"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)\")) %&gt;%\n  opt_stylize(style = 6)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPizza Top 5\n\n\n2015\n\n\nname\ntype\nsize\nprice\nn\n\n\n\n\nbig_meat\nclassic\nS\n$12.00\n1914\n\n\nthai_ckn\nchicken\nL\n$20.75\n1410\n\n\nfive_cheese\nveggie\nL\n$18.50\n1409\n\n\nfour_cheese\nveggie\nL\n$17.95\n1316\n\n\nclassic_dlx\nclassic\nM\n$16.00\n1181\n\n\n\nSource: pizzaplace dataset\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(\"ggplot2\")\npizza_top %&gt;%\n  ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +\n  geom_point(aes(color = type, size = size)) +\n  geom_text(aes(label = price), nudge_y = -30) +\n  labs(title = \"Pizza Top 5\", subtitle = \"2015\", x = \"name\")"
+  },
+  {
+    "objectID": "slides/slides.html#one-dataset-many-visualizations-1",
+    "href": "slides/slides.html#one-dataset-many-visualizations-1",
+    "title": "Data Visualization",
+    "section": "One dataset, many visualizations",
+    "text": "One dataset, many visualizations\n\n\n\n\nCode\nlibrary(\"gt\")\npizza_season &lt;- pizzaplace %&gt;%\n  mutate(month = lubridate::month(date, label = TRUE)) %&gt;%\n  group_by(month) %&gt;%\n  count(type)\npizza_season %&gt;%\n  pivot_wider(names_from = month, values_from = n) %&gt;%\n  gt() %&gt;%\n  tab_header(title = \"Pizza Season\", subtitle = \"2015\") %&gt;%\n  tab_source_note(source_note = md(\"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)\")) %&gt;%\n  opt_stylize(style = 6)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPizza Season\n\n\n2015\n\n\ntype\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\n\n\n\n\nchicken\n913\n875\n994\n924\n939\n910\n963\n934\n900\n832\n981\n885\n\n\nclassic\n1257\n1178\n1236\n1253\n1324\n1199\n1331\n1283\n1202\n1181\n1262\n1182\n\n\nsupreme\n1044\n964\n991\n1013\n1045\n1040\n1041\n991\n877\n998\n1050\n933\n\n\nveggie\n1018\n944\n1040\n961\n1020\n958\n1057\n960\n911\n872\n973\n935\n\n\n\nSource: pizzaplace dataset\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(\"ggplot2\")\nlibrary(\"lubridate\")\nfig_season_1 &lt;- pizza_season %&gt;%\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\") +\n  labs(title = \"Pizza Season\", subtitle = \"2015\", y = \"Number of pizzas sold\", x = \"Month\")\nfig_season_1\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_2 &lt;- pizza_season %&gt;%\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_line(aes(linetype = type)) +\n  labs(title = \"Pizza Season\", subtitle = \"2015\", y = \"Number of pizzas sold\", x = \"Month\")\nfig_season_2"
+  },
+  {
+    "objectID": "slides/slides.html#from-data-to-viz",
+    "href": "slides/slides.html#from-data-to-viz",
+    "title": "Data Visualization",
+    "section": "from data to viz",
+    "text": "from data to viz"
+  },
+  {
+    "objectID": "slides/slides.html#from-data-to-viz-1",
+    "href": "slides/slides.html#from-data-to-viz-1",
+    "title": "Data Visualization",
+    "section": "from data to viz",
+    "text": "from data to viz"
+  },
+  {
+    "objectID": "slides/slides.html#recap",
+    "href": "slides/slides.html#recap",
+    "title": "Data Visualization",
+    "section": "Recap",
+    "text": "Recap\n\n\n✓ Keep it simple.\n✓ Don’t mislead.\n✓ Tell one story.\n✓ First impressions matter!"
+  },
+  {
+    "objectID": "slides/slides.html#chart-junk",
+    "href": "slides/slides.html#chart-junk",
+    "title": "Data Visualization",
+    "section": "Chart junk",
+    "text": "Chart junk\n\n\n\n\n\n\n\n\n\n\n\n\n\nNYT\n\n\n\n\n\n\n\n\n\n\n\nClaus Wilke\n\n\n\n\n\n\n\n\n\n\n\nNYT"
+  },
+  {
+    "objectID": "slides/slides.html#themes",
+    "href": "slides/slides.html#themes",
+    "title": "Data Visualization",
+    "section": "Themes",
+    "text": "Themes\n\n\n\n\nCode\nlibrary(\"cowplot\")\nfig_season_2 +\n  theme_cowplot()\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nmy_theme &lt;- theme_cowplot() +\n  theme(\n    panel.grid.major = element_line(color = \"gray90\"),\n    axis.ticks = element_line(color = \"gray20\"),\n    axis.text = element_text(color = \"gray20\", face = \"italic\", size = 16),\n    axis.title = element_text(color = \"gray20\", face = \"bold\", size = 16),\n    plot.title = element_text(hjust = 0.5, size = 20, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 18),\n    legend.position = \"top\",\n    legend.title = element_text(size = 16, face = \"bold\"),\n    legend.text = element_text(size = 16)\n  )\nfig_season_2 + my_theme"
+  },
+  {
+    "objectID": "slides/slides.html#facets",
+    "href": "slides/slides.html#facets",
+    "title": "Data Visualization",
+    "section": "Facets",
+    "text": "Facets\n\ntheme_cowplot and theme_bw() format facets nicely.\nChange facet format manually with theme(strip.text = element_text(...)) and theme(strip.background = element_rect(...)).\n\n\n\n\n\nCode\nfig_season_2 +\n  facet_wrap(~type) +\n  theme_bw(12) +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_2 +\n  geom_line(linetype = \"solid\", color = \"gray30\", linewidth = 0.5) +\n  facet_wrap(~type) +\n  theme_minimal(12) +\n  theme(legend.position = \"none\",\n        strip.text = element_text(face = \"bold\", color = \"plum4\"),\n        strip.background = element_rect(fill = \"thistle2\", color = NA)) # fill for background; color for border"
+  },
+  {
+    "objectID": "slides/slides.html#colors",
+    "href": "slides/slides.html#colors",
+    "title": "Data Visualization",
+    "section": "Colors",
+    "text": "Colors\n\n\nCode\nfig_quarter &lt;- pizza_season %&gt;%\n  mutate(quarter = case_when(\n    month %in% c(\"Jan\", \"Feb\", \"Mar\") ~ \"Q1\",\n    month %in% c(\"Apr\", \"May\", \"Jun\") ~ \"Q2\",\n    month %in% c(\"Jul\", \"Aug\", \"Sep\") ~ \"Q3\",\n    month %in% c(\"Oct\", \"Nov\", \"Dec\") ~ \"Q4\"\n  )) %&gt;%\n  ggplot(aes(x = quarter, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\", position = \"dodge\") +\n  labs(title = \"Pizza Season\", subtitle = \"2015, split by quarter\", y = \"Number of pizzas sold\", x = \"\")\n\nfig_quarter +\n  scale_fill_viridis_d()"
+  },
+  {
+    "objectID": "slides/slides.html#color-scales",
+    "href": "slides/slides.html#color-scales",
+    "title": "Data Visualization",
+    "section": "Color scales",
+    "text": "Color scales\n\n\n\n\nCode\nfig_quarter +\n  labs(subtitle = \"Qualitatitive Color Scale\") +\n  scale_fill_brewer(type = \"qual\")\n\n\n\n\n\n\n\n\n\nqualitative\n(categorical data)\n\n\n\nCode\nfig_quarter +\n  labs(subtitle = \"Sequential Color Scale\") +\n  scale_fill_brewer(type = \"seq\")\n\n\n\n\n\n\n\n\n\nsequential\n(ordered data that progress from low to high)\n\n\n\nCode\nfig_quarter +\n  labs(subtitle = \"Diverging Color Scale\") +\n  scale_fill_brewer(type = \"div\")\n\n\n\n\n\n\n\n\n\ndiverging\n(ordered data that progress from low to high with a critical midpoint, e.g., 0)"
+  },
+  {
+    "objectID": "slides/slides.html#color-blindness",
+    "href": "slides/slides.html#color-blindness",
+    "title": "Data Visualization",
+    "section": "Color blindness",
+    "text": "Color blindness\n\n\nCode\n# remotes::install_github(\"clauswilke/colorblindr\")\nlibrary(\"colorblindr\")\ncolorblindr::cvd_grid(fig_quarter)\n\n\n\n\n\n\n\n\n\nThe package MetBrewer has many colorblind-friendly palettes:\n\n\n\n\nCode\nlibrary(\"MetBrewer\")\nMetBrewer::colorblind_palettes\n\n\n [1] \"Archambault\" \"Cassatt1\"    \"Cassatt2\"    \"Demuth\"      \"Derain\"     \n [6] \"Egypt\"       \"Greek\"       \"Hiroshige\"   \"Hokusai2\"    \"Hokusai3\"   \n[11] \"Ingres\"      \"Isfahan1\"    \"Isfahan2\"    \"Java\"        \"Johnson\"    \n[16] \"Kandinsky\"   \"Morgenstern\" \"OKeeffe1\"    \"OKeeffe2\"    \"Pillement\"  \n[21] \"Tam\"         \"Troy\"        \"VanGogh3\"    \"Veronese\"   \n\n\n\n\n\nCode\nfig_quarter +scale_fill_manual(values = MetBrewer::met.brewer(\"VanGogh3\", n = 4))\n\n\n\n\n\n\n\n\n\n\n\nPackages: khroma (discrete data), viridis (continuous data), MetBrewer & rijkspalette, colorblindr, colorspace.\nResources: clauswilke.com, hclwizard.org, viridis Color Maps for R."
+  },
+  {
+    "objectID": "slides/slides.html#color-accuracy",
+    "href": "slides/slides.html#color-accuracy",
+    "title": "Data Visualization",
+    "section": "Color accuracy",
+    "text": "Color accuracy\n\n\nPrint-proof, monitor/beamer-proof, colorblind-proof?\n\nUse grayscale (but color-coding is superior)\nUse a secondary aesthetic for color\nUse a viridis color map\n\n\n\n\n\n\n\n\nSource: benq.com\n\n\n\n\n\n\n\n\n\n\nSource: Savi et al. (2018)"
+  },
+  {
+    "objectID": "slides/slides.html#captions",
+    "href": "slides/slides.html#captions",
+    "title": "Data Visualization",
+    "section": "Captions",
+    "text": "Captions\nTitle Descriptive or declarative\nMethods Keep it brief\nResults If not (fully captured) in title\nDefinitions Colors, line types, error bars, etc.\nData source If external\n\n\n\n\n\n\n\nSource: sketch.es\n\n\n\nResources: clauswilke.com, more, more, more."
+  },
+  {
+    "objectID": "slides/slides.html#typography",
+    "href": "slides/slides.html#typography",
+    "title": "Data Visualization",
+    "section": "Typography",
+    "text": "Typography\n\n\n\nLearn everything about typography.\nFind inspiration and recommendations.\nChoose a font for data visualizations.\nPick good font combinations.\nOr just use arial or helvetica.\n\n\n\nChange fonts with package showtext and function font_add_google(). Browse Google Fonts\n\n\nCode\nlibrary(\"showtext\")\nsysfonts::font_add_google(\"Lekton\")\nshowtext::showtext_auto()\n\nfig_season_2 +\n  theme_cowplot() +\n  theme(text = element_text(family = \"Lekton\", size = 20))"
+  },
+  {
+    "objectID": "slides/slides.html#file-formatsize",
+    "href": "slides/slides.html#file-formatsize",
+    "title": "Data Visualization",
+    "section": "File format/size",
+    "text": "File format/size\n\n\n\nFile size: email attachment, webpage/image load time, compilation time\nFile format: resizing vector vs. bitmap/raster. For bitmap images, set the plot resolution: dpi = c(“retina”, “print”, “screen”)\n\n\nggplot2::ggsave(\"awesome_plot.png\",\n                width = 5,\n                height = 5,\n                units = \"cm\",\n                dpi = \"retina\")\n\n\n\n\n\n\n\n\n\nSource: clauswilke.com\n\n\n\n\nEnlarge bitmap with AI (paid). Yes, you can save to .tex."
+  },
+  {
+    "objectID": "slides/slides.html#font-embedding",
+    "href": "slides/slides.html#font-embedding",
+    "title": "Data Visualization",
+    "section": "Font embedding",
+    "text": "Font embedding\nVector images pick the closest font available (if the actual font is not available on the recipients computer). You can embed fonts into the vector image.\n\nshowtext converts characters into polygons. Embedding is no longer required, but text is no longer searchable.\nextrafont supports font embedding, but supports fewer fonts.\n\nAdobe Acrobat (paid version) can be used to manually embed fonts in a PDF.\n\nPackages: showtext, extrafont.\nShould color profiles also be embedded? Not sure, and not clear how R/ggplot2 handles this."
+  },
+  {
+    "objectID": "slides/slides.html#continue-learning",
+    "href": "slides/slides.html#continue-learning",
+    "title": "Data Visualization",
+    "section": "Continue learning",
+    "text": "Continue learning\n\n\nViz types and examples: From Data to Viz, The R Graph Gallery, clauswilke.com\nExtensions: ggplot2 Extensions Gallery\nBooks: Fundamentals of Data Visualization\nNYT: What’s going on in this graph?\nData: Statistics Netherlands or data()\n\n\n\n\n\n\n\n\nRTFM: ggplot2 Book"
+  },
+  {
+    "objectID": "slides/slides.html#get-inspiration",
+    "href": "slides/slides.html#get-inspiration",
+    "title": "Data Visualization",
+    "section": "Get inspiration",
+    "text": "Get inspiration\n\n\nPodcasts: Data Stories, Explore Explain, Data Viz Today\nBlogs: FlowingData\nJournals: Nightingale\nComics: Matt-Heun Hong, Martin Telefont, Natalia Kiseleva\nGenerative art: Clause O. Wilke, Danielle Navarro, Thomas Lin Pedersen\nAwards: Information is Beautiful\nInteractive visualizations: R Psychologist\nExplorable explanations: Nicky Case, Setosa\n\n\n\n\n\n\n\n\nThomas Lin Pedersen"
+  },
+  {
+    "objectID": "slides/slides.html#a-note-on-fridays-class",
+    "href": "slides/slides.html#a-note-on-fridays-class",
+    "title": "Data Visualization",
+    "section": "❗️ A note on Friday’s class",
+    "text": "❗️ A note on Friday’s class\n\nHand in your first draft before Friday 12.00.\n\nPeer review is done in class.\n\nYou will get one-on-one feedback from us; this is your last chance!\n\nAttendance is expected!"
+  },
+  {
+    "objectID": "slides/slides.html#final-report-formatting",
+    "href": "slides/slides.html#final-report-formatting",
+    "title": "Data Visualization",
+    "section": "Final report formatting",
+    "text": "Final report formatting\n\nYou do not need display all your code\n\nHide code with echo = FALSE\nor in your pre-amble:\n\n\n---\ntitle: \"example rmd\"\nauthor: \"Annie Johansson\"\ndate: \"`r Sys.Date()`\"\noutput: \n  html_document:\n    code-folding: hide\n---\n\n\nor in your code chunk:\n\n#| echo: true\n#| code-fold: true\n\n# your code here \n\n\nCode\n# your code here"
+  },
+  {
+    "objectID": "slides/slides.html#friday-oct-10",
+    "href": "slides/slides.html#friday-oct-10",
+    "title": "Data Visualization",
+    "section": "Friday, Oct 10",
+    "text": "Friday, Oct 10\n🔗 Peer Review on Canvas\n\n\n\n\n\n\n\nfeedback sessions"
+  },
+  {
+    "objectID": "slides/slides.html#grading",
+    "href": "slides/slides.html#grading",
+    "title": "Data Visualization",
+    "section": "Grading",
+    "text": "Grading\n\nAssignment 1: 33% of your final grade\n\nAssignment 2: 66% of your final grade\n\nFinal grade for data viz counts 30% into your final BDS Toolbox grade & needs to be \\(\\ge\\) 5.5"
+  },
+  {
+    "objectID": "assignments/assignment-1.html",
+    "href": "assignments/assignment-1.html",
+    "title": "Data Visualization Assignment 1",
+    "section": "",
+    "text": "Download the templates for part 1 of this assignment in the Github Repository (templates &gt; assignment-1).\nThis is the first assignment for the Data Visualization module. The aim here is to get acquainted with the Prowise Learn data, practice with some ggplot basics, and to get you started with working with your visualizations for the final assignment.\nWith this assignment, you can gain 14 points (15 with bonus in part 1A). The points are awarded as following:\nIndividual part:\n\n4 points (plus 1 bonus point) for Part 1A\n2 points for Part 1B\n0.5 point for R code that runs and 0.5 point for lintr-proof code\n\nGroup part:\n\n6 points for visualization\n0.5 point for R code that runs and 0.5 point for lintr-proof code\n\nPart 1 is completed, and thus also graded, individually. Part 2 should be completed with your assigned group. Please make sure to clearly indicate your group number and names of all group members in your submission. One person should submit the assignment on behalf of the group. If more than one person submits the group assignment, we will only look at one of them.\nThe assignment is due on Sunday October 5th, 2025 at 23:59. Submit your assignment to Canvas, under “DV Assignment 1”.\nYour submission for Part 1 should contain the following files:\n\nR code (style checked & working) in a .Rmd file\n\nYour assignment, including both the replicated plot and the interactive plot, compiled to .html\n\nwith file names in the following structure: DV-Assignment1-Firstname-Lastname-PartA.Rmd and DV-Assignment1-Firstname-Lastname-PartA.html.\nYour group submission (Part 2) should contain the following files:\n\nR code (style checked & working) in a .Rmd file\n\nYour plot and short description, compiled to .html\n\nwith file names in the following structure: DV-Assignment1-GroupX-PartB.Rmd (or .R), DV-Assignment1-GroupX-PartB.pdf (or .html). When uploading an html file, make sure that it can be opened and the plots are readable. We will not compile the html for you!\n\n\nWe want to be able to understand and run your code. This will help us to give you a fair grade. Therefore we ask that - before you submit your code - you:\n\nRun the Code Style check (i.e. the lintr) with the following code & resolve any issues. If you don’t know what an error means, internet is your best friend! Also, study the lecture slides of the code styling session. Remember that you can win a full point by making sure your code styling is correct.\n\n\nlint(rstudioapi::getSourceEditorContext()$path)\n\n\nClear your environment (rm(list = ls())) and re-run your code. We won’t have anything stored in memory that is not created/retrieved in the script, therefore clearing your environment is a great way to detect any bugs that might accidentally be present.\nDon’t install packages in your code. If we need to install a package that you used, state which packages need to be installed at the beginning of your code."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#instructions",
+    "href": "assignments/assignment-1.html#instructions",
+    "title": "Data Visualization Assignment 1",
+    "section": "",
+    "text": "Download the templates for part 1 of this assignment in the Github Repository (templates &gt; assignment-1).\nThis is the first assignment for the Data Visualization module. The aim here is to get acquainted with the Prowise Learn data, practice with some ggplot basics, and to get you started with working with your visualizations for the final assignment.\nWith this assignment, you can gain 14 points (15 with bonus in part 1A). The points are awarded as following:\nIndividual part:\n\n4 points (plus 1 bonus point) for Part 1A\n2 points for Part 1B\n0.5 point for R code that runs and 0.5 point for lintr-proof code\n\nGroup part:\n\n6 points for visualization\n0.5 point for R code that runs and 0.5 point for lintr-proof code\n\nPart 1 is completed, and thus also graded, individually. Part 2 should be completed with your assigned group. Please make sure to clearly indicate your group number and names of all group members in your submission. One person should submit the assignment on behalf of the group. If more than one person submits the group assignment, we will only look at one of them.\nThe assignment is due on Sunday October 5th, 2025 at 23:59. Submit your assignment to Canvas, under “DV Assignment 1”.\nYour submission for Part 1 should contain the following files:\n\nR code (style checked & working) in a .Rmd file\n\nYour assignment, including both the replicated plot and the interactive plot, compiled to .html\n\nwith file names in the following structure: DV-Assignment1-Firstname-Lastname-PartA.Rmd and DV-Assignment1-Firstname-Lastname-PartA.html.\nYour group submission (Part 2) should contain the following files:\n\nR code (style checked & working) in a .Rmd file\n\nYour plot and short description, compiled to .html\n\nwith file names in the following structure: DV-Assignment1-GroupX-PartB.Rmd (or .R), DV-Assignment1-GroupX-PartB.pdf (or .html). When uploading an html file, make sure that it can be opened and the plots are readable. We will not compile the html for you!\n\n\nWe want to be able to understand and run your code. This will help us to give you a fair grade. Therefore we ask that - before you submit your code - you:\n\nRun the Code Style check (i.e. the lintr) with the following code & resolve any issues. If you don’t know what an error means, internet is your best friend! Also, study the lecture slides of the code styling session. Remember that you can win a full point by making sure your code styling is correct.\n\n\nlint(rstudioapi::getSourceEditorContext()$path)\n\n\nClear your environment (rm(list = ls())) and re-run your code. We won’t have anything stored in memory that is not created/retrieved in the script, therefore clearing your environment is a great way to detect any bugs that might accidentally be present.\nDon’t install packages in your code. If we need to install a package that you used, state which packages need to be installed at the beginning of your code."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#working-with-the-oefenweb-server",
+    "href": "assignments/assignment-1.html#working-with-the-oefenweb-server",
+    "title": "Data Visualization Assignment 1",
+    "section": "Working with the Oefenweb Server",
+    "text": "Working with the Oefenweb Server\nBefore starting the assignment, please look at the handout on How to connect to the Oefenweb Server. This will help you to get started with retrieving data from the server. It also contains a useful tutorial on how to use SQL to retrieve data. Go through this code and make sure you understand it, as you will need it for this assignment."
+  },
+  {
+    "objectID": "assignments/assignment-1.html#part-1-oefenweb-data-basic-ggplot-individual",
+    "href": "assignments/assignment-1.html#part-1-oefenweb-data-basic-ggplot-individual",
+    "title": "Data Visualization Assignment 1",
+    "section": "Part 1: Oefenweb Data & Basic ggplot (Individual)",
+    "text": "Part 1: Oefenweb Data & Basic ggplot (Individual)\n\nA. Replicate this plot\nThe following code will give you the data necessary to create the plot at the end of this section. Your task is to replicate the plot using ggplot2.\nDon’t worry if you cannot reproduce the plots exactly. You can, for example, use different colors and font families.\nGrading:\n\nDoes the data show the same pattern? [2 pt]\nIs the styling the same? [2 pt]\nBONUS: Where there extra features added? [1 pt]\n\nBonus points\nCan you spot any areas where this plot can be improved? 1 extra point will be awarded for changes made, or features added or removed to the visualization. They need to be meaningful and improve the visualization. Simply changing colors or themes will not be rewarded, unless you can motivate why your changes are an improvement.\n\nknitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks\nrm(list = ls()) # Remove any existing objects in memory\n\n\n# Install Packages\n# Find everything that the user currently has installed\nall_installed_packages &lt;- installed.packages()[, \"Package\"]\n# Install any missing, but required packages\n# nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!\nif (!\"tidyverse\" %in% all_installed_packages) {install.packages(\"tidyverse\")}\nif (!\"devtools\" %in% all_installed_packages) {install.packages(\"devtools\")}\nif (!\"oefenwebDatabase\" %in% all_installed_packages) {devtools::install_github(repo = \"Oefenweb/r-database\")}\nif (!\"oefenwebTools\" %in% all_installed_packages) {devtools::install_github(repo = \"Oefenweb/r-tools\")}\nif (!\"jsonlite\" %in% all_installed_packages) {install.packages(\"jsonlite\")}\nif (!\"ggplot2\" %in% all_installed_packages) {install.packages(\"ggplot2\")}\nif (!\"cowplot\" %in% all_installed_packages) {install.packages(\"cowplot\")}\nif (!\"lintr\" %in% all_installed_packages) {install.packages(\"lintr\")}\nif (!\"viridis\" %in% all_installed_packages) {install.packages(\"viridis\")}\nif (!\"plotly\" %in% all_installed_packages) {install.packages(\"plotly\")}\n# nolint end\n\n# Load Required Packages\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\nlibrary(oefenwebTools)\nlibrary(jsonlite)\nlibrary(cowplot)\nlibrary(ggplot2)\n\n# make database connection\ncon &lt;- oefenwebDatabase::connect()\n\nFor this assignment, we will have a look at the two items of the same domain. First we have to get the items from the items table and after that we obtain the log_records of these items.\n\nitem_ids &lt;- c(188391, 186408)\n\nitems &lt;- get_query(\n  \"SELECT *\n  FROM `items`\n  WHERE id IN ({item_ids*})\",\n  con = con\n)\n\n# renaming first column of items data.frame to \"item_id\"\ncolnames(items)[1] &lt;- \"item_id\"\n\n# obtaining the log_records for the two items of the visualization\nitems_logs &lt;- get_query(\n  \"SELECT *\n  FROM `log_records_2`\n  WHERE `item_id` IN ({items$item_id*})\",\n  con = con\n)\n\nNow that we have the “raw” data, we can start to filter and prepare it for the visualization we want to build.\n\n# make the question and answer_options \"json\" free\nfor (i in 1:nrow(items)) {\n  items$correct_answer[i] &lt;-\n    jsonlite::fromJSON(items$answer_options[i])$answerOptions[1]\n  items$question[i] &lt;- jsonlite::fromJSON(items$question[i])$question$content\n}\n\n# we do a left_join between items_logs and items table\n# to get the item question and correct_answer into items_logs\nitems_logs &lt;- dplyr::left_join(\n  items_logs,\n  items[, c(\"item_id\", \"question\", \"correct_answer\")],\n  by = \"item_id\"\n)\n\nLet’s do some further data preparations. We prefer to change the data instead of changing labels in the plot. If you change the data, the plot and data will resemble each other, hence you can be more certain that you don’t have errors in your visualization.\n\n# transform variables to suitable types\nitems_logs$response_in_seconds &lt;- items_logs$response_in_milliseconds / 1000\nitems_logs$correct_answered &lt;- as.logical(items_logs$correct_answered)\nitems_logs$question &lt;- factor(items_logs$question)\n\n# make answer column\nitems_logs$given_answer_type &lt;- NA\nfor (i in 1:nrow(items_logs)) {\n  if (items_logs$correct_answered[i]) {\n    items_logs$given_answer_type[i] &lt;- \"correct\"\n  } else {\n    items_logs$given_answer_type[i] &lt;- \"incorrect\"\n    if (items_logs$answer[i] == \"¿\") {\n      items_logs$given_answer_type[i] &lt;- \"questionmark\"\n    }\n  }\n}\nitems_logs$given_answer_type &lt;- factor(items_logs$given_answer_type)\n\nBefore we continue we get the grade information from the users table, add this info, do some filtering and change it to a factor:\n\nusers &lt;- get_query(\n  \"SELECT id AS new_user_id, grade\n  FROM users\",\n  con = con\n)\n\nitems_logs &lt;- dplyr::left_join(items_logs, users, by = \"new_user_id\")\n\n# filter (with dplyr) to only work with grade 3 to 8\nitems_logs &lt;- items_logs %&gt;%\n  filter(grade %in% c(3:8)) %&gt;%\n  as.data.frame()\n\nitems_logs$grade &lt;- factor(\n  items_logs$grade,\n  levels = c(3:8),\n  labels = paste0(\"Grade \", c(3:8))\n)\n\nNow we can make the first plot. This plot shows us the relation which users (in terms of grade) practice these items. Note that for this plot we don’t use the geom_histogram function. In this case we first calculate the relative frequencies of the number of responses per grade, for each question. We store this information in a data.frame that we than use for plotting. So first make this data.frame! With geom_col() we than plot the bars.\nLook at this nice trick to add the %-symbol to the labels: scale_y_continuous(labels = function(x) paste0(x, \"%\")). I used these settings in my rMarkdown code chunk: fig.height = 4, fig.width = 6, fig.align = \"center\"\n\nFor the second plot we look into response times and given answer (correct, incorrect or questionmark). Note that you first have to make a variable with these answers (correct, incorrect, question-mark). I used these settings in my rMarkdown code chunk: fig.height = 4, fig.width = 6, fig.align = \"center\"\n\nFinally we make a plot with text to have some more information in our visualization. I used these settings in my rMarkdown code chunk: fig.height = 2, fig.width = 10, fig.align = \"center\"\n Finally we combine the three plots (one text plot and two figure plots) into one plot by means of the plot_grid function of the cowplot package. This is the visualization that you should replicate in this assignment Part II.\nI used these settings in my rMarkdown code chunk: fig.height = 8, fig.width = 10, fig.align = \"center\"\n\nPlotSolution\n\n\n\n\n\n\nPlot 1:\n\nplot_theme &lt;- theme(axis.text.x = element_text(angle = 45, hjust = 1),\n                   plot.title = element_text(hjust = 0.5))\n# plots\ngrade_bars &lt;- round(apply(table(items_logs$question, items_logs$grade), 1, prop.table), 2) * 100\ngrade_bars_df &lt;- data.frame(question = c(rep(\"10 - 2\", dim(grade_bars)[1]), rep(\"100 - 40\", dim(grade_bars)[1])),\n                          grade = c(rep(paste0(\"Grade \", c(3:8)), 2)),\n                          percentage = c(grade_bars[, 1], grade_bars[, 2]))\n\nann_text &lt;- data.frame(percentage = 30, grade = \"Grade 7\", question =  \"10 - 2\")\nplot1 &lt;- ggplot(data = grade_bars_df, aes(y = percentage, x = grade, fill = question)) +\n  geom_col(position = \"dodge\") +\n  scale_y_continuous(\"Percentage\", labels = function(x) paste0(x, \"%\")) +\n  scale_fill_manual(\"Question\", values = c(\"#1b9e77\", \"#7570b3\")) +\n  labs(title = \"Questions answered vs. User Grade\", x = \"\") +\n  geom_text(data = ann_text, aes(x = grade, y = percentage),\n              label = \"10 - 2 is mostly practiced by grade 3 users \\n and 100 - 40 by users in grade 5\",\n            family = \"Courier\",\n            size = 2) +\n  theme_minimal() +\n  plot_theme\nplot(plot1)\n\n\n\nPlot 2:\n\n# response time\nplot2 &lt;- ggplot(data = items_logs, aes(x = response_in_seconds,\n                                      linetype = given_answer_type,\n                                      color = given_answer_type)) +\n  facet_grid(. ~ question) +\n  scale_color_manual(values = c(\"#4daf4a\", \"#e41a1c\", \"#377eb8\")) +\n  scale_x_continuous(labels = function(x) paste0(x, \"s\")) +\n  geom_density() +\n  theme_minimal() +\n  labs(title = \"Response Time and Answer Given\",\n       linetype = \"Answer\", color = \"Answer\", x = \"Response in Seconds\", y  = \"Density\") +\n  theme(legend.position = \"top\",\n        strip.text.x = element_text(size = 12, face = \"bold\")) +\n  plot_theme\nplot(plot2)\n\n\n\nPlot 3:\n\ntext &lt;- paste0(\"Examination of question '10 - 2' and \",\n               \"'100 - 40' of the domain 'Substraction'\\n (Domain Id: 2). \",\n               \"What are the response times of these items and what is\\n the \",\n               \"grade of users that practise these items?\")\ntext1 &lt;- ggplot() +\n  annotate(\"text\", x = 8, y = 25, size = 4, label = text) +\n  theme(panel.grid = element_blank(),\n        panel.background = element_blank(),\n        axis.title = element_blank(),\n        axis.text = element_blank(),\n        axis.ticks = element_blank())\nplot(text1)\n\n\n\nCombined:\n\nbottomRow &lt;- suppressMessages(plot_grid(plot1, plot2))\nsuppressWarnings(plot_grid(text1, bottomRow, ncol = 1, rel_heights = c(1, 2)))\n\n\n\nBonus\nA full or half point was given for one or more improvements that contributed to a better understanding of the plot. Such as (but not limited to):\n\nFixing the mistake in the text inside the barplot (0.5pts)\n\nCorrecting the double aesthetic attribute for answer type in figure 2 (i.e. keeping only the linetype aesthetic or the color aesthetic). Or, making the distributions easier to interpret by filling them and adding an alpha value. (0.5pts)\n\nRemoving the redundancy in the axis labels of figure 2 (“s”), and/or removing the diagonal alignment of the labels (0.5pts)\nAdding statistical elements, such as median or mode values, to the density plots (1pt)\n\nReversing axes in figure 1, to improve readability (1pt).\n\nChanging titles, captions, and/or overall plot title to include the main conclusion (1pt)\n\n\n\n\n\nTips:\n\nOn plot 1 there is text on the third facet which does not use the default font family\n\nTo select nice colors go to http://colorbrewer2.org [or tips on the Data Visualisation slides]\nGoogle (or other search engines) are your best friend, especially on stack overflow there are many questions and answers about ggplot2\n\nPlease note that you will only receive bonus points if your extra features are meaningful and improve the visualization.\nWhen you are done, please close the connection to the database (run this code in the console!):\n\noefenwebDatabase::close_connections()\n\n\n\nB. Interactive visualizations with Plotly\nCopy the code below to create a plot showcasing how a given student’s ability in Multiplication develops during their first 100 interactions with the game.\nNow, your assignment is to:\n\nMake this plot interactive using the the plotly package. Tip: You can use the ggplotly() function to convert a ggplot object to an interactive plotly object.\nAdd a tooltip that displays additional information when you hover over the plot. Customize the tooltip so that it displays the default plot values and additional insights from two other variables (choose yourself). Make sure all of this information is visible when you hover over the plot.\n\nGrading:\n\nDoes the interactive plot work? [1 pt]\nDoes the tooltip clearly display additional (meaningful) information next to the default plot values? [1 pt]\n\nFor this assignment, we will examine how the student with new_user_id = 19872 progresses through the Multiplication game. To do so, we retrieve the student’s log_records. In the query below, we also obtain additional information about the learning goals associated with the answered items to provide extra context alongside the data stored in the log_records. This is achieved by performing left joins between the log_records tables and two others: items_learning_goals (which links item_id’s to learning_goal_id’s) and learning_goals, which provides further details about the learning goals.\n\n# Load Required Packages\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\nlibrary(ggplot2)\nlibrary(viridis)\nlibrary(plotly)\n\n# if you closed your database connection already, connect to the server again:\ncon &lt;- oefenwebDatabase::connect()\n\n# get the student's log records on the Multiplication game\n# ... and additional info related to the learning goals\nmy_data &lt;- get_query(\n  \"SELECT logs.*,\n          item_lgs.learning_goal_id,\n          lgs.short_name,\n          lgs.description,\n          lgs.position\n  FROM log_records_3 AS logs\n  LEFT JOIN items_learning_goals AS item_lgs ON item_lgs.item_id = logs.item_id\n  LEFT JOIN learning_goals AS lgs ON lgs.id = item_lgs.learning_goal_id\n  WHERE new_user_id = '19872'\",\n  con = con\n)\n\nWe are now ready to make the ggplot for this assignment. In this plot, we visualize how the student’s new_user_domain_rating changes as the student plays within the Multiplication game. We also add an color aesthetic to the plot that indicates for each answered item to which learning goal it belongs.\n\n# plot the student's rating development over time\nmy_plot &lt;- my_data %&gt;%\n  ggplot(\n    aes(\n      x = new_user_domain_modified_count,\n      y = new_user_domain_rating,\n      color = reorder(short_name, position) # order by \"position\" variable\n    )\n  ) +\n  geom_point(\n    size = 3,\n    alpha = .5\n  ) +\n  scale_color_viridis_d() +\n  labs(\n    title = paste0(\n      \"Development of user \",\n      unique(my_data$new_user_id),\n      \"'s ability in Multiplication\"\n    ),\n    x = \"Play count\",\n    y = \"User domain rating\",\n    color = \"Learning goal\"\n  ) +\n  theme_bw() +\n  theme(\n    plot.title = element_text(\n      face = \"bold\",\n      size = 14\n    )\n  )\n\nprint(my_plot)\n\nNow it’s your turn! Turn this static ggplot into an interactive plotly object, and add a customized tooltip that shows additional context next to the default values when you hover over the plot.\n\nPlotSolution\n\n\n\n\n\n\nmy_plot &lt;- my_data %&gt;%\n  ggplot(\n    aes(\n      x = new_user_domain_modified_count,\n      y = new_user_domain_rating,\n      color = reorder(short_name, position), # order by \"position\" variable\n      # customizing content for hover tooltip:\n      text = paste0(\n        \"Play count: \", new_user_domain_modified_count,\n        \"&lt;br&gt;User domain rating: \", new_user_domain_rating,\n        \"&lt;br&gt;Learning goal \", learning_goal_id, \": \", short_name,\n        \"&lt;br&gt;Description: \", description,\n        \"&lt;br&gt;Reaction time: \", response_in_milliseconds, \" ms\"\n      )\n    )\n  ) +\n  geom_point(\n    size = 3,\n    alpha = .5\n  ) +\n  scale_color_viridis_d() +\n  labs(\n    title = paste0(\n      \"Development of user \",\n      unique(my_data$new_user_id),\n      \"'s ability in Multiplication\"\n    ),\n    x = \"Play count\",\n    y = \"User domain rating\",\n    color = \"Learning goal\"\n  ) +\n  theme_bw() +\n  theme(\n    plot.title = element_text(\n      face = \"bold\",\n      size = 14\n    )\n  )\n\n# convert static plot into an interactive plotly object\nggplotly(my_plot, tooltip = \"text\") %&gt;%\n  # nice trick to left align content in tooltip:\n  layout(hoverlabel = list(align = \"left\"))\n\nFull points were given for the interactive plot if the interactivity was working, and a tooltip with the two default variables plus two extra variables were added. If default or extra variables were missing, or if the tooltip was not formatted in a legible way, 0.5 pts were deducted.\n\n\n\nWhen you are done, please close the connection to the database:\n\noefenwebDatabase::close_connections()"
+  },
+  {
+    "objectID": "assignments/assignment-1.html#part-2-start-on-final-dv-project-group",
+    "href": "assignments/assignment-1.html#part-2-start-on-final-dv-project-group",
+    "title": "Data Visualization Assignment 1",
+    "section": "Part 2: Start on Final DV Project (Group)",
+    "text": "Part 2: Start on Final DV Project (Group)\n\nA. Specify your research question\nIn class 1 you indicated your preference for a research question for the final project, and were assigned a group to work with. You were also assigned one of the GitHub repositories from the Oefenweb GitHub account, which you can use to collaborate on your research project. Together with your group, read the instructions for your assigned research question in Assignment 2 again.\n\nDoes your project take an analytical, inference, or predictive approach? Is it clear what is expected in the final data visualization with regards to the approach?\n\nWho is your target audience? How might this influence choices for your final visualization?\n\n\n\nB. Connect to Git and load data\nFor this project, you will collaborate using Git. Connect your server environment to GitHub and clone your assigned GitHub repository into your online RStudio account by following these instructions: Connecting RStudio Server to GitHub. If this is done correctly, the resulting repository should have the following folder structure:\nyour-project-name/\n├── .gitignore\n├── README.md\n├── your-project-name.Rproj\n├── code/\n|   └── 00-load-data.R\n└── report/\n    └── DV-Assignment2-GroupX.Rmd\n    └── DV-Assignment2-GroupX.html\nAll group members should clone the assigned group repository to their server environment. Once you have cloned the repo and initialized Git, make a first commit and push it. Check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!\nFeel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a reproducible workflow. Additionally, it is important that you never push data to GitHub. If you have to store data, do this in a separate folder outside of your Git repository.\nNow, load in the necessary data for your visualization. The code for this is available in Assignment 2. Use the script 00-load-data.R in the code/ folder to load in the data. Examine the data. Discuss with your group:\n\nWhat is the structure of the data?\n\nWhat are the main variables? Can you already make some exploratory plots to understand these variables better?\n\nWhat data cleaning steps are necessary? Do you, for example, need to filter out some observations to obtain reliable results?\n\n\n\nC. Make your first visualization\nFor this assignment you can make any visualization about the chosen theme of the final project with these minimal requirements:\n\nuse multiple plots\nchange the theme (you can use a default theme or create your own)\nuse a good color-scheme, for example colorblind proof\nhighlight some interesting data points, for example using color or text\n\nInclude a description of what you want to communicate, and how you did that. Really work towards making a data visualization that highlights or substantiates a single conclusion. This plot does not have to be the plot for your final project (it probably is not), but use this assignment to get feedback from us on your current ideas.\nGrading:\n\nAesthetics\n\nIs the plot legible? [1pt]\nDo the colors add to the interpretability? [1pt]\nIs the plot simple? [0.5 pt]\n\nCommunication\n\nIs it clear what the plots tries to communicate? [1pt]\nDoes the plot communicate the described conclusions/description? [1pt]\nThe plot requires minimal explanation [0.5 pt]\n\nCreative/complexity\n\nIs the plot creative? [0.5 pt]\nIs the plot/analysis complex? [0.5 pt]\n\n\nClearly state your group members in your document. And please make sure ONE team member submits the assignment on behalf of the group."
+  },
+  {
+    "objectID": "documents/ggplotly-handout.html",
+    "href": "documents/ggplotly-handout.html",
+    "title": "ggplotly - Example with Oefenweb Data",
+    "section": "",
+    "text": "This handout provides an example of creating an interactive visualization with ggplotly() using data from the Oefenweb learning platform. We first set up the environment.\n\n# Set up environment\nknitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)\nrm(list = ls())\n\n\n# Load libraries\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\nlibrary(plotly)\n\n# connect to the Oefenweb server\ncon &lt;- oefenwebDatabase::connect()\n\nLet’s get started by querying the play data of a single player, specifically the user with user_id = '51', for the addition game.\n\n# get data of specific user\ndata &lt;- get_query(\n  \"SELECT *\n  FROM log_records_1\n  WHERE new_user_id = '51'\",\n  con = con\n)\n\nWe are now going to make a regular ggplot object that depicts how the player’s ability rating in the addition game develops over time. Additionally, we are plotting for each given response whether that was a correct or an incorrect response to the item’s question.\n\n# set custom aesthetics\n# plot theme\nplot_theme &lt;- theme_minimal(base_size = 13) +\n  theme(\n    plot.title = element_text(\n      face = \"bold\",\n      size = 16\n    )\n  )\n\n# specify colors (for plotting incorrect vs. correct answers)\nplot_colors &lt;- c(\"#E31A1C\", \"#33A02C\")\n\n# plot rating development over played items\ndata %&gt;%\n  ggplot(\n    aes(\n      x = new_user_domain_modified_count,\n      y = new_user_domain_rating,\n      colour = factor(correct_answered),\n      text = paste0(\n        \"difficulty: \", difficulty,\n        \"\\nreaction time: \", round(response_in_milliseconds / 1000, 1), \" sec\"\n      )\n    )\n  ) +\n  geom_point(\n    size = 3,\n    alpha = .8,\n    aes(shape = factor(correct_answered))\n  ) +\n  scale_shape_manual(\n    values = c(4, 16),\n    name = \"Correct answered?\"\n  ) +\n  scale_color_manual(\n    values = plot_colors,\n    name = \"Correct answered?\"\n  ) +\n  labs(\n    title = paste0(\n      \"User \", unique(data$new_user_id), \"'s performance on the addition game\"\n    ),\n    x = \"Play count\",\n    y = \"User domain rating\"\n  ) +\n  plot_theme\n\n\nTo convert the static ggplot above, you simply call ggplotly(your_plot), where your_plot is the ggplot object you created. This turns it into an interactive plot with tooltips, zoom, and pan.\nBelow, we save the ggplot object we created earlier and wrap it in ggplotly(). We also add a customized tooltip, by adding a text aesthetic to the ggplot object. In this example, the customized tooltip depicts additional information for each given response, namely the chosen difficulty level and the player’s reaction time.\n\n# plot rating development over played items\nmy_plotly &lt;- data %&gt;%\n  ggplot(\n    aes(\n      x = new_user_domain_modified_count,\n      y = new_user_domain_rating,\n      colour = factor(correct_answered),\n      # add text aesthetic for customized plotly tooltip:\n      text = paste0(\n        \"difficulty: \", difficulty,\n        \"\\nreaction time: \", round(response_in_milliseconds / 1000, 1), \" sec\"\n      )\n    )\n  ) +\n  geom_point(\n    size = 3,\n    alpha = .8,\n    aes(shape = factor(correct_answered))\n  ) +\n  scale_shape_manual(\n    values = c(4, 16),\n    name = \"Correct answered?\"\n  ) +\n  scale_color_manual(\n    values = plot_colors,\n    name = \"Correct answered?\"\n  ) +\n  labs(\n    title = paste0(\n      \"User \", unique(data$new_user_id), \"'s performance on the addition game\"\n    ),\n    x = \"Play count\",\n    y = \"User domain rating\"\n  ) +\n  plot_theme\n\n# convert ggplot object into a plotly one, with a customized tooltip\nggplotly(my_plotly, tooltip = \"text\")\n\n\n\nNote: Once you use tooltip = \"text\", Plotly only displays the contents specified in the text aesthetic – so be sure to include everything you want to see in the tooltip.\nAnd that’s it! You have now converted the static plot into an interactive plotly object.\n\noefenwebDatabase::close_connections()"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "",
+    "text": "Use the navigation bar above or the links below to find everything you need for this module."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "📋 Overview",
+    "text": "📋 Overview\n\nInstructors: Abe Hofman, Lilian Ye, Annie Johansson\n\nDates: September 30th - October 12th, 2025\n\nFormat: Lectures + Tutorials\nMain Topics:\n\nEffective data visualization\n\nggplot\nGit & GitHub for collaboration\n\n\nIn this module, you will learn a wide set of data visualisation tools for both static and interactive visualizations. We will also focus on why you should look at your data and what makes a good visualization. You will have access to rich data from the Prowise Servers, to design visualizations from."
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "🗓️ Schedule",
+    "text": "🗓️ Schedule\n\n\n\n\nWhen\n\n\nWhere\n\n\nTopic\n\n\nPrepare\n\n\nDuring Tutorial\n\n\n\n\nTuesday 30/9 15.00-18.00\n\n\nGS.11\n\n\nGood and Bad Plots / ggplot Basics\n\n\nRead: DV ch. 1 Watch video: Fundamentals of Data VisualizationOptional: Review ggplot basics in DV ch. 3\n\n\nKick-off quizWork on Assignment 1\n\n\n\n\nFriday 3/10 12.30-15.30\n\n\nJKB.25\n\n\nInteractive Plots\n\n\n\n\nKick-off quizWork on Assignment 1\n\n\n\n\nDeadline DV Assignment 1 – Sunday 5/9 23.59\n\n\n\n\nTuesday 7/10 15.00-18.00\n\n\nGS.11\n\n\nBetter Plots\n\n\nRead: DV Book ch. 3.7, 4.3, 5.3, 5.5, 5.6, 6.0, 6.1, 6.2, 8.1, 8.2, 8.3Watch videos: Themes, Recycling themes, Trend lines / stats, Color scheme, Multiple plots, Facets, Saving plots\n\n\n\n\n\n\nFriday 10/10 12.30-15.30\n\n\nJKB.25\n\n\nQ&A Session\n\n\nData Visualizations - First Draft Due\n\n\nWork on Assignment 2Peer Review\n\n\n\n\nDeadline DV Assignment 2 – Sunday 12/9 23.59"
+  },
+  {
+    "objectID": "index.html#quick-links",
+    "href": "index.html#quick-links",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "🔗 Quick links",
+    "text": "🔗 Quick links\nLecture Slides\nBrowse the GitHub repository"
+  },
+  {
+    "objectID": "index.html#assignments",
+    "href": "index.html#assignments",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "📝 Assignments",
+    "text": "📝 Assignments\nAssignment 1\nAssignment 2\nYou’ll be working with Git and GitHub for both assignments. Refer here for instructions on how to set up your data visualization server account with GitHub.\nIndicate your preference for a research question here."
+  },
+  {
+    "objectID": "index.html#deadlines",
+    "href": "index.html#deadlines",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "🚨 Deadlines",
+    "text": "🚨 Deadlines\n\nAssignment 1 – Sunday 5/10 23.59\nFirst draft of Assignment 2 – Friday 10/10 12.30\nPeer review of Assignment 2 – Friday 10/10 23.59\nAssignment 2 – Sunday 12/10 23.59\n\nLate submissions will be graded with a max. grade of 6, if submitted within 24 hours of the deadline. Submissions later than that will not be graded."
+  },
+  {
+    "objectID": "index.html#materials",
+    "href": "index.html#materials",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "📚 Materials",
+    "text": "📚 Materials\n\n\n\n\n\n\n\n\n\nr4ds.had.co.nz\n\n\n\n\n\n\n\nsocviz.co\n\n\n\n\n\n\n\nVideos on canvas\n\n\n\n\n\n\nHelpful extra resources\n\nClaus Wilke: Fundamentals of Data Viz\nhttps://psyteachr.github.io/introdataviz/plotstyle.html\nTelling Stories with Data"
+  },
+  {
+    "objectID": "index.html#how-to-use-this-site",
+    "href": "index.html#how-to-use-this-site",
+    "title": "BDS Toolbox: Data Visualization",
+    "section": "💡 How to Use This Site",
+    "text": "💡 How to Use This Site\n\nBrowse the slides before and after class.\n\nAccess the assignments and extra resources.\n\nPractice workflows with Git. If you are interested in how to setup a GitHub repository and work with Quarto documents, you can clone the repository and explore the files on your own computer."
+  },
+  {
+    "objectID": "documents/git-workflow.html",
+    "href": "documents/git-workflow.html",
+    "title": "Working with Git on the Server",
+    "section": "",
+    "text": "In this tutorial, you will learn how to:\n\nConnect your GitHub account to the online RStudio server\nClone your assigned GitHub repository for the group assignments into Rstudio and initialize Git in your RStudio project, so you can track changes and collaborate with your team"
+  },
+  {
+    "objectID": "documents/git-workflow.html#introduction",
+    "href": "documents/git-workflow.html#introduction",
+    "title": "Working with Git on the Server",
+    "section": "",
+    "text": "In this tutorial, you will learn how to:\n\nConnect your GitHub account to the online RStudio server\nClone your assigned GitHub repository for the group assignments into Rstudio and initialize Git in your RStudio project, so you can track changes and collaborate with your team"
+  },
+  {
+    "objectID": "documents/git-workflow.html#connecting-github-to-rstudio",
+    "href": "documents/git-workflow.html#connecting-github-to-rstudio",
+    "title": "Working with Git on the Server",
+    "section": "Connecting GitHub to RStudio",
+    "text": "Connecting GitHub to RStudio\nIn order to be able to connect your online RStudio environment to your group’s GitHub repository, you first have to create a SSH key through the following steps.\n\nStep 1: Create and add SSH key to GitHub\n\nLog into your online RStudio environment: https://data-visualization.oefenweb.nl/rstudio/auth-sign-in.\nCreate a SSH key: Go to Tools &gt; global options &gt; GIT/SVN &gt; click on Create SSH Key... &gt; and click create again; a passphrase is not necessary. Make sure the SSH key type ED25519 is selected in the dropdown menu (should already be selected for you).\n\n \n\nNow go to your Files pane in RStudio and select Show Hidden Files like this:\n\n\n\n\nSSH Key\n\n\n\nYou can find your SSH key in the .ssh folder. Open the file with the public key (ending with .pub) and copy the entire content of the file. We need to add this public key to your GitHub account\n\n \n\nNow open GitHub and go to your Settings. From here, go to SSH and GPG keys, and click on New SSH key. Add the public key you just copied from your online RStudio, and give your key a title (for example, Data viz server).\n\n\n\n\nSSH Key\n\n\nAnd there you go! You have now successfully let your online RStudio environment and your GitHub account know that these are allowed to communicate with each other. We can now clone your assigned GitHub group repository into your RStudio account.\n\n\nStep 2: Adding git-tracked R projects\n\nGo to your group’s GitHub repository and click on the green &lt;&gt; Code button. Choose to clone the repository via SSH and copy the code:\n\n\n\n\nSSH Key\n\n\n\nNow go back to RStudio. On the top right (sort of cubical icon) you can find a project overview Project: (none). Make sure this is in fact set to no project, if you see the name of a different repository/project, click it and select close project.\nMake a new R project for your group assignment: click on New project &gt; Clone Git Repository. Add the code you just copied from GitHub to Repository URL and create the project (the Project directory name will automatically be created for you).\n\n\n\n\nSSH Key\n\n\nIt will now appear as if your RStudio is re-starting; don’t be feared, this is what is supposed to be happening. Projects are temporary representations of your RStudio environment, so that you can work on different projects with different data to keep your work structure clear.\nIf you look in your Files pane, you will see that the folder was selected, which holds all the information that was on the GitHub repository.\nIf you look in your Environment pane, you can now see an extra tab called Git. You have now successfully cloned your repository and let Git track your changes!\n\n\nStep 3: Configure Git (only the first time)\nGit needs to know who you are, so it can keep track of who made which changes. You only have to do this once. Go to the Terminal tab in RStudio and type the following commands (replace &lt;your-name&gt; and &lt;your-email&gt; with your actual name and email address that you use for GitHub):\ngit config --global user.email \"&lt;your-email&gt;\"\ngit config --global user.name \"&lt;your-name&gt;\"\nEnter each command separately. The lines should be entered exactly like this, including the quotation marks, and you should see no output after entering the commands."
+  },
+  {
+    "objectID": "documents/git-workflow.html#now-you-can-work-in-your-project",
+    "href": "documents/git-workflow.html#now-you-can-work-in-your-project",
+    "title": "Working with Git on the Server",
+    "section": "Now you can work in your project",
+    "text": "Now you can work in your project\nOpen this project whenever you are working on the group assignments. You do this by either by clicking on the Project: &lt;your-repo-name&gt; button in the top right corner, or by double-clicking the .Rproj file in your project directory.\nCommit, push, and pull changes via the terminal in the online RStudio editor, or in the tab called Git. Remember to always pull changes into your environment before you start working on the project, and push your changes when you are done working on it. This way, you and your team members will always have access to the most recent version of the project, and you (hopefully) avoid merge conflicts.\nIt is good practice to close the project when you are done working on it, to avoid accidentally making changes to the wrong project the next time you open RStudio."
+  },
+  {
+    "objectID": "documents/ggplot-recap.html",
+    "href": "documents/ggplot-recap.html",
+    "title": "ggplot Recap",
+    "section": "",
+    "text": "Note\n\n\n\nPlaceholder worksheet. Content for this recap has not been written yet.\n\n\nThis worksheet will recap the basics of building plots with ggplot2: the grammar of graphics (data, aesthetics, geoms), common geoms, and styling/theming plots."
+  },
+  {
+    "objectID": "documents/working-with-ai.html",
+    "href": "documents/working-with-ai.html",
+    "title": "Working with AI",
+    "section": "",
+    "text": "Note\n\n\n\nPlaceholder worksheet. Content for this worksheet has not been written yet.\n\n\nThis worksheet will cover working with AI tools for data visualization: what they’re useful for, their limitations, and how to use them responsibly in this course."
+  },
+  {
+    "objectID": "assignments/assignment-2.html",
+    "href": "assignments/assignment-2.html",
+    "title": "DV Assignment 2 (Final Project)",
+    "section": "",
+    "text": "For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the Oefenweb data that highlights meaningful patterns and provides actionable insights. To aid in this, each research question (substantiated below) is accompanied by a code chunk which gives you the relevant data. You are expected to do some data preparation and/or filtering of this data to obtain clean, reliable results. However, you are not expected to query data from other sources in the database, or perform complicated data manipulations to derive a variable – focus on using the data given to create a sound data visualization.\n\n\nYou will write the assignment in R Markdown (or Quarto), to produce a report-style document of no more than 1000 words. The final version should be compiled into .html format.\nThe report should be a description of the process that led to your final data visualization. You should include:\n\nAn explanation of your research question and the target audience for your visualization. What did you want to communicate?\nA description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in assignment 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.\nYour final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question & exploration).\n\n\n\n\nThe second assignment of the Data Visualization module will be graded on the following elements:\n\nAesthetics: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?\nCommunication: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?\nDescription: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?\nCreativity and Complexity: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?\nCode Quality and Styling: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?\n\n\n\n\nYour chosen research question falls into one of three levels: analytics, inference, or prediction. Each level has different expectations in terms of how the visualization should be constructed and what role statistical modeling plays.\n\n\nAnalytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a teacher). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.\n\n\n\nInference goes one step further: it aims to explain differences or relationships in the data, often by comparing groups or testing hypotheses. We expect a visualization at this level to be supplemented with statistical tests or models (e.g. significance tests). The visualization should not only show patterns but also provide evidence for why the observed differences matter.\n\n\n\nPrediction focuses on using current information to forecast outcomes. At this level, you should fit and interpret a predictive model (e.g., a linear or logistic regression). The visualization should clearly communicate how well the model performs, what predictors matter, and what can be learned from the model’s outcomes.\n\n\n\n\nThere are several guidelines on workflow which you should follow when collaborating on this project:\n\nComment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.\nUse Git. Set up the project following the instructions in Assignment 1.\nDo not push data to GitHub!\n\n\n\n\nWe would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.\n\n\n\nThe final draft of your report and data visualization is due Sunday, October 12th, 23:59. You will hand in the assignment on Canvas and GitHub. Please hand in the following documents:\n\nYour .Rmd file. Here we will check your code styling and documentation. Run lintr beforehand!\nYour .html file. Make sure it renders correctly; we will not compile your .Rmd file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.\n\n\n\n\n\n\n\nGeneral tips\n\n\n\n\n\n\nStart by working with a subset of the data, to get a good idea of the data structure and variables, without running heavy computations. This should make your workflow more efficient. We have provided example R code that shows how to generate a reproducible subset.\nAfter developing your workflow, reflect on the robustness of your analysis. Would your findings change when you rerun the analysis on different data, or under altered conditions? Explain why or why not in your conclusion.\nMake sure to render your final visualization large enough so it is readable in the html.\nConsider the subset of your data that you want to visualize. Does it make sense to plot general effects, or showcase your main point with one or a couple of students?\nAdd interactive elements only if you think it adds value to your visualization.\nHighlight your main conclusion!.\nBefore handing in your final visualization, look at the guiding principles. Have you met these conditions?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#instructions",
+    "href": "assignments/assignment-2.html#instructions",
+    "title": "DV Assignment 2 (Final Project)",
+    "section": "",
+    "text": "For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the Oefenweb data that highlights meaningful patterns and provides actionable insights. To aid in this, each research question (substantiated below) is accompanied by a code chunk which gives you the relevant data. You are expected to do some data preparation and/or filtering of this data to obtain clean, reliable results. However, you are not expected to query data from other sources in the database, or perform complicated data manipulations to derive a variable – focus on using the data given to create a sound data visualization.\n\n\nYou will write the assignment in R Markdown (or Quarto), to produce a report-style document of no more than 1000 words. The final version should be compiled into .html format.\nThe report should be a description of the process that led to your final data visualization. You should include:\n\nAn explanation of your research question and the target audience for your visualization. What did you want to communicate?\nA description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in assignment 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.\nYour final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question & exploration).\n\n\n\n\nThe second assignment of the Data Visualization module will be graded on the following elements:\n\nAesthetics: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?\nCommunication: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?\nDescription: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?\nCreativity and Complexity: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?\nCode Quality and Styling: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?\n\n\n\n\nYour chosen research question falls into one of three levels: analytics, inference, or prediction. Each level has different expectations in terms of how the visualization should be constructed and what role statistical modeling plays.\n\n\nAnalytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a teacher). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.\n\n\n\nInference goes one step further: it aims to explain differences or relationships in the data, often by comparing groups or testing hypotheses. We expect a visualization at this level to be supplemented with statistical tests or models (e.g. significance tests). The visualization should not only show patterns but also provide evidence for why the observed differences matter.\n\n\n\nPrediction focuses on using current information to forecast outcomes. At this level, you should fit and interpret a predictive model (e.g., a linear or logistic regression). The visualization should clearly communicate how well the model performs, what predictors matter, and what can be learned from the model’s outcomes.\n\n\n\n\nThere are several guidelines on workflow which you should follow when collaborating on this project:\n\nComment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.\nUse Git. Set up the project following the instructions in Assignment 1.\nDo not push data to GitHub!\n\n\n\n\nWe would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.\n\n\n\nThe final draft of your report and data visualization is due Sunday, October 12th, 23:59. You will hand in the assignment on Canvas and GitHub. Please hand in the following documents:\n\nYour .Rmd file. Here we will check your code styling and documentation. Run lintr beforehand!\nYour .html file. Make sure it renders correctly; we will not compile your .Rmd file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.\n\n\n\n\n\n\n\nGeneral tips\n\n\n\n\n\n\nStart by working with a subset of the data, to get a good idea of the data structure and variables, without running heavy computations. This should make your workflow more efficient. We have provided example R code that shows how to generate a reproducible subset.\nAfter developing your workflow, reflect on the robustness of your analysis. Would your findings change when you rerun the analysis on different data, or under altered conditions? Explain why or why not in your conclusion.\nMake sure to render your final visualization large enough so it is readable in the html.\nConsider the subset of your data that you want to visualize. Does it make sense to plot general effects, or showcase your main point with one or a couple of students?\nAdd interactive elements only if you think it adds value to your visualization.\nHighlight your main conclusion!.\nBefore handing in your final visualization, look at the guiding principles. Have you met these conditions?"
+  },
+  {
+    "objectID": "assignments/assignment-2.html#codebooks",
+    "href": "assignments/assignment-2.html#codebooks",
+    "title": "DV Assignment 2 (Final Project)",
+    "section": "Codebooks",
+    "text": "Codebooks\nWe have prepared the first steps to retrieve your data, and this code can be found under each research question. In addition, there are codebooks available to help you make sense of the variables:\n\nThis codebook if you are working with research question 1.\nThis codebook if you are working with motivation metric data, i.e., research questions 2, 3, or 4."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#research-questions",
+    "href": "assignments/assignment-2.html#research-questions",
+    "title": "DV Assignment 2 (Final Project)",
+    "section": "Research Questions",
+    "text": "Research Questions\n\nRQ1. Which students are on track and which are not?\n\n\nExpand Instructions\n\n\nLevel: Analytics\n\nInstruction: Visualize the progress of the class within the following four Math Garden domains: addition, subtraction, clock reading, and tables. It should be useful for the teacher; they should be able to efficiently derive which students are on track in each game and which are not. For this question, you will only have to look at the class’ progress within domain sessions. You can choose one of two ways to define progress in this context:\n\nPopulation-based approach: In the dataset, there is a variable called new_user_domain_q_score. This is a metric which indicates how the student is performing, relative to the average performance of students within the same age group. For example, a q-score of 400 indicates that a child is performing equal to an average student in grade 4.\nWithin-class approach: In the dataset, there is a variable called new_user_domain_rating. This is the raw ability score of the user within the respective game. Normalize this variable for the class within each game to visualize students’ performance relative to the class average.\n\n\n\nData:\n# Clean Glob Env, load packages and connect to database\nrm(list = ls())\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\n\ncon &lt;- oefenwebDatabase::connect()\n\n# For this RQ, we will visualize the progress of students in class '601481'.\n# Run the following code to retrieve the relevant students' user_id's:\nstudent_ids &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_users\n  WHERE school_class_id = '601481'\",\n  con = con\n) %&gt;%\n  pull(user_id)\n\n# Specify the relevant domains\ndomain_ids &lt;- c(1, 2, 9, 59)\n\n# List student id's and domain id's to use as query parameters\nparams &lt;- list(student_ids, domain_ids)\n\n# Now get the log records (only domain sessions)\nlogs &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_logs\n  WHERE session = 'domain'\n  AND user_id IN ({params[[1]]*})\n  AND domain_id IN ({params[[2]]*})\",\n  con = con,\n  params = params\n)\n\n# Close connection\noefenwebDatabase::close_connections()\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\n\nThink about how you will deal with children who have no or little data within a specific domain. (How) will you visualize it? Is it reliable?\nYou do not need to worry about generalizability to other classes. It should be relevant for the teacher to say something about their students’ progress within the current class.\n\n\n\n\n\n\n\nRQ2. What are the differences in playing behaviors between students that switch games a lot within a given session, compared to students who don’t?\n\n\nExpand Instructions\n\n\nLevel: Inference.\nInstruction: For this RQ, you will look at the data from the mot_metrics_sessions table, which contains different metrics computed at the session level that we think might be related to motivation. Importantly, in this table, a session is defined as active if the user plays games in either environment (Math Garden / Language Sea) without stopping for more than 10 minutes. If no new game is started within 10 minutes, the session ends. In other words, each row marks a period of continuous activity in the learning environment for a given player.\nDefine a high vs. low switcher by looking at the variables n_different_games and duration. Now, choose one or more of the following variables to relate to switching behavior:\n\nmean_correct\n\nn_skip\n\nn_soft_quits\n\ndifficulty (or easy_ratio / medium_ratio / hard_ratio)\n\nmean_rt\n\n\n\nData:\n# Clean Glob Env, load packages and connect to database\nrm(list = ls())\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\n\ncon &lt;- oefenwebDatabase::connect()\n\n# For this RQ, it might be wise to start off with a subset of the\n# `mot_metrics_sessions` table. You can run the code below to create a subset:\n\n# First retrieve all unique users in this table.\nunique_users &lt;- get_query(\n  \"SELECT DISTINCT user_id\n  FROM mot_metrics_sessions\",\n  con = con\n)\n\n# Now we will randomly select 20% of the users\nset.seed(123)\nsample_users &lt;- sample_frac(unique_users, 0.20) %&gt;%\n  pull(user_id)\n\n# Get the `mot_metrics_sessions` data for the users sampled above\nsessions_data &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_sessions\n  WHERE user_id IN ({sample_users*})\",\n  con = con\n)\n\n# Check if no. of unique users in the data equals the no. of users we sampled\nlength(unique(sessions_data$user_id)) == length(sample_users)\n\n# Remove unnecessary objects\nrm(unique_users, sample_users)\n\n# Close connection\noefenwebDatabase::close_connections()\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\n\nAfter defining high/low switchers, it may be useful to look at individual users to get an idea of their playing patterns, before aggregating the data further.\nHow will you filter the data to get reliable estimates of switching tendencies?\nTaking the perspective of the child playing the game, what could be an advantage of switching games often? What could be a disadvantage? Considering this perspective could help formulate your narrative.\n\n\n\n\n\n\n\nRQ3. How does post-error quitting differ between in-school and out-of-school practice? What might moderate these differences?\n\n\nExpand Instructions\n\n\nLevel: Inference\nInstruction: It is possible that students’ motivation differs depending on whether they play in a classroom setting or at home – a question which we would like you to explore in the data. One way to operationalize motivation in Prowise Learn is post-error quitting. Post-error quitting refers to whether the game was ended prematurely after an error (post_error_quit). First, define a variable which indicates whether a student is playing in or out of school:\n\nSchool times are between 8:30 and 15.00 on weekdays. Be aware of school holidays! These should be defined as out-of-school.\n\nChoose one or more of the following moderators for your final visualization:\n\ngrade\nAverage new_user_domain_q_score\n\nAverage quit (this would define whether a student generally quits a lot, regardless of errors).\n\n\n\nData:\n# Clean Glob Env, load packages and connect to database\nrm(list = ls())\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\n\ncon &lt;- oefenwebDatabase::connect()\n\n# For this RQ, it might be wise to start off with a subset of the\n# `mot_metrics_logs` table. You can run the code below to create a subset:\n\n# First retrieve all unique users in this table.\n# (We'll only look at data from domain sessions)\nunique_users &lt;- get_query(\n  \"SELECT DISTINCT user_id\n  FROM mot_metrics_logs\n  WHERE session = 'domain'\",\n  con = con\n)\n\n# Now we will randomly select 20% of the users\nset.seed(123)\nsample_users &lt;- sample_frac(unique_users, 0.20) %&gt;%\n  pull(user_id)\n\n# Get the mot_metrics_logs data for the users sampled above\nlogs_data &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_logs\n  WHERE user_id IN ({sample_users*})\n  AND session = 'domain'\",\n  con = con\n)\n\n# Check if no. of unique users in the data equals the no. of users we sampled\nlength(unique(logs_data$user_id)) == length(sample_users)\n\n# Remove unnecessary objects\nrm(unique_users, sample_users)\n\n# Close connection\noefenwebDatabase::close_connections()\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\n\nWe have two papers dealing with post-error quitting (although not specifically dealing with this question), read them here and here for inspiration!\nYou can define errors as binary (error or correct) or continuous / categorical (with the variable sequential_errors, which denotes the number of errors made in a row at a given item).\n\n\n\n\n\n\n\nRQ4. Can we predict how long a student will look at feedback from different student characteristics and/or play behavior?\n\n\nExpand Instructions\n\n\nLevel: Prediction\nInstruction: Feedback looking time indicates the time that the feedback was displayed on the screen after a student encountered an error, skipped a response, or had a time-out. Whether or not students engage with the feedback they recieve can serve as important information, both for the developers at Prowise Learn (how do users engage with application features?), and for teachers (how do students engage in their learning process?). Here, you can choose between a number of different variables to add to a regression model:\n\ntype of error (incorrect response, skipped response, time-out response). Factor this variable yourself.\ngrade\ngender\nnew_user_domain_q_score\ndifficulty\nshow_coins\nresponse_time_in_milliseconds\napplication (language vs. math)\n\nYou can be selective or choose all variables. If you choose to omit certain variables, please explain why. If you differentiate between covariates and predictors, please argue your reasoning.\n\n\nData:\n# Clean Glob Env, load packages and connect to database\nrm(list = ls())\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\n\ncon &lt;- oefenwebDatabase::connect()\n\n# For this RQ, it might be wise to start off with a subset of the\n# `mot_metrics_logs` table. You can run the code below to create a subset:\n\n# First retrieve all unique users in this table.\n# (We'll only look at data from domain sessions)\nunique_users &lt;- get_query(\n  \"SELECT DISTINCT user_id\n  FROM mot_metrics_logs\n  WHERE session = 'domain'\",\n  con = con\n)\n\n# Now we will randomly select 20% of the users\nset.seed(123)\nsample_users &lt;- sample_frac(unique_users, 0.20) %&gt;%\n  pull(user_id)\n\n# Get the mot_metrics_logs data for the users sampled above\nlogs_data &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_logs\n  WHERE user_id IN ({sample_users*})\n  AND session = 'domain'\",\n  con = con\n)\n\n# Check if no. of unique users in the data equals the no. of users we sampled\nlength(unique(logs_data$user_id)) == length(sample_users)\n\n# Remove unnecessary objects\nrm(unique_users, sample_users)\n\n\n# The code below adds some variables from the `mot_metrics_domains` and the\n# `mot_metrics_users` tables to the `mot_metrics_logs` data.\n\n# Get mot_metrics_domains table\ndomains &lt;- get_query(\n  \"SELECT *\n  FROM mot_metrics_domains\",\n  con = con\n)\n\n# Get mot_metrics_users table (for information on gender)\nusers &lt;- get_query(\n  \"SELECT user_id, gender\n  FROM mot_metrics_users\",\n  con = con\n) %&gt;%\n  # Some users are present more than once in the data due to being part of\n  # multiple school classes. Since we only need gender, remove duplicate rows\n  distinct(user_id, gender) \n\n# Delete correct responses from log records\n# (Because the system automatically moves on to the next item after a correct\n# response, there is no 'feedback looking time'.)\nlogs_data &lt;- logs_data %&gt;%\n  filter(correct_answered == 0) %&gt;%\n  # add variables from domains table\n  left_join(\n    dplyr::select(\n      domains,\n      c(domain_id, short_name, token, app, informative_feedback)\n    ),\n    by = \"domain_id\"\n  ) %&gt;%\n  # add gender from users table\n  left_join(\n    users, by = \"user_id\"\n  )\n\n# Close connection\noefenwebDatabase::close_connections()\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\n\nSome games have explicit feedback (feedback which gives more information than right or wrong) – check this in the variable informative_feedback. Make sure you account for this somehow.\nIt will be useful to start with an exploration about how children look at feedback. How is this variable distributed? Also examine it across games.\nFeedback looking time can be defined in a continuous manner (predicting the time looked at feedback), or categorical (can we differentiate different types of ‘feedback lookers’)? Use the results from your exploration to decide which way is most suitable to define feedback looking."
+  },
+  {
+    "objectID": "documents/working-on-the-server.html",
+    "href": "documents/working-on-the-server.html",
+    "title": "Working on the Oefenweb Server",
+    "section": "",
+    "text": "In this tutorial, we will learn how to work on the Oefenweb server. The server contains real data from Prowise Learn, which you can use to create visualizations. You will need to connect properly to the server in order to access the data and complete the assignments in the Data Visualization modules.\n\nStep 1: Connect to the server\nYou will have signed the GDPR form, and received log-in credentials for the server in an earlier module of this course. Use the same credentials to log in to the data visualization server: https://data-visualization.oefenweb.nl/rstudio/auth-sign-in.\n\nSetup your environment\nWhen working with RMarkdown, start with a setup chunk. This allows you to change settings for all code chunks in your document. Any chunk settings you set here can be overridden in individual chunks later on. It is also good practice to clear your environment at the start of your script, to avoid any conflicts with existing objects in memory.\n\nknitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks\n\nrm(list = ls()) # Remove any existing objects in memory\n\n\n\nInstall necessary packages\nLet’s get started by ensuring that you have all the packages installed that you will need later on.\n\n# Install Packages\n# Find everything that the user currently has installed\nall_installed_packages &lt;- installed.packages()[, \"Package\"]\n# Install any missing, but required packages\n# nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!\nif (!\"tidyverse\" %in% all_installed_packages) {install.packages(\"tidyverse\")}\nif (!\"devtools\" %in% all_installed_packages) {install.packages(\"devtools\")}\nif (!\"oefenwebDatabase\" %in% all_installed_packages) {devtools::install_github(repo = \"Oefenweb/r-database\")}\nif (!\"oefenwebTools\" %in% all_installed_packages) {devtools::install_github(repo = \"Oefenweb/r-tools\")}\nif (!\"jsonlite\" %in% all_installed_packages) {install.packages(\"jsonlite\")}\nif (!\"ggplot2\" %in% all_installed_packages) {install.packages(\"ggplot2\")}\nif (!\"cowplot\" %in% all_installed_packages) {install.packages(\"cowplot\")}\nif (!\"viridis\" %in% all_installed_packages) {install.packages(\"viridis\")}\nif (!\"plotly\" %in% all_installed_packages) {install.packages(\"plotly\")}\n# nolint end\n\n# Load Required Packages\nlibrary(tidyverse)\nlibrary(oefenwebDatabase)\nlibrary(oefenwebTools)\nlibrary(jsonlite)\nlibrary(cowplot)\nlibrary(ggplot2)\n\n\n\nMake a connection to the server\nWe now have everything we need to let our online R Studio environment know how to “communicate” with our Data Server. We can connect with the database by using the following code. This creates a connection to the database that is stored in the variable con.\n\ncon &lt;- oefenwebDatabase::connect()\n\n\n\n\nStep 2: Retrieve data from the server\n\nRetrieve data with an SQL query\nFrom this point on, you can use the database connection to retrieve data from the server. What the data actually looks like, and which tables/columns are available can be viewed on the Adminer. Log in with the your Oefenweb username and password, and select oefenweb_nl_app from the databases.\nWe can, for example, use the following SQL statement to retrieve the domains table:\n\n# select all columns (*) from the domains table.\nmy_data_domains &lt;-\n  DBI::dbGetQuery(con, # the connection element to our database\n                  \"SELECT * FROM `domains`\")\n\nYou will receive warnings that let you know how data has been parsed. You can ignore these, or even better suppress them ;)\n\nmy_data_domains &lt;-\n  suppressWarnings(DBI::dbGetQuery(con,\n                                   \"SELECT * FROM `domains`\"))\n\nRecently, we updated the oefenwebDatabase package with a new function: get_query(). This function automatically suppresses SQL warnings and uses glue_sql() for safe SQL injections (rather than relying on paste() or paste0()). Retrieving data with get_query() looks like this:\n\n# select all columns (*) from the domains table.\nmy_data_domains &lt;- get_query(\n  \"SELECT * FROM `domains`\",\n  con = con # the connection element to our database\n)\n\nThe params argument can be used to specify certain parameters that you want to call within your SQL statement (with {params[[i]]} or {params[[j]]*}):\n\n# specify SQL parameters in 'params' list\ndomain_group_ids &lt;- c(1, 2, 5)\napplication_id &lt;- 1\nparams &lt;- list(domain_group_ids, application_id)\n\n# select all columns from the domains table for the domains in\n# specified domain group and application\nmy_data_domains &lt;- get_query(\n  \"SELECT *\n  FROM `domains`\n  WHERE `domain_group_id` IN ({params[[1]]*})\n  AND `application_id` = ({params[[2]]})\",\n  con = con,\n  params = params\n)\n\nBelow an example of a nested query:\n\ndata &lt;- get_query(\n  \"SELECT `id`, `login_count`, `new_school_id`, `grade`\n  FROM `users`\n  WHERE `id` IN\n    (SELECT `new_user_id`\n    FROM `school_classes_users`\n    WHERE `new_school_class_id` = '3')\",\n  con = con\n)\n\nNow lets get some item data. In the items table we can find data that contains item information as for example the item question or answer options. We will choose the domain tafels (Multiplication Tables). In the items table we can see that there is no mention of “tafels” anywhere, however, each item does have a domain_id listed. If we look in the domains table we just retrieved, we see that tafels has the id ‘59’. We can use this information to retrieve only the items from the tafels game:\n\nitems &lt;- get_query(\n  \"SELECT *\n  FROM `items`\n  WHERE `domain_id` = '59'\",\n  con = con\n)\n\nFor a review of SQL queries, see the SQL Handout from the previous module.\n\n\n\nStep 3: Manipulate the data\nNow we manipulate the data and create some new variables that we will need later on. First we convert the continuous variable maximum_response_in_seconds (the total amount of time allowed per item) and turn it into a categorical factor:\n\nitems$maximum_response_in_seconds &lt;- factor(items$maximum_response_in_seconds,\n                                            levels = c(5, 10, 15, 20),\n                                            labels = c(\"5 seconds\",\n                                                       \"10 seconds\",\n                                                       \"15 seconds\",\n                                                       \"20 seconds\"))\n\nThen, we want to know what the actual answer was to a question. Unfortunately, we store question and answer/answer_options data in the format of a JSON string. We thus need to clean the JSON before we can retrieve the answers:\n\n# Create a new variable where we will store the result\nitems$answer &lt;- numeric(nrow(items))\n\n# Loop over each row to clean the content (you could also use an apply function)\nfor (i in seq_len(nrow(items))) {\n  items$answer[i] &lt;-\n    as.numeric(jsonlite::fromJSON(items$answer_options[i])$answerOptions)\n}\n\nWe now have a column answer that has the cleaned, numeric, outcome for each question/item. We can use this to create another categorical variable:\n\n# Now we determine whether the answer is below or above 50\nitems$answer_result &lt;- items$answer &lt;= 50\n\n# Finally we make answer_result also a categorical factor variable\nitems$answer_result &lt;- factor(items$answer_result, levels = c(TRUE, FALSE),\n                              labels = c(\"equal to or below 50\", \"above 50\"))\n\n\n\nStep 4: Make a visualization\nOk, now we are ready to make a plot. We will plot the item deadline (maximum_response_time_in_seconds) on the x-axis and the item difficulty (rating) on the y-axis. We group the items into a group with answer equal to or below 50 and above 50.\n\nggplot(data = items,\n       aes(x = maximum_response_in_seconds,\n           y = rating,\n           fill = answer_result)) +\n  geom_boxplot() +\n  labs(x = \"Available Response Time\",\n       y = \"Item Rating/Difficulty\",\n       fill = \"Item Answer\")\n\n\n\nStep 5: Disconnect from the server\nWhen you are done working on the server, you need to disconnect from the database. You do this with the following code:\n\noefenwebDatabase::close_connections()"
+  },
+  {
+    "objectID": "slides/slides copy.html#tuesday-oct-7",
+    "href": "slides/slides copy.html#tuesday-oct-7",
+    "title": "Data Visualization",
+    "section": "Tuesday, Oct 7",
+    "text": "Tuesday, Oct 7\n\nFeedback on assignment 1\nRecap: what makes a good DV?\nMore data visualization features\nWork on assignment 2"
+  },
+  {
+    "objectID": "slides/slides copy.html#tips-from-assignment-1",
+    "href": "slides/slides copy.html#tips-from-assignment-1",
+    "title": "Data Visualization",
+    "section": "Tips from Assignment 1",
+    "text": "Tips from Assignment 1"
+  },
+  {
+    "objectID": "slides/slides copy.html#one-dataset-many-visualizations",
+    "href": "slides/slides copy.html#one-dataset-many-visualizations",
+    "title": "Data Visualization",
+    "section": "One dataset, many visualizations",
+    "text": "One dataset, many visualizations\n\n\n\n\nCode\nlibrary(\"gt\")\ndata(\"pizzaplace\")\npizza_top &lt;- pizzaplace %&gt;%\n  mutate(size = factor(size, levels = c(\"S\", \"M\", \"L\"))) %&gt;%\n  count(name, type, size, price, sort = TRUE) %&gt;%\n  top_n(n = 5)\npizza_top %&gt;%\n  gt() %&gt;%\n  tab_header(title = \"Pizza Top 5\", subtitle = \"2015\") %&gt;%\n  fmt_currency(columns = price, currency = \"USD\") %&gt;%\n  tab_source_note(source_note = md(\"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)\")) %&gt;%\n  opt_stylize(style = 6)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPizza Top 5\n\n\n2015\n\n\nname\ntype\nsize\nprice\nn\n\n\n\n\nbig_meat\nclassic\nS\n$12.00\n1914\n\n\nthai_ckn\nchicken\nL\n$20.75\n1410\n\n\nfive_cheese\nveggie\nL\n$18.50\n1409\n\n\nfour_cheese\nveggie\nL\n$17.95\n1316\n\n\nclassic_dlx\nclassic\nM\n$16.00\n1181\n\n\n\nSource: pizzaplace dataset\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(\"ggplot2\")\npizza_top %&gt;%\n  ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +\n  geom_point(aes(color = type, size = size)) +\n  geom_text(aes(label = price), nudge_y = -30) +\n  labs(title = \"Pizza Top 5\", subtitle = \"2015\", x = \"name\")"
+  },
+  {
+    "objectID": "slides/slides copy.html#one-dataset-many-visualizations-1",
+    "href": "slides/slides copy.html#one-dataset-many-visualizations-1",
+    "title": "Data Visualization",
+    "section": "One dataset, many visualizations",
+    "text": "One dataset, many visualizations\n\n\n\n\nCode\nlibrary(\"gt\")\npizza_season &lt;- pizzaplace %&gt;%\n  mutate(month = lubridate::month(date, label = TRUE)) %&gt;%\n  group_by(month) %&gt;%\n  count(type)\npizza_season %&gt;%\n  pivot_wider(names_from = month, values_from = n) %&gt;%\n  gt() %&gt;%\n  tab_header(title = \"Pizza Season\", subtitle = \"2015\") %&gt;%\n  tab_source_note(source_note = md(\"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)\")) %&gt;%\n  opt_stylize(style = 6)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPizza Season\n\n\n2015\n\n\ntype\nJan\nFeb\nMar\nApr\nMay\nJun\nJul\nAug\nSep\nOct\nNov\nDec\n\n\n\n\nchicken\n913\n875\n994\n924\n939\n910\n963\n934\n900\n832\n981\n885\n\n\nclassic\n1257\n1178\n1236\n1253\n1324\n1199\n1331\n1283\n1202\n1181\n1262\n1182\n\n\nsupreme\n1044\n964\n991\n1013\n1045\n1040\n1041\n991\n877\n998\n1050\n933\n\n\nveggie\n1018\n944\n1040\n961\n1020\n958\n1057\n960\n911\n872\n973\n935\n\n\n\nSource: pizzaplace dataset\n\n\n\n\n\n\n\n\n\n\n\nCode\nlibrary(\"ggplot2\")\nlibrary(\"lubridate\")\nfig_season_1 &lt;- pizza_season %&gt;%\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\") +\n  labs(title = \"Pizza Season\", subtitle = \"2015\", y = \"Number of pizzas sold\", x = \"Month\")\nfig_season_1\n\nfig_season_2 &lt;- pizza_season %&gt;%\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_line(aes(linetype = type)) +\n  labs(title = \"Pizza Season\", subtitle = \"2015\", y = \"Number of pizzas sold\", x = \"Month\")\nfig_season_2"
+  },
+  {
+    "objectID": "slides/slides copy.html#from-data-to-viz",
+    "href": "slides/slides copy.html#from-data-to-viz",
+    "title": "Data Visualization",
+    "section": "from data to viz",
+    "text": "from data to viz"
+  },
+  {
+    "objectID": "slides/slides copy.html#from-data-to-viz-1",
+    "href": "slides/slides copy.html#from-data-to-viz-1",
+    "title": "Data Visualization",
+    "section": "from data to viz",
+    "text": "from data to viz"
+  },
+  {
+    "objectID": "slides/slides copy.html#recap",
+    "href": "slides/slides copy.html#recap",
+    "title": "Data Visualization",
+    "section": "Recap",
+    "text": "Recap\n\n\n✓ Keep it simple.\n✓ Don’t mislead.\n✓ Tell one story.\n✓ First impressions matter!"
+  },
+  {
+    "objectID": "slides/slides copy.html#more-data-visualization-features",
+    "href": "slides/slides copy.html#more-data-visualization-features",
+    "title": "Data Visualization",
+    "section": "More data visualization features",
+    "text": "More data visualization features\n\nChart junk\nThemes\nColors\nColor blindness\nCaptions\nTypography\nFile format/size\nFont embedding"
+  },
+  {
+    "objectID": "slides/slides copy.html#chart-junk",
+    "href": "slides/slides copy.html#chart-junk",
+    "title": "Data Visualization",
+    "section": "Chart junk",
+    "text": "Chart junk\n\n\n\n\n\nNYT\n\n\n\n\n\n\nClaus Wilke"
+  },
+  {
+    "objectID": "slides/slides copy.html#themes",
+    "href": "slides/slides copy.html#themes",
+    "title": "Data Visualization",
+    "section": "Themes",
+    "text": "Themes\n\n\n\n\nCode\nlibrary(\"cowplot\")\nfig_season_2 +\n  theme_cowplot()\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nmy_theme &lt;- theme_cowplot() +\n  theme(\n    panel.grid.major = element_line(color = \"gray90\"),\n    axis.ticks = element_line(color = \"gray20\"),\n    axis.text = element_text(color = \"gray20\", face = \"italic\", size = 16),\n    axis.title = element_text(color = \"gray20\", face = \"bold\", size = 16),\n    plot.title = element_text(hjust = 0.5, size = 20, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 18),\n    legend.position = \"top\",\n    legend.title = element_text(size = 16, face = \"bold\"),\n    legend.text = element_text(size = 16)\n  )\nfig_season_2 + my_theme"
+  },
+  {
+    "objectID": "slides/slides copy.html#facets",
+    "href": "slides/slides copy.html#facets",
+    "title": "Data Visualization",
+    "section": "Facets",
+    "text": "Facets\ntheme_cowplot and theme_bw() format facets nicely.\nChange facet format manually with theme(strip.text = element_text(...)) and theme(strip.background = element_rect(...)).\n\n\n\n\nCode\nfig_season_2 +\n  facet_wrap(~type) +\n  theme_bw(12) +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_2 +\n  geom_line(linetype = \"solid\", color = \"gray30\", linewidth = 0.5) +\n  facet_wrap(~type) +\n  theme_minimal(12) +\n  theme(legend.position = \"none\",\n        strip.text = element_text(face = \"bold\", color = \"plum4\"),\n        strip.background = element_rect(fill = \"thistle2\", color = NA)) # fill for background; color for border"
+  },
+  {
+    "objectID": "slides/slides copy.html#colors",
+    "href": "slides/slides copy.html#colors",
+    "title": "Data Visualization",
+    "section": "Colors",
+    "text": "Colors\n\n\nCode\nfig_season_1 &lt;- pizza_season %&gt;%\n  mutate(quarter = case_when(\n    month %in% c(\"Jan\", \"Feb\", \"Mar\") ~ \"Q1\",\n    month %in% c(\"Apr\", \"May\", \"Jun\") ~ \"Q2\",\n    month %in% c(\"Jul\", \"Aug\", \"Sep\") ~ \"Q3\",\n    month %in% c(\"Oct\", \"Nov\", \"Dec\") ~ \"Q4\"\n  )) %&gt;%\n  ggplot(aes(x = quarter, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\", position = \"dodge\") +\n  labs(title = \"Pizza Season\", subtitle = \"2015, split by quarter\", y = \"Number of pizzas sold\", x = \"\")\n\nfig_season_1 +\n  scale_fill_viridis_d()"
+  },
+  {
+    "objectID": "slides/slides copy.html#color-scales",
+    "href": "slides/slides copy.html#color-scales",
+    "title": "Data Visualization",
+    "section": "Color scales",
+    "text": "Color scales\n\nqualitative (categorical data)\n\nsequential (ordered data that progress from low to high)\n\ndiverging (ordered data that progress from low to high with a critical midpoint, e.g., 0)\n\n\n\n\n\n\nCode\nfig_season_1 +\n  scale_fill_brewer(type = \"qual\")\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_1 +\n  scale_fill_brewer(type = \"seq\")\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_1 +\n  scale_fill_brewer(type = \"div\")"
+  },
+  {
+    "objectID": "slides/slides copy.html#color-blindness",
+    "href": "slides/slides copy.html#color-blindness",
+    "title": "Data Visualization",
+    "section": "Color blindness",
+    "text": "Color blindness\n\n\n\nClaus Wilke\n\n\n\n\nCode\n# remotes::install_github(\"clauswilke/colorblindr\")\nlibrary(\"colorblindr\")\ncolorblindr::cvd_grid(fig_season_1)\n\n\n\n\n\n\n\n\n\nThe package MetBrewer has many colorblind-friendly palettes:\n\n\n\n\nCode\nlibrary(\"MetBrewer\")\nMetBrewer::colorblind_palettes\n\n\n [1] \"Archambault\" \"Cassatt1\"    \"Cassatt2\"    \"Demuth\"      \"Derain\"     \n [6] \"Egypt\"       \"Greek\"       \"Hiroshige\"   \"Hokusai2\"    \"Hokusai3\"   \n[11] \"Ingres\"      \"Isfahan1\"    \"Isfahan2\"    \"Java\"        \"Johnson\"    \n[16] \"Kandinsky\"   \"Morgenstern\" \"OKeeffe1\"    \"OKeeffe2\"    \"Pillement\"  \n[21] \"Tam\"         \"Troy\"        \"VanGogh3\"    \"Veronese\"   \n\n\n\n\n\nCode\nfig_season_1 +scale_fill_manual(values = MetBrewer::met.brewer(\"VanGogh3\", n = 4))\n\n\n\n\n\n\n\n\n\n\n\nPackages: khroma (discrete data), viridis (continuous data), MetBrewer & rijkspalette, colorblindr, colorspace.\nResources: clauswilke.com, hclwizard.org, viridis Color Maps for R."
+  },
+  {
+    "objectID": "slides/slides copy.html#color-accuracy",
+    "href": "slides/slides copy.html#color-accuracy",
+    "title": "Data Visualization",
+    "section": "Color accuracy",
+    "text": "Color accuracy\n\n\nPrint-proof, monitor/beamer-proof, colorblind-proof?\n\nUse grayscale (but color-coding is superior)\nUse a secondary aesthetic for color\nUse a viridis color map\n\n\n\n\nSource: benq.com\n\n\n\n\n\n\nSource: Savi et al. (2018)"
+  },
+  {
+    "objectID": "slides/slides copy.html#captions",
+    "href": "slides/slides copy.html#captions",
+    "title": "Data Visualization",
+    "section": "Captions",
+    "text": "Captions\n\n\nTitle Descriptive or declarative\nMethods Keep it brief\nResults If not (fully captured) in title\nDefinitions Colors, line types, error bars, etc.\nData source If external\n\n\n\n\nSource: sketch.es\n\n\n\n\nResources: clauswilke.com, more, more, more."
+  },
+  {
+    "objectID": "slides/slides copy.html#typography",
+    "href": "slides/slides copy.html#typography",
+    "title": "Data Visualization",
+    "section": "Typography",
+    "text": "Typography\n\n\n\nLearn everything about typography.\nFind inspiration and recommendations.\nChoose a font for data visualizations.\nPick good font combinations.\nOr just use arial or helvetica.\n\n\n\n\n\nCode\nlibrary(\"showtext\")\nsysfonts::font_add_google(\"Lekton\")\nshowtext::showtext_auto()\n\nfig_season_2 +\n  theme_cowplot() +\n  theme(text = element_text(family = \"Lekton\", size = 20))"
+  },
+  {
+    "objectID": "slides/slides copy.html#section-1",
+    "href": "slides/slides copy.html#section-1",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Code\npizza_plot"
+  },
+  {
+    "objectID": "slides/slides copy.html#section-2",
+    "href": "slides/slides copy.html#section-2",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Code\nsysfonts::font_add_google(\"Lobster\")\nsysfonts::font_add_google(\"Lexend\")\nshowtext::showtext_auto()\n\npizza_plot +\n  # add a geom_rect element with opacity on top of pizza bars, to highlight the biggest bar\n  geom_rect(\n    data = pizza_totals %&gt;%\n      mutate(highlight = ifelse(type == \"classic\", TRUE, FALSE)),\n    aes(xmin = 0, xmax = total/1000, \n        ymin = as.numeric(factor(type)) - 0.5, \n        ymax = as.numeric(factor(type)) + 0.5,\n        alpha = highlight),\n    inherit.aes = FALSE,\n    fill = \"white\"\n  ) +\n  scale_alpha_manual(values = c(\"TRUE\" = 0, \"FALSE\" = 0.3), guide = \"none\") +\n  labs(title = \"The classic is a classic for a reason.\",\n       subtitle = \"Total Pizza Sales in 2015\",\n       caption = \"Source: pizzaplace dataset\") +\n  # change fonts\n  theme(text = element_text(family = \"Lexend\", color = \"gray30\"),\n                 plot.title = element_text(family = \"Lobster\", size = 20, color = \"tomato3\"),\n                 plot.subtitle = element_text(family = \"Lexend\", size = 16), \n                 axis.title.x = element_text(family = \"Lobster\", size = 16),\n                 axis.text.y = element_text(family = \"Lobster\", size = 16, color = \"tomato3\"))\n\n\n\n\nPackages: showtext."
+  },
+  {
+    "objectID": "slides/slides copy.html#file-formatsize",
+    "href": "slides/slides copy.html#file-formatsize",
+    "title": "Data Visualization",
+    "section": "File format/size",
+    "text": "File format/size\n\n\n\nFile size: email attachment, webpage/image load time, compilation time\nFile format: resizing vector vs. bitmap/raster. For bitmap images, set the plot resolution: dpi = c(“retina”, “print”, “screen”)\n\n\nggplot2::ggsave(\"awesome_plot.png\",\n                width = 5,\n                height = 5,\n                units = \"cm\",\n                dpi = \"retina\")\n\n\n\n\n\nSource: clauswilke.com\n\n\n\n\nEnlarge bitmap with AI (paid). Yes, you can save to .tex."
+  },
+  {
+    "objectID": "slides/slides copy.html#font-embedding",
+    "href": "slides/slides copy.html#font-embedding",
+    "title": "Data Visualization",
+    "section": "Font embedding",
+    "text": "Font embedding\nVector images pick the closest font available (if the actual font is not available on the recipients computer). You can embed fonts into the vector image.\n\nshowtext converts characters into polygons. Embedding is no longer required, but text is no longer searchable.\nextrafont supports font embedding, but supports fewer fonts.\n\nAdobe Acrobat (paid version) can be used to manually embed fonts in a PDF.\n\nPackages: showtext, extrafont.\nShould color profiles also be embedded? Not sure, and not clear how R/ggplot2 handles this."
+  },
+  {
+    "objectID": "slides/slides copy.html#continue-learning",
+    "href": "slides/slides copy.html#continue-learning",
+    "title": "Data Visualization",
+    "section": "Continue learning",
+    "text": "Continue learning\n\n\nViz types and examples: From Data to Viz, The R Graph Gallery, clauswilke.com\nExtensions: ggplot2 Extensions Gallery\nBooks: Fundamentals of Data Visualization\nNYT: What’s going on in this graph?\nData: Statistics Netherlands or data()\n\n\n\n\nRTFM: ggplot2 Book"
+  },
+  {
+    "objectID": "slides/slides copy.html#get-inspiration",
+    "href": "slides/slides copy.html#get-inspiration",
+    "title": "Data Visualization",
+    "section": "Get inspiration",
+    "text": "Get inspiration\n\n\nPodcasts: Data Stories, Explore Explain, Data Viz Today\nBlogs: FlowingData\nJournals: Nightingale\nComics: Matt-Heun Hong, Martin Telefont, Natalia Kiseleva\nGenerative art: Clause O. Wilke, Danielle Navarro, Thomas Lin Pedersen\nAwards: Information is Beautiful\nInteractive visualizations: R Psychologist\nExplorable explanations: Nicky Case, Setosa\n\n\n\n\nThomas Lin Pedersen"
+  }
+]

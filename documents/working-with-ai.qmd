@@ -1,0 +1,10 @@
+---
+title: "Working with AI"
+format: html
+---
+
+::: {.callout-note}
+**Placeholder worksheet.** Content for this worksheet has not been written yet.
+:::
+
+This worksheet will cover working with AI tools for data visualization: what they're useful for, their limitations, and how to use them responsibly in this course.

@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "!CLAUDE.md"
+  post-render:
+    - touch docs/.nojekyll
 
 website:
   title: "Data Visualization 2025"
@@ -28,6 +33,10 @@ website:
             text: "Working with Git"
           - href: documents/ggplotly-handout.qmd
             text: "ggplotly"
+          - href: documents/ggplot-recap.qmd
+            text: "ggplot Recap"
+          - href: documents/working-with-ai.qmd
+            text: "Working with AI"
           - href: https://socviz.co/
             text: "Data Visualization: A Practical Introduction (Healy)"
           - href: https://r4ds.hadley.nz/data-visualize.html
