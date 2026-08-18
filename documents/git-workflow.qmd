@@ -1,0 +1,74 @@
+---
+title: "Working with Git on the Server"
+format: html
+---
+
+## Introduction
+
+In this tutorial, you will learn how to:
+
+1.  Connect your GitHub account to the online RStudio server
+2.  Clone your assigned GitHub repository for the group assignments into Rstudio and initialize Git in your RStudio project, so you can track changes and collaborate with your team
+
+## Connecting GitHub to RStudio
+
+In order to be able to connect your online RStudio environment to your group's GitHub repository, you first have to create a SSH key through the following steps.
+
+### Step 1: Create and add SSH key to GitHub
+
+1.  Log into your online RStudio environment: <https://data-visualization.oefenweb.nl/rstudio/auth-sign-in>.
+
+2.  Create a SSH key: Go to `Tools` \> `global options` \> `GIT/SVN` \> click on `Create SSH Key...` \> and click `create` again; a passphrase is not necessary. Make sure the SSH key type `ED25519` is selected in the dropdown menu (should already be selected for you).
+
+![SSH Key](../images/link-data-viz-to-github-1.png) ![SSH Key](../images/link-data-viz-to-github-2.png)
+
+3.  Now go to your `Files` pane in RStudio and select `Show Hidden Files` like this:
+
+![SSH Key](../images/link-data-viz-to-github-3.png)
+
+4.  You can find your SSH key in the `.ssh` folder. Open the file with the public key (ending with `.pub`) and copy the entire content of the file. We need to add this public key to your GitHub account
+
+![SSH Key](../images/link-data-viz-to-github-4.png) ![SSH Key](../images/link-data-viz-to-github-5.png)
+
+5.  Now open GitHub and go to your `Settings`. From here, go to `SSH and GPG keys`, and click on `New SSH key`. Add the public key you just copied from your online RStudio, and give your key a title (for example, `Data viz server`).
+
+![SSH Key](../images/link-data-viz-to-github-6.png)
+
+And there you go! You have now successfully let your online RStudio environment and your GitHub account know that these are allowed to communicate with each other. We can now clone your assigned GitHub group repository into your RStudio account.
+
+### Step 2: Adding git-tracked R projects
+
+1.  Go to your group's GitHub repository and click on the green `<> Code` button. Choose to clone the repository via **SSH** and copy the code:
+
+![SSH Key](../images/set-git-r-project-1.png)
+
+2.  Now go back to RStudio. On the top right (sort of cubical icon) you can find a project overview `Project: (none)`. **Make sure this is in fact set to no project**, if you see the name of a different repository/project, click it and select `close project`.
+
+3.  Make a new R project for your group assignment: click on `New project` \> `Clone Git Repository`. Add the code you just copied from GitHub to `Repository URL` and create the project (the Project directory name will automatically be created for you).
+
+![SSH Key](../images/set-git-r-project-2.png)
+
+It will now appear as if your RStudio is re-starting; don't be feared, this is what is supposed to be happening. Projects are temporary representations of your RStudio environment, so that you can work on different projects with different data to keep your work structure clear.
+
+If you look in your `Files` pane, you will see that the folder was selected, which holds all the information that was on the GitHub repository.
+
+If you look in your `Environment` pane, you can now see an extra tab called `Git`. You have now successfully cloned your repository and let Git track your changes!
+
+### Step 3: Configure Git (only the first time)
+
+Git needs to know who you are, so it can keep track of who made which changes. You only have to do this once. Go to the `Terminal` tab in RStudio and type the following commands (replace `<your-name>` and `<your-email>` with your actual name and email address that you use for GitHub):
+
+```bash
+git config --global user.email "<your-email>"
+git config --global user.name "<your-name>"
+```
+
+Enter each command separately. The lines should be entered exactly like this, including the quotation marks, and you should see no output after entering the commands. 
+
+## Now you can work in your project
+
+Open this project whenever you are working on the group assignments. You do this by either by clicking on the `Project: <your-repo-name>` button in the top right corner, or by double-clicking the `.Rproj` file in your project directory.
+
+Commit, push, and pull changes via the terminal in the online RStudio editor, or in the tab called `Git`. **Remember to always pull changes into your environment before you start working on the project, and push your changes when you are done working on it.** This way, you and your team members will always have access to the most recent version of the project, and you (hopefully) avoid merge conflicts.
+
+It is good practice to close the project when you are done working on it, to avoid accidentally making changes to the wrong project the next time you open RStudio.

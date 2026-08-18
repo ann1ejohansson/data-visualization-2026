@@ -1,0 +1,93 @@
+---
+title: "BDS Toolbox: DV Assignment 1 Part 1"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup-hidden, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+
+Use this template to help you get started with your assignment. You can add more code chunks as needed. After knitting, a .html document will be generated in the same folder as this .Rmd file. You should download both documents (.Rmd and .html) from the server and submit them following the instructions on the assignment. 
+
+Some tips if you encounter knitting issues:  
+
+-  Check that all required packages are installed and loaded correctly.
+-  Check that all code chunks are labeled and have unique labels.
+-  If you are using any external files (e.g., sourcing an R script), make sure they are in the same directory as your .Rmd file or provide the correct path.
+-  Google the error message you receive, as it often provides clues about what went wrong.
+
+**If you make more than one visualization per part, please indicate clearly which visualization we should look at when grading**. 
+
+## Setup environment
+```{r setup environment, include = TRUE}
+knitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks
+rm(list = ls()) # Remove any existing objects in memory
+```
+
+## A. Replicate this plot
+
+### Libraries and database connection
+```{r requirements}
+# Install Packages
+# Find everything that the user currently has installed
+all_installed_packages <- installed.packages()[, "Package"]
+# Install any missing, but required packages
+# nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
+if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
+if (!"devtools" %in% all_installed_packages) {install.packages("devtools")}
+if (!"oefenwebDatabase" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-database")}
+if (!"oefenwebTools" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-tools")}
+if (!"jsonlite" %in% all_installed_packages) {install.packages("jsonlite")}
+if (!"ggplot2" %in% all_installed_packages) {install.packages("ggplot2")}
+if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
+if (!"lintr" %in% all_installed_packages) {install.packages("lintr")}
+if (!"viridis" %in% all_installed_packages) {install.packages("viridis")}
+if (!"plotly" %in% all_installed_packages) {install.packages("plotly")}
+# nolint end
+
+# Load Required Packages
+library(tidyverse)
+library(oefenwebDatabase)
+library(oefenwebTools)
+library(jsonlite)
+library(cowplot)
+library(ggplot2)
+library(lintr)
+library(viridis)
+library(plotly)
+
+# make database connection
+con <- oefenwebDatabase::connect()
+```
+
+## A. Replicate this plot
+### Retrieve data
+
+```{r load-data-1}
+
+```
+
+*... add more code chunks as needed. *
+
+### Create plot 
+```{r plot-1}
+
+```
+
+
+## B. Interactive visualizations with plotly
+### Retrieve data
+
+```{r load-data-2}
+
+```
+
+### Create interactive plot
+
+```{r plot-2}
+
+```
+

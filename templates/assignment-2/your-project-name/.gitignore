@@ -1,0 +1,61 @@
+# Common raw data formats
+*.csv
+*.tsv
+*.txt
+*.dat
+*.tab
+*.rda
+*.RData
+*.rdata
+*.Rdata
+*.RDATA
+*.rds
+*.RDS
+*.feather
+*.fst
+*.parquet
+*.sav
+*.dta
+*.xlsx
+*.xls
+*.ods
+/data/
+data/
+
+# Compressed archives often used for data
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.bz2
+*.xz
+*.7z
+
+
+
+# Large binary objects (just in case)
+*.bin
+*.h5
+*.nc
+*.mat
+
+# =========================
+# R project housekeeping
+# =========================
+
+# Ignore R history and session data (optional but recommended)
+.Rhistory
+.Rapp.history
+.RData
+
+# Ignore knitr/pandoc cache or temporary directories
+*_cache/
+cache/
+*.utf8.md
+*.knit.md
+
+# Temporary or local environment files
+*.swp
+*.tmp
+*.bak
+*.log

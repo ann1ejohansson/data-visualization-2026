@@ -1,0 +1,441 @@
+---
+title: "DV Assignment 2 (Final Project)"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+    toc-float: true
+---
+
+```{r setup, include=FALSE}
+# set eval = TRUE when running on server
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+## Instructions
+
+For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the Oefenweb data that highlights meaningful patterns and provides actionable insights. To aid in this, each research question (substantiated below) is accompanied by a code chunk which gives you the relevant data. You are expected to do some data preparation and/or filtering of this data to obtain clean, reliable results. However, you are not expected to query data from other sources in the database, or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
+
+### The report
+
+You will write the assignment in R Markdown (or Quarto), to produce a report-style document of no more than 1000 words. The final version should be compiled into `.html` format.
+
+The report should be a description of the process that led to your final data visualization. You should include:
+
+-   An explanation of your research question and the target audience for your visualization. What did you want to communicate?
+
+-   A description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in assignment 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.
+
+-   Your final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question & exploration).
+
+### Grading
+
+The second assignment of the Data Visualization module will be graded on the following elements:
+
+-   **Aesthetics**: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?
+-   **Communication**: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?
+-   **Description**: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?
+-   **Creativity and Complexity**: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
+-   **Code Quality and Styling**: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
+
+### Levels of visualization
+
+Your chosen research question falls into one of three levels: analytics, inference, or prediction. Each level has different expectations in terms of how the visualization should be constructed and what role statistical modeling plays.
+
+#### Analytics
+
+Analytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a teacher). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.
+
+#### Inference
+
+Inference goes one step further: it aims to explain differences or relationships in the data, often by comparing groups or testing hypotheses. We expect a visualization at this level to be supplemented with statistical tests or models (e.g. significance tests). The visualization should not only show patterns but also provide evidence for why the observed differences matter.
+
+#### Prediction
+
+Prediction focuses on using current information to forecast outcomes. At this level, you should fit and interpret a predictive model (e.g., a linear or logistic regression). The visualization should clearly communicate how well the model performs, what predictors matter, and what can be learned from the model's outcomes.
+
+### Workflow
+
+There are several guidelines on workflow which you should follow when collaborating on this project:
+
+-   Comment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.
+
+-   Use Git. Set up the project following the instructions in Assignment 1.
+
+-   Do not push data to GitHub!
+
+### First draft and peer review
+
+We would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.
+
+### Final submission
+
+The final draft of your report and data visualization is due **Sunday, October 12th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following documents:
+
+-   Your `.Rmd` file. Here we will check your code styling and documentation. Run `lintr` beforehand!
+
+-   Your `.html` file. Make sure it renders correctly; we will not compile your `.Rmd` file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.
+
+::: {.callout-tip collapse="false"}
+## General tips
+
+-   Start by working with a **subset** of the data, to get a good idea of the data structure and variables, without running heavy computations. This should make your workflow more efficient. We have provided example R code that shows how to generate a reproducible subset.
+
+-   After developing your workflow, reflect on the robustness of your analysis. Would your findings change when you rerun the analysis on different data, or under altered conditions? Explain why or why not in your conclusion.
+
+-   Make sure to **render your final visualization large enough** so it is readable in the html.
+
+-   Consider the subset of your data that you want to visualize. Does it make sense to plot general effects, or showcase your main point with one or a couple of students?
+
+-   Add interactive elements **only if you think it adds value to your visualization**.
+
+-   **Highlight your main conclusion!**.
+
+-   Before handing in your final visualization, look at the [guiding principles](https://ann1ejohansson.github.io/data-visualization-2025/slides/slides.html#/tips-for-the-best-viz). Have you met these conditions?\
+:::
+
+## Codebooks
+We have prepared the first steps to retrieve your data, and this code can be found under each research question. In addition, there are codebooks available to help you make sense of the variables: 
+
+-  [This codebook](https://surfdrive.surf.nl/files/index.php/s/kgsJNvwlDHuNrDW) if you are working with research question 1. 
+
+-  [This codebook](https://docs.google.com/spreadsheets/d/1d1MtZAPZK2Orgr7QN388aoT085zE3FQ_9jn8eyxX9g8/edit?gid=0#gid=0) if you are working with motivation metric data, i.e., research questions 2, 3, or 4.
+
+
+## Research Questions
+
+### RQ1. Which students are on track and which are not?
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level**: Analytics\
+
+**Instruction:** Visualize the progress of the class within the following four Math Garden domains: addition, subtraction, clock reading, and tables. It should be useful for the teacher; they should be able to efficiently derive which students are on track in each game and which are not. For this question, you will only have to look at the class' progress within domain sessions. You can choose one of two ways to define progress in this context:
+
+1.  *Population-based approach:* In the dataset, there is a variable called `new_user_domain_q_score`. This is a metric which indicates how the student is performing, relative to the average performance of students within the same age group. For example, a q-score of 400 indicates that a child is performing equal to an average student in grade 4.
+
+2.  *Within-class approach:* In the dataset, there is a variable called `new_user_domain_rating`. This is the raw ability score of the user within the respective game. Normalize this variable for the class within each game to visualize students’ performance relative to the class average.
+
+```{r q-1-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Clean Glob Env, load packages and connect to database
+rm(list = ls())
+library(tidyverse)
+library(oefenwebDatabase)
+
+con <- oefenwebDatabase::connect()
+
+# For this RQ, we will visualize the progress of students in class '601481'.
+# Run the following code to retrieve the relevant students' user_id's:
+student_ids <- get_query(
+  "SELECT *
+  FROM mot_metrics_users
+  WHERE school_class_id = '601481'",
+  con = con
+) %>%
+  pull(user_id)
+
+# Specify the relevant domains
+domain_ids <- c(1, 2, 9, 59)
+
+# List student id's and domain id's to use as query parameters
+params <- list(student_ids, domain_ids)
+
+# Now get the log records (only domain sessions)
+logs <- get_query(
+  "SELECT *
+  FROM mot_metrics_logs
+  WHERE session = 'domain'
+  AND user_id IN ({params[[1]]*})
+  AND domain_id IN ({params[[2]]*})",
+  con = con,
+  params = params
+)
+
+# Close connection
+oefenwebDatabase::close_connections()
+
+```
+
+::: {.callout-tip collapse="false"}
+-   Think about how you will deal with children who have no or little data within a specific domain. (How) will you visualize it? Is it reliable?
+
+-   You do not need to worry about generalizability to other classes. It should be relevant for the teacher to say something about their students' progress within the current class.
+:::
+
+------------------------------------------------------------------------
+
+### RQ2. What are the differences in playing behaviors between students that switch games a lot within a given session, compared to students who don't?
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level:** Inference.
+
+**Instruction:** For this RQ, you will look at the data from the `mot_metrics_sessions` table, which contains different metrics computed at the session level that we think might be related to motivation. Importantly, in this table, a session is defined as active if the user plays games in either environment (Math Garden / Language Sea) without stopping for more than 10 minutes. If no new game is started within 10 minutes, the session ends. In other words, each row marks a period of continuous activity in the learning environment for a given player.
+
+Define a high vs. low switcher by looking at the variables `n_different_games` and `duration`. Now, choose one or more of the following variables to relate to switching behavior:
+
+1.  `mean_correct`\
+2.  `n_skip`\
+3.  `n_soft_quits`\
+4.  `difficulty` (or `easy_ratio` / `medium_ratio` / `hard_ratio`)\
+5.  `mean_rt`
+
+```{r q-2-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Clean Glob Env, load packages and connect to database
+rm(list = ls())
+library(tidyverse)
+library(oefenwebDatabase)
+
+con <- oefenwebDatabase::connect()
+
+# For this RQ, it might be wise to start off with a subset of the
+# `mot_metrics_sessions` table. You can run the code below to create a subset:
+
+# First retrieve all unique users in this table.
+unique_users <- get_query(
+  "SELECT DISTINCT user_id
+  FROM mot_metrics_sessions",
+  con = con
+)
+
+# Now we will randomly select 20% of the users
+set.seed(123)
+sample_users <- sample_frac(unique_users, 0.20) %>%
+  pull(user_id)
+
+# Get the `mot_metrics_sessions` data for the users sampled above
+sessions_data <- get_query(
+  "SELECT *
+  FROM mot_metrics_sessions
+  WHERE user_id IN ({sample_users*})",
+  con = con
+)
+
+# Check if no. of unique users in the data equals the no. of users we sampled
+length(unique(sessions_data$user_id)) == length(sample_users)
+
+# Remove unnecessary objects
+rm(unique_users, sample_users)
+
+# Close connection
+oefenwebDatabase::close_connections()
+
+```
+
+::: {.callout-tip collapse="false"}
+-   After defining high/low switchers, it may be useful to look at individual users to get an idea of their playing patterns, before aggregating the data further.
+
+-   How will you filter the data to get reliable estimates of switching tendencies?
+
+-   Taking the perspective of the child playing the game, what could be an advantage of switching games often? What could be a disadvantage? Considering this perspective could help formulate your narrative.
+:::
+
+------------------------------------------------------------------------
+
+### RQ3. How does post-error quitting differ between in-school and out-of-school practice? What might moderate these differences?
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level:** Inference
+
+**Instruction:** It is possible that students' motivation differs depending on whether they play in a classroom setting or at home -- a question which we would like you to explore in the data. One way to operationalize motivation in Prowise Learn is post-error quitting. Post-error quitting refers to whether the game was ended prematurely after an error (`post_error_quit`). First, define a variable which indicates whether a student is playing in or out of school:
+
+-   School times are between 8:30 and 15.00 on weekdays. Be aware of [school holidays](https://wanneerschoolvakantie.nl/schoolvakanties-2023-2024/)! These should be defined as out-of-school.
+
+Choose one or more of the following moderators for your final visualization:
+
+1.  `grade`
+2.  Average `new_user_domain_q_score`\
+3.  Average `quit` (this would define whether a student *generally* quits a lot, regardless of errors).
+
+```{r q-3-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Clean Glob Env, load packages and connect to database
+rm(list = ls())
+library(tidyverse)
+library(oefenwebDatabase)
+
+con <- oefenwebDatabase::connect()
+
+# For this RQ, it might be wise to start off with a subset of the
+# `mot_metrics_logs` table. You can run the code below to create a subset:
+
+# First retrieve all unique users in this table.
+# (We'll only look at data from domain sessions)
+unique_users <- get_query(
+  "SELECT DISTINCT user_id
+  FROM mot_metrics_logs
+  WHERE session = 'domain'",
+  con = con
+)
+
+# Now we will randomly select 20% of the users
+set.seed(123)
+sample_users <- sample_frac(unique_users, 0.20) %>%
+  pull(user_id)
+
+# Get the mot_metrics_logs data for the users sampled above
+logs_data <- get_query(
+  "SELECT *
+  FROM mot_metrics_logs
+  WHERE user_id IN ({sample_users*})
+  AND session = 'domain'",
+  con = con
+)
+
+# Check if no. of unique users in the data equals the no. of users we sampled
+length(unique(logs_data$user_id)) == length(sample_users)
+
+# Remove unnecessary objects
+rm(unique_users, sample_users)
+
+# Close connection
+oefenwebDatabase::close_connections()
+```
+
+::: {.callout-tip collapse="false"}
+-   We have two papers dealing with post-error quitting (although not specifically dealing with this question), read them [here](https://osf.io/preprints/osf/htzvm_v1) and [here](https://osf.io/preprints/psyarxiv/6tduv_v1) for inspiration!
+
+-   You can define errors as binary (error or correct) or continuous / categorical (with the variable `sequential_errors`, which denotes the number of errors made in a row at a given item).
+:::
+
+------------------------------------------------------------------------
+
+### RQ4. Can we predict how long a student will look at feedback from different student characteristics and/or play behavior?
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level:** Prediction
+
+**Instruction:** Feedback looking time indicates the time that the feedback was displayed on the screen after a student encountered an error, skipped a response, or had a time-out. Whether or not students engage with the feedback they recieve can serve as important information, both for the developers at Prowise Learn (how do users engage with application features?), and for teachers (how do students engage in their learning process?). Here, you can choose between a number of different variables to add to a regression model:
+
+1.  type of error (incorrect response, skipped response, time-out response). Factor this variable yourself.
+2.  `grade`
+3.  `gender`
+4.  `new_user_domain_q_score`
+5.  `difficulty`
+6.  `show_coins`
+7.  `response_time_in_milliseconds`
+8.  application (language vs. math)
+
+You can be selective or choose all variables. If you choose to omit certain variables, please explain why. If you differentiate between covariates and predictors, please argue your reasoning.
+
+```{r q-4-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Clean Glob Env, load packages and connect to database
+rm(list = ls())
+library(tidyverse)
+library(oefenwebDatabase)
+
+con <- oefenwebDatabase::connect()
+
+# For this RQ, it might be wise to start off with a subset of the
+# `mot_metrics_logs` table. You can run the code below to create a subset:
+
+# First retrieve all unique users in this table.
+# (We'll only look at data from domain sessions)
+unique_users <- get_query(
+  "SELECT DISTINCT user_id
+  FROM mot_metrics_logs
+  WHERE session = 'domain'",
+  con = con
+)
+
+# Now we will randomly select 20% of the users
+set.seed(123)
+sample_users <- sample_frac(unique_users, 0.20) %>%
+  pull(user_id)
+
+# Get the mot_metrics_logs data for the users sampled above
+logs_data <- get_query(
+  "SELECT *
+  FROM mot_metrics_logs
+  WHERE user_id IN ({sample_users*})
+  AND session = 'domain'",
+  con = con
+)
+
+# Check if no. of unique users in the data equals the no. of users we sampled
+length(unique(logs_data$user_id)) == length(sample_users)
+
+# Remove unnecessary objects
+rm(unique_users, sample_users)
+
+
+# The code below adds some variables from the `mot_metrics_domains` and the
+# `mot_metrics_users` tables to the `mot_metrics_logs` data.
+
+# Get mot_metrics_domains table
+domains <- get_query(
+  "SELECT *
+  FROM mot_metrics_domains",
+  con = con
+)
+
+# Get mot_metrics_users table (for information on gender)
+users <- get_query(
+  "SELECT user_id, gender
+  FROM mot_metrics_users",
+  con = con
+) %>%
+  # Some users are present more than once in the data due to being part of
+  # multiple school classes. Since we only need gender, remove duplicate rows
+  distinct(user_id, gender) 
+
+# Delete correct responses from log records
+# (Because the system automatically moves on to the next item after a correct
+# response, there is no 'feedback looking time'.)
+logs_data <- logs_data %>%
+  filter(correct_answered == 0) %>%
+  # add variables from domains table
+  left_join(
+    dplyr::select(
+      domains,
+      c(domain_id, short_name, token, app, informative_feedback)
+    ),
+    by = "domain_id"
+  ) %>%
+  # add gender from users table
+  left_join(
+    users, by = "user_id"
+  )
+
+# Close connection
+oefenwebDatabase::close_connections()
+```
+
+::: {.callout-tip collapse="false"}
+-   Some games have explicit feedback (feedback which gives more information than right or wrong) -- check this in the variable `informative_feedback`. Make sure you account for this somehow.
+
+-   It will be useful to start with an exploration about how children look at feedback. How is this variable distributed? Also examine it across games.
+
+-   Feedback looking time can be defined in a continuous manner (predicting the time looked at feedback), or categorical (can we differentiate different types of 'feedback lookers')? Use the results from your exploration to decide which way is most suitable to define feedback looking.
+:::
+
+------------------------------------------------------------------------

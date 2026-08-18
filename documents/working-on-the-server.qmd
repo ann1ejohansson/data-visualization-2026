@@ -1,0 +1,201 @@
+---
+title: "Working on the Oefenweb Server"
+format: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+In this tutorial, we will learn how to work on the Oefenweb server. The server contains real data from Prowise Learn, which you can use to create visualizations.
+You will need to connect properly to the server in order to access the data and complete the assignments in the Data Visualization modules. 
+
+### Step 1: Connect to the server
+You will have signed the GDPR form, and received log-in credentials for the server in an earlier module of this course. 
+Use the same credentials to log in to the data visualization server:  [https://data-visualization.oefenweb.nl/rstudio/auth-sign-in](https://data-visualization.oefenweb.nl/rstudio/auth-sign-in). 
+
+#### Setup your environment
+When working with RMarkdown, start with a setup chunk. This allows you to change settings for all code chunks in your document. Any chunk settings you set here can be overridden in individual chunks later on. 
+It is also good practice to clear your environment at the start of your script, to avoid any conflicts with existing objects in memory.
+
+```{r setup environment, include = TRUE, eval=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks
+
+rm(list = ls()) # Remove any existing objects in memory
+```
+
+#### Install necessary packages
+Let's get started by ensuring that you have all the packages installed that you will need later on.
+
+```{r requirements}
+# Install Packages
+# Find everything that the user currently has installed
+all_installed_packages <- installed.packages()[, "Package"]
+# Install any missing, but required packages
+# nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
+if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
+if (!"devtools" %in% all_installed_packages) {install.packages("devtools")}
+if (!"oefenwebDatabase" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-database")}
+if (!"oefenwebTools" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-tools")}
+if (!"jsonlite" %in% all_installed_packages) {install.packages("jsonlite")}
+if (!"ggplot2" %in% all_installed_packages) {install.packages("ggplot2")}
+if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
+if (!"viridis" %in% all_installed_packages) {install.packages("viridis")}
+if (!"plotly" %in% all_installed_packages) {install.packages("plotly")}
+# nolint end
+
+# Load Required Packages
+library(tidyverse)
+library(oefenwebDatabase)
+library(oefenwebTools)
+library(jsonlite)
+library(cowplot)
+library(ggplot2)
+```
+
+#### Make a connection to the server
+We now have everything we need to let our online R Studio environment know how to "communicate" with our Data Server. We can connect with the database by using the following code. This creates a connection to the database that is stored in the variable `con`.
+
+```{r connection}
+con <- oefenwebDatabase::connect()
+```
+
+### Step 2: Retrieve data from the server
+#### Retrieve data with an SQL query
+
+From this point on, you can use the database connection to retrieve data from the server. What the data actually looks like, and which tables/columns are available can be viewed on the [Adminer](https://data-visualization.oefenweb.nl/adminer.php?server=127.0.2.1). Log in with the your Oefenweb `username` and `password`, and select `oefenweb_nl_app` from the databases.
+
+We can, for example, use the following SQL statement to retrieve the `domains` table:
+
+```{r domains data}
+# select all columns (*) from the domains table.
+my_data_domains <-
+  DBI::dbGetQuery(con, # the connection element to our database
+                  "SELECT * FROM `domains`")
+```
+
+You will receive warnings that let you know how data has been parsed. You can ignore these, or even better suppress them ;)
+
+```{r suppress warnings}
+my_data_domains <-
+  suppressWarnings(DBI::dbGetQuery(con,
+                                   "SELECT * FROM `domains`"))
+```
+
+Recently, we updated the oefenwebDatabase package with a new function: `get_query()`. This function automatically suppresses SQL warnings and uses `glue_sql()` for safe SQL injections (rather than relying on `paste()` or `paste0()`). Retrieving data with `get_query()` looks like this:
+
+```{r get query function}
+# select all columns (*) from the domains table.
+my_data_domains <- get_query(
+  "SELECT * FROM `domains`",
+  con = con # the connection element to our database
+)
+```
+
+The `params` argument can be used to specify certain parameters that you want to call within your SQL statement (with `{params[[i]]}` or `{params[[j]]*}`):
+
+```{r params argument}
+# specify SQL parameters in 'params' list
+domain_group_ids <- c(1, 2, 5)
+application_id <- 1
+params <- list(domain_group_ids, application_id)
+
+# select all columns from the domains table for the domains in
+# specified domain group and application
+my_data_domains <- get_query(
+  "SELECT *
+  FROM `domains`
+  WHERE `domain_group_id` IN ({params[[1]]*})
+  AND `application_id` = ({params[[2]]})",
+  con = con,
+  params = params
+)
+```
+
+Below an example of a nested query:
+
+```{r nested query}
+data <- get_query(
+  "SELECT `id`, `login_count`, `new_school_id`, `grade`
+  FROM `users`
+  WHERE `id` IN
+    (SELECT `new_user_id`
+    FROM `school_classes_users`
+    WHERE `new_school_class_id` = '3')",
+  con = con
+)
+```
+
+Now lets get some item data. In the `items` table we can find data that contains item information as for example the item question or answer options. We will choose the domain `tafels` (Multiplication Tables). In the `items` table we can see that there is no mention of "tafels" anywhere, however, each item does have a `domain_id` listed. If we look in the `domains` table we just retrieved, we see that `tafels` has the `id` '59'. We can use this information to retrieve only the items from the `tafels` game:
+
+```{r}
+items <- get_query(
+  "SELECT *
+  FROM `items`
+  WHERE `domain_id` = '59'",
+  con = con
+)
+```
+
+**For a review of SQL queries, see the [SQL Handout](https://surfdrive.surf.nl/files/index.php/s/S9q2WQ5aY4d1UVP) from the previous module.**
+
+### Step 3: Manipulate the data
+
+Now we manipulate the data and create some new variables that we will need later on. First we convert the continuous variable `maximum_response_in_seconds` (the total amount of time allowed per item) and turn it into a categorical factor:
+
+```{r manipulate-1}
+items$maximum_response_in_seconds <- factor(items$maximum_response_in_seconds,
+                                            levels = c(5, 10, 15, 20),
+                                            labels = c("5 seconds",
+                                                       "10 seconds",
+                                                       "15 seconds",
+                                                       "20 seconds"))
+```
+
+Then, we want to know what the actual answer was to a question. Unfortunately, we store `question` and `answer`/`answer_options` data in the format of a JSON string. We thus need to clean the JSON before we can retrieve the answers:
+
+```{r manipulate-2}
+# Create a new variable where we will store the result
+items$answer <- numeric(nrow(items))
+
+# Loop over each row to clean the content (you could also use an apply function)
+for (i in seq_len(nrow(items))) {
+  items$answer[i] <-
+    as.numeric(jsonlite::fromJSON(items$answer_options[i])$answerOptions)
+}
+```
+
+We now have a column `answer` that has the cleaned, numeric, outcome for each question/item. We can use this to create another categorical variable:
+
+```{r manipulate-3}
+# Now we determine whether the answer is below or above 50
+items$answer_result <- items$answer <= 50
+
+# Finally we make answer_result also a categorical factor variable
+items$answer_result <- factor(items$answer_result, levels = c(TRUE, FALSE),
+                              labels = c("equal to or below 50", "above 50"))
+```
+
+### Step 4: Make a visualization
+Ok, now we are ready to make a plot. We will plot the item deadline (maximum_response_time_in_seconds) on the x-axis and the item difficulty (rating) on the y-axis. We group the items into a group with answer equal to or below 50 and above 50.
+
+```{r plot, }
+ggplot(data = items,
+       aes(x = maximum_response_in_seconds,
+           y = rating,
+           fill = answer_result)) +
+  geom_boxplot() +
+  labs(x = "Available Response Time",
+       y = "Item Rating/Difficulty",
+       fill = "Item Answer")
+```
+
+### Step 5: Disconnect from the server
+When you are done working on the server, you need to disconnect from the database. You do this with the following code:
+
+```{r disconnect}
+oefenwebDatabase::close_connections()
+```
+

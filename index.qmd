@@ -1,0 +1,125 @@
+---
+title: "BDS Toolbox: Data Visualization"
+format:
+  html:
+    toc: true
+---
+
+Use the navigation bar above or the links below to find everything you need for this module.
+
+------------------------------------------------------------------------
+
+## 📋 Overview
+
+-   **Instructors:** Abe Hofman, Lilian Ye, Annie Johansson\
+-   **Dates:** September 30th - October 12th, 2025\
+-   **Format:** Lectures + Tutorials
+-   **Main Topics:**
+    -   Effective data visualization\
+    -   ggplot
+    -   Git & GitHub for collaboration
+
+In this module, you will learn a wide set of data visualisation tools for both static and interactive visualizations. We will also focus on why you should look at your data and what makes a good visualization. You will have access to rich data from the Prowise Servers, to design visualizations from.
+
+## 🗓️ Schedule
+
+::: {.table .table-striped}
+<table>
+<tr>
+<th>When</th>
+<th>Where</th>
+<th>Topic</th>
+<th>Prepare</th>
+<th>During Tutorial</th>
+</tr>
+<tr>
+<td>Tuesday 30/9 15.00-18.00</td>
+<td>GS.11</td>
+<td>Good and Bad Plots / ggplot Basics</td>
+<td>Read: DV ch. 1 <br>Watch video: Fundamentals of Data Visualization<br>*Optional: Review ggplot basics in DV ch. 3*</td>
+<td>Kick-off quiz<br>Work on Assignment 1</td>
+</tr>
+<tr>
+<td>Friday 3/10 12.30-15.30</td>
+<td>JKB.25</td>
+<td>Interactive Plots</td>
+<td> </td>
+<td>Kick-off quiz<br>Work on Assignment 1</td>
+</tr>
+<tr>
+<td colspan="5"><strong>Deadline DV Assignment 1 – Sunday 5/9 23.59</strong></td>
+</tr>
+<tr>
+<td>Tuesday 7/10 15.00-18.00</td>
+<td>GS.11</td>
+<td>Better Plots</td>
+<td>Read: DV Book ch. 3.7, 4.3, 5.3, 5.5, 5.6, 6.0, 6.1, 6.2, 8.1, 8.2, 8.3<br>Watch videos: Themes, Recycling themes, Trend lines / stats, Color scheme, Multiple plots, Facets, Saving plots</td>
+<td> </td>
+</tr>
+<tr>
+<td>Friday 10/10 12.30-15.30</td>
+<td>JKB.25</td>
+<td>Q&A Session</td>
+<td>**Data Visualizations - First Draft Due**</td>
+<td>Work on Assignment 2<br>Peer Review</td>
+</tr>
+<tr>
+<td colspan="5"><strong>Deadline DV Assignment 2 – Sunday 12/9 23.59</strong></td>
+</tr>
+</table>
+
+:::
+
+## 🔗 Quick links
+
+[Lecture Slides](slides/slides.html){target="_blank"}
+
+[Browse the GitHub repository](https://github.com/ann1ejohansson/data-visualization-2025){target="_blank"}
+
+## 📝 Assignments
+
+[Assignment 1](assignments/assignment-1.html){target="_blank"}
+
+[Assignment 2](documents/assignment-2.html){target="_blank"}
+
+You'll be working with Git and GitHub for both assignments. Refer [here](documents/git-workflow.qmd) for instructions on how to set up your data visualization server account with GitHub. 
+
+Indicate your preference for a research question [here](https://docs.google.com/spreadsheets/d/1ppRe5PKrdawL8Q4QHAJpa6bfQfbVhmHZiWE7AxGaHSE/edit).
+
+## 🚨 Deadlines
+
+-   **Assignment 1** – Sunday 5/10 23.59
+-   **First draft of Assignment 2** – Friday 10/10 12.30
+-   **Peer review of Assignment 2** – Friday 10/10 23.59
+-   **Assignment 2** – Sunday 12/10 23.59
+
+**Late submissions** will be graded with a max. grade of 6, if submitted within 24 hours of the deadline. Submissions later than that will not be graded.  
+
+## 📚 Materials 
+
+::: {layout-ncol="3"}
+![[r4ds.had.co.nz](https://r4ds.hadley.nz/data-visualize.html)](slides/images/book_wickham.png){fig-align="left" height="150"}
+
+![[socviz.co](https://socviz.co/)](slides/images/book_healy.jpg){fig-align="left" height="150"}
+
+![[Videos on canvas](https://canvas.uva.nl/courses/54361/modules)](slides/images/canvas.png){fig-align="left" height="150"}
+:::
+
+#### Helpful extra resources
+
+-   [Claus Wilke: Fundamentals of Data Viz](https://clauswilke.com/dataviz/)
+
+-   <https://psyteachr.github.io/introdataviz/plotstyle.html>
+
+-  [Telling Stories with Data](https://tellingstorieswithdata.com/)
+
+## 
+
+
+## 💡 How to Use This Site
+
+1.  **Browse the slides** before and after class.\
+2.  **Access the assignments and extra resources.**\
+3.  **Practice workflows with Git.** If you are interested in how to setup a GitHub repository and work with Quarto documents, you can clone the repository and explore the files on your own computer.
+
+------------------------------------------------------------------------

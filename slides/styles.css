@@ -1,0 +1,26 @@
+/* styles.css */
+.title-slide-footer {
+  position: absolute;
+  bottom: 10px; /* Adjust as needed */
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 0.8em; /* Adjust size as needed */
+  z-index: 1;
+}
+
+/* Reduce the font size for image captions in reveal.js slides */
+.reveal .quarto-caption {
+  font-size: 0.4em;  /* Adjust the value to your preference */
+}
+
+/* Make text within square brackets blue */
+span.bracketed::before, span.bracketed::after {
+    content: "";
+    background-color: lightblue;
+}
+
+span.bracketed {
+    background-color: lightblue;
+}
