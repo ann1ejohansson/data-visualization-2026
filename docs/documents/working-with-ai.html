@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -157,8 +191,19 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#recap-exploratory-vs.-explanatory" id="toc-recap-exploratory-vs.-explanatory" class="nav-link active" data-scroll-target="#recap-exploratory-vs.-explanatory">Recap: exploratory vs.&nbsp;explanatory</a></li>
+  <li><a href="#ai-during-exploration" id="toc-ai-during-exploration" class="nav-link" data-scroll-target="#ai-during-exploration">AI during exploration</a></li>
+  <li><a href="#ai-during-explanation" id="toc-ai-during-explanation" class="nav-link" data-scroll-target="#ai-during-explanation">AI during explanation</a></li>
+  <li><a href="#exercise-describe-it-then-look-at-it" id="toc-exercise-describe-it-then-look-at-it" class="nav-link" data-scroll-target="#exercise-describe-it-then-look-at-it">Exercise: describe it, then look at it</a></li>
+  <li><a href="#course-policy-on-ai-use" id="toc-course-policy-on-ai-use" class="nav-link" data-scroll-target="#course-policy-on-ai-use">Course policy on AI use</a></li>
+  <li><a href="#takeaway" id="toc-takeaway" class="nav-link" data-scroll-target="#takeaway">Takeaway</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -192,12 +237,106 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Placeholder worksheet.</strong> Content for this worksheet has not been written yet.</p>
+<p><strong>Draft worksheet.</strong> This is a first pass for instructor review — content, examples, and exercises are still open to editing before this goes live for students.</p>
 </div>
 </div>
-<p>This worksheet will cover working with AI tools for data visualization: what they’re useful for, their limitations, and how to use them responsibly in this course.</p>
+<p>AI tools (ChatGPT, Claude, Copilot, and similar) are increasingly part of how people write code and explore data. This worksheet is about using them <em>well</em> in a data visualization workflow — knowing where they genuinely help, and where they can quietly lead you astray.</p>
+<p>We’ll use the same lens as the rest of this module: <strong>exploratory versus explanatory</strong>. AI is a different kind of tool in each phase.</p>
+<section id="recap-exploratory-vs.-explanatory" class="level2">
+<h2 class="anchored" data-anchor-id="recap-exploratory-vs.-explanatory">Recap: exploratory vs.&nbsp;explanatory</h2>
+<ul>
+<li><strong>Exploratory</strong>: examine the structure of your data.</li>
+<li><strong>Explanatory</strong>: tell a story with your data.</li>
+</ul>
+<p>Recall the discussion from lecture: <em>“What is more important? An eye or an algorithm?”</em> Anscombe’s quartet and the <code>datasaurus_dozen</code> package make the point that identical summary statistics can hide wildly different underlying structure — you only find that out by actually looking. Keep that question in mind throughout this worksheet: an AI tool reasoning over a description of your data has exactly the algorithm’s blindness, not the eye’s.</p>
+</section>
+<section id="ai-during-exploration" class="level2">
+<h2 class="anchored" data-anchor-id="ai-during-exploration">AI during exploration</h2>
+<section id="where-it-helps" class="level3">
+<h3 class="anchored" data-anchor-id="where-it-helps">Where it helps</h3>
+<ul>
+<li>Writing boilerplate/starter code (<code>ggplot()</code> scaffolding, <code>dplyr</code> pipelines, faceting syntax) so you spend less time on syntax and more on interpretation.</li>
+<li>Explaining error messages, or translating code between base R and <code>ggplot2</code>/<code>tidyverse</code> style.</li>
+<li>Brainstorming <em>which</em> variables or relationships might be worth investigating, as a starting point for your own exploratory plots.</li>
+</ul>
+</section>
+<section id="where-it-doesnt" class="level3">
+<h3 class="anchored" data-anchor-id="where-it-doesnt">Where it doesn’t</h3>
+<ul>
+<li><strong>AI cannot look at your data.</strong> Unless you paste in an actual plot or the real values, it is reasoning from whatever you describe to it in words or summary statistics — and summary statistics can hide structure (that’s the whole point of Anscombe/datasaurus). An AI tool can describe a relationship confidently without ever having “seen” its shape, and it can hallucinate patterns that aren’t there.</li>
+<li>It can suggest a pattern that turns out to be noise, or an artifact of how the data happened to be filtered. Treat any AI-suggested “interesting pattern” as a hypothesis to check by plotting — not a finding.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A hard rule for this course
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Prowise/Oefenweb data you work with is governed by GDPR, and you’ve already agreed to specific terms to access it. That means: <strong>never paste real Oefenweb/Prowise data — even small excerpts — into an external AI tool.</strong> This is the same principle behind “never push data to GitHub.” If you want to demonstrate an AI workflow, use synthetic or public data (e.g.&nbsp;<code>datasaurus_dozen</code>) instead.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="ai-during-explanation" class="level2">
+<h2 class="anchored" data-anchor-id="ai-during-explanation">AI during explanation</h2>
+<section id="where-it-helps-1" class="level3">
+<h3 class="anchored" data-anchor-id="where-it-helps-1">Where it helps</h3>
+<ul>
+<li>Critiquing communication: “Is this title clear?”, “Does this caption actually match what the plot shows?”, “Is this color scheme colorblind-safe?” — use it as a reviewer of your plot, not the author of your story.</li>
+<li>Polishing code: consistent styling, catching things a linter would flag, tidying up <code>theme()</code>/<code>patchwork</code> boilerplate.</li>
+<li>Generating alternative phrasings for a title or annotation once you already know what conclusion you want to communicate.</li>
+</ul>
+</section>
+<section id="where-it-doesnt-1" class="level3">
+<h3 class="anchored" data-anchor-id="where-it-doesnt-1">Where it doesn’t</h3>
+<ul>
+<li><strong>AI cannot tell you whether your story is true.</strong> It will happily generate a confident, well-written narrative around whatever effect you show it — real or spurious. Deciding <em>how robust a finding is</em> (part of your Assignment 2 rubric) is a judgment call you have to make, informed by your own exploration.</li>
+<li>It won’t push you to try the “one dataset, many visualizations” exercise from lecture — the first plot (AI-suggested or not) is rarely the best one. That iteration is still on you.</li>
+</ul>
+</section>
+</section>
+<section id="exercise-describe-it-then-look-at-it" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-describe-it-then-look-at-it">Exercise: describe it, then look at it</h2>
+<p>A quick way to feel the “eye vs.&nbsp;algorithm” gap yourself:</p>
+<ol type="1">
+<li>Pick one dataset from the <code>datasaurus_dozen</code> package, but don’t plot it yet.</li>
+<li>Describe it to an AI tool using only summary statistics (mean, sd, correlation of <code>x</code> and <code>y</code>) and ask it to describe the relationship between the variables.</li>
+<li>Now actually plot it:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datasauRus)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>datasaurus_dozen <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(dataset <span class="sc">==</span> <span class="st">"dino"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>Compare the AI’s description to what you actually see. Where did it match? Where was it flat-out wrong, or vague in a way that hid the real structure?</li>
+</ol>
+<p><em>(Instructor note: consider swapping in a second <code>datasaurus_dozen</code> shape, or a small anonymized/simulated excerpt of Prowise-style data, so students can’t just search for the “reveal” online.)</em></p>
+</section>
+<section id="course-policy-on-ai-use" class="level2">
+<h2 class="anchored" data-anchor-id="course-policy-on-ai-use">Course policy on AI use</h2>
+<p>AI-assisted code is held to the same bar as any other code in this course:</p>
+<ul>
+<li>It must <strong>run</strong>, and be <strong>lintr-proof</strong>, like any other submission.</li>
+<li>You need to be able to <strong>explain your own code</strong> — “comment your code clearly, we want to understand your thought process” applies whether you or an AI tool wrote the first draft.</li>
+<li>Never paste real Oefenweb/Prowise data into an external AI tool (see above).</li>
+</ul>
+</section>
+<section id="takeaway" class="level2">
+<h2 class="anchored" data-anchor-id="takeaway">Takeaway</h2>
+<p>🧠 <strong>AI accelerates, but does not replace, looking at your data.</strong></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
