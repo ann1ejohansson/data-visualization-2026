@@ -47,3 +47,8 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Claude Code files (instructor working notes, not for students)
+CLAUDE.md
+.claude/
+.mcp.json
