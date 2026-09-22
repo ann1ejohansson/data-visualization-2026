@@ -1,6 +1,6 @@
 ---
 title: "<span style='color: white;font-size: 0.7em;'>Data Visualization</span>"
-subtitle: "<span style='color: white;'>Behavioral Data Science Toolbox 2025</span>"
+subtitle: "<span style='color: white;'>Behavioral Data Science Toolbox 2026</span>"
 author: "<span style='color: white;'>Lecturers: Annie Johansson and Lilian Ye</span>"
 #footer: "<span style='color: white;'>Cover photo made in R by <a href='https://art.djnavarro.net' style='color: pink; text-decoration: underline;'>Danielle Navarro</a></span>"
 format: 
@@ -73,7 +73,7 @@ Cover photo made in R by [Danielle Navarro](https://art.djnavarro.net){target="_
 
 ## 📌
 
-### [**data-visualization-2025**](https://ann1ejohansson.github.io/data-visualization-2025){target="_blank"}
+### [**data-visualization-2026**](https://ann1ejohansson.github.io/data-visualization-2026){target="_blank"}
 
 ## Tuesday, Sept 30
 
@@ -589,7 +589,7 @@ Two main ways to creating a **plotly** object in R:
 -   Convert a ggplot2 object with `ggplotly()`
 -   Directly initialize a plotly object with `plot_ly()`
 
-➡️ [**ggplotly() example with Oefenweb data**](https://ann1ejohansson.github.io/data-visualization-2025/documents/ggplotly-handout.html){target="_blank"}
+➡️ [**ggplotly() example**](https://ann1ejohansson.github.io/data-visualization-2026/documents/ggplotly-handout.html){target="_blank"}
 
 ## Additional functionalities in Plotly
 
