@@ -1,15 +1,22 @@
-# 00-get-data.R
+# get-data.R
 #
-# This script downloads everything you need to dig into the doorstroomtoets
-# ("transfer test") fairness debate. Background on what that debate actually
-# is, and why it matters, is in the main course repo:
-# https://github.com/ann1ejohansson/data-visualization-2026/blob/main/data/doorstroomtoetsen-context.md
+# This script downloads everything we need to dig into the doorstroomtoets
+# fairness debate (see doorstroomtoetsen-context.md in this same folder for
+# the full story of what that debate actually is, and why the Volkskrant
+# went looking at this data in the first place).
 #
 # We need FOUR files in total, and it's worth understanding why each one
 # is here before you run this:
 #
-#   1. eindscores        - the average doorstroomtoets score per school, per
+#   1. eindscores        - the file you already found and dropped into this
+#                           folder by hand (gemiddelde_eindscores.txt). It has
+#                           the average doorstroomtoets score per school, per
 #                           test provider (IEP, Route8, DIA, AMN, DOE, LIB).
+#                           We re-download it here too, from its original
+#                           source, so that the whole dataset is reproducible
+#                           from this one script - nobody has to remember
+#                           "oh and then also go download this one file by
+#                           hand from some website".
 #
 #   2. referentieniveaus  - the piece eindscores is missing: how many pupils
 #                           per school actually reached the 1F/1S/2F reference
@@ -23,20 +30,20 @@
 #
 #   3. schooladviezen     - the secondary-school advice each school's pupils
 #                           ended up with (PRO, VMBO, HAVO, VWO, ...). This is
-#                           the other half of the story: it's not just that
-#                           test scores differ by provider, it's that the
-#                           *advice* pupils get differs too.
+#                           the other half of the Volkskrant story: it's not
+#                           just that test scores differ by provider, it's
+#                           that the *advice* pupils get differs too.
 #
 #   4. schoolweging       - schoolweging is a school-level score for how
 #                           disadvantaged a school's pupil population is
 #                           (based on parents' education level, income, etc).
-#                           This is the variable you'd use to check whether
-#                           "different providers give different results" is
-#                           actually just "different providers happen to be
-#                           used by different kinds of schools". Comparing
-#                           scores WITHOUT controlling for this is misleading
-#                           - comparing scores at equal schoolweging is what
-#                           makes the comparison fair.
+#                           This is the variable the Volkskrant used to check
+#                           whether "different providers give different
+#                           results" was actually just "different providers
+#                           happen to be used by different kinds of schools".
+#                           Comparing scores WITHOUT controlling for this is
+#                           misleading - comparing scores at equal schoolweging
+#                           is what makes the comparison fair.
 #
 # All four files share the same school identifiers (more on that at the very
 # bottom of this script, because the schoolweging file does it slightly
@@ -55,10 +62,7 @@
 # comma-separated - this is the Netherlands, where the comma is the decimal
 # point), so a plain read.csv() will silently mangle every number in the
 # file. readODS is here for exactly one reason: the schoolweging file from
-# the Onderwijsinspectie is an .ods spreadsheet, not a .csv. here makes sure
-# "data/raw" always means the same folder, whether you run this script
-# directly or source() it from report/ (knitr's working directory is
-# wherever the .Rmd lives, not the project root - here::here() fixes that).
+# the Onderwijsinspectie is an .ods spreadsheet, not a .csv.
 #
 # If your R has never installed a package before, install.packages() doesn't
 # know which download server (a "CRAN mirror") to use. RStudio usually sets
@@ -70,23 +74,19 @@ if (is.null(getOption("repos")) || identical(getOption("repos")[["CRAN"]], "@CRA
 
 if (!requireNamespace("readr", quietly = TRUE)) install.packages("readr")
 if (!requireNamespace("readODS", quietly = TRUE)) install.packages("readODS")
-if (!requireNamespace("here", quietly = TRUE)) install.packages("here")
 
 library(readr)
 library(readODS)
-library(here)
 
 
 # ---- 1. where the downloads land ---------------------------------------
 #
-# Everything goes into data/raw/, at the project root. The idea of a "raw"
-# subfolder is that you never, ever hand-edit anything in it - it's a
-# straight copy of what the source published. If a number looks wrong later,
-# raw/ is where you go to double check it wasn't wrong from the start.
-# data/ is gitignored on purpose - never push data to GitHub, even public
-# DUO data. It's always reproducible by re-running this script.
+# Everything goes into data/raw/. The idea of a "raw" subfolder is that you
+# never, ever hand-edit anything in it - it's a straight copy of what the
+# source published. If a number looks wrong later, raw/ is where you go to
+# double check it wasn't wrong from the start.
 
-raw_dir <- here("data", "raw")
+raw_dir <- "data/raw"
 if (!dir.exists(raw_dir)) dir.create(raw_dir, recursive = TRUE)
 
 
@@ -132,8 +132,8 @@ sources <- list(
 # We check file.exists() before downloading anything. This is just good
 # manners towards DUO's servers (no reason to re-download the same 1-2MB
 # file every single time you run this script), and it also means you can
-# safely re-run 00-get-data.R as often as you like - including every time
-# you knit the report - since it only ever fetches what's actually missing.
+# safely re-run get-data.R as often as you like - it only ever fetches what's
+# actually missing.
 
 for (name in names(sources)) {
   src <- sources[[name]]
@@ -146,15 +146,15 @@ for (name in names(sources)) {
 }
 
 
-# ---- 4. load them, so they're ready to use -------------------------------
+# ---- 4. a sanity check, so you know it actually worked -------------------
 #
 # Downloading a file and *having the right file* are two different things.
-# Loading each one here (instead of just downloading) means: (a) you get an
-# early warning if, say, DUO renamed a file and download.file() above
-# silently grabbed an HTML "page not found" page instead of real data, and
-# (b) whoever sources this script (you, your groupmates, or a grader) ends
-# up with eindscores/referentieniveaus/schooladviezen/schoolweging already
-# loaded and ready to use, without a separate read_delim() step.
+# Here we open each one and just print its dimensions and first couple of
+# column names - enough to catch it early if, say, DUO renamed a file and
+# our download.file() above silently grabbed an HTML "page not found" page
+# instead of real data (this does happen - always check).
+
+cat("\n---- what we ended up with ----\n")
 
 eindscores <- read_delim(
   sources$eindscores$dest,
@@ -162,7 +162,8 @@ eindscores <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("eindscores: ", nrow(eindscores), " rows, ", ncol(eindscores), " columns")
+cat("\neindscores:", nrow(eindscores), "rows,", ncol(eindscores), "columns\n")
+print(head(names(eindscores), 8))
 
 referentieniveaus <- read_delim(
   sources$referentieniveaus$dest,
@@ -170,7 +171,8 @@ referentieniveaus <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("referentieniveaus: ", nrow(referentieniveaus), " rows, ", ncol(referentieniveaus), " columns")
+cat("\nreferentieniveaus:", nrow(referentieniveaus), "rows,", ncol(referentieniveaus), "columns\n")
+print(head(names(referentieniveaus), 8))
 
 schooladviezen <- read_delim(
   sources$schooladviezen$dest,
@@ -178,14 +180,16 @@ schooladviezen <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("schooladviezen: ", nrow(schooladviezen), " rows, ", ncol(schooladviezen), " columns")
+cat("\nschooladviezen:", nrow(schooladviezen), "rows,", ncol(schooladviezen), "columns\n")
+print(head(names(schooladviezen), 8))
 
 # The schoolweging file is a whole workbook, not a single table: it has one
 # sheet per school year, plus a three-year-average sheet and an explanatory
 # sheet. We want the "2024-2025" sheet specifically, because that's the one
 # school year that actually lines up with the other three files above.
 schoolweging <- read_ods(sources$schoolweging$dest, sheet = "2024-2025")
-message("schoolweging (2024-2025 sheet): ", nrow(schoolweging), " rows, ", ncol(schoolweging), " columns")
+cat("\nschoolweging (2024-2025 sheet):", nrow(schoolweging), "rows,", ncol(schoolweging), "columns\n")
+print(names(schoolweging))
 
 
 # ---- 5. before you try to join these together -----------------------------
@@ -204,19 +208,25 @@ message("schoolweging (2024-2025 sheet): ", nrow(schoolweging), " rows, ", ncol(
 # trip you up here if you don't check for them first, so go check for them
 # first:
 #
-#   - Several hundred schools in eindscores have NO row at all in
-#     schoolweging - and it's not random which ones: almost all of them are
-#     Sbo (special primary) schools. The Inspectorate's schoolweging file is
-#     built for its regular results inspection, which doesn't apply to Sbo
-#     the same way - so if you're comparing schools by schoolweging, decide
-#     up front whether you're restricting to Bo schools only, and say so.
+#   - 310 of the 6,217 schools (INSTELLINGSCODE) in eindscores have NO row
+#     at all in schoolweging - and it's not random which ones: 262 of those
+#     310 are every single Sbo (special primary) school in eindscores. The
+#     Inspectorate's schoolweging file is built for its regular results
+#     inspection, which doesn't apply to Sbo the same way - so if you're
+#     comparing schools by schoolweging, decide up front whether you're
+#     restricting to Bo schools only, and say so.
 #
 #   - the part of OVT after the "|" (like "C1", "C2") identifies a location,
 #     but NOT using the same "00"/"01" numbering as VESTIGINGSCODE. For a
-#     school with only one vestiging this never matters. For schools that
-#     run more than one vestiging, check before you trust it - match on
-#     INSTELLINGSCODE alone, and only worry about the vestiging-level detail
-#     for the specific schools where it applies.
+#     school with only one vestiging this never matters. For the 102 schools
+#     that run more than one vestiging, check before you trust it: e.g.
+#     INSTELLINGSCODE "01VG" has VESTIGINGSCODE 00 = "Jenaplansch T Vlot" and
+#     01 = "Peter Petersenschool" in eindscores, but OVT "01VG|C1" =
+#     "Jenaplanschool 't Vlot" and "01VG|C2" = "'t Wilde Woud" in
+#     schoolweging - same first vestiging, but the second one is a
+#     *different school name entirely*, so "C2" is not simply "VESTIGINGSCODE
+#     01 renamed". Match on INSTELLINGSCODE alone, and only worry about the
+#     vestiging-level detail for the specific 102 schools where it applies.
 #
 # One more thing worth remembering before you build any charts from this:
 # none of referentieniveaus or schooladviezen is broken down by *which*
@@ -224,7 +234,8 @@ message("schoolweging (2024-2025 sheet): ", nrow(schoolweging), " rows, ", ncol(
 # eindscores. So "reference levels by provider" or "advice by provider"
 # isn't something you can read directly off one file; you have to bring in
 # eindscores' provider columns and label each school by whichever provider
-# it used (works reasonably well, since the large majority of schools use
-# exactly one provider). Just be upfront in your write-up that this is a
-# school-level approximation, not pupil-level data - that distinction
-# matters for what conclusions your numbers can support.
+# it used (which works reasonably well, since data/doorstroomtoetsen-context.md
+# section 7 found that 96% of schools use exactly one provider). Just be
+# upfront in your write-up that this is a school-level approximation, not
+# the pupil-level data the Volkskrant journalists likely had access to -
+# that distinction matters for what conclusions the numbers can support.

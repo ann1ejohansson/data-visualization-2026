@@ -1,5 +1,49 @@
 ---
-title: "DV-Assignment2-GroupX"
-output: html_document
+title: "DV Assignment 2: [Your Title Here]"
+author: "Group X: Firstname Lastname, Firstname Lastname, Firstname Lastname"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list = ls()) # clear environment so knitting only depends on what's in this file
+
+# downloads the data into data/raw/ if you don't already have it, then loads
+# eindscores, referentieniveaus, schooladviezen and schoolweging into this
+# session - see scripts/00-get-data.R for what each one contains
+source("../scripts/00-get-data.R")
+
+library(tidyverse)
+```
+
+## Research question
+
+*What are you investigating, and why does it matter? Who is the target audience for your final visualization, and how does that shape your choices?*
+
+## Exploratory process
+
+*Describe how you explored the data before settling on your final visualization. Include at least one exploratory plot below, and a short note on what it told you (or didn't).*
+
+```{r exploratory-plot}
+
+```
+
+## Final visualization
+
+*Your final, explanatory visualization goes below. Include a short write-up: what does it communicate, why is this the best way to communicate it, and how robust is the finding?*
+
+```{r final-plot}
+
+```
+
+## Conclusion
+
+*What can you conclude from your visualization? What are the limitations of this analysis?*
+
+---
+
+**Before submitting:** run the lintr check on this file, and re-knit from a clean environment (`rm(list = ls())`, already done above) to make sure everything reproduces from scratch.

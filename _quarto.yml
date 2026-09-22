@@ -4,6 +4,7 @@ project:
   render:
     - "*.qmd"
     - "!CLAUDE.md"
+    - "!drafts/**"
   post-render:
     - touch docs/.nojekyll
 

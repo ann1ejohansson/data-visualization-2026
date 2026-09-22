@@ -53,4 +53,8 @@ CLAUDE.md
 .claude/
 .mcp.json
 
+# Instructor drafts, not for students
+drafts/
+solutions/
+
 /.quarto/
