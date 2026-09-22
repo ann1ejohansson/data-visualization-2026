@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ggplot Recap – Data Visualization 2026</title>
+<title>Quickstart: the DUO Data &amp; ggplot Basics – Data Visualization 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -157,15 +191,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#part-1-load-and-inspect-the-data" id="toc-part-1-load-and-inspect-the-data" class="nav-link" data-scroll-target="#part-1-load-and-inspect-the-data">Part 1 — Load and inspect the data</a></li>
+  <li><a href="#part-2-tidy-it-minimal-fuss" id="toc-part-2-tidy-it-minimal-fuss" class="nav-link" data-scroll-target="#part-2-tidy-it-minimal-fuss">Part 2 — Tidy it (minimal fuss)</a></li>
+  <li><a href="#part-3-ggplot-basics" id="toc-part-3-ggplot-basics" class="nav-link" data-scroll-target="#part-3-ggplot-basics">Part 3 — ggplot basics</a></li>
+  <li><a href="#part-4-put-it-together" id="toc-part-4-put-it-together" class="nav-link" data-scroll-target="#part-4-put-it-together">Part 4 — Put it together</a></li>
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More practice</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ggplot Recap</h1>
+<h1 class="title">Quickstart: the DUO Data &amp; ggplot Basics</h1>
 </div>
 
 
@@ -192,12 +237,256 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Placeholder worksheet.</strong> Content for this recap has not been written yet.</p>
+<p>This worksheet is meant to get you started with the DUO data you’ll be working with throughout this module. Use the worksheet to get acquainted with the data, and refresh your ggplot skills. Solutions are already provided.</p>
 </div>
 </div>
-<p>This worksheet will recap the basics of building plots with <code>ggplot2</code>: the grammar of graphics (data, aesthetics, geoms), common geoms, and styling/theming plots.</p>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>This module uses <strong>DUO’s open onderwijsdata</strong>. This data is public, from the Dutch government. The necessary code to load in the data is available in the github repository:</p>
+<ol type="1">
+<li>Download this course’s GitHub repository: go to <a href="https://github.com/ann1ejohansson/data-visualization-2026">github.com/ann1ejohansson/data-visualization-2026</a>, click the green <strong>Code</strong> button, and choose <strong>Download ZIP</strong> (no git needed — if you’re already comfortable with git, cloning works too). Unzip it and open <code>data-visualization-2026.Rproj</code> in RStudio.</li>
+<li>The script you need is <code>data/get-data.R</code>. Run it once — it downloads four DUO source files into <code>data/raw/</code>. Skim the comments at the top of that script first; they explain what each file is and why it’s there.</li>
+</ol>
+</section>
+<section id="part-1-load-and-inspect-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-load-and-inspect-the-data">Part 1 — Load and inspect the data</h2>
+<p>We’ll focus on one of those four files, <code>eindscores</code>. This shows the average transfer test score per primary school, broken down by which of the six test providers (IEP, Route8, DIA, AMN, DOE, LIB) that school used.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>eindscores <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/raw/eindscores_2024-2025.csv"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">";"</span>,                                 <span class="co"># DUO's files are ;-separated</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">decimal_mark =</span> <span class="st">","</span>, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>), <span class="co"># NL uses , as decimal point</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Run <code>glimpse(eindscores)</code> yourself and notice the shape: <strong>one row per school</strong>, with a separate pair of columns <em>per provider</em> — <code>IEP_AANTAL</code>/<code>IEP_GEM</code>, <code>ROUTE8_AANTAL</code>/<code>ROUTE8_GEM</code>, and so on (<code>AANTAL</code> = number of pupils tested, <code>GEM</code> = their average score). Most schools use exactly one provider, so five of those six <code>AANTAL</code> columns will be <code>0</code> for any given row.</p>
+</section>
+<section id="part-2-tidy-it-minimal-fuss" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-tidy-it-minimal-fuss">Part 2 — Tidy it (minimal fuss)</h2>
+<p>To plot “which provider did each school use,” we need one <code>provider</code> column instead of six. The code below does that in one pipe — read the comments, don’t worry about memorizing the functions yet:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>school_provider <span class="ot">&lt;-</span> eindscores <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep just the ID/label columns, plus the six *_AANTAL columns</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         GEMEENTENAAM, PROVINCIE, SOORT_PO, <span class="fu">ends_with</span>(<span class="st">"_AANTAL"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stack the six AANTAL columns into two: which provider, how many pupils</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">ends_with</span>(<span class="st">"_AANTAL"</span>),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"provider"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"n_pupils"</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">provider =</span> <span class="fu">sub</span>(<span class="st">"_AANTAL$"</span>, <span class="st">""</span>, provider),  <span class="co"># "IEP_AANTAL" -&gt; "IEP"</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DUO writes "&lt;5" instead of an exact count when it's under 5 (privacy</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rule) - as.numeric() turns those into NA, which we then drop below</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_pupils =</span> <span class="fu">as.numeric</span>(n_pupils)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(n_pupils), n_pupils <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span>           <span class="co"># drop unused/suppressed providers</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(INSTELLINGSCODE, VESTIGINGSCODE) <span class="sc">|&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n_pupils, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>    <span class="co"># handles rare mixed-provider schools</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>school_provider</code> now has one row per school: its name, municipality, and which single provider it used. This is the shape <code>ggplot2</code> wants.</p>
+</section>
+<section id="part-3-ggplot-basics" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-ggplot-basics">Part 3 — ggplot basics</h2>
+<p>Every <code>ggplot2</code> plot answers three questions: <strong>what data</strong>, <strong>which variables map to which visual properties</strong> (<code>aes()</code>), and <strong>what shape represents each observation</strong> (a <code>geom</code>, added with <code>+</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATASET<span class="sc">&gt;</span>, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>AESTHETIC MAPPINGS<span class="sc">&gt;</span>)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  geom_<span class="sc">&lt;</span>SOMETHING<span class="sc">&gt;</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="exercise-1-your-first-plot" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1-your-first-plot">Exercise 1 — Your first plot</h3>
+<p><code>geom_bar()</code> counts rows for you automatically — perfect for “how many schools use each provider?”</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Try it</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Solution</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> ____)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_____</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p><img src="images/ggplot-recap-ex1-bar.png" class="img-fluid" style="width:70.0%"></p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> provider)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-mapping-vs.-setting" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2-mapping-vs.-setting">Exercise 2 — Mapping vs.&nbsp;setting</h3>
+<p>An aesthetic <strong>mapped</strong> to a variable goes <em>inside</em> <code>aes()</code> and varies per observation; an aesthetic just <strong>set</strong> to a fixed value goes <em>outside</em> <code>aes()</code>. Fix the mistake below (it’s trying to make every bar steelblue, but puts the color where a mapping would go), then extend it to map <code>fill</code> to <code>provider</code> instead.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Try it</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Solution</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> provider, <span class="at">fill =</span> <span class="st">"steelblue"</span>)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><img src="images/ggplot-recap-ex2-fill.png" class="img-fluid" style="width:70.0%"></p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix: "steelblue" must be set, not mapped</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> provider)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended: fill mapped to a variable instead</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> provider, <span class="at">fill =</span> provider)) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="picking-a-geom-for-the-question-youre-asking" class="level3">
+<h3 class="anchored" data-anchor-id="picking-a-geom-for-the-question-youre-asking">Picking a geom for the question you’re asking</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Reach for</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How do two continuous variables relate?</td>
+<td><code>geom_point()</code></td>
+</tr>
+<tr class="even">
+<td>How does a value compare across categories?</td>
+<td><code>geom_col()</code> / <code>geom_bar()</code></td>
+</tr>
+<tr class="odd">
+<td>How is a continuous variable distributed?</td>
+<td><code>geom_histogram()</code></td>
+</tr>
+<tr class="even">
+<td>How does a distribution differ across groups?</td>
+<td><code>geom_boxplot()</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>geom_bar()</code> counts rows for you; <code>geom_col()</code> expects you to already have a column of heights to plot (like <code>n_pupils</code>) — mixing them up is a very common bug.</p>
+</section>
+<section id="exercise-3-a-different-geom" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3-a-different-geom">Exercise 3 — A different geom</h3>
+<p>Plot the distribution of <code>n_pupils</code> across all schools with a histogram.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Try it</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Solution</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> ____)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_____</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p><img src="images/ggplot-recap-ex3-histogram.png" class="img-fluid" style="width:70.0%"></p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> n_pupils)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="labels-themes" class="level3">
+<h3 class="anchored" data-anchor-id="labels-themes">Labels &amp; themes</h3>
+<ul>
+<li><code>labs()</code> controls <em>text</em>: title, axis titles, legend title.</li>
+<li><code>theme_*()</code> controls <em>look</em>: <code>theme_minimal()</code>, <code>theme_bw()</code>, etc.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> provider, <span class="at">fill =</span> provider)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Schools per transfer test provider"</span>, <span class="at">x =</span> <span class="st">"Provider"</span>, <span class="at">y =</span> <span class="st">"Number of schools"</span>, <span class="at">fill =</span> <span class="st">"Provider"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="part-4-put-it-together" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-put-it-together">Part 4 — Put it together</h2>
+<p>Now the real plot: <strong>number of pupils per school, colored by the provider that school used</strong> — for one municipality, so it stays readable.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Try it</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Solution</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>school_provider <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GEMEENTENAAM <span class="sc">==</span> <span class="st">"____"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(INSTELLINGSNAAM_VESTIGING, n_pupils), <span class="at">y =</span> ____, <span class="at">fill =</span> ____)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(____) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_____</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>e.g., for Wassenaar:</p>
+<p><img src="images/ggplot-recap-part4-wassenaar.png" class="img-fluid" style="width:70.0%"></p>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>school_provider <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GEMEENTENAAM <span class="sc">==</span> <span class="st">"Wassenaar"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(INSTELLINGSNAAM_VESTIGING, n_pupils), <span class="at">y =</span> n_pupils, <span class="at">fill =</span> provider)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                     <span class="co"># horizontal bars so school names stay legible</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Pupils tested per school in Wassenaar, by provider"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Pupils tested"</span>, <span class="at">fill =</span> <span class="st">"Provider"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Swap <code>"Wassenaar"</code> for another municipality of interest. Some are large enough that the bar chart gets crowded — if that happens, try <code>facet_wrap(~ provider)</code> instead of <code>fill</code>, or filter to <code>PROVINCIE</code> instead of <code>GEMEENTENAAM</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Save any plot with <code>ggsave("path-to-your-plot/filename.png", width = 6, height = 4, dpi = 300)</code>.</p>
+</div>
+</div>
+</section>
+<section id="more-practice" class="level2">
+<h2 class="anchored" data-anchor-id="more-practice">More practice</h2>
+<ul>
+<li>Kieran Healy, <a href="https://socviz.co/03-ggplot-basics.html"><em>Data Visualization: A Practical Introduction</em>, ch.&nbsp;3</a></li>
+<li>Kieran Healy, <a href="https://socviz.co/08-polishing.html"><em>Data Visualization: A Practical Introduction</em>, ch.&nbsp;8</a></li>
+<li>OSU Code Club’s ggplot series: <a href="https://osu-codeclub.github.io/posts/S09E01_ggplot_01/">part 1</a>, <a href="https://osu-codeclub.github.io/posts/S09E02_ggplot_02/">part 2</a>, <a href="https://osu-codeclub.github.io/posts/S09E03_ggplot_03/">part 3</a><br>
+</li>
+<li><a href="https://github.com/erikgahner/awesome-ggplot2">A curated list of all ggplot packages, tutorials, etc.</a></li>
+<li><a href="https://rstudio.github.io/cheatsheets/html/data-visualization.html">ggplot cheatsheet</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

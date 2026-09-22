@@ -527,9 +527,9 @@
   {
     "objectID": "documents/ggplot-recap.html",
     "href": "documents/ggplot-recap.html",
-    "title": "ggplot Recap",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
     "section": "",
-    "text": "Note\n\n\n\nPlaceholder worksheet. Content for this recap has not been written yet.\n\n\nThis worksheet will recap the basics of building plots with ggplot2: the grammar of graphics (data, aesthetics, geoms), common geoms, and styling/theming plots."
+    "text": "Note\n\n\n\nThis worksheet is meant to get you started with the DUO data you’ll be working with throughout this module. Use the worksheet to get acquainted with the data, and refresh your ggplot skills. Solutions are already provided."
   },
   {
     "objectID": "documents/working-with-ai.html",
@@ -733,5 +733,47 @@
     "title": "Data Visualization",
     "section": "Get inspiration",
     "text": "Get inspiration\n\n\nPodcasts: Data Stories, Explore Explain, Data Viz Today\nBlogs: FlowingData\nJournals: Nightingale\nComics: Matt-Heun Hong, Martin Telefont, Natalia Kiseleva\nGenerative art: Clause O. Wilke, Danielle Navarro, Thomas Lin Pedersen\nAwards: Information is Beautiful\nInteractive visualizations: R Psychologist\nExplorable explanations: Nicky Case, Setosa\n\n\n\n\nThomas Lin Pedersen"
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#setup",
+    "href": "documents/ggplot-recap.html#setup",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "Setup",
+    "text": "Setup\nThis module uses DUO’s open onderwijsdata. This data is public, from the Dutch government. The necessary code to load in the data is available in the github repository:\n\nDownload this course’s GitHub repository: go to github.com/ann1ejohansson/data-visualization-2026, click the green Code button, and choose Download ZIP (no git needed — if you’re already comfortable with git, cloning works too). Unzip it and open data-visualization-2026.Rproj in RStudio.\nThe script you need is data/get-data.R. Run it once — it downloads four DUO source files into data/raw/. Skim the comments at the top of that script first; they explain what each file is and why it’s there."
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#part-1-load-and-inspect-the-data",
+    "href": "documents/ggplot-recap.html#part-1-load-and-inspect-the-data",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "Part 1 — Load and inspect the data",
+    "text": "Part 1 — Load and inspect the data\nWe’ll focus on one of those four files, eindscores. This shows the average transfer test score per primary school, broken down by which of the six test providers (IEP, Route8, DIA, AMN, DOE, LIB) that school used.\n\nlibrary(tidyverse)\n\neindscores &lt;- read_delim(\n  \"data/raw/eindscores_2024-2025.csv\",\n  delim = \";\",                                 # DUO's files are ;-separated\n  locale = locale(decimal_mark = \",\", encoding = \"UTF-8\"), # NL uses , as decimal point\n  show_col_types = FALSE\n)\n\nRun glimpse(eindscores) yourself and notice the shape: one row per school, with a separate pair of columns per provider — IEP_AANTAL/IEP_GEM, ROUTE8_AANTAL/ROUTE8_GEM, and so on (AANTAL = number of pupils tested, GEM = their average score). Most schools use exactly one provider, so five of those six AANTAL columns will be 0 for any given row."
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#part-2-tidy-it-minimal-fuss",
+    "href": "documents/ggplot-recap.html#part-2-tidy-it-minimal-fuss",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "Part 2 — Tidy it (minimal fuss)",
+    "text": "Part 2 — Tidy it (minimal fuss)\nTo plot “which provider did each school use,” we need one provider column instead of six. The code below does that in one pipe — read the comments, don’t worry about memorizing the functions yet:\n\nschool_provider &lt;- eindscores |&gt;\n  # keep just the ID/label columns, plus the six *_AANTAL columns\n  select(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,\n         GEMEENTENAAM, PROVINCIE, SOORT_PO, ends_with(\"_AANTAL\")) |&gt;\n  # stack the six AANTAL columns into two: which provider, how many pupils\n  pivot_longer(\n    cols = ends_with(\"_AANTAL\"),\n    names_to = \"provider\",\n    values_to = \"n_pupils\"\n  ) |&gt;\n  mutate(\n    provider = sub(\"_AANTAL$\", \"\", provider),  # \"IEP_AANTAL\" -&gt; \"IEP\"\n    # DUO writes \"&lt;5\" instead of an exact count when it's under 5 (privacy\n    # rule) - as.numeric() turns those into NA, which we then drop below\n    n_pupils = as.numeric(n_pupils)\n  ) |&gt;\n  filter(!is.na(n_pupils), n_pupils &gt; 0) |&gt;           # drop unused/suppressed providers\n  group_by(INSTELLINGSCODE, VESTIGINGSCODE) |&gt;\n  slice_max(n_pupils, n = 1, with_ties = FALSE) |&gt;    # handles rare mixed-provider schools\n  ungroup()\n\nschool_provider now has one row per school: its name, municipality, and which single provider it used. This is the shape ggplot2 wants."
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#part-3-ggplot-basics",
+    "href": "documents/ggplot-recap.html#part-3-ggplot-basics",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "Part 3 — ggplot basics",
+    "text": "Part 3 — ggplot basics\nEvery ggplot2 plot answers three questions: what data, which variables map to which visual properties (aes()), and what shape represents each observation (a geom, added with +).\n\nggplot(data = &lt;DATASET&gt;, mapping = aes(&lt;AESTHETIC MAPPINGS&gt;)) +\n  geom_&lt;SOMETHING&gt;()\n\n\nExercise 1 — Your first plot\ngeom_bar() counts rows for you automatically — perfect for “how many schools use each provider?”\n\nTry itPlotSolution\n\n\n\nggplot(school_provider, aes(x = ____)) +\n  geom_____()\n\n\n\n\n\n\n\nggplot(school_provider, aes(x = provider)) +\n  geom_bar()\n\n\n\n\n\n\nExercise 2 — Mapping vs. setting\nAn aesthetic mapped to a variable goes inside aes() and varies per observation; an aesthetic just set to a fixed value goes outside aes(). Fix the mistake below (it’s trying to make every bar steelblue, but puts the color where a mapping would go), then extend it to map fill to provider instead.\n\nTry itPlotSolution\n\n\n\nggplot(school_provider, aes(x = provider, fill = \"steelblue\")) +\n  geom_bar()\n\n\n\n\n\n\n\n# fix: \"steelblue\" must be set, not mapped\nggplot(school_provider, aes(x = provider)) +\n  geom_bar(fill = \"steelblue\")\n\n# extended: fill mapped to a variable instead\nggplot(school_provider, aes(x = provider, fill = provider)) +\n  geom_bar()\n\n\n\n\n\n\nPicking a geom for the question you’re asking\n\n\n\n\n\n\n\nQuestion\nReach for\n\n\n\n\nHow do two continuous variables relate?\ngeom_point()\n\n\nHow does a value compare across categories?\ngeom_col() / geom_bar()\n\n\nHow is a continuous variable distributed?\ngeom_histogram()\n\n\nHow does a distribution differ across groups?\ngeom_boxplot()\n\n\n\ngeom_bar() counts rows for you; geom_col() expects you to already have a column of heights to plot (like n_pupils) — mixing them up is a very common bug.\n\n\nExercise 3 — A different geom\nPlot the distribution of n_pupils across all schools with a histogram.\n\nTry itPlotSolution\n\n\n\nggplot(school_provider, aes(x = ____)) +\n  geom_____()\n\n\n\n\n\n\n\nggplot(school_provider, aes(x = n_pupils)) +\n  geom_histogram(binwidth = 5)\n\n\n\n\n\n\nLabels & themes\n\nlabs() controls text: title, axis titles, legend title.\ntheme_*() controls look: theme_minimal(), theme_bw(), etc.\n\n\nggplot(school_provider, aes(x = provider, fill = provider)) +\n  geom_bar() +\n  labs(title = \"Schools per transfer test provider\", x = \"Provider\", y = \"Number of schools\", fill = \"Provider\") +\n  theme_minimal()"
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#part-4-put-it-together",
+    "href": "documents/ggplot-recap.html#part-4-put-it-together",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "Part 4 — Put it together",
+    "text": "Part 4 — Put it together\nNow the real plot: number of pupils per school, colored by the provider that school used — for one municipality, so it stays readable.\n\nTry itPlotSolution\n\n\n\nschool_provider |&gt;\n  filter(GEMEENTENAAM == \"____\") |&gt;\n  ggplot(aes(x = reorder(INSTELLINGSNAAM_VESTIGING, n_pupils), y = ____, fill = ____)) +\n  geom_col() +\n  coord_flip() +\n  labs(____) +\n  theme_____()\n\n\n\ne.g., for Wassenaar:\n\n\n\n\nschool_provider |&gt;\n  filter(GEMEENTENAAM == \"Wassenaar\") |&gt;\n  ggplot(aes(x = reorder(INSTELLINGSNAAM_VESTIGING, n_pupils), y = n_pupils, fill = provider)) +\n  geom_col() +\n  coord_flip() +                     # horizontal bars so school names stay legible\n  labs(\n    title = \"Pupils tested per school in Wassenaar, by provider\",\n    x = NULL, y = \"Pupils tested\", fill = \"Provider\"\n  ) +\n  theme_minimal()\n\n\n\n\nSwap \"Wassenaar\" for another municipality of interest. Some are large enough that the bar chart gets crowded — if that happens, try facet_wrap(~ provider) instead of fill, or filter to PROVINCIE instead of GEMEENTENAAM.\n\n\n\n\n\n\nTip\n\n\n\nSave any plot with ggsave(\"path-to-your-plot/filename.png\", width = 6, height = 4, dpi = 300)."
+  },
+  {
+    "objectID": "documents/ggplot-recap.html#more-practice",
+    "href": "documents/ggplot-recap.html#more-practice",
+    "title": "Quickstart: the DUO Data & ggplot Basics",
+    "section": "More practice",
+    "text": "More practice\n\nKieran Healy, Data Visualization: A Practical Introduction, ch. 3\nKieran Healy, Data Visualization: A Practical Introduction, ch. 8\nOSU Code Club’s ggplot series: part 1, part 2, part 3\n\nA curated list of all ggplot packages, tutorials, etc.\nggplot cheatsheet"
   }
 ]

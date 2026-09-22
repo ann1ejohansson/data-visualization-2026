@@ -1,9 +1,4 @@
 ---
-title: "ggplot Recap"
-format: html
----
-
----
 title: "Quickstart: the DUO Data & ggplot Basics"
 format:
   html:
