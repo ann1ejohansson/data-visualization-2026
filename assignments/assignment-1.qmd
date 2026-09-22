@@ -1,6 +1,6 @@
 ---
 title: "Data Visualization Assignment 1"
-format: 
+format:
   html:
     code-copy: true
     toc: true
@@ -14,15 +14,15 @@ rm(list = ls())
 
 ## Instructions
 
-Download the templates for part 1 of this assignment in the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2025) (templates \> assignment-1).
+Download the templates for part 1 of this assignment in the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026) (templates \> assignment-1).
 
-This is the first assignment for the Data Visualization module. The aim here is to get acquainted with the Prowise Learn data, practice with some ggplot basics, and to get you started with working with your visualizations for the final assignment.
+This is the first assignment for the Data Visualization module. The aim here is to get acquainted with real, public education data, practice with some ggplot basics, and to get you started with working with your visualizations for the final assignment.
 
-With this assignment, you can gain 14 points (15 with bonus in part 1A). The points are awarded as following:
+With this assignment, you can gain 14 points (14.5 with bonus in part 1A). The points are awarded as following:
 
 Individual part:
 
--   4 points (plus 1 bonus point) for Part 1A
+-   4 points (plus 0.5 bonus point) for Part 1A
 -   2 points for Part 1B
 -   0.5 point for R code that runs and 0.5 point for lintr-proof code
 
@@ -33,7 +33,7 @@ Group part:
 
 Part 1 is completed, and thus also graded, individually. Part 2 should be completed with your assigned group. Please make sure to clearly indicate your group number and names of all group members in your submission. One person should submit the assignment on behalf of the group. If more than one person submits the group assignment, we will only look at one of them.
 
-The assignment is due on **Sunday October 5th, 2025 at 23:59**. Submit your assignment to Canvas, under "DV Assignment 1".
+The assignment is due on **Sunday October 4th, 2026 at 23:59**. Submit your assignment to Canvas, under "DV Assignment 1".
 
 Your submission for Part 1 should contain the following files:
 
@@ -63,11 +63,13 @@ lint(rstudioapi::getSourceEditorContext()$path)
 
 -   Don't install packages in your code. If we need to install a package that you used, state which packages need to be installed at the beginning of your code.
 
-## Working with the Oefenweb Server
+## Getting the data
 
-Before starting the assignment, please look at the handout on [How to connect to the Oefenweb Server](../documents/working-on-the-server.qmd). This will help you to get started with retrieving data from the server. It also contains a useful tutorial on how to use SQL to retrieve data. Go through this code and make sure you understand it, as you will need it for this assignment.
+This assignment uses real, public data about the **doorstroomtoets** - the standardized test Dutch primary school pupils take in their final year (groep 8), which feeds into their secondary-school advice. Before starting, read `data/doorstroomtoetsen-context.md` in the course repository for the background on why this data is interesting (it's the subject of an active public debate about fairness), and `data/data-context.md` for a glossary of the Dutch terms you'll run into plus a full codebook of every column in the data files below - useful if you're not familiar with the Dutch education system or language.
 
-## Part 1: Oefenweb Data & Basic ggplot (Individual)
+Download `get-data.R` from the [course GitHub repository](https://github.com/ann1ejohansson/data-visualization-2026/blob/main/data/get-data.R) and run it once in your project folder - it downloads everything this assignment needs into `data/raw/`.
+
+## Part 1: Doorstroomtoets Data & Basic ggplot (Individual)
 
 ### A. Replicate this plot
 
@@ -78,11 +80,11 @@ Don't worry if you cannot reproduce the plots exactly. You can, for example, use
 
 -   **Does the data show the same pattern? \[2 pt\]**
 -   **Is the styling the same? \[2 pt\]**
--   **BONUS: Where there extra features added? \[1 pt\]**
+-   **BONUS: Was a meaningful explanatory element added to one of the plots? \[0.5 pt\]**
 
 **Bonus points**
 
-Can you spot any areas where this plot can be improved? 1 extra point will be awarded for changes made, or features added or removed to the visualization. They need to be meaningful and improve the visualization. Simply changing colors or themes will not be rewarded, unless you can motivate why your changes are an improvement.
+Every plot in this assignment shows the data accurately, but none of them *explains itself* - a reader still has to do some work to find the result that matters most. For the bonus point, add ONE explanatory element to either plot that helps a reader find that result faster. Simply changing colors or a theme will not be rewarded on its own, unless it's clearly in service of highlighting a specific result. See the Solution below for a list of ideas if you're stuck.
 
 ```{r setup environment, include = TRUE, eval=FALSE}
 knitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks
@@ -91,251 +93,249 @@ rm(list = ls()) # Remove any existing objects in memory
 
 ```{r 1A setup-2}
 # Install Packages
-# Find everything that the user currently has installed
 all_installed_packages <- installed.packages()[, "Package"]
-# Install any missing, but required packages
 # nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
 if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
-if (!"devtools" %in% all_installed_packages) {install.packages("devtools")}
-if (!"oefenwebDatabase" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-database")}
-if (!"oefenwebTools" %in% all_installed_packages) {devtools::install_github(repo = "Oefenweb/r-tools")}
-if (!"jsonlite" %in% all_installed_packages) {install.packages("jsonlite")}
-if (!"ggplot2" %in% all_installed_packages) {install.packages("ggplot2")}
 if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
+if (!"readODS" %in% all_installed_packages) {install.packages("readODS")}
 if (!"lintr" %in% all_installed_packages) {install.packages("lintr")}
-if (!"viridis" %in% all_installed_packages) {install.packages("viridis")}
-if (!"plotly" %in% all_installed_packages) {install.packages("plotly")}
 # nolint end
 
-# Load Required Packages
 library(tidyverse)
-library(oefenwebDatabase)
-library(oefenwebTools)
-library(jsonlite)
 library(cowplot)
-library(ggplot2)
-
-# make database connection
-con <- oefenwebDatabase::connect()
+library(readODS)
 ```
 
-For this assignment, we will have a look at the two items of the same domain. First we have to get the items from the `items` table and after that we obtain the `log_records` of these items.
+For this assignment, we look at the doorstroomtoets results published by DUO, alongside two other public files: the reference-level attainment per school, and the school weighting ("schoolweging" - a school-level disadvantage score) published by the Education Inspectorate.
 
 ```{r 1A data}
-item_ids <- c(188391, 186408)
-
-items <- get_query(
-  "SELECT *
-  FROM `items`
-  WHERE id IN ({item_ids*})",
-  con = con
+eindscores <- read_delim(
+  "data/raw/eindscores_2024-2025.csv",
+  delim = ";", locale = locale(decimal_mark = ",", encoding = "UTF-8"),
+  show_col_types = FALSE
 )
 
-# renaming first column of items data.frame to "item_id"
-colnames(items)[1] <- "item_id"
-
-# obtaining the log_records for the two items of the visualization
-items_logs <- get_query(
-  "SELECT *
-  FROM `log_records_2`
-  WHERE `item_id` IN ({items$item_id*})",
-  con = con
+referentieniveaus <- read_delim(
+  "data/raw/referentieniveaus_2024-2025.csv",
+  delim = ";", quote = '"', show_col_types = FALSE
 )
 
+schoolweging_raw <- read_ods("data/raw/schoolweging_2022-2025.ods", sheet = "2024-2025")
 ```
 
-Now that we have the "raw" data, we can start to filter and prepare it for the visualization we want to build.
+Now that we have the "raw" data, we can start to filter and prepare it. `eindscores` has one row per school with a pair of columns per test provider (`IEP_AANTAL`/`IEP_GEM`, and so on) - we need one row per (school, provider actually used) instead, so we `pivot_longer()` those pairs.
 
 ```{r 1A data-prep-1}
-# make the question and answer_options "json" free
-for (i in 1:nrow(items)) {
-  items$correct_answer[i] <-
-    jsonlite::fromJSON(items$answer_options[i])$answerOptions[1]
-  items$question[i] <- jsonlite::fromJSON(items$question[i])$question$content
-}
+school_provider <- eindscores %>%
+  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) %>%
+  pivot_longer(
+    cols = matches("_(AANTAL|GEM)$"),
+    names_to = c("provider", ".value"),
+    names_pattern = "(.+)_(AANTAL|GEM)"
+  ) %>%
+  mutate(AANTAL = as.numeric(AANTAL)) %>% # DUO writes "<5" for small counts -> NA
+  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) %>%
+  group_by(INSTELLINGSCODE, provider) %>%
+  summarise(AANTAL = sum(AANTAL), .groups = "drop")
 
-# we do a left_join between items_logs and items table
-# to get the item question and correct_answer into items_logs
-items_logs <- dplyr::left_join(
-  items_logs,
-  items[, c("item_id", "question", "correct_answer")],
-  by = "item_id"
-)
-
+# most schools only use one provider - take whichever tested the most pupils
+primary_provider <- school_provider %>%
+  group_by(INSTELLINGSCODE) %>%
+  slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(INSTELLINGSCODE, provider)
 ```
 
-Let's do some further data preparations. We prefer to change the data instead of changing labels in the plot. If you change the data, the plot and data will resemble each other, hence you can be more certain that you don't have errors in your visualization.
+Next, the school weighting. That file identifies schools slightly differently (an `OVT` column like `"00AP|C1"` instead of separate `INSTELLINGSCODE`/`VESTIGINGSCODE` columns), so a bit of string splitting is needed before it can be joined to anything else.
 
 ```{r 1A data-prep-2}
-# transform variables to suitable types
-items_logs$response_in_seconds <- items_logs$response_in_milliseconds / 1000
-items_logs$correct_answered <- as.logical(items_logs$correct_answered)
-items_logs$question <- factor(items_logs$question)
-
-# make answer column
-items_logs$given_answer_type <- NA
-for (i in 1:nrow(items_logs)) {
-  if (items_logs$correct_answered[i]) {
-    items_logs$given_answer_type[i] <- "correct"
-  } else {
-    items_logs$given_answer_type[i] <- "incorrect"
-    if (items_logs$answer[i] == "¿") {
-      items_logs$given_answer_type[i] <- "questionmark"
-    }
-  }
-}
-items_logs$given_answer_type <- factor(items_logs$given_answer_type)
+schoolweging <- schoolweging_raw %>%
+  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) %>%
+  group_by(INSTELLINGSCODE) %>%
+  summarise(schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen), .groups = "drop")
 ```
 
-Before we continue we get the grade information from the users table, add this info, do some filtering and change it to a factor:
+Finally, the outcome we'll actually plot. Raw scores aren't comparable across providers (an IEP score and an AMN score are not the same kind of number), but the **percentage of pupils reaching the target reference level** (1S for maths, 2F for language) is - that's the one number CvTE's shared framework is designed to make provider-independent.
 
 ```{r 1A data-prep-3}
-users <- get_query(
-  "SELECT id AS new_user_id, grade
-  FROM users",
-  con = con
-)
+count_cols <- c("REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
+                "LV_LAGER1F", "LV_1F", "LV_2F",
+                "TV_LAGER1F", "TV_1F", "TV_2F")
 
-items_logs <- dplyr::left_join(items_logs, users, by = "new_user_id")
+ref_levels <- referentieniveaus %>%
+  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) %>%
+  group_by(INSTELLINGSCODE) %>%
+  summarise(across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)), .groups = "drop") %>%
+  mutate(
+    rekenen_n = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S,
+    taal_lv_n = LV_LAGER1F + LV_1F + LV_2F,
+    taal_tv_n = TV_LAGER1F + TV_1F + TV_2F,
+    score = ( 100 * REKENEN_1S / rekenen_n
+            + 100 * LV_2F      / taal_lv_n
+            + 100 * TV_2F      / taal_tv_n ) / 3,
+    n_pupils = rekenen_n
+  ) %>%
+  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
+  select(INSTELLINGSCODE, score, n_pupils)
 
-# filter (with dplyr) to only work with grade 3 to 8
-items_logs <- items_logs %>%
-  filter(grade %in% c(3:8)) %>%
-  as.data.frame()
-
-items_logs$grade <- factor(
-  items_logs$grade,
-  levels = c(3:8),
-  labels = paste0("Grade ", c(3:8))
-)
-
+school_data <- ref_levels %>%
+  inner_join(primary_provider, by = "INSTELLINGSCODE") %>%
+  left_join(schoolweging, by = "INSTELLINGSCODE")
 ```
 
-Now we can make the first plot. This plot shows us the relation which users (in terms of grade) practice these items. Note that for this plot we don't use the `geom_histogram` function. In this case we first calculate the relative frequencies of the number of responses per grade, for each question. We store this information in a data.frame that we than use for plotting. So first make this data.frame! With `geom_col()` we than plot the bars.
+Now we can make the first plot: an overlapping density curve of every school's score, one per provider, for **LIB, IEP and Route8**. `geom_density()` normalizes each curve to its own area, so LIB (far more schools behind it) and Route8 stay comparable on *shape*. I used these settings in my rMarkdown code chunk: `fig.height = 5, fig.width = 5.5, fig.align = "center"`
 
-Look at this nice trick to add the %-symbol to the labels: `scale_y_continuous(labels = function(x) paste0(x, "%"))`. I used these settings in my rMarkdown code chunk: `fig.height = 4, fig.width = 6, fig.align = "center"`
+![](../images/assignments/subplot-1a.png)
 
-![](images/replicate-this-plot-1a.png)
+For the second plot, take those same three providers, plus the national average, and check whether their gap survives once you're comparing schools with the same school weighting. Give the three providers a proper legend, with each provider's total pupil count included in the label (e.g. `"LIB (n = 71,120)"`) - so a reader can see at a glance how much data is actually behind each line. The national average doesn't belong in that legend (it isn't "a test"), so it gets no points and no legend entry - just its own dashed line, labeled directly on the plot with a small `geom_label()` layer built from a separate, one-row data frame. I used these settings in my rMarkdown code chunk: `fig.height = 5, fig.width = 5.5, fig.align = "center"`
 
-For the second plot we look into response times and given answer (correct, incorrect or questionmark). Note that you first have to make a variable with these answers (correct, incorrect, question-mark). I used these settings in my rMarkdown code chunk: `fig.height = 4, fig.width = 6, fig.align = "center"`
+![](../images/assignments/subplot-1b.png)
 
-![](images/replicate-this-plot-1b.png)
+Finally we make a plot with text, to state in words what both panels show together. I used these settings in my rMarkdown code chunk: `fig.height = 2, fig.width = 11.5, fig.align = "center"`
 
-Finally we make a plot with text to have some more information in our visualization. I used these settings in my rMarkdown code chunk: `fig.height = 2, fig.width = 10, fig.align = "center"`
+![](../images/assignments/subplot-1c.png)
 
-![](images/replicate-this-plot-1c.png) Finally we combine the three plots (one text plot and two figure plots) into one plot by means of the plot_grid function of the `cowplot` package. **This is the visualization that you should replicate in this assignment Part II**.
+Finally we combine the three plots (one text plot and two figure plots) into one plot by means of the `plot_grid` function of the `cowplot` package. **This is the visualization that you should replicate in this assignment.** Notice that the density plot's legend is gone in the combined version - once plot 2 has its own legend naming the same three providers, a second legend for plot 1 would just repeat it.
 
-I used these settings in my rMarkdown code chunk: `fig.height = 8, fig.width = 10, fig.align = "center"`
+I used these settings in my rMarkdown code chunk: `fig.height = 6, fig.width = 11.5, fig.align = "center"`
 
 ::: {.panel-tabset}
 
 ## Plot
-![](images/replicate-this-plot-final.png)  
+
+![](../images/assignments/copy-this-1.png)
 
 ## Solution
 
-#### Plot 1: 
+#### Plot 1:
 
-```{r 1A plot-1, fig.align = "center", fig.height=4, fig.width=6}
-plot_theme <- theme(axis.text.x = element_text(angle = 45, hjust = 1),
-                   plot.title = element_text(hjust = 0.5))
-# plots
-grade_bars <- round(apply(table(items_logs$question, items_logs$grade), 1, prop.table), 2) * 100
-grade_bars_df <- data.frame(question = c(rep("10 - 2", dim(grade_bars)[1]), rep("100 - 40", dim(grade_bars)[1])),
-                          grade = c(rep(paste0("Grade ", c(3:8)), 2)),
-                          percentage = c(grade_bars[, 1], grade_bars[, 2]))
+```{r 1A plot-1, fig.align = "center", fig.height=5, fig.width=5.5}
+highlighted_providers <- c("LIB", "IEP", "ROUTE8")
+provider_colors <- c(LIB = "#2a78d6", IEP = "#eb6834", ROUTE8 = "#1baf7a")
 
-ann_text <- data.frame(percentage = 30, grade = "Grade 7", question =  "10 - 2")
-plot1 <- ggplot(data = grade_bars_df, aes(y = percentage, x = grade, fill = question)) +
-  geom_col(position = "dodge") +
-  scale_y_continuous("Percentage", labels = function(x) paste0(x, "%")) +
-  scale_fill_manual("Question", values = c("#1b9e77", "#7570b3")) +
-  labs(title = "Questions answered vs. User Grade", x = "") +
-  geom_text(data = ann_text, aes(x = grade, y = percentage),
-              label = "10 - 2 is mostly practiced by grade 3 users \n and 100 - 40 by users in grade 5",
-            family = "Courier",
-            size = 2) +
-  theme_minimal() +
-  plot_theme
+school_data_3 <- school_data %>%
+  filter(provider %in% highlighted_providers)
+
+# color for the national average line/label in plot 2
+national_color <- "grey35"
+
+plot1 <- ggplot(school_data_3, aes(x = score, fill = provider, color = provider)) +
+  geom_density(alpha = 0.45, linewidth = 0.2, color = "white") +
+  scale_fill_manual(values = provider_colors, name = "Test provider") +
+  scale_color_manual(values = provider_colors, guide = "none") +
+  scale_x_continuous(limits = c(0, 100)) +
+  labs(x = "% of students reaching target level, per school", y = "Density") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), legend.position = "bottom")
 plot(plot1)
 ```
 
-#### Plot 2: 
+#### Plot 2:
 
-```{r 1A plot-2, fig.align = "center", fig.height=4, fig.width=6}
-# response time
-plot2 <- ggplot(data = items_logs, aes(x = response_in_seconds,
-                                      linetype = given_answer_type,
-                                      color = given_answer_type)) +
-  facet_grid(. ~ question) +
-  scale_color_manual(values = c("#4daf4a", "#e41a1c", "#377eb8")) +
-  scale_x_continuous(labels = function(x) paste0(x, "s")) +
-  geom_density() +
-  theme_minimal() +
-  labs(title = "Response Time and Answer Given",
-       linetype = "Answer", color = "Answer", x = "Response in Seconds", y  = "Density") +
-  theme(legend.position = "top",
-        strip.text.x = element_text(size = 12, face = "bold")) +
-  plot_theme
+```{r 1A plot-2, fig.align = "center", fig.height=5, fig.width=5.5}
+plotted_schools <- school_data %>%
+  filter(provider %in% highlighted_providers, !is.na(schoolweging)) %>%
+  mutate(weging_bin = floor(schoolweging / 2) * 2) %>%
+  filter(weging_bin >= 22, weging_bin <= 38)  # drop the near-empty tail bins
+
+provider_lines <- plotted_schools %>%
+  group_by(provider, weging_bin) %>%
+  summarise(score = weighted.mean(score, w = n_pupils), .groups = "drop")
+
+# one row per weging_bin, averaging across all three providers together -
+# this is the dashed "national average" line
+national_line <- plotted_schools %>%
+  group_by(weging_bin) %>%
+  summarise(score = weighted.mean(score, w = n_pupils), .groups = "drop")
+national_label <- national_line %>%
+  filter(weging_bin == max(weging_bin))
+
+# how many pupils sit behind each provider's line - shown in the legend
+# labels below
+provider_n <- plotted_schools %>%
+  group_by(provider) %>%
+  summarise(n_pupils = sum(n_pupils), .groups = "drop")
+
+legend_labels <- setNames(
+  paste0(provider_n$provider, " \n(n = ", format(provider_n$n_pupils, big.mark = ","), ")"),
+  provider_n$provider
+)
+
+plot2 <- ggplot() +
+  geom_line(data = national_line, aes(x = weging_bin, y = score),
+            color = national_color, linetype = "dashed", linewidth = 0.9) +
+  geom_label(data = national_label, aes(x = weging_bin, y = score, label = "National average"),
+             color = national_color, fill = "white", linewidth = 0, hjust = 0,
+             size = 3.2, fontface = "italic") +
+  geom_line(data = provider_lines, aes(x = weging_bin, y = score, color = provider), linewidth = 1.1) +
+  geom_point(
+    data = provider_lines %>% group_by(provider) %>% filter(weging_bin %in% range(weging_bin)) %>% ungroup(),
+    aes(x = weging_bin, y = score, color = provider), size = 3, show.legend = FALSE
+  ) +
+  scale_color_manual(values = provider_colors, labels = legend_labels, name = "Test provider") +
+  scale_x_continuous(limits = c(21, 42), breaks = seq(22, 38, 4)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  labs(x = "School weighting (higher = more disadvantaged)", y = "% reaching target level") +
+  theme_minimal(base_size = 12) +
+  theme(panel.grid.minor = element_blank(), legend.position = "top")
 plot(plot2)
 ```
 
-#### Plot 3: 
+#### Plot 3:
 
-```{r 1A plot-3, fig.align = "center", fig.height=2, fig.width=10}
-text <- paste0("Examination of question '10 - 2' and ",
-               "'100 - 40' of the domain 'Substraction'\n (Domain Id: 2). ",
-               "What are the response times of these items and what is\n the ",
-               "grade of users that practise these items?")
-text1 <- ggplot() +
-  annotate("text", x = 8, y = 25, size = 4, label = text) +
-  theme(panel.grid = element_blank(),
-        panel.background = element_blank(),
-        axis.title = element_blank(),
-        axis.text = element_blank(),
-        axis.ticks = element_blank())
-plot(text1)
+```{r 1A plot-3, fig.align = "center", fig.height=2, fig.width=11.5}
+# plain text, not built from the data - the two plots already show the
+# numbers; the title states the conclusion in words
+title_text <- "LIB has the highest percentage of students reaching the target level, and Route8 the lowest. This gap holds even when accounting for the socio-economic status of schools."
+
+title_plot <- ggplot() +
+  annotate("text", x = 0, y = 0, label = str_wrap(title_text, width = 105),
+           size = 6, fontface = "bold", family = "Times", hjust = 0.5) +
+  theme_void()
+plot(title_plot)
 ```
 
-#### Combined: 
+#### Combined:
 
-```{r 1A plot-4, fig.height = 8, fig.width = 12, fig.align = "center"}
-bottomRow <- suppressMessages(plot_grid(plot1, plot2))
-suppressWarnings(plot_grid(text1, bottomRow, ncol = 1, rel_heights = c(1, 2)))
+```{r 1A plot-4, fig.height = 6, fig.width = 11.5, fig.align = "center"}
+# plot1 keeps its legend when shown on its own (above), but not here: with
+# plot2's legend right next to it, a second one for plot1 would just repeat
+# the same three names
+plot1_no_legend <- plot1 + theme(legend.position = "none")
+
+bottom_row <- suppressMessages(plot_grid(plot1_no_legend, plot2))
+combined <- suppressWarnings(plot_grid(title_plot, bottom_row, ncol = 1, rel_heights = c(1, 3)))
+print(combined)
 ```
 
 #### Bonus
-A full or half point was given for one or more improvements that contributed to a better understanding of the plot. Such as (but not limited to):  
 
-*  Fixing the mistake in the text inside the barplot (0.5pts)  
-*  Correcting the double aesthetic attribute for answer type in figure 2 (i.e. keeping only the linetype aesthetic or the color aesthetic). Or, making the distributions easier to interpret by filling them and adding an alpha value. (0.5pts)  
-*  Removing the redundancy in the axis labels of figure 2 ("s"), and/or removing the diagonal alignment of the labels (0.5pts) 
-*  Adding statistical elements, such as median or mode values, to the density plots (1pt)  
-*  Reversing axes in figure 1, to improve readability (1pt).  
-*  Changing titles, captions, and/or overall plot title to include the main conclusion (1pt)
+The bonus point (0.5 pt) is for adding **one** meaningful explanatory element to either plot - something that helps a reader find the result that matters without reading the code. Some ideas, if you're stuck (pick one, don't do all of them):
+
+*   Show only the highest- and lowest-performing provider, and highlight the difference between them directly (e.g. a bracket, a shaded gap, or a labeled arrow spanning it).
+*   Add text and/or an arrow that points at the specific part of the plot it's explaining, rather than a caption floating nearby with no visual connection.
+*   Use color and/or opacity (alpha) to pull one specific result forward, paired with a short written conclusion about what it means.
+*   Add a title to a sub-plot - but only if it says something the shared title above doesn't already say.
+*   Mark a "risk zone": a shaded band flagging where a result crosses into concerning territory (e.g. a score below some minimum standard).
+*   Plot 2 already has a reference/benchmark line (the national average, via `geom_line()` + a `geom_label()` with `fill = "white"` and `linewidth = 0` so it reads over the line without a visible box border). Plot 1 doesn't have anything like it yet - could it? (A single `geom_vline()` at the pooled average score, since plot 1's x-axis is already the score itself, is one way in.)
+*   Label a specific data point directly with its value, instead of making the reader read it off the axis.
+*   Flag where the data is thin (e.g. Route8 has far fewer schools behind it at high school weighting) so a reader doesn't over-trust the wobbliest part of a line.
 
 :::
 
 Tips:
 
--   On plot 1 there is text on the third facet which does not use the default font family\
--   To select nice colors go to http://colorbrewer2.org \[or tips on the Data Visualisation slides\]
--   Google (or other search engines) are your best friend, especially on stack overflow there are many questions and answers about ggplot2
-
-Please note that you will only receive bonus points if your extra features are meaningful and improve the visualization.
-
-When you are done, please close the connection to the database (run this code in the console!):
-
-```{r 1A close connections}
-oefenwebDatabase::close_connections()
-```
+-   `geom_density()` is already normalized to area = 1 per group by default - that's what keeps LIB's ~2,600 schools and Route8's ~300 comparable on shape without you having to do anything extra.
+-   Read `data/doorstroomtoetsen-context.md` section 7 and `data/data-context.md` before you start - they've already profiled this exact dataset (missingness, provider market share, the `"<5"` suppression convention, and what every column/Dutch term means) and will save you re-discovering the same gotchas.
+-   To pick good colors, use `node scripts/validate_palette.js` from the `dataviz` skill (or http://colorbrewer2.org) rather than eyeballing whether two colors are colorblind-safe.
 
 ### B. Interactive visualizations with Plotly
 
-Copy the code below to create a plot showcasing how a given student's ability in Multiplication develops during their first 100 interactions with the game.
+Copy the code below to prepare the data - the same kind of school-level dataset as Part A, but keeping every provider (not just the three highlighted ones) and bringing in a school's name, municipality and province, useful context for a tooltip but not something Part A's plots needed.
 
 Now, your assignment is to:
 
+-   Build a scatterplot showing every school's doorstroomtoets score against its school weighting - one point per school (only schools with 40 or more pupils tested, to avoid noisy small-sample scores), colored by which test provider it used, sized by how many pupils it tested. See the image below for what you're aiming for.
 -   Make this plot interactive using the the `plotly` package. Tip: You can use the `ggplotly()` function to convert a ggplot object to an interactive plotly object.
 -   Add a tooltip that displays additional information when you hover over the plot. Customize the tooltip so that it displays the default plot values and additional insights from **two other variables** (choose yourself). Make sure all of this information is visible when you hover over the plot.
 
@@ -344,139 +344,152 @@ Now, your assignment is to:
 -   **Does the interactive plot work? \[1 pt\]**
 -   **Does the tooltip clearly display additional (meaningful) information next to the default plot values? \[1 pt\]**
 
-For this assignment, we will examine how the student with `new_user_id = 19872` progresses through the Multiplication game. To do so, we retrieve the student's `log_records`. In the query below, we also obtain additional information about the learning goals associated with the answered items to provide extra context alongside the data stored in the `log_records`. This is achieved by performing left joins between the `log_records` tables and two others: `items_learning_goals` (which links `item_id`'s to `learning_goal_id`'s) and `learning_goals`, which provides further details about the learning goals.
-
-```{r 1B data-prep}
-# Load Required Packages
+```{r 1B setup}
 library(tidyverse)
-library(oefenwebDatabase)
-library(ggplot2)
-library(viridis)
+library(readODS)
 library(plotly)
+```
 
-# if you closed your database connection already, connect to the server again:
-con <- oefenwebDatabase::connect()
-
-# get the student's log records on the Multiplication game
-# ... and additional info related to the learning goals
-my_data <- get_query(
-  "SELECT logs.*,
-          item_lgs.learning_goal_id,
-          lgs.short_name,
-          lgs.description,
-          lgs.position
-  FROM log_records_3 AS logs
-  LEFT JOIN items_learning_goals AS item_lgs ON item_lgs.item_id = logs.item_id
-  LEFT JOIN learning_goals AS lgs ON lgs.id = item_lgs.learning_goal_id
-  WHERE new_user_id = '19872'",
-  con = con
+```{r 1B data-prep-1}
+eindscores <- read_delim(
+  "data/raw/eindscores_2024-2025.csv",
+  delim = ";", locale = locale(decimal_mark = ",", encoding = "UTF-8"),
+  show_col_types = FALSE
 )
 
+referentieniveaus <- read_delim(
+  "data/raw/referentieniveaus_2024-2025.csv",
+  delim = ";", quote = '"', show_col_types = FALSE
+)
+
+schoolweging_raw <- read_ods("data/raw/schoolweging_2022-2025.ods", sheet = "2024-2025")
+
+# one row per (school, provider actually used)
+school_provider <- eindscores %>%
+  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) %>%
+  pivot_longer(
+    cols = matches("_(AANTAL|GEM)$"),
+    names_to = c("provider", ".value"),
+    names_pattern = "(.+)_(AANTAL|GEM)"
+  ) %>%
+  mutate(AANTAL = as.numeric(AANTAL)) %>% # DUO writes "<5" for small counts -> NA
+  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) %>%
+  group_by(INSTELLINGSCODE, provider) %>%
+  summarise(AANTAL = sum(AANTAL), .groups = "drop")
+
+# one row per school: whichever single provider tested the most of its pupils
+primary_provider <- school_provider %>%
+  group_by(INSTELLINGSCODE) %>%
+  slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  select(INSTELLINGSCODE, provider)
 ```
 
-We are now ready to make the ggplot for this assignment. In this plot, we visualize how the student's `new_user_domain_rating` changes as the student plays within the Multiplication game. We also add an color aesthetic to the plot that indicates for each answered item to which learning goal it belongs.
+`eindscores` also carries the columns a tooltip needs later: a school's name, province and municipality. Unlike province/municipality (always the same across a school's locations), a school's name sometimes isn't - its different physical locations can have different names. Grouping by school code and taking just the first location's row (name included) guarantees exactly one row per school, without silently duplicating any school whose locations disagree on a name.
 
-```{r 1B make-ggplot}
-# plot the student's rating development over time
-my_plot <- my_data %>%
-  ggplot(
-    aes(
-      x = new_user_domain_modified_count,
-      y = new_user_domain_rating,
-      color = reorder(short_name, position) # order by "position" variable
-    )
-  ) +
-  geom_point(
-    size = 3,
-    alpha = .5
-  ) +
-  scale_color_viridis_d() +
-  labs(
-    title = paste0(
-      "Development of user ",
-      unique(my_data$new_user_id),
-      "'s ability in Multiplication"
-    ),
-    x = "Play count",
-    y = "User domain rating",
-    color = "Learning goal"
-  ) +
-  theme_bw() +
-  theme(
-    plot.title = element_text(
-      face = "bold",
-      size = 14
-    )
-  )
+```{r 1B data-prep-2}
+school_location <- eindscores %>%
+  select(INSTELLINGSCODE, INSTELLINGSNAAM_VESTIGING, PROVINCIE, GEMEENTENAAM) %>%
+  group_by(INSTELLINGSCODE) %>%
+  slice(1) %>%
+  ungroup()
 
-print(my_plot)
+schoolweging <- schoolweging_raw %>%
+  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) %>%
+  group_by(INSTELLINGSCODE) %>%
+  summarise(schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen), .groups = "drop")
 ```
 
-**Now it's your turn! Turn this static ggplot into an interactive plotly object, and add a customized tooltip that shows additional context next to the default values when you hover over the plot.**
+```{r 1B data-prep-3}
+count_cols <- c("REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
+                "LV_LAGER1F", "LV_1F", "LV_2F",
+                "TV_LAGER1F", "TV_1F", "TV_2F")
+
+ref_levels <- referentieniveaus %>%
+  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) %>%
+  group_by(INSTELLINGSCODE) %>%
+  summarise(across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)), .groups = "drop") %>%
+  mutate(
+    rekenen_n = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S,
+    taal_lv_n = LV_LAGER1F + LV_1F + LV_2F,
+    taal_tv_n = TV_LAGER1F + TV_1F + TV_2F,
+    score = ( 100 * REKENEN_1S / rekenen_n
+            + 100 * LV_2F      / taal_lv_n
+            + 100 * TV_2F      / taal_tv_n ) / 3,
+    n_pupils = rekenen_n
+  ) %>%
+  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
+  select(INSTELLINGSCODE, score, n_pupils)
+
+# a school needs a known provider, a computable score, AND a schoolweging
+# value to appear on this chart - unlike Part A's school_data, which kept
+# schoolweging-less schools around for its density plot, this scatter has
+# no use for a school it can't place on the x-axis
+school_data <- ref_levels %>%
+  inner_join(primary_provider, by = "INSTELLINGSCODE") %>%
+  inner_join(school_location, by = "INSTELLINGSCODE") %>%
+  inner_join(schoolweging, by = "INSTELLINGSCODE") %>%
+  filter(!is.na(schoolweging))
+```
+
+**Now it's your turn! Build the scatterplot described above from `school_data`, then turn it into an interactive plotly object with a customized tooltip that shows additional context next to the default values when you hover over the plot.**
 
 ::: {.panel-tabset}
 
 ## Plot
 
-![](images/interactive.png)
+![](../images/assignments/plotly-1.png)
 
 ## Solution
 
 ```{r 1B solution}
-my_plot <- my_data %>%
-  ggplot(
-    aes(
-      x = new_user_domain_modified_count,
-      y = new_user_domain_rating,
-      color = reorder(short_name, position), # order by "position" variable
-      # customizing content for hover tooltip:
-      text = paste0(
-        "Play count: ", new_user_domain_modified_count,
-        "<br>User domain rating: ", new_user_domain_rating,
-        "<br>Learning goal ", learning_goal_id, ": ", short_name,
-        "<br>Description: ", description,
-        "<br>Reaction time: ", response_in_milliseconds, " ms"
-      )
-    )
-  ) +
-  geom_point(
-    size = 3,
-    alpha = .5
-  ) +
-  scale_color_viridis_d() +
-  labs(
-    title = paste0(
-      "Development of user ",
-      unique(my_data$new_user_id),
-      "'s ability in Multiplication"
-    ),
-    x = "Play count",
-    y = "User domain rating",
-    color = "Learning goal"
-  ) +
-  theme_bw() +
-  theme(
-    plot.title = element_text(
-      face = "bold",
-      size = 14
+provider_colors <- c(
+  LIB = "#2a78d6", IEP = "#eb6834", ROUTE8 = "#1baf7a",
+  DIA = "#4a3aa7", AMN = "#e87ba4", DOE = "#eda100"
+)
+
+# only schools with a reasonably sized cohort - a school with a handful of
+# pupils produces a very noisy score, not worth its own point on this chart
+plot_data <- school_data %>%
+  filter(n_pupils >= 40)
+
+plot_data_with_tooltip <- plot_data %>%
+  mutate(
+    tooltip_text = paste0(
+      "<b>", INSTELLINGSNAAM_VESTIGING, "</b>",
+      "<br>", GEMEENTENAAM, ", ", PROVINCIE,
+      "<br>Test provider: ", provider,
+      "<br>School weighting: ", round(schoolweging, 1),
+      "<br>% reaching target level: ", round(score, 1), "%",
+      "<br>Pupils tested: ", n_pupils
     )
   )
 
-# convert static plot into an interactive plotly object
-ggplotly(my_plot, tooltip = "text") %>%
+interactive_plot <- ggplot(plot_data_with_tooltip,
+                            aes(x = schoolweging, y = score, color = provider, text = tooltip_text)) +
+  geom_point(aes(size = n_pupils), alpha = 0.5) +
+  scale_color_manual(values = provider_colors) +
+  labs(
+    title = "Doorstroomtoets score by school weighting, per school",
+    subtitle = "Showing schools with 40 or more students",
+    x = "School weighting (higher = more disadvantaged)",
+    y = "% reaching target level",
+    color = "Test provider",
+    size = "Number of Students"
+  ) +
+  theme_bw()
+
+# tooltip = "text" - show ONLY the custom tooltip_text column on hover, not
+# ggplotly's default (which would otherwise list every aesthetic separately:
+# x, y, colour, size, text, all stacked in one ugly box)
+ggplotly(interactive_plot, tooltip = "text") %>%
   # nice trick to left align content in tooltip:
   layout(hoverlabel = list(align = "left"))
 ```
 
-Full points were given for the interactive plot if the interactivity was working, and a tooltip with the two default variables plus two extra variables were added. If default or extra variables were missing, or if the tooltip was not formatted in a legible way, 0.5 pts were deducted.  
+Full points were given for the interactive plot if the interactivity was working, and a tooltip with the two default variables plus two extra variables were added. If default or extra variables were missing, or if the tooltip was not formatted in a legible way, 0.5 pts were deducted.
 
 :::
-
-When you are done, please close the connection to the database:
-
-```{r 1B close-connection}
-oefenwebDatabase::close_connections()
-```
 
 ## Part 2: Start on Final DV Project (Group)
 
@@ -491,7 +504,7 @@ In class 1 you indicated your preference for a research question for the final p
 
 For this project, you will collaborate using Git. Connect your server environment to GitHub and clone your assigned GitHub repository into your online RStudio account by following these instructions: [Connecting RStudio Server to GitHub](../documents/git-workflow.qmd). If this is done correctly, the resulting repository should have the following folder structure:
 
-```         
+```
 your-project-name/
 ├── .gitignore
 ├── README.md
