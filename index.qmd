@@ -11,7 +11,7 @@ Use the navigation bar above or the links below to find everything you need for 
 
 ## 📋 Overview
 
--   **Instructors:** Abe Hofman, Lilian Ye, Annie Johansson\
+-   **Instructors:** Abe Hofman, Annie Johansson\
 -   **Dates:** September 29th - October 11th, 2026\
 -   **Format:** Lectures + Tutorials
 -   **Main Topics:**
@@ -84,14 +84,10 @@ Indicate your preference for a research question [here](https://docs.google.com/
 
 **Late submissions** will be graded with a max. grade of 6, if submitted within 24 hours of the deadline. Submissions later than that will not be graded.  
 
-## 📚 Materials 
+## 📚 Book 
 
-::: {layout-ncol="3"}
-![[r4ds.had.co.nz](https://r4ds.hadley.nz/data-visualize.html)](slides/images/book_wickham.png){fig-align="left" height="150"}
-
+::: {layout-ncol="1"}
 ![[socviz.co](https://socviz.co/)](slides/images/book_healy.jpg){fig-align="left" height="150"}
-
-![[Videos on canvas](https://canvas.uva.nl/courses/54361/modules)](slides/images/canvas.png){fig-align="left" height="150"}
 :::
 
 #### Helpful extra resources
@@ -108,7 +104,7 @@ Indicate your preference for a research question [here](https://docs.google.com/
 ## 💡 How to Use This Site
 
 1.  **Browse the slides** before and after class.\
-2.  **Access the assignments and extra resources.**\
+2.  **Access the assignments, worksheets, and extra resources.**\
 3.  **Practice workflows with Git.** If you are interested in how to setup a GitHub repository and work with Quarto documents, you can clone the repository and explore the files on your own computer.
 
 ------------------------------------------------------------------------
