@@ -57,4 +57,9 @@ CLAUDE.md
 drafts/
 solutions/
 
+# Raw course data - students should download this themselves by running
+# data/get-data.R, not pull it from GitHub
+/data/raw/
+/data/gemiddelde_eindscores.txt
+
 /.quarto/
