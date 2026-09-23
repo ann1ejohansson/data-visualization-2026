@@ -1,5 +1,5 @@
 ---
-title: "BDS Toolbox: DV Assignment 1 Part 1"
+title: "BDS Toolbox: DV Assignment 1"
 author: "Your Name Here"
 date: "`r Sys.Date()`"
 output: html_document
@@ -49,7 +49,7 @@ library(plotly)
 library(lintr)
 ```
 
-## A. Replicate this plot
+## Part A: Replicate this plot
 ### Retrieve data
 
 ```{r load-data-1}
@@ -64,7 +64,7 @@ library(lintr)
 ```
 
 
-## B. Interactive visualizations with plotly
+## Part B: Interactive visualizations with plotly
 ### Retrieve data
 
 ```{r load-data-2}

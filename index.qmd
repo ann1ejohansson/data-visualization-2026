@@ -42,7 +42,7 @@ In this module, you will learn a wide set of data visualisation tools for both s
 <td>Worksheet: ggplotly<br>Worksheet: working with AI, pt. 1</td>
 </tr>
 <tr>
-<td colspan="3"><strong>Deadline DV Assignment 1 – Sunday 4/10 23.59</strong></td>
+<td colspan="3"><strong>Deadline DV Assignment 1 (individual) + DV Assignment 2, Part 1 (group) – Sunday 4/10 23.59</strong></td>
 </tr>
 <tr>
 <td><strong>3)</strong> Tuesday 6/10 15.00-18.00<br>GC-11</td>
@@ -55,7 +55,7 @@ In this module, you will learn a wide set of data visualisation tools for both s
 <td> </td>
 </tr>
 <tr>
-<td colspan="3"><strong>Deadline DV Assignment 2 – Sunday 11/10 23.59</strong></td>
+<td colspan="3"><strong>Deadline DV Assignment 2, Part 2 (group) – Sunday 11/10 23.59</strong></td>
 </tr>
 </table>
 
@@ -69,9 +69,9 @@ In this module, you will learn a wide set of data visualisation tools for both s
 
 ## 📝 Assignments
 
-[Assignment 1](assignments/assignment-1.html){target="_blank"}
+[Assignment 1](assignments/assignment-1.html){target="_blank"} (individual): replicate a plot with ggplot, and make an interactive plot with plotly.
 
-[Assignment 2](assignments/assignment-2.html){target="_blank"}
+[Assignment 2](assignments/assignment-2.html){target="_blank"} (group): the final project. In Part 1, you choose a research question and explore the data; in Part 2, you create a final data visualization and report.
 
 You'll be working with Git and GitHub for the group project (Assignment 2). Refer [here](documents/git-workflow.qmd) for instructions on how to set up your project repository.
 
@@ -79,8 +79,9 @@ Indicate your preference for a research question [here](https://docs.google.com/
 
 ## 🚨 Deadlines
 
--   **Assignment 1** – Sunday 4/10 23.59
--   **Assignment 2** – Sunday 11/10 23.59
+-   **Assignment 1** (individual) – Sunday 4/10 23.59
+-   **Assignment 2, Part 1** (group: research question & exploratory plot) – Sunday 4/10 23.59
+-   **Assignment 2, Part 2** (group: final report) – Sunday 11/10 23.59
 
 **Late submissions** will be graded with a max. grade of 6, if submitted within 24 hours of the deadline. Submissions later than that will not be graded.  
 

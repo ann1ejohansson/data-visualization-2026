@@ -6,9 +6,9 @@
 
 ## 🔗 Quick links
 
-📝 [Assignment 1](https://ann1ejohansson.github.io/data-visualization-2026/assignments/assignment-1.html)
+📝 [Assignment 1 (individual)](https://ann1ejohansson.github.io/data-visualization-2026/assignments/assignment-1.html)
 
-📝 [Assignment 2](https://ann1ejohansson.github.io/data-visualization-2026/assignments/assignment-2.html)
+📝 [Assignment 2 (group project)](https://ann1ejohansson.github.io/data-visualization-2026/assignments/assignment-2.html)
 
 📺 [Slides](https://ann1ejohansson.github.io/data-visualization-2026/slides/slides.html#/title-slide)
 

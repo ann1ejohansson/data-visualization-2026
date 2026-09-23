@@ -24,6 +24,8 @@ source(here("scripts", "01-get-data.R"))
 
 ## Research question
 
+<!-- Part 1: fill in this section and "Exploratory process" before the Part 1 deadline. -->
+
 *What are you investigating, and why does it matter? Who is the target audience for your final visualization, and how does that shape your choices?*
 
 ## Exploratory process

@@ -14,40 +14,24 @@ rm(list = ls())
 
 ## Instructions
 
-Download the templates for part 1 of this assignment in the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026) (templates \> assignment-1).
+Download the template for this assignment in the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026) (templates \> assignment-1).
 
-This is the first assignment for the Data Visualization module. The aim here is to get acquainted with real, public education data, practice with some ggplot basics, and to get you started with working with your visualizations for the final assignment.
+This is the first assignment for the Data Visualization module, and it is **individual**. The aim here is to get acquainted with real, public education data and to practice with some ggplot and plotly basics. Your work on the final project is a separate, group assignment: see [Assignment 2](assignment-2.qmd). Note that the first part of Assignment 2 is due on the same day as this assignment.
 
-With this assignment, you can gain 14 points (14.5 with bonus in part 1A). The points are awarded as following:
+With this assignment, you can gain 7 points (7.5 with the bonus in Part A). The points are awarded as follows:
 
-Individual part:
-
--   4 points (plus 0.5 bonus point) for Part 1A
--   2 points for Part 1B
+-   4 points (plus 0.5 bonus point) for Part A
+-   2 points for Part B
 -   0.5 point for R code that runs and 0.5 point for lintr-proof code
-
-Group part:
-
--   6 points for visualization
--   0.5 point for R code that runs and 0.5 point for lintr-proof code
-
-Part 1 is completed, and thus also graded, individually. Part 2 should be completed with your assigned group. Please make sure to clearly indicate your group number and names of all group members in your submission. One person should submit the assignment on behalf of the group. If more than one person submits the group assignment, we will only look at one of them.
 
 The assignment is due on **Sunday October 4th, 2026 at 23:59**. Submit your assignment to Canvas, under "DV Assignment 1".
 
-Your submission for Part 1 should contain the following files:
+Your submission should contain the following files:
 
 -   R code (style checked & working) in a `.Rmd` file\
 -   Your assignment, including both the replicated plot and the interactive plot, compiled to `.html`
 
-with file names in the following structure: `DV-Assignment1-Firstname-Lastname-PartA.Rmd` and `DV-Assignment1-Firstname-Lastname-PartA.html`.
-
-Your group submission (Part 2) should contain the following files:
-
--   R code (style checked & working) in a `.Rmd` file\
--   Your plot and short description, compiled to `.html`
-
-with file names in the following structure: `DV-Assignment1-GroupX-PartB.Rmd` (or `.R`), `DV-Assignment1-GroupX-PartB.pdf` (or `.html`). When uploading an html file, make sure that it can be opened and the plots are readable. We will not compile the html for you!
+with file names in the following structure: `DV-Assignment1-Firstname-Lastname.Rmd` and `DV-Assignment1-Firstname-Lastname.html`. When uploading an html file, make sure that it can be opened and the plots are readable. We will not compile the html for you!
 
 ### ⚠️ Please read this before submitting
 
@@ -65,13 +49,11 @@ lint(rstudioapi::getSourceEditorContext()$path)
 
 ## Getting the data
 
-This assignment uses real, public data about the **doorstroomtoets** - the standardized test Dutch primary school pupils take in their final year (groep 8), which feeds into their secondary-school advice. Before starting, read `data/doorstroomtoetsen-context.md` in the course repository for the background on why this data is interesting (it's the subject of an active public debate about fairness), and `data/data-context.md` for a glossary of the Dutch terms you'll run into plus a full codebook of every column in the data files below - useful if you're not familiar with the Dutch education system or language.
+This assignment uses real, public data about the **doorstroomtoets** - the standardized test Dutch primary school students take in their final year (groep 8), which feeds into their secondary-school advice. Before starting, read [The data: background & codebook](../documents/data-resources.qmd) for the background on why this data is interesting (it's the subject of an active public debate about fairness), a glossary of the Dutch terms you'll run into, and a full codebook of every column in the data files below.
 
 Download `get-data.R` from the [course GitHub repository](https://github.com/ann1ejohansson/data-visualization-2026/blob/main/data/get-data.R) and run it once in your project folder - it downloads everything this assignment needs into `data/raw/`.
 
-## Part 1: Doorstroomtoets Data & Basic ggplot (Individual)
-
-### A. Replicate this plot
+## Part A: Replicate this plot
 
 The following code will give you the data necessary to create the plot at the end of this section. Your task is to replicate the plot using `ggplot2`.\
 Don't worry if you cannot reproduce the plots exactly. You can, for example, use different colors and font families.
@@ -84,7 +66,7 @@ Don't worry if you cannot reproduce the plots exactly. You can, for example, use
 
 **Bonus points**
 
-Every plot in this assignment shows the data accurately, but none of them *explains itself* - a reader still has to do some work to find the result that matters most. For the bonus point, add ONE explanatory element to either plot that helps a reader find that result faster. Simply changing colors or a theme will not be rewarded on its own, unless it's clearly in service of highlighting a specific result. See the Solution below for a list of ideas if you're stuck.
+Every plot in this assignment shows the data accurately, but none of them *explains itself* - a reader still has to do some work to find the result that matters most. For the bonus point, add ONE explanatory element to either plot that helps a reader find that result faster. Simply changing colors or a theme will not be rewarded on its own, unless it's clearly in service of highlighting a specific result. 
 
 ```{r setup environment, include = TRUE, eval=FALSE}
 knitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks
@@ -138,7 +120,7 @@ school_provider <- eindscores %>%
   group_by(INSTELLINGSCODE, provider) %>%
   summarise(AANTAL = sum(AANTAL), .groups = "drop")
 
-# most schools only use one provider - take whichever tested the most pupils
+# most schools only use one provider - take whichever tested the most students
 primary_provider <- school_provider %>%
   group_by(INSTELLINGSCODE) %>%
   slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
@@ -155,7 +137,7 @@ schoolweging <- schoolweging_raw %>%
   summarise(schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen), .groups = "drop")
 ```
 
-Finally, the outcome we'll actually plot. Raw scores aren't comparable across providers (an IEP score and an AMN score are not the same kind of number), but the **percentage of pupils reaching the target reference level** (1S for maths, 2F for language) is - that's the one number CvTE's shared framework is designed to make provider-independent.
+Finally, the outcome we'll actually plot. Raw scores aren't comparable across providers (an IEP score and an AMN score are not the same kind of number), but the **percentage of students reaching the target reference level** (1S for maths, 2F for language) is - that's the one number CvTE's shared framework is designed to make provider-independent.
 
 ```{r 1A data-prep-3}
 count_cols <- c("REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
@@ -173,10 +155,10 @@ ref_levels <- referentieniveaus %>%
     score = ( 100 * REKENEN_1S / rekenen_n
             + 100 * LV_2F      / taal_lv_n
             + 100 * TV_2F      / taal_tv_n ) / 3,
-    n_pupils = rekenen_n
+    n_students = rekenen_n
   ) %>%
   filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
-  select(INSTELLINGSCODE, score, n_pupils)
+  select(INSTELLINGSCODE, score, n_students)
 
 school_data <- ref_levels %>%
   inner_join(primary_provider, by = "INSTELLINGSCODE") %>%
@@ -187,7 +169,7 @@ Now we can make the first plot: an overlapping density curve of every school's s
 
 ![](../images/assignments/subplot-1a.png)
 
-For the second plot, take those same three providers, plus the national average, and check whether their gap survives once you're comparing schools with the same school weighting. Give the three providers a proper legend, with each provider's total pupil count included in the label (e.g. `"LIB (n = 71,120)"`) - so a reader can see at a glance how much data is actually behind each line. The national average doesn't belong in that legend (it isn't "a test"), so it gets no points and no legend entry - just its own dashed line, labeled directly on the plot with a small `geom_label()` layer built from a separate, one-row data frame. I used these settings in my rMarkdown code chunk: `fig.height = 5, fig.width = 5.5, fig.align = "center"`
+For the second plot, take those same three providers, plus the national average, and check whether their gap survives once you're comparing schools with the same school weighting. Give the three providers a proper legend, with each provider's total student count included in the label (e.g. `"LIB (n = 71,120)"`) - so a reader can see at a glance how much data is actually behind each line. The national average doesn't belong in that legend (it isn't "a test"), so it gets no points and no legend entry - just its own dashed line, labeled directly on the plot with a small `geom_label()` layer built from a separate, one-row data frame. I used these settings in my rMarkdown code chunk: `fig.height = 5, fig.width = 5.5, fig.align = "center"`
 
 ![](../images/assignments/subplot-1b.png)
 
@@ -201,21 +183,16 @@ I used these settings in my rMarkdown code chunk: `fig.height = 6, fig.width = 1
 
 ![](../images/assignments/copy-this-1.png)
 
-The bonus point (0.5 pt) is for adding **one** meaningful explanatory element to either plot - something that helps a reader find the result that matters without reading the code.
+The bonus point (0.5 pt) is for adding one meaningful explanatory element to either plot - something that helps a reader find the result that matters without reading the code.
 
-Tips:
 
--   `geom_density()` is already normalized to area = 1 per group by default - that's what keeps LIB's ~2,600 schools and Route8's ~300 comparable on shape without you having to do anything extra.
--   Read `data/doorstroomtoetsen-context.md` section 7 and `data/data-context.md` before you start - they've already profiled this exact dataset (missingness, provider market share, the `"<5"` suppression convention, and what every column/Dutch term means) and will save you re-discovering the same gotchas.
--   To pick good colors, use `node scripts/validate_palette.js` from the `dataviz` skill (or http://colorbrewer2.org) rather than eyeballing whether two colors are colorblind-safe.
-
-### B. Interactive visualizations with Plotly
+## Part B: Interactive visualizations with Plotly
 
 Copy the code below to prepare the data - the same kind of school-level dataset as Part A, but keeping every provider (not just the three highlighted ones) and bringing in a school's name, municipality and province, useful context for a tooltip but not something Part A's plots needed.
 
 Now, your assignment is to:
 
--   Build a scatterplot showing every school's doorstroomtoets score against its school weighting - one point per school (only schools with 40 or more pupils tested, to avoid noisy small-sample scores), colored by which test provider it used, sized by how many pupils it tested. See the image below for what you're aiming for.
+-   Build a scatterplot showing every school's doorstroomtoets score against its school weighting - one point per school, filtered to display only schools with at least 40 students, and colored by which test provider it used. Use size of the points to visualize how many students were tested. See the image below for what you're aiming for.
 -   Make this plot interactive using the the `plotly` package. Tip: You can use the `ggplotly()` function to convert a ggplot object to an interactive plotly object.
 -   Add a tooltip that displays additional information when you hover over the plot. Customize the tooltip so that it displays the default plot values and additional insights from **two other variables** (choose yourself). Make sure all of this information is visible when you hover over the plot.
 
@@ -257,7 +234,7 @@ school_provider <- eindscores %>%
   group_by(INSTELLINGSCODE, provider) %>%
   summarise(AANTAL = sum(AANTAL), .groups = "drop")
 
-# one row per school: whichever single provider tested the most of its pupils
+# one row per school: whichever single provider tested the most of its students
 primary_provider <- school_provider %>%
   group_by(INSTELLINGSCODE) %>%
   slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
@@ -296,10 +273,10 @@ ref_levels <- referentieniveaus %>%
     score = ( 100 * REKENEN_1S / rekenen_n
             + 100 * LV_2F      / taal_lv_n
             + 100 * TV_2F      / taal_tv_n ) / 3,
-    n_pupils = rekenen_n
+    n_students = rekenen_n
   ) %>%
   filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
-  select(INSTELLINGSCODE, score, n_pupils)
+  select(INSTELLINGSCODE, score, n_students)
 
 # a school needs a known provider, a computable score, AND a schoolweging
 # value to appear on this chart - unlike Part A's school_data, which kept
@@ -315,66 +292,3 @@ school_data <- ref_levels %>%
 **Now it's your turn! Build the scatterplot described above from `school_data`, then turn it into an interactive plotly object with a customized tooltip that shows additional context next to the default values when you hover over the plot.**
 
 ![](../images/assignments/plotly-1.png)
-
-## Part 2: Start on Final DV Project (Group)
-
-### A. Specify your research question
-
-In class 1 you indicated your preference for a research question for the final project, and were assigned a group to work with. You were also assigned one of the GitHub repositories from the Oefenweb GitHub account, which you can use to collaborate on your research project. Together with your group, read the instructions for your assigned research question in [Assignment 2](assignment-2.qmd) again.
-
--   Does your project take an analytical, inference, or predictive approach? Is it clear what is expected in the final data visualization with regards to the approach?\
--   Who is your target audience? How might this influence choices for your final visualization?
-
-### B. Connect to Git and load data
-
-For this project, you will collaborate using Git. Connect your server environment to GitHub and clone your assigned GitHub repository into your online RStudio account by following these instructions: [Connecting RStudio Server to GitHub](../documents/git-workflow.qmd). If this is done correctly, the resulting repository should have the following folder structure:
-
-```
-your-project-name/
-├── .gitignore
-├── README.md
-├── your-project-name.Rproj
-├── scripts/
-|   ├── 00-packages.R
-|   └── 01-get-data.R
-└── report/
-    └── DV-Assignment2-GroupX.Rmd
-    └── DV-Assignment2-GroupX.html
-```
-
-All group members should clone the assigned group repository to their server environment. Once you have cloned the repo and initialized Git, make a first commit and push it. Check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!
-
-Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure). Additionally, it is important that you **never push data to GitHub**. If you have to store data, do this in a separate folder outside of your Git repository.
-
-Now, load in the necessary data for your visualization. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Examine the data. Discuss with your group:
-
--   What is the structure of the data?\
--   What are the main variables? Can you already make some exploratory plots to understand these variables better?\
--   What data cleaning steps are necessary? Do you, for example, need to filter out some observations to obtain reliable results?
-
-### C. Make your first visualization
-
-For this assignment you can make any visualization about the chosen theme of the final project with these minimal requirements:
-
--   use multiple plots
--   change the theme (you can use a default theme or create your own)
--   use a good color-scheme, for example colorblind proof
--   highlight some interesting data points, for example using color or text
-
-Include a description of what you want to communicate, and how you did that. Really work towards making a data visualization that highlights or substantiates a single conclusion. This plot does not have to be the plot for your final project (it probably is not), but use this assignment to get feedback from us on your current ideas.
-
-**Grading:**
-
--   **Aesthetics**
-    -   Is the plot legible? \[1pt\]
-    -   Do the colors add to the interpretability? \[1pt\]
-    -   Is the plot simple? \[0.5 pt\]
--   **Communication**
-    -   Is it clear what the plots tries to communicate? \[1pt\]
-    -   Does the plot communicate the described conclusions/description? \[1pt\]
-    -   The plot requires minimal explanation \[0.5 pt\]
--   **Creative/complexity**
-    -   Is the plot creative? \[0.5 pt\]
-    -   Is the plot/analysis complex? \[0.5 pt\]
-
-**Clearly state your group members in your document. And please make sure ONE team member submits the assignment on behalf of the group.**

@@ -1,5 +1,5 @@
 ---
-title: "DV Assignment 2 (Final Project)"
+title: "DV Assignment 2 (Group Project)"
 format: 
   html:
     toc: true
@@ -14,7 +14,86 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Instructions
 
-For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). Each of RQ1–RQ4 comes with a code chunk that prepares the relevant data. You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
+For the second and final assignment of the Data Visualization module, which you complete **in a group**, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). Each of RQ1–RQ4 comes with a code chunk that prepares the relevant data. You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
+
+The assignment consists of two parts:
+
+| | What | Due | Grading |
+|---|---|---|---|
+| **Part 1** | Research question and exploration: choose your research question, set up your project, and make a first exploratory visualization | **Sunday October 4th, 2026, 23:59** (same deadline as [Assignment 1](assignment-1.qmd)) | complete / incomplete |
+| **Part 2** | Final report: your final, explanatory data visualization, in a short report | **Sunday October 11th, 2026, 23:59** | graded (see [Grading](#grading)) |
+
+In class 1 you indicate your preference for a research question, and you are assigned a group to work with. Please make sure to clearly indicate your group number and the names of all group members in every submission. One person submits each part on behalf of the group. If more than one person submits, we will only look at one of the submissions.
+
+### Workflow
+
+There are several guidelines on workflow which you should follow when collaborating on this project:
+
+-   Comment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.
+
+-   Use Git. Set up the project following the instructions in [Part 1](#part-1-research-question-and-exploration).
+
+-   Do not push data to GitHub!
+
+## Part 1: Research question and exploration
+
+The goal of Part 1 is to get your project off the ground: by the end of the first week, your group should have a clear research question, a working project setup, and a first look at the data. Part 1 is graded as **complete / incomplete**: we don't grade the quality of your plot, but use it to give you feedback on your ideas early on.
+
+### A. Specify your research question
+
+Together with your group, read the instructions for your research question in [Research Questions](#research-questions) below. If you choose RQ5, formulate your own research question as described there.
+
+-   Does your project take an analytical, inference, or predictive approach (see [Levels of visualization](#levels-of-visualization))? Is it clear what is expected in the final data visualization with regards to the approach?\
+-   Who is your target audience? How might this influence choices for your final visualization?
+
+### B. Set up your project and load the data
+
+For this project, you will collaborate using Git. Set up your group's repository from the [starter project](https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name), and connect it to RStudio by following the instructions in [Working with Git](../documents/git-workflow.qmd). If this is done correctly, the resulting repository should have the following folder structure:
+
+```
+your-project-name/
+├── .gitignore
+├── README.md
+├── your-project-name.Rproj
+├── scripts/
+│   ├── 00-packages.R
+│   └── 01-get-data.R
+└── report/
+    └── DV-Assignment2-GroupX.Rmd
+```
+
+All group members should clone the group repository. Make a first commit and push it, and check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!
+
+Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure). Additionally, it is important that you **never push data to GitHub**.
+
+Now, load in the data. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Then run the [data preparation code](#data-and-codebook) for your research question. Examine the data, and discuss with your group:
+
+-   What is the structure of the data?\
+-   What are the main variables? Can you already make some exploratory plots to understand these variables better?\
+-   What data cleaning steps are necessary? Do you, for example, need to filter out some observations to obtain reliable results?
+
+### C. Make an exploratory visualization
+
+Make a visualization that helps you (and us) understand the data behind your research question, with these minimal requirements:
+
+-   use multiple plots
+-   change the theme (you can use a default theme or create your own)
+-   use a good color-scheme, for example colorblind proof
+-   highlight some interesting data points, for example using color or text
+
+Include a short description of what the visualization shows, and what you learned from it about your research question. This plot does not have to be the plot for your final project (it probably is not), but use it to get feedback from us on your current ideas.
+
+### Submitting Part 1
+
+Write Part 1 in your group's report, `report/DV-Assignment2-GroupX.Rmd`: fill in the **Research question** section (your research question, its level, and your target audience) and the **Exploratory process** section (your exploratory visualization and its description). You can leave the other sections empty for now. Knit the report, push your work to GitHub, and submit the `.Rmd` and `.html` files on Canvas, under "DV Assignment 2 – Part 1".
+
+Part 1 is **complete** if it contains:
+
+-   a specific research question, its level (analytics, inference or prediction), and a target audience;
+-   at least one exploratory visualization that meets the requirements above, with a short description;
+-   code that runs, in your group's GitHub repository.
+
+## Part 2: Final report
 
 ### The report
 
@@ -24,13 +103,13 @@ The report should be a description of the process that led to your final data vi
 
 -   An explanation of your research question and the target audience for your visualization. What did you want to communicate?
 
--   A description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in assignment 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.
+-   A description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in Part 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.
 
 -   Your final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question & exploration).
 
 ### Grading
 
-The second assignment of the Data Visualization module will be graded on the following elements:
+The final report will be graded on the following elements:
 
 -   **Aesthetics** [30%]: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?
 -   **Communication** [30%]: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?
@@ -38,39 +117,13 @@ The second assignment of the Data Visualization module will be graded on the fol
 -   **Creativity and Complexity** [10%]: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
 -   **Code Quality and Styling** [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
 
-### Levels of visualization
-
-Your chosen research question falls into one of three levels: analytics, inference, or prediction. Each level has different expectations in terms of how the visualization should be constructed and what role statistical modeling plays.
-
-#### Analytics
-
-Analytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a school board or municipal education officer). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.
-
-#### Inference
-
-Inference goes one step further: it aims to explain differences or relationships in the data, often by comparing groups or testing hypotheses. We expect a visualization at this level to be supplemented with statistical tests or models (e.g. significance tests). The visualization should not only show patterns but also provide evidence for why the observed differences matter.
-
-#### Prediction
-
-Prediction focuses on using current information to forecast outcomes. At this level, you should fit and interpret a predictive model (e.g., a linear or logistic regression). The visualization should clearly communicate how well the model performs, what predictors matter, and what can be learned from the model's outcomes.
-
-### Workflow
-
-There are several guidelines on workflow which you should follow when collaborating on this project:
-
--   Comment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.
-
--   Use Git. Set up the project following the instructions in Assignment 1.
-
--   Do not push data to GitHub!
-
 ### First draft and peer review
 
 We would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.
 
-### Final submission
+### Submitting Part 2
 
-The final draft of your report and data visualization is due **Sunday, October 12th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following documents:
+The final draft of your report and data visualization is due **Sunday, October 11th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following documents:
 
 -   Your `.Rmd` file. Here we will check your code styling and documentation. Run `lintr` beforehand!
 
@@ -79,7 +132,7 @@ The final draft of your report and data visualization is due **Sunday, October 1
 ::: {.callout-tip collapse="false"}
 ## General tips
 
--   Start by getting to know the data: one row is one school, not one pupil. Look at how many pupils each school has, and how many of its counts are hidden as `"<5"`, before you aggregate anything.
+-   Start by getting to know the data: one row is one school, not one student. Look at how many students each school has, and how many of its counts are hidden as `"<5"`, before you aggregate anything.
 
 -   After developing your workflow, reflect on the robustness of your analysis. Would your findings change when you rerun the analysis on different data, or under altered conditions? Explain why or why not in your conclusion.
 
@@ -94,6 +147,21 @@ The final draft of your report and data visualization is due **Sunday, October 1
 -   Before handing in your final visualization, look at the [guiding principles](https://ann1ejohansson.github.io/data-visualization-2026/slides/slides.html#/tips-for-the-best-viz). Have you met these conditions?\
 :::
 
+## Levels of visualization
+
+Your chosen research question falls into one of three levels: analytics, inference, or prediction. Each level has different expectations in terms of how the visualization should be constructed and what role statistical modeling plays.
+
+### Analytics
+
+Analytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a school board or municipal education officer). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.
+
+### Inference
+
+Inference goes one step further: it aims to explain differences or relationships in the data, often by comparing groups or testing hypotheses. We expect a visualization at this level to be supplemented with statistical tests or models (e.g. significance tests). The visualization should not only show patterns but also provide evidence for why the observed differences matter.
+
+### Prediction
+
+Prediction focuses on using current information to forecast outcomes. At this level, you should fit and interpret a predictive model (e.g., a linear or logistic regression). The visualization should clearly communicate how well the model performs, what predictors matter, and what can be learned from the model's outcomes.
 
 ## Data and codebook
 
@@ -104,7 +172,7 @@ All research questions use the DUO open data that you already worked with in the
 ::: {.callout-warning collapse="false"}
 ## Hidden counts: `"<5"`
 
-DUO hides any count below 5 and writes the text `"<5"` instead. In `referentieniveaus` and `schooladviezen` this happens *a lot*, because pupils are split over many small categories. If you simply drop the schools with a `"<5"` somewhere, almost no schools are left over.
+DUO hides any count below 5 and writes the text `"<5"` instead. In `referentieniveaus` and `schooladviezen` this happens *a lot*, because students are split over many small categories. If you simply drop the schools with a `"<5"` somewhere, almost no schools are left over.
 
 The code below therefore replaces `"<5"` with a number of your choice (2.5, the midpoint of 1–4, by default). This is an assumption, so **check whether your conclusion changes when you use 1 or 4 instead**, and report this in your robustness section.
 :::
@@ -133,7 +201,7 @@ parse_count <- function(x, value = suppressed_value) {
 
 # Which test provider did each school use? Only eindscores has this. Most
 # schools use one provider; for the few that use more, we keep the provider
-# that tested the most pupils.
+# that tested the most students.
 school_provider <- eindscores |>
   pivot_longer(
     cols = ends_with("_AANTAL"),
@@ -164,11 +232,11 @@ school_weging <- schoolweging |>
   summarise(
     schoolweging = weighted.mean(schoolweging, aantal_leerlingen),
     spreiding = weighted.mean(spreiding, aantal_leerlingen),
-    n_pupils_school = sum(aantal_leerlingen),
+    n_students_school = sum(aantal_leerlingen),
     .by = INSTELLINGSCODE
   )
 
-# Reference levels: share of pupils per school reaching each level.
+# Reference levels: share of students per school reaching each level.
 # Maths (REKENEN): basic level 1F, target level 1S.
 # Reading (LV, leesvaardigheid): basic level 1F, target level 2F.
 ref_levels <- referentieniveaus |>
@@ -182,8 +250,8 @@ ref_levels <- referentieniveaus |>
     pct_reading_2f = LV_2F / n_reading
   )
 
-# School advice: number of pupils per secondary-school track, plus the share
-# of pupils with a HAVO-or-higher advice (you may define this differently!)
+# School advice: number of students per secondary-school track, plus the share
+# of students with a HAVO-or-higher advice (you may define this differently!)
 advice <- schooladviezen |>
   mutate(across(VSO:ADVIES_NIET_MOGELIJK, parse_count)) |>
   mutate(
@@ -208,9 +276,9 @@ advice <- schooladviezen |>
 
 **Instruction:** Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. You can choose one of two ways to define "on track":
 
-1.  *National benchmark:* compare each school to the national average share of pupils reaching each level.
+1.  *National benchmark:* compare each school to the national average share of students reaching each level.
 
-2.  *Comparable-schools benchmark:* compare each school to schools with a similar pupil population, i.e. a similar `schoolweging`. A school with many disadvantaged pupils and 40% at 1S may be doing better than expected, while a school with very few disadvantaged pupils and the same 40% may not be.
+2.  *Comparable-schools benchmark:* compare each school to schools with a similar student population, i.e. a similar `schoolweging`. A school with many disadvantaged students and 40% at 1S may be doing better than expected, while a school with very few disadvantaged students and the same 40% may not be.
 
 Good municipalities to start with are Haarlem (38 schools), Leiden (25) or Delft (25). Larger cities like Amsterdam (200+ schools) are possible, but you will need to think harder about how to keep the plot readable.
 
@@ -240,9 +308,9 @@ rq1_data <- ref_levels |>
 ```
 
 ::: {.callout-tip collapse="false"}
--   Some schools only have 10–15 pupils in group 8. How reliable is a percentage based on so few pupils, and how does the `"<5"` replacement affect small schools in particular? (How) will you show this in your visualization?
+-   Some schools only have 10–15 students in group 8. How reliable is a percentage based on so few students, and how does the `"<5"` replacement affect small schools in particular? (How) will you show this in your visualization?
 
--   Almost every school gets (nearly) all pupils to the basic 1F level. Which levels are actually informative for telling schools apart?
+-   Almost every school gets (nearly) all students to the basic 1F level. Which levels are actually informative for telling schools apart?
 
 -   You do not need to worry about generalizability to other municipalities. The visualization should be relevant for this one municipality.
 :::
@@ -251,7 +319,7 @@ rq1_data <- ref_levels |>
 
 ------------------------------------------------------------------------
 
-### RQ2. Does the choice of test provider matter, even for schools with a similar pupil population?
+### RQ2. Does the choice of test provider matter, even for schools with a similar student population?
 
 <details>
 
@@ -263,12 +331,12 @@ rq1_data <- ref_levels |>
 
 **Target audience:** policymakers, or the general public (think of a newspaper graphic).
 
-**Instruction:** Schools can choose which of six providers' doorstroomtoets their pupils take. The Volkskrant reported that schools using some providers get structurally better results than comparable schools using another provider. In this RQ, you will test whether you can find the same in the DUO data.
+**Instruction:** Schools can choose which of six providers' doorstroomtoets their students take. The Volkskrant reported that schools using some providers get structurally better results than comparable schools using another provider. In this RQ, you will test whether you can find the same in the DUO data.
 
-The raw test scores (`*_GEM` in `eindscores`) are on six different scales and can't be compared across providers. Use the reference levels instead: they are meant to mean the same thing regardless of which test a pupil took. Choose one or more of the following outcomes:
+The raw test scores (`*_GEM` in `eindscores`) are on six different scales and can't be compared across providers. Use the reference levels instead: they are meant to mean the same thing regardless of which test a student took. Choose one or more of the following outcomes:
 
-1.  `pct_maths_1s`: share of pupils reaching the maths target level
-2.  `pct_reading_2f`: share of pupils reaching the reading target level
+1.  `pct_maths_1s`: share of students reaching the maths target level
+2.  `pct_reading_2f`: share of students reaching the reading target level
 
 Compare these between providers, while accounting for `schoolweging` -- schools do not choose their provider at random, so a raw comparison between providers is misleading. Support your visualization with a statistical model (e.g. a linear regression with provider and schoolweging as predictors).
 
@@ -295,9 +363,9 @@ rq2_data <- ref_levels |>
 ::: {.callout-tip collapse="false"}
 -   First look at the raw differences between providers, then at the differences for schools with a similar schoolweging. Does the picture change? This comparison could be the core of your story.
 
--   A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands (e.g. "x more pupils per class of 25")?
+-   A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands (e.g. "x more students per class of 25")?
 
--   This is school-level data: you know which provider a school used, not the scores of individual pupils. What can and can't you conclude from that?
+-   This is school-level data: you know which provider a school used, not the scores of individual students. What can and can't you conclude from that?
 :::
 
 </details>
@@ -316,9 +384,9 @@ rq2_data <- ref_levels |>
 
 **Target audience:** secondary schools, or policymakers.
 
-**Instruction:** At the end of primary school, every pupil receives a school advice for a secondary-school track (PRO, VMBO, HAVO, VWO, see the codebook). The advice is based on the teacher's judgement and on the doorstroomtoets. In this RQ, you will investigate how closely a school's advice follows its pupils' test results, and whether this differs between schools with a more or less disadvantaged pupil population.
+**Instruction:** At the end of primary school, every student receives a school advice for a secondary-school track (PRO, VMBO, HAVO, VWO, see the codebook). The advice is based on the teacher's judgement and on the doorstroomtoets. In this RQ, you will investigate how closely a school's advice follows its students' test results, and whether this differs between schools with a more or less disadvantaged student population.
 
-Relate a measure of the school's advice (e.g. `pct_havo_plus`) to a measure of its test results (`pct_maths_1s` and/or `pct_reading_2f`), and test whether `schoolweging` moderates this relationship (e.g. with an interaction in a linear regression). Do two schools with the same results give the same advice, regardless of who their pupils are?
+Relate a measure of the school's advice (e.g. `pct_havo_plus`) to a measure of its test results (`pct_maths_1s` and/or `pct_reading_2f`), and test whether `schoolweging` moderates this relationship (e.g. with an interaction in a linear regression). Do two schools with the same results give the same advice, regardless of who their students are?
 
 ```{r q-3-data}
 #| code-fold: true
@@ -356,7 +424,7 @@ rq3_data <- ref_levels |>
 
 ------------------------------------------------------------------------
 
-### RQ4. Can we predict how many pupils get a HAVO-or-higher advice from a school's context?
+### RQ4. Can we predict how many students get a HAVO-or-higher advice from a school's context?
 
 <details>
 
@@ -368,11 +436,11 @@ rq3_data <- ref_levels |>
 
 **Target audience:** school boards or the Inspectorate, who could use such a model to spot schools whose advice is unexpectedly high or low.
 
-**Instruction:** Fit a model that predicts a school's share of pupils with a HAVO-or-higher advice (`pct_havo_plus`) from characteristics of the school and its pupil population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. You can choose between the following predictors:
+**Instruction:** Fit a model that predicts a school's share of students with a HAVO-or-higher advice (`pct_havo_plus`) from characteristics of the school and its student population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. You can choose between the following predictors:
 
-1.  `schoolweging` (how disadvantaged the pupil population is)
-2.  `spreiding` (how much the pupils within a school differ from each other in disadvantage)
-3.  `n_pupils_school` (school size)
+1.  `schoolweging` (how disadvantaged the student population is)
+2.  `spreiding` (how much the students within a school differ from each other in disadvantage)
+3.  `n_students_school` (school size)
 4.  `provider` (which doorstroomtoets the school used)
 5.  `PROVINCIE`
 6.  `DENOMINATIE_VESTIGING` (the school's religious or educational denomination)
@@ -395,14 +463,14 @@ rq4_data <- advice |>
     INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
     GEMEENTENAAM, PROVINCIE, DENOMINATIE_VESTIGING,
     n_advice, pct_havo_plus,
-    schoolweging, spreiding, n_pupils_school, provider
+    schoolweging, spreiding, n_students_school, provider
   )
 ```
 
 ::: {.callout-tip collapse="false"}
 -   `DENOMINATIE_VESTIGING` has 19 categories and some providers are rare. Categories with only a handful of schools make your model unstable -- consider combining them.
 
--   A school with 8 pupils in group 8 will have a much noisier `pct_havo_plus` than a school with 80. How do you deal with that in your model, or in your visualization?
+-   A school with 8 students in group 8 will have a much noisier `pct_havo_plus` than a school with 80. How do you deal with that in your model, or in your visualization?
 
 -   A school that deviates from the model's prediction is not necessarily doing something wrong. Keep this in mind when you present the "outliers".
 :::
@@ -423,7 +491,7 @@ rq4_data <- advice |>
 
 **Instruction:** If none of the questions above appeal to you, you can formulate your own. The DUO data should be the core of your project, but you are welcome to combine it with other data. This option gives you more freedom, but it also asks more of you: you have to make the choices that RQ1–RQ4 make for you. Before you start working on the data, make sure you have specified the following:
 
-1.  **A very specific research question.** "Is the doorstroomtoets fair?" is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it's clear which plot and which analysis would answer it. For example: "Do schools in Limburg that use Route 8 have a lower share of pupils at reading level 2F than Route 8 schools in the rest of the country, when comparing schools with a similar schoolweging?"
+1.  **A very specific research question.** "Is the doorstroomtoets fair?" is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it's clear which plot and which analysis would answer it. For example: "Do schools in Limburg that use Route 8 have a lower share of students at reading level 2F than Route 8 schools in the rest of the country, when comparing schools with a similar schoolweging?"
 
 2.  **An approach.** Is your question one of analytics, inference or prediction (see [Levels of visualization](#levels-of-visualization))? Explain why, and what statistical test or model (if any) you will use to support your visualization.
 

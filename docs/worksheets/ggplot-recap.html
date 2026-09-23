@@ -269,7 +269,7 @@ Note
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Run <code>glimpse(eindscores)</code> yourself and notice the shape: <strong>one row per school</strong>, with a separate pair of columns <em>per provider</em> — <code>IEP_AANTAL</code>/<code>IEP_GEM</code>, <code>ROUTE8_AANTAL</code>/<code>ROUTE8_GEM</code>, and so on (<code>AANTAL</code> = number of pupils tested, <code>GEM</code> = their average score). Most schools use exactly one provider, so five of those six <code>AANTAL</code> columns will be <code>0</code> for any given row.</p>
+<p>Run <code>glimpse(eindscores)</code> yourself and notice the shape: <strong>one row per school</strong>, with a separate pair of columns <em>per provider</em> — <code>IEP_AANTAL</code>/<code>IEP_GEM</code>, <code>ROUTE8_AANTAL</code>/<code>ROUTE8_GEM</code>, and so on (<code>AANTAL</code> = number of students tested, <code>GEM</code> = their average score). Most schools use exactly one provider, so five of those six <code>AANTAL</code> columns will be <code>0</code> for any given row.</p>
 </section>
 <section id="part-2-tidy-it" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-tidy-it">Part 2 — Tidy it</h2>
@@ -279,21 +279,21 @@ Note
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep just the ID/label columns, plus the six *_AANTAL columns</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         GEMEENTENAAM, PROVINCIE, SOORT_PO, <span class="fu">ends_with</span>(<span class="st">"_AANTAL"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stack the six AANTAL columns into two: which provider, how many pupils</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># stack the six AANTAL columns into two: which provider, how many students</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">ends_with</span>(<span class="st">"_AANTAL"</span>),</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"provider"</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"n_pupils"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"n_students"</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">provider =</span> <span class="fu">sub</span>(<span class="st">"_AANTAL$"</span>, <span class="st">""</span>, provider),  <span class="co"># "IEP_AANTAL" -&gt; "IEP"</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># DUO writes "&lt;5" instead of an exact count when it's under 5 (privacy</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># rule) - as.numeric() turns those into NA, which we then drop below</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_pupils =</span> <span class="fu">as.numeric</span>(n_pupils)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_students =</span> <span class="fu">as.numeric</span>(n_students)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(n_pupils), n_pupils <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span>           <span class="co"># drop unused/suppressed providers</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(n_students), n_students <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span>           <span class="co"># drop unused/suppressed providers</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(INSTELLINGSCODE, VESTIGINGSCODE) <span class="sc">|&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n_pupils, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>    <span class="co"># handles rare mixed-provider schools</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n_students, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span>    <span class="co"># handles rare mixed-provider schools</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>school_provider</code> now has one row per school: its name, municipality, and which single provider it used. This is the shape <code>ggplot2</code> wants.</p>
@@ -390,11 +390,11 @@ Note
 </tr>
 </tbody>
 </table>
-<p>*<code>geom_bar()</code> counts rows for you; <code>geom_col()</code> expects you to already have a column of heights to plot (like <code>n_pupils</code>).</p>
+<p>*<code>geom_bar()</code> counts rows for you; <code>geom_col()</code> expects you to already have a column of heights to plot (like <code>n_students</code>).</p>
 </section>
 <section id="exercise-3-a-different-geom" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3-a-different-geom">Exercise 3 — A different geom</h3>
-<p>Plot the distribution of <code>n_pupils</code> across all schools with a histogram.</p>
+<p>Plot the distribution of <code>n_students</code> across all schools with a histogram.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Try it</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Solution</a></li></ul>
 <div class="tab-content">
@@ -409,7 +409,7 @@ Note
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> n_pupils)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(school_provider, <span class="fu">aes</span>(<span class="at">x =</span> n_students)) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -509,8 +509,8 @@ Note
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>school_provider <span class="sc">|&gt;</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GEMEENTENAAM <span class="sc">==</span> municipality) <span class="sc">|&gt;</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(n_pupils &gt; 50) |&gt; # use this filter if plots get crowded with large municipalities </span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(INSTELLINGSNAAM_VESTIGING, n_pupils), <span class="at">y =</span> n_pupils, <span class="at">fill =</span> provider)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#filter(n_students &gt; 50) |&gt; # use this filter if plots get crowded with large municipalities </span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(INSTELLINGSNAAM_VESTIGING, n_students), <span class="at">y =</span> n_students, <span class="at">fill =</span> provider)) <span class="sc">+</span></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> provider_colors) <span class="sc">+</span> <span class="co"># the same named vector from above</span></span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                     <span class="co"># horizontal bars so school names stay legible</span></span>

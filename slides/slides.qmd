@@ -475,9 +475,11 @@ RXKCD::getXKCD(which = "833")
 
 Your goal is to go from exploring the Prowise data to telling a story with it.
 
--   [Assignment 1](../assignments/assignment-1.html){target="_blank"}: Choose a research question. Explore the data and create a set of visualizations to help you understand the data.
+-   [Assignment 1](../assignments/assignment-1.html){target="_blank"} (individual): Replicate a plot with ggplot, and make an interactive plot with plotly. Due Sunday 4/10.
 
--   [Assignment 2](../assignments/assignment-2.html){target="_blank"}: Create a final data visualization that tells a story with the data. Compiled into a html document, and presented in a GitHub repository.
+-   [Assignment 2](../assignments/assignment-2.html){target="_blank"} (group):
+    -   Part 1: Choose a research question. Explore the data and create a set of visualizations to help you understand the data. Due Sunday 4/10, graded complete / incomplete.
+    -   Part 2: Create a final data visualization that tells a story with the data. Compiled into a html document, and presented in a GitHub repository. Due Sunday 11/10.
 
 ## Requirements Assignment 2
 
@@ -604,7 +606,7 @@ With `plot_ly()`, you can add and control interactive elements such as:
 Source: [plotly.com/r](https://plotly.com/r/)
 :::
 
-## Requirements Assignment 1, part B (individual)
+## Requirements Assignment 1, part B
 
 -   Make the static ggplot object interactive using the `{plotly}` package
 -   Add a customized tooltip that displays additional information when you hover over the plot
@@ -613,7 +615,7 @@ Source: [plotly.com/r](https://plotly.com/r/)
 
 ## Tuesday, Oct 7
 
--   Feedback on assignment 1
+-   Feedback on assignment 1 and assignment 2, part 1
 -   Recap: what makes a good DV?
 -   More data visualization features
 -   Work on assignment 2
@@ -1362,6 +1364,6 @@ output:
 
 ## Grading
 
--   Assignment 1: 33% of your final grade\
--   Assignment 2: 66% of your final grade\
+-   Assignment 1 (individual): 25% of your final grade\
+-   Assignment 2 (group): 75% of your final grade\
 -   Final grade for data viz counts 30% into your final BDS Toolbox grade & needs to be $\ge$ 5.5

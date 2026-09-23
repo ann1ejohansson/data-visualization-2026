@@ -35,7 +35,7 @@ eindscores <- read_delim(
 )
 ```
 
-Run `glimpse(eindscores)` yourself and notice the shape: **one row per school**, with a separate pair of columns *per provider* — `IEP_AANTAL`/`IEP_GEM`, `ROUTE8_AANTAL`/`ROUTE8_GEM`, and so on (`AANTAL` = number of pupils tested, `GEM` = their average score). Most schools use exactly one provider, so five of those six `AANTAL` columns will be `0` for any given row.
+Run `glimpse(eindscores)` yourself and notice the shape: **one row per school**, with a separate pair of columns *per provider* — `IEP_AANTAL`/`IEP_GEM`, `ROUTE8_AANTAL`/`ROUTE8_GEM`, and so on (`AANTAL` = number of students tested, `GEM` = their average score). Most schools use exactly one provider, so five of those six `AANTAL` columns will be `0` for any given row.
 
 ## Part 2 — Tidy it 
 
@@ -47,21 +47,21 @@ school_provider <- eindscores |>
   # keep just the ID/label columns, plus the six *_AANTAL columns
   select(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
          GEMEENTENAAM, PROVINCIE, SOORT_PO, ends_with("_AANTAL")) |>
-  # stack the six AANTAL columns into two: which provider, how many pupils
+  # stack the six AANTAL columns into two: which provider, how many students
   pivot_longer(
     cols = ends_with("_AANTAL"),
     names_to = "provider",
-    values_to = "n_pupils"
+    values_to = "n_students"
   ) |>
   mutate(
     provider = sub("_AANTAL$", "", provider),  # "IEP_AANTAL" -> "IEP"
     # DUO writes "<5" instead of an exact count when it's under 5 (privacy
     # rule) - as.numeric() turns those into NA, which we then drop below
-    n_pupils = as.numeric(n_pupils)
+    n_students = as.numeric(n_students)
   ) |>
-  filter(!is.na(n_pupils), n_pupils > 0) |>           # drop unused/suppressed providers
+  filter(!is.na(n_students), n_students > 0) |>           # drop unused/suppressed providers
   group_by(INSTELLINGSCODE, VESTIGINGSCODE) |>
-  slice_max(n_pupils, n = 1, with_ties = FALSE) |>    # handles rare mixed-provider schools
+  slice_max(n_students, n = 1, with_ties = FALSE) |>    # handles rare mixed-provider schools
   ungroup()
 ```
 
@@ -147,11 +147,11 @@ ggplot(school_provider, aes(x = provider, fill = provider)) +
 | How is a continuous variable distributed? | `geom_histogram()` |
 | How does a distribution differ across groups? | `geom_boxplot()` |
 
-*`geom_bar()` counts rows for you; `geom_col()` expects you to already have a column of heights to plot (like `n_pupils`).
+*`geom_bar()` counts rows for you; `geom_col()` expects you to already have a column of heights to plot (like `n_students`).
 
 ### Exercise 3 — A different geom
 
-Plot the distribution of `n_pupils` across all schools with a histogram.
+Plot the distribution of `n_students` across all schools with a histogram.
 
 ::: {.panel-tabset}
 
@@ -171,7 +171,7 @@ ggplot(school_provider, aes(x = ____)) +
 
 ```{r}
 #| eval: false
-ggplot(school_provider, aes(x = n_pupils)) +
+ggplot(school_provider, aes(x = n_students)) +
   geom_histogram(binwidth = 5)
 ```
 
@@ -269,8 +269,8 @@ municipality <- "Wassenaar"
 
 school_provider |>
   filter(GEMEENTENAAM == municipality) |>
-  #filter(n_pupils > 50) |> # use this filter if plots get crowded with large municipalities 
-  ggplot(aes(x = reorder(INSTELLINGSNAAM_VESTIGING, n_pupils), y = n_pupils, fill = provider)) +
+  #filter(n_students > 50) |> # use this filter if plots get crowded with large municipalities 
+  ggplot(aes(x = reorder(INSTELLINGSNAAM_VESTIGING, n_students), y = n_students, fill = provider)) +
   geom_col() +
   scale_fill_manual(values = provider_colors) + # the same named vector from above
   coord_flip() +                     # horizontal bars so school names stay legible

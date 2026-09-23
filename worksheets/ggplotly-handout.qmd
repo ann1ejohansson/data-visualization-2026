@@ -44,21 +44,21 @@ postcodes <- read_csv("data/raw/postcodes_pc4.csv", show_col_types = FALSE) |>
 
 school_provider <- eindscores |>
   # keep just the school identifiers/labels, the postcode, and the six
-  # *_AANTAL columns (number of pupils tested, per provider)
+  # *_AANTAL columns (number of students tested, per provider)
   select(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
          GEMEENTENAAM, PROVINCIE, POSTCODE_VESTIGING, ends_with("_AANTAL")) |>
-  # stack the six AANTAL columns into two: which provider, how many pupils -
+  # stack the six AANTAL columns into two: which provider, how many students -
   # turns "one row per school, six provider columns" into "one row per
-  # (school, provider), with n_pupils telling us how many pupils it tested"
-  pivot_longer(cols = ends_with("_AANTAL"), names_to = "provider", values_to = "n_pupils") |>
+  # (school, provider), with n_students telling us how many students it tested"
+  pivot_longer(cols = ends_with("_AANTAL"), names_to = "provider", values_to = "n_students") |>
   mutate(
     provider = sub("_AANTAL$", "", provider),                 # "IEP_AANTAL" -> "IEP"
-    n_pupils = as.numeric(n_pupils),                          # DUO writes "<5" for small counts -> this becomes NA
+    n_students = as.numeric(n_students),                          # DUO writes "<5" for small counts -> this becomes NA
     postcode = as.numeric(str_sub(POSTCODE_VESTIGING, 1, 4))  # keep only the numeric part: "2716PH" -> 2716
   ) |>
-  filter(!is.na(n_pupils), n_pupils > 0) |>           # drop the providers a school didn't actually use
+  filter(!is.na(n_students), n_students > 0) |>           # drop the providers a school didn't actually use
   group_by(INSTELLINGSCODE, VESTIGINGSCODE) |>        # group the rows back up by school...
-  slice_max(n_pupils, n = 1, with_ties = FALSE) |>    # ...and keep only its single largest provider (most schools use just one anyway)
+  slice_max(n_students, n = 1, with_ties = FALSE) |>    # ...and keep only its single largest provider (most schools use just one anyway)
   ungroup()
 
 # join the coordinates onto each school by matching postcode -> postcode.
@@ -122,7 +122,7 @@ nl_map_interactive <- ggplot(
       "<b>", INSTELLINGSNAAM_VESTIGING, "</b>",
       "<br>", GEMEENTENAAM, ", ", PROVINCIE,
       "<br>Provider: ", provider,
-      "<br>Pupils tested: ", n_pupils
+      "<br>students tested: ", n_students
     )
   )
 ) +
