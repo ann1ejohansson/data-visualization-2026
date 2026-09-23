@@ -8,13 +8,13 @@ format:
 ---
 
 ```{r setup, include=FALSE}
-# set eval = TRUE when running on server
+# code chunks are shown, not run: students run them in their own project
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
 ## Instructions
 
-For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the Oefenweb data that highlights meaningful patterns and provides actionable insights. To aid in this, each research question (substantiated below) is accompanied by a code chunk which gives you the relevant data. You are expected to do some data preparation and/or filtering of this data to obtain clean, reliable results. However, you are not expected to query data from other sources in the database, or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
+For the second and final assignment of the Data Visualization module, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). Each of RQ1–RQ4 comes with a code chunk that prepares the relevant data. You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
 
 ### The report
 
@@ -32,11 +32,11 @@ The report should be a description of the process that led to your final data vi
 
 The second assignment of the Data Visualization module will be graded on the following elements:
 
--   **Aesthetics**: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?
--   **Communication**: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?
--   **Description**: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?
--   **Creativity and Complexity**: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
--   **Code Quality and Styling**: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
+-   **Aesthetics** [30%]: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?
+-   **Communication** [30%]: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?
+-   **Description** [20%]: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?
+-   **Creativity and Complexity** [10%]: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
+-   **Code Quality and Styling** [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
 
 ### Levels of visualization
 
@@ -44,7 +44,7 @@ Your chosen research question falls into one of three levels: analytics, inferen
 
 #### Analytics
 
-Analytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a teacher). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.
+Analytics is about describing and comparing what is happening in the data, often in a way that is directly actionable for a practitioner. At this level, we expect you to create clear, actionable visualizations that are easy to interpret for a practitioner (e.g. a school board or municipal education officer). This should rely less on statistical modeling and more on effective communication of patterns in the data. You do, however, need to make sure that the patterns communicated are reliable.
 
 #### Inference
 
@@ -79,13 +79,13 @@ The final draft of your report and data visualization is due **Sunday, October 1
 ::: {.callout-tip collapse="false"}
 ## General tips
 
--   Start by working with a **subset** of the data, to get a good idea of the data structure and variables, without running heavy computations. This should make your workflow more efficient. We have provided example R code that shows how to generate a reproducible subset.
+-   Start by getting to know the data: one row is one school, not one pupil. Look at how many pupils each school has, and how many of its counts are hidden as `"<5"`, before you aggregate anything.
 
 -   After developing your workflow, reflect on the robustness of your analysis. Would your findings change when you rerun the analysis on different data, or under altered conditions? Explain why or why not in your conclusion.
 
 -   Make sure to **render your final visualization large enough** so it is readable in the html.
 
--   Consider the subset of your data that you want to visualize. Does it make sense to plot general effects, or showcase your main point with one or a couple of students?
+-   Consider the subset of your data that you want to visualize. Does it make sense to plot general effects, or showcase your main point with one or a couple of schools or municipalities?
 
 -   Add interactive elements **only if you think it adds value to your visualization**.
 
@@ -94,17 +94,107 @@ The final draft of your report and data visualization is due **Sunday, October 1
 -   Before handing in your final visualization, look at the [guiding principles](https://ann1ejohansson.github.io/data-visualization-2026/slides/slides.html#/tips-for-the-best-viz). Have you met these conditions?\
 :::
 
-## Codebooks
-We have prepared the first steps to retrieve your data, and this code can be found under each research question. In addition, there are codebooks available to help you make sense of the variables: 
 
--  [This codebook](https://surfdrive.surf.nl/files/index.php/s/kgsJNvwlDHuNrDW) if you are working with research question 1. 
+## Data and codebook
 
--  [This codebook](https://docs.google.com/spreadsheets/d/1d1MtZAPZK2Orgr7QN388aoT085zE3FQ_9jn8eyxX9g8/edit?gid=0#gid=0) if you are working with motivation metric data, i.e., research questions 2, 3, or 4.
+All research questions use the DUO open data that you already worked with in the worksheets: `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`. Start from the [starter project](https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name): its `scripts/01-get-data.R` downloads and loads all four files.
 
+-   [The data: background & codebook](../documents/data-resources.qmd) explains where the data comes from, the fairness debate these questions come from, every column in the four files, and the Dutch terms you'll run into (reference levels, school advice tracks, schoolweging).
+
+::: {.callout-warning collapse="false"}
+## Hidden counts: `"<5"`
+
+DUO hides any count below 5 and writes the text `"<5"` instead. In `referentieniveaus` and `schooladviezen` this happens *a lot*, because pupils are split over many small categories. If you simply drop the schools with a `"<5"` somewhere, almost no schools are left over.
+
+The code below therefore replaces `"<5"` with a number of your choice (2.5, the midpoint of 1–4, by default). This is an assumption, so **check whether your conclusion changes when you use 1 or 4 instead**, and report this in your robustness section.
+:::
+
+Run the chunk below first, whichever research question you choose. It loads the data and creates the helper objects that the RQ-specific chunks use.
+
+```{r data-prep}
+#| code-fold: true
+#| code-summary: "Data preparation (all RQs):"
+
+# Load packages and data. Run this from your own project (the starter
+# template): 01-get-data.R downloads the data if needed, and loads
+# eindscores, referentieniveaus, schooladviezen and schoolweging.
+source(here::here("scripts", "00-packages.R"))
+source(here::here("scripts", "01-get-data.R"))
+
+# DUO writes "<5" for counts under 5. This helper turns a count column into
+# numbers, replacing "<5" with `value`. Rerun your analysis with 1 and 4 to
+# check that your conclusion doesn't depend on this choice.
+suppressed_value <- 2.5
+
+parse_count <- function(x, value = suppressed_value) {
+  x <- as.character(x)
+  as.numeric(replace(x, x == "<5", value))
+}
+
+# Which test provider did each school use? Only eindscores has this. Most
+# schools use one provider; for the few that use more, we keep the provider
+# that tested the most pupils.
+school_provider <- eindscores |>
+  pivot_longer(
+    cols = ends_with("_AANTAL"),
+    names_to = "provider",
+    values_to = "n_tested"
+  ) |>
+  mutate(
+    provider = str_remove(provider, "_AANTAL"),
+    n_tested = parse_count(n_tested)
+  ) |>
+  filter(n_tested > 0) |>
+  slice_max(
+    n_tested,
+    by = c(INSTELLINGSCODE, VESTIGINGSCODE),
+    with_ties = FALSE
+  ) |>
+  select(INSTELLINGSCODE, VESTIGINGSCODE, provider, n_tested)
+
+# Schoolweging per school. OVT combines INSTELLINGSCODE and a location code
+# (e.g. "00AP|C1"), so we split it and summarise per INSTELLINGSCODE, which
+# is what we can join on (see the comments at the bottom of 01-get-data.R).
+school_weging <- schoolweging |>
+  separate_wider_delim(
+    OVT,
+    delim = "|",
+    names = c("INSTELLINGSCODE", "location")
+  ) |>
+  summarise(
+    schoolweging = weighted.mean(schoolweging, aantal_leerlingen),
+    spreiding = weighted.mean(spreiding, aantal_leerlingen),
+    n_pupils_school = sum(aantal_leerlingen),
+    .by = INSTELLINGSCODE
+  )
+
+# Reference levels: share of pupils per school reaching each level.
+# Maths (REKENEN): basic level 1F, target level 1S.
+# Reading (LV, leesvaardigheid): basic level 1F, target level 2F.
+ref_levels <- referentieniveaus |>
+  mutate(across(REKENEN_LAGER1F:TV_2F, parse_count)) |>
+  mutate(
+    n_maths = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S + REKENEN_2F,
+    pct_maths_1f = 1 - REKENEN_LAGER1F / n_maths,
+    pct_maths_1s = (REKENEN_1S + REKENEN_2F) / n_maths,
+    n_reading = LV_LAGER1F + LV_1F + LV_2F,
+    pct_reading_1f = 1 - LV_LAGER1F / n_reading,
+    pct_reading_2f = LV_2F / n_reading
+  )
+
+# School advice: number of pupils per secondary-school track, plus the share
+# of pupils with a HAVO-or-higher advice (you may define this differently!)
+advice <- schooladviezen |>
+  mutate(across(VSO:ADVIES_NIET_MOGELIJK, parse_count)) |>
+  mutate(
+    n_advice = rowSums(pick(VSO:ADVIES_NIET_MOGELIJK)),
+    pct_havo_plus = (HAVO + HAVO_VWO + VWO) / n_advice
+  )
+```
 
 ## Research Questions
 
-### RQ1. Which students are on track and which are not?
+### RQ1. Which schools in a municipality are on track for reading and maths?
 
 <details>
 
@@ -112,141 +202,56 @@ We have prepared the first steps to retrieve your data, and this code can be fou
 
 ------------------------------------------------------------------------
 
-**Level**: Analytics\
+**Level**: Analytics
 
-**Instruction:** Visualize the progress of the class within the following four Math Garden domains: addition, subtraction, clock reading, and tables. It should be useful for the teacher; they should be able to efficiently derive which students are on track in each game and which are not. For this question, you will only have to look at the class' progress within domain sessions. You can choose one of two ways to define progress in this context:
+**Target audience:** a municipal education officer or a school board.
 
-1.  *Population-based approach:* In the dataset, there is a variable called `new_user_domain_q_score`. This is a metric which indicates how the student is performing, relative to the average performance of students within the same age group. For example, a q-score of 400 indicates that a child is performing equal to an average student in grade 4.
+**Instruction:** Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. You can choose one of two ways to define "on track":
 
-2.  *Within-class approach:* In the dataset, there is a variable called `new_user_domain_rating`. This is the raw ability score of the user within the respective game. Normalize this variable for the class within each game to visualize students’ performance relative to the class average.
+1.  *National benchmark:* compare each school to the national average share of pupils reaching each level.
+
+2.  *Comparable-schools benchmark:* compare each school to schools with a similar pupil population, i.e. a similar `schoolweging`. A school with many disadvantaged pupils and 40% at 1S may be doing better than expected, while a school with very few disadvantaged pupils and the same 40% may not be.
+
+Good municipalities to start with are Haarlem (38 schools), Leiden (25) or Delft (25). Larger cities like Amsterdam (200+ schools) are possible, but you will need to think harder about how to keep the plot readable.
 
 ```{r q-1-data}
 #| code-fold: true
 #| code-summary: "Data:"
 
-# Clean Glob Env, load packages and connect to database
-rm(list = ls())
-library(tidyverse)
-library(oefenwebDatabase)
+# Run the data preparation chunk above first.
 
-con <- oefenwebDatabase::connect()
+# Choose your municipality (see unique(ref_levels$GEMEENTENAAM))
+my_municipality <- "Haarlem"
 
-# For this RQ, we will visualize the progress of students in class '601481'.
-# Run the following code to retrieve the relevant students' user_id's:
-student_ids <- get_query(
-  "SELECT *
-  FROM mot_metrics_users
-  WHERE school_class_id = '601481'",
-  con = con
-) %>%
-  pull(user_id)
+# National benchmark: average share per level across all schools
+national <- ref_levels |>
+  summarise(across(starts_with("pct_"), \(x) mean(x, na.rm = TRUE)))
 
-# Specify the relevant domains
-domain_ids <- c(1, 2, 9, 59)
-
-# List student id's and domain id's to use as query parameters
-params <- list(student_ids, domain_ids)
-
-# Now get the log records (only domain sessions)
-logs <- get_query(
-  "SELECT *
-  FROM mot_metrics_logs
-  WHERE session = 'domain'
-  AND user_id IN ({params[[1]]*})
-  AND domain_id IN ({params[[2]]*})",
-  con = con,
-  params = params
-)
-
-# Close connection
-oefenwebDatabase::close_connections()
-
+# Reference levels of the schools in your municipality, with schoolweging
+rq1_data <- ref_levels |>
+  filter(GEMEENTENAAM == my_municipality) |>
+  left_join(school_weging, by = "INSTELLINGSCODE") |>
+  select(
+    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
+    n_maths, pct_maths_1f, pct_maths_1s,
+    n_reading, pct_reading_1f, pct_reading_2f,
+    schoolweging
+  )
 ```
 
 ::: {.callout-tip collapse="false"}
--   Think about how you will deal with children who have no or little data within a specific domain. (How) will you visualize it? Is it reliable?
+-   Some schools only have 10–15 pupils in group 8. How reliable is a percentage based on so few pupils, and how does the `"<5"` replacement affect small schools in particular? (How) will you show this in your visualization?
 
--   You do not need to worry about generalizability to other classes. It should be relevant for the teacher to say something about their students' progress within the current class.
+-   Almost every school gets (nearly) all pupils to the basic 1F level. Which levels are actually informative for telling schools apart?
+
+-   You do not need to worry about generalizability to other municipalities. The visualization should be relevant for this one municipality.
 :::
 
-------------------------------------------------------------------------
-
-### RQ2. What are the differences in playing behaviors between students that switch games a lot within a given session, compared to students who don't?
-
-<details>
-
-<summary><strong>Expand Instructions</strong></summary>
+</details>
 
 ------------------------------------------------------------------------
 
-**Level:** Inference.
-
-**Instruction:** For this RQ, you will look at the data from the `mot_metrics_sessions` table, which contains different metrics computed at the session level that we think might be related to motivation. Importantly, in this table, a session is defined as active if the user plays games in either environment (Math Garden / Language Sea) without stopping for more than 10 minutes. If no new game is started within 10 minutes, the session ends. In other words, each row marks a period of continuous activity in the learning environment for a given player.
-
-Define a high vs. low switcher by looking at the variables `n_different_games` and `duration`. Now, choose one or more of the following variables to relate to switching behavior:
-
-1.  `mean_correct`\
-2.  `n_skip`\
-3.  `n_soft_quits`\
-4.  `difficulty` (or `easy_ratio` / `medium_ratio` / `hard_ratio`)\
-5.  `mean_rt`
-
-```{r q-2-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Clean Glob Env, load packages and connect to database
-rm(list = ls())
-library(tidyverse)
-library(oefenwebDatabase)
-
-con <- oefenwebDatabase::connect()
-
-# For this RQ, it might be wise to start off with a subset of the
-# `mot_metrics_sessions` table. You can run the code below to create a subset:
-
-# First retrieve all unique users in this table.
-unique_users <- get_query(
-  "SELECT DISTINCT user_id
-  FROM mot_metrics_sessions",
-  con = con
-)
-
-# Now we will randomly select 20% of the users
-set.seed(123)
-sample_users <- sample_frac(unique_users, 0.20) %>%
-  pull(user_id)
-
-# Get the `mot_metrics_sessions` data for the users sampled above
-sessions_data <- get_query(
-  "SELECT *
-  FROM mot_metrics_sessions
-  WHERE user_id IN ({sample_users*})",
-  con = con
-)
-
-# Check if no. of unique users in the data equals the no. of users we sampled
-length(unique(sessions_data$user_id)) == length(sample_users)
-
-# Remove unnecessary objects
-rm(unique_users, sample_users)
-
-# Close connection
-oefenwebDatabase::close_connections()
-
-```
-
-::: {.callout-tip collapse="false"}
--   After defining high/low switchers, it may be useful to look at individual users to get an idea of their playing patterns, before aggregating the data further.
-
--   How will you filter the data to get reliable estimates of switching tendencies?
-
--   Taking the perspective of the child playing the game, what could be an advantage of switching games often? What could be a disadvantage? Considering this perspective could help formulate your narrative.
-:::
-
-------------------------------------------------------------------------
-
-### RQ3. How does post-error quitting differ between in-school and out-of-school practice? What might moderate these differences?
+### RQ2. Does the choice of test provider matter, even for schools with a similar pupil population?
 
 <details>
 
@@ -256,72 +261,102 @@ oefenwebDatabase::close_connections()
 
 **Level:** Inference
 
-**Instruction:** It is possible that students' motivation differs depending on whether they play in a classroom setting or at home -- a question which we would like you to explore in the data. One way to operationalize motivation in Prowise Learn is post-error quitting. Post-error quitting refers to whether the game was ended prematurely after an error (`post_error_quit`). First, define a variable which indicates whether a student is playing in or out of school:
+**Target audience:** policymakers, or the general public (think of a newspaper graphic).
 
--   School times are between 8:30 and 15.00 on weekdays. Be aware of [school holidays](https://wanneerschoolvakantie.nl/schoolvakanties-2023-2024/)! These should be defined as out-of-school.
+**Instruction:** Schools can choose which of six providers' doorstroomtoets their pupils take. The Volkskrant reported that schools using some providers get structurally better results than comparable schools using another provider. In this RQ, you will test whether you can find the same in the DUO data.
 
-Choose one or more of the following moderators for your final visualization:
+The raw test scores (`*_GEM` in `eindscores`) are on six different scales and can't be compared across providers. Use the reference levels instead: they are meant to mean the same thing regardless of which test a pupil took. Choose one or more of the following outcomes:
 
-1.  `grade`
-2.  Average `new_user_domain_q_score`\
-3.  Average `quit` (this would define whether a student *generally* quits a lot, regardless of errors).
+1.  `pct_maths_1s`: share of pupils reaching the maths target level
+2.  `pct_reading_2f`: share of pupils reaching the reading target level
+
+Compare these between providers, while accounting for `schoolweging` -- schools do not choose their provider at random, so a raw comparison between providers is misleading. Support your visualization with a statistical model (e.g. a linear regression with provider and schoolweging as predictors).
+
+```{r q-2-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Run the data preparation chunk above first.
+
+# Reference levels per school, with the school's provider and schoolweging
+rq2_data <- ref_levels |>
+  inner_join(school_provider, by = c("INSTELLINGSCODE", "VESTIGINGSCODE")) |>
+  left_join(school_weging, by = "INSTELLINGSCODE") |>
+  # AMN and DOE are used by too few schools to compare reliably
+  filter(provider %in% c("LIB", "IEP", "ROUTE8", "DIA")) |>
+  select(
+    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
+    GEMEENTENAAM, PROVINCIE, provider,
+    n_maths, pct_maths_1s, n_reading, pct_reading_2f,
+    schoolweging
+  )
+```
+
+::: {.callout-tip collapse="false"}
+-   First look at the raw differences between providers, then at the differences for schools with a similar schoolweging. Does the picture change? This comparison could be the core of your story.
+
+-   A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands (e.g. "x more pupils per class of 25")?
+
+-   This is school-level data: you know which provider a school used, not the scores of individual pupils. What can and can't you conclude from that?
+:::
+
+</details>
+
+------------------------------------------------------------------------
+
+### RQ3. Do schools with similar test results give similar secondary-school advice?
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level:** Inference
+
+**Target audience:** secondary schools, or policymakers.
+
+**Instruction:** At the end of primary school, every pupil receives a school advice for a secondary-school track (PRO, VMBO, HAVO, VWO, see the codebook). The advice is based on the teacher's judgement and on the doorstroomtoets. In this RQ, you will investigate how closely a school's advice follows its pupils' test results, and whether this differs between schools with a more or less disadvantaged pupil population.
+
+Relate a measure of the school's advice (e.g. `pct_havo_plus`) to a measure of its test results (`pct_maths_1s` and/or `pct_reading_2f`), and test whether `schoolweging` moderates this relationship (e.g. with an interaction in a linear regression). Do two schools with the same results give the same advice, regardless of who their pupils are?
 
 ```{r q-3-data}
 #| code-fold: true
 #| code-summary: "Data:"
 
-# Clean Glob Env, load packages and connect to database
-rm(list = ls())
-library(tidyverse)
-library(oefenwebDatabase)
+# Run the data preparation chunk above first.
 
-con <- oefenwebDatabase::connect()
-
-# For this RQ, it might be wise to start off with a subset of the
-# `mot_metrics_logs` table. You can run the code below to create a subset:
-
-# First retrieve all unique users in this table.
-# (We'll only look at data from domain sessions)
-unique_users <- get_query(
-  "SELECT DISTINCT user_id
-  FROM mot_metrics_logs
-  WHERE session = 'domain'",
-  con = con
-)
-
-# Now we will randomly select 20% of the users
-set.seed(123)
-sample_users <- sample_frac(unique_users, 0.20) %>%
-  pull(user_id)
-
-# Get the mot_metrics_logs data for the users sampled above
-logs_data <- get_query(
-  "SELECT *
-  FROM mot_metrics_logs
-  WHERE user_id IN ({sample_users*})
-  AND session = 'domain'",
-  con = con
-)
-
-# Check if no. of unique users in the data equals the no. of users we sampled
-length(unique(logs_data$user_id)) == length(sample_users)
-
-# Remove unnecessary objects
-rm(unique_users, sample_users)
-
-# Close connection
-oefenwebDatabase::close_connections()
+# Test results and school advice per school, with schoolweging
+rq3_data <- ref_levels |>
+  inner_join(
+    select(
+      advice,
+      INSTELLINGSCODE, VESTIGINGSCODE,
+      VSO:ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus
+    ),
+    by = c("INSTELLINGSCODE", "VESTIGINGSCODE")
+  ) |>
+  left_join(school_weging, by = "INSTELLINGSCODE") |>
+  select(
+    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
+    GEMEENTENAAM, PROVINCIE,
+    n_maths, pct_maths_1s, n_reading, pct_reading_2f,
+    VSO:ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus,
+    schoolweging
+  )
 ```
 
 ::: {.callout-tip collapse="false"}
--   We have two papers dealing with post-error quitting (although not specifically dealing with this question), read them [here](https://osf.io/preprints/osf/htzvm_v1) and [here](https://osf.io/preprints/psyarxiv/6tduv_v1) for inspiration!
+-   `pct_havo_plus` is only one way to summarise the advice. You could also turn the tracks into a numeric scale (PRO = 1, ..., VWO = 6) and compute an average advice per school. Argue your choice.
 
--   You can define errors as binary (error or correct) or continuous / categorical (with the variable `sequential_errors`, which denotes the number of errors made in a row at a given item).
+-   Suppose you find that schools with a higher schoolweging give lower advice than schools with the same test results. What are possible explanations? Is it necessarily unfair? Discuss this in your report.
 :::
+
+</details>
 
 ------------------------------------------------------------------------
 
-### RQ4. Can we predict how long a student will look at feedback from different student characteristics and/or play behavior?
+### RQ4. Can we predict how many pupils get a HAVO-or-higher advice from a school's context?
 
 <details>
 
@@ -331,111 +366,94 @@ oefenwebDatabase::close_connections()
 
 **Level:** Prediction
 
-**Instruction:** Feedback looking time indicates the time that the feedback was displayed on the screen after a student encountered an error, skipped a response, or had a time-out. Whether or not students engage with the feedback they recieve can serve as important information, both for the developers at Prowise Learn (how do users engage with application features?), and for teachers (how do students engage in their learning process?). Here, you can choose between a number of different variables to add to a regression model:
+**Target audience:** school boards or the Inspectorate, who could use such a model to spot schools whose advice is unexpectedly high or low.
 
-1.  type of error (incorrect response, skipped response, time-out response). Factor this variable yourself.
-2.  `grade`
-3.  `gender`
-4.  `new_user_domain_q_score`
-5.  `difficulty`
-6.  `show_coins`
-7.  `response_time_in_milliseconds`
-8.  application (language vs. math)
+**Instruction:** Fit a model that predicts a school's share of pupils with a HAVO-or-higher advice (`pct_havo_plus`) from characteristics of the school and its pupil population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. You can choose between the following predictors:
 
-You can be selective or choose all variables. If you choose to omit certain variables, please explain why. If you differentiate between covariates and predictors, please argue your reasoning.
+1.  `schoolweging` (how disadvantaged the pupil population is)
+2.  `spreiding` (how much the pupils within a school differ from each other in disadvantage)
+3.  `n_pupils_school` (school size)
+4.  `provider` (which doorstroomtoets the school used)
+5.  `PROVINCIE`
+6.  `DENOMINATIE_VESTIGING` (the school's religious or educational denomination)
+
+You can be selective or choose all variables. If you choose to omit certain variables, please explain why. Evaluate your model on data it hasn't seen (e.g. a train/test split) and communicate how well it performs, which predictors matter, and which schools deviate most from what the model predicts.
 
 ```{r q-4-data}
 #| code-fold: true
 #| code-summary: "Data:"
 
-# Clean Glob Env, load packages and connect to database
-rm(list = ls())
-library(tidyverse)
-library(oefenwebDatabase)
+# Run the data preparation chunk above first.
 
-con <- oefenwebDatabase::connect()
-
-# For this RQ, it might be wise to start off with a subset of the
-# `mot_metrics_logs` table. You can run the code below to create a subset:
-
-# First retrieve all unique users in this table.
-# (We'll only look at data from domain sessions)
-unique_users <- get_query(
-  "SELECT DISTINCT user_id
-  FROM mot_metrics_logs
-  WHERE session = 'domain'",
-  con = con
-)
-
-# Now we will randomly select 20% of the users
-set.seed(123)
-sample_users <- sample_frac(unique_users, 0.20) %>%
-  pull(user_id)
-
-# Get the mot_metrics_logs data for the users sampled above
-logs_data <- get_query(
-  "SELECT *
-  FROM mot_metrics_logs
-  WHERE user_id IN ({sample_users*})
-  AND session = 'domain'",
-  con = con
-)
-
-# Check if no. of unique users in the data equals the no. of users we sampled
-length(unique(logs_data$user_id)) == length(sample_users)
-
-# Remove unnecessary objects
-rm(unique_users, sample_users)
-
-
-# The code below adds some variables from the `mot_metrics_domains` and the
-# `mot_metrics_users` tables to the `mot_metrics_logs` data.
-
-# Get mot_metrics_domains table
-domains <- get_query(
-  "SELECT *
-  FROM mot_metrics_domains",
-  con = con
-)
-
-# Get mot_metrics_users table (for information on gender)
-users <- get_query(
-  "SELECT user_id, gender
-  FROM mot_metrics_users",
-  con = con
-) %>%
-  # Some users are present more than once in the data due to being part of
-  # multiple school classes. Since we only need gender, remove duplicate rows
-  distinct(user_id, gender) 
-
-# Delete correct responses from log records
-# (Because the system automatically moves on to the next item after a correct
-# response, there is no 'feedback looking time'.)
-logs_data <- logs_data %>%
-  filter(correct_answered == 0) %>%
-  # add variables from domains table
-  left_join(
-    dplyr::select(
-      domains,
-      c(domain_id, short_name, token, app, informative_feedback)
-    ),
-    by = "domain_id"
-  ) %>%
-  # add gender from users table
-  left_join(
-    users, by = "user_id"
+# School advice per school, with school context and provider
+rq4_data <- advice |>
+  left_join(school_weging, by = "INSTELLINGSCODE") |>
+  left_join(school_provider, by = c("INSTELLINGSCODE", "VESTIGINGSCODE")) |>
+  # special primary schools (Sbo) have no schoolweging
+  filter(SOORT_PO == "Bo") |>
+  select(
+    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
+    GEMEENTENAAM, PROVINCIE, DENOMINATIE_VESTIGING,
+    n_advice, pct_havo_plus,
+    schoolweging, spreiding, n_pupils_school, provider
   )
-
-# Close connection
-oefenwebDatabase::close_connections()
 ```
 
 ::: {.callout-tip collapse="false"}
--   Some games have explicit feedback (feedback which gives more information than right or wrong) -- check this in the variable `informative_feedback`. Make sure you account for this somehow.
+-   `DENOMINATIE_VESTIGING` has 19 categories and some providers are rare. Categories with only a handful of schools make your model unstable -- consider combining them.
 
--   It will be useful to start with an exploration about how children look at feedback. How is this variable distributed? Also examine it across games.
+-   A school with 8 pupils in group 8 will have a much noisier `pct_havo_plus` than a school with 80. How do you deal with that in your model, or in your visualization?
 
--   Feedback looking time can be defined in a continuous manner (predicting the time looked at feedback), or categorical (can we differentiate different types of 'feedback lookers')? Use the results from your exploration to decide which way is most suitable to define feedback looking.
+-   A school that deviates from the model's prediction is not necessarily doing something wrong. Keep this in mind when you present the "outliers".
 :::
+
+</details>
+
+------------------------------------------------------------------------
+
+### RQ5. Your own research question
+
+<details>
+
+<summary><strong>Expand Instructions</strong></summary>
+
+------------------------------------------------------------------------
+
+**Level:** Your choice (analytics, inference or prediction)
+
+**Instruction:** If none of the questions above appeal to you, you can formulate your own. The DUO data should be the core of your project, but you are welcome to combine it with other data. This option gives you more freedom, but it also asks more of you: you have to make the choices that RQ1–RQ4 make for you. Before you start working on the data, make sure you have specified the following:
+
+1.  **A very specific research question.** "Is the doorstroomtoets fair?" is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it's clear which plot and which analysis would answer it. For example: "Do schools in Limburg that use Route 8 have a lower share of pupils at reading level 2F than Route 8 schools in the rest of the country, when comparing schools with a similar schoolweging?"
+
+2.  **An approach.** Is your question one of analytics, inference or prediction (see [Levels of visualization](#levels-of-visualization))? Explain why, and what statistical test or model (if any) you will use to support your visualization.
+
+3.  **A target audience.** Who is your visualization for, and what should they be able to do or conclude after seeing it? This shapes your choices just as much as the data does.
+
+State all three explicitly at the start of your report.
+
+**Adding other data.** You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (`INSTELLINGSCODE`, `VESTIGINGSCODE`), postcode (`POSTCODE_VESTIGING`) and municipality (`GEMEENTENAAM`, `GEMEENTENUMMER`) are the columns you can use to join other data to the DUO files.
+
+We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you. Make sure a dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don't), and describe in your report which data you used, where it comes from, and how you combined it.
+
+```{r q-5-data}
+#| code-fold: true
+#| code-summary: "Data:"
+
+# Run the data preparation chunk above first. Then start from whichever of
+# the prepared objects fits your question (ref_levels, advice,
+# school_provider, school_weging), or from the raw DUO files.
+
+# If you add other data, download it in a script (like 01-get-data.R) so
+# that your project stays reproducible, and save it in data/raw/ -- never
+# push data to GitHub.
+```
+
+::: {.callout-tip collapse="false"}
+-   Keep it small. A narrow question that you answer well is better than a broad question that you answer superficially.
+
+-   Before you commit to a question, check that the data can actually answer it: are the variables you need there, and are there enough schools in each group you want to compare?
+:::
+
+</details>
 
 ------------------------------------------------------------------------

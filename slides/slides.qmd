@@ -495,7 +495,7 @@ Your goal is to go from exploring the Prowise data to telling a story with it.
 
 ## Workflow
 
--   [Working on the server](../documents/working-on-the-server.html){target="_blank"}
+-   [The data: background & codebook](../documents/data-resources.html){target="_blank"}
 
 -   [Git setup & workflow](../documents/git-workflow.html){target="_blank"}
 

@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The DUO Data: Background &amp; Codebook – Data Visualization 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Visualization 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/ann1ejohansson/data-visualization-2026"> 
+<span class="menu-text">GitHub Repository</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../slides/slides.html"> 
+<span class="menu-text">Slides</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments/assignment-1.html"> 
+<span class="menu-text">Assignment 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments/assignment-2.html"> 
+<span class="menu-text">Assignment 2</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-worksheets" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Worksheets</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-worksheets">    
+        <li>
+    <a class="dropdown-item" href="../worksheets/ggplot-recap.html">
+ <span class="dropdown-text">1: Data &amp; ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../worksheets/ggplotly-handout.html">
+ <span class="dropdown-text">2: ggplotly</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../worksheets/working-with-ai.html">
+ <span class="dropdown-text">3: Working with AI</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-resources" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Resources</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-resources">    
+        <li>
+    <a class="dropdown-item" href="../documents/data-resources.html">
+ <span class="dropdown-text">The data: background &amp; codebook</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../documents/git-workflow.html">
+ <span class="dropdown-text">Working with Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://socviz.co/">
+ <span class="dropdown-text">Data Visualization: A Practical Introduction (Healy)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://r4ds.hadley.nz/data-visualize.html">
+ <span class="dropdown-text">R for Data Science - Data visualization chapter</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#getting-the-data" id="toc-getting-the-data" class="nav-link active" data-scroll-target="#getting-the-data">Getting the data</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a>
+  <ul class="collapse">
+  <li><a href="#the-dutch-school-system-just-enough-of-it" id="toc-the-dutch-school-system-just-enough-of-it" class="nav-link" data-scroll-target="#the-dutch-school-system-just-enough-of-it">The Dutch school system, just enough of it</a></li>
+  <li><a href="#what-is-a-doorstroomtoets" id="toc-what-is-a-doorstroomtoets" class="nav-link" data-scroll-target="#what-is-a-doorstroomtoets">What is a doorstroomtoets?</a></li>
+  <li><a href="#the-fairness-debate" id="toc-the-fairness-debate" class="nav-link" data-scroll-target="#the-fairness-debate">The fairness debate</a></li>
+  </ul></li>
+  <li><a href="#codebook" id="toc-codebook" class="nav-link" data-scroll-target="#codebook">Codebook</a>
+  <ul class="collapse">
+  <li><a href="#identifying-columns-all-duo-files" id="toc-identifying-columns-all-duo-files" class="nav-link" data-scroll-target="#identifying-columns-all-duo-files">Identifying columns (all DUO files)</a></li>
+  <li><a href="#eindscores_2024-2025.csv" id="toc-eindscores_2024-2025.csv" class="nav-link" data-scroll-target="#eindscores_2024-2025.csv"><code>eindscores_2024-2025.csv</code></a></li>
+  <li><a href="#referentieniveaus_2024-2025.csv" id="toc-referentieniveaus_2024-2025.csv" class="nav-link" data-scroll-target="#referentieniveaus_2024-2025.csv"><code>referentieniveaus_2024-2025.csv</code></a></li>
+  <li><a href="#schooladviezen_2024-2025.csv" id="toc-schooladviezen_2024-2025.csv" class="nav-link" data-scroll-target="#schooladviezen_2024-2025.csv"><code>schooladviezen_2024-2025.csv</code></a></li>
+  <li><a href="#schoolweging_2022-2025.ods" id="toc-schoolweging_2022-2025.ods" class="nav-link" data-scroll-target="#schoolweging_2022-2025.ods"><code>schoolweging_2022-2025.ods</code></a></li>
+  </ul></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips">Tips</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">The DUO Data: Background &amp; Codebook</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This module uses public data from <strong>DUO</strong> (<em>Dienst Uitvoering Onderwijs</em>), the Dutch government agency that administers and publishes education data. The data is about the <strong>doorstroomtoets</strong>, the test every Dutch student takes at the end of primary school, and the debate about whether that test is fair. This page gives you the background you need to understand the data, a codebook for every file, and a list of pitfalls to watch out for.</p>
+<p>You don’t need to be Dutch, or know anything about the Dutch education system, to work with this data. You do need the handful of terms below, because they show up directly as column names and category labels.</p>
+<section id="getting-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-data">Getting the data</h2>
+<p>The data is downloaded by an R script, so nobody has to download files by hand and everything is reproducible:</p>
+<ul>
+<li>In the worksheets, use <code>data/get-data.R</code> from the <a href="https://github.com/ann1ejohansson/data-visualization-2026">course repository</a> (see the setup section of <a href="../worksheets/ggplot-recap.html">Worksheet 1</a>).</li>
+<li>For Assignment 2, use <code>scripts/01-get-data.R</code> in the <a href="https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name">starter project</a>. It downloads the same four files and loads them into your R session.</li>
+</ul>
+<p>Both scripts save the files in <code>data/raw/</code>. Never edit anything in that folder by hand, and <strong>never push data to GitHub</strong>. Anyone can recreate it by rerunning the script.</p>
+</section>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<section id="the-dutch-school-system-just-enough-of-it" class="level3">
+<h3 class="anchored" data-anchor-id="the-dutch-school-system-just-enough-of-it">The Dutch school system, just enough of it</h3>
+<p>Dutch primary school (<em>basisonderwijs</em>, <strong>PO</strong>) runs from <strong>groep 1</strong> to <strong>groep 8</strong>, roughly ages 4 to 12. Most students attend a regular primary school (<strong>Bo</strong>); students who need extra support may attend a special primary school (<strong>Sbo</strong>, <em>speciaal basisonderwijs</em>).</p>
+<p>At the end of groep 8, every student gets a <strong>school advice</strong> (<em>schooladvies</em>): the secondary-school (<em>voortgezet onderwijs</em>, <strong>VO</strong>) track that the student should go to. From the most practical to the most academic:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Track</th>
+<th>Full name</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PRO</strong></td>
+<td><em>praktijkonderwijs</em></td>
+<td>practical education, for students who need the most support</td>
+</tr>
+<tr class="even">
+<td><strong>VMBO-B</strong></td>
+<td><em>basisberoepsgerichte leerweg</em></td>
+<td>preparatory vocational education, basic track</td>
+</tr>
+<tr class="odd">
+<td><strong>VMBO-K</strong></td>
+<td><em>kaderberoepsgerichte leerweg</em></td>
+<td>preparatory vocational education, “framework” track</td>
+</tr>
+<tr class="even">
+<td><strong>VMBO-GT</strong></td>
+<td><em>gemengde/theoretische leerweg</em></td>
+<td>preparatory vocational education, mixed/theoretical track</td>
+</tr>
+<tr class="odd">
+<td><strong>HAVO</strong></td>
+<td><em>hoger algemeen voortgezet onderwijs</em></td>
+<td>senior general secondary education</td>
+</tr>
+<tr class="even">
+<td><strong>VWO</strong></td>
+<td><em>voorbereidend wetenschappelijk onderwijs</em></td>
+<td>pre-university education</td>
+</tr>
+</tbody>
+</table>
+<p>There is also <strong>VSO</strong> (<em>voortgezet speciaal onderwijs</em>), special-needs secondary education, which sits outside this ranking. A student can also get a combined advice, like <strong>VMBO-GT/HAVO</strong>, when the school thinks either track could fit.</p>
+<p>The track a student starts in matters a lot: switching tracks later is possible, but not easy. This is why the advice, and everything that feeds into it, is a sensitive topic.</p>
+</section>
+<section id="what-is-a-doorstroomtoets" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-a-doorstroomtoets">What is a doorstroomtoets?</h3>
+<p>Near the end of groep 8 (around February), every student takes a <strong>doorstroomtoets</strong> (“transfer test”; <em>doorstroom</em> = “flow-through”, <em>toets</em> = “test”). It is a standardized test of reading, language and maths. Its main purpose is to be an objective second opinion next to the teacher’s judgement: if a student scores higher than their teacher’s advice suggests, the school must reconsider (<em>heroverweging</em>) the advice. In principle, the advice can only be adjusted upwards.</p>
+<p>The doorstroomtoets replaced the old <em>eindtoets</em> (“final test”, including the well-known <em>Citotoets</em>) from the 2023–2024 school year. Since then, schools can choose <strong>which</strong> doorstroomtoets their students take, from six approved providers:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code in the data</th>
+<th>Test</th>
+<th>Publisher</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LIB</code></td>
+<td>Leerling in Beeld</td>
+<td>Cito B.V.</td>
+<td>successor of the old Citotoets; used by almost half of all schools</td>
+</tr>
+<tr class="even">
+<td><code>IEP</code></td>
+<td>IEP Eindtoets</td>
+<td>Bureau ICE</td>
+<td>used by about 40% of schools</td>
+</tr>
+<tr class="odd">
+<td><code>ROUTE8</code></td>
+<td>Route 8</td>
+<td>A-VISION</td>
+<td>digital and adaptive</td>
+</tr>
+<tr class="even">
+<td><code>DIA</code></td>
+<td>Dia-Eindtoets</td>
+<td>Diataal BV</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>AMN</code></td>
+<td>AMN Eindtoets</td>
+<td>AMN B.V.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>DOE</code></td>
+<td>Overheidsdoorstroomtoets</td>
+<td>Stichting Cito</td>
+<td>the free, government-funded test; used by less than 1% of schools</td>
+</tr>
+</tbody>
+</table>
+<p>Each provider reports its scores on its own scale, so an IEP score of 80 and a LIB score of 180 can’t be compared. To make the tests comparable, all results are also translated into <strong>reference levels</strong> (<em>referentieniveaus</em>): standardized skill levels that are meant to mean the same thing, whichever test a student took.</p>
+<ul>
+<li><strong>1F</strong> (<em>fundamenteel niveau</em>): the basic level, which nearly every student should reach.</li>
+<li><strong>1S</strong> (maths) and <strong>2F</strong> (reading and language): the higher target level (<em>streefniveau</em>).</li>
+</ul>
+</section>
+<section id="the-fairness-debate" class="level3">
+<h3 class="anchored" data-anchor-id="the-fairness-debate">The fairness debate</h3>
+<p>The idea behind letting schools choose was that all six tests are equivalent. A series of investigations by the newspaper <em>de Volkskrant</em>, starting in January 2025, found that they are not:</p>
+<ul>
+<li><strong>Reference levels differ by provider.</strong> For example, about 49% of students who took Route 8 reached reading level 2F, compared to about 80% of students who took the paper version of LIB. In maths, students who took LIB reached level 1S about twice as often as students who took Route 8.</li>
+<li><strong>School advice differs by provider, even more starkly.</strong> students who took AMN got a PRO or VMBO-B advice about 18 times as often as students who took paper LIB (14.6% vs.&nbsp;0.8%). Paper LIB students got a VWO advice 15.4% of the time, AMN students 4.4%.</li>
+<li><strong>This is not (only) because different kinds of schools choose different tests.</strong> The obvious objection is that schools don’t choose a provider at random. Maybe schools with more disadvantaged students happen to prefer certain tests. The Volkskrant therefore compared schools with an equal <strong>schoolweging</strong> (a measure of how disadvantaged a school’s student population is, see the <a href="#schoolweging_2022-2025.ods">codebook</a>). The gap between providers remained. In other words, it’s partly a property of the test itself.</li>
+<li><strong>Test format matters too.</strong> According to the <em>College voor Toetsen en Examens</em> (CvTE), which oversees the tests, 77% of students with a VWO teacher advice got a VWO test result on the paper LIB test, compared to 43% on the digital IEP test.</li>
+</ul>
+<p>Critics called the doorstroomtoets an “<em>ongelijkheidsmachine</em>” (“inequality machine”): a test that was introduced to make educational opportunities more equal might be doing the opposite. Reporting on the 2026 results found that the gaps between providers had narrowed somewhat, but not disappeared. Schools with a more disadvantaged population also adjust their advice more often than other schools.</p>
+<p><strong>Where things stand.</strong> Sector organisations (PO-Raad, VO-raad) and the Dutch parliament pushed for a single national test. On 2 July 2026, the State Secretary for Education announced a plan to go from six providers back to <strong>one national doorstroomtoets by school year 2029/2030</strong>, stating that “full comparability is a utopia”: every difference in test design shifts the results.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The numbers above come from the Volkskrant, CvTE and other sources (see <a href="#sources">Sources</a>), which had access to <strong>student-level</strong> data. The DUO files you work with are <strong>school-level</strong>: you know how many students at a school reached each level, and which provider the school used, but not the results of individual students. Keep this in mind when you draw conclusions.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="codebook" class="level2">
+<h2 class="anchored" data-anchor-id="codebook">Codebook</h2>
+<p>All files contain data from the 2024–2025 school year, with <strong>one row per school location</strong>. The three DUO files (<code>eindscores</code>, <code>referentieniveaus</code>, <code>schooladviezen</code>) share the same identifying columns; <code>schoolweging</code> comes from a different organisation and is structured differently.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>"&lt;5"</code> means “fewer than 5”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To protect students’ privacy, DUO hides every count below 5 and writes the text <code>"&lt;5"</code> instead. This means that count columns are read into R as <strong>text</strong>, not numbers, and <code>as.numeric()</code> silently turns every <code>"&lt;5"</code> into <code>NA</code>. See <a href="#pitfalls">Pitfalls</a> for how to deal with this.</p>
+</div>
+</div>
+<section id="identifying-columns-all-duo-files" class="level3">
+<h3 class="anchored" data-anchor-id="identifying-columns-all-duo-files">Identifying columns (all DUO files)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PEILDATUM_LEERLINGEN</code> / <code>PEILDATUM</code></td>
+<td>reference date for the student counts (1 October 2024)</td>
+</tr>
+<tr class="even">
+<td><code>PRIKDATUM</code></td>
+<td>date the data was extracted</td>
+</tr>
+<tr class="odd">
+<td><code>INSTELLINGSCODE</code></td>
+<td>school code (also known as the “BRIN” code), the school’s main ID</td>
+</tr>
+<tr class="even">
+<td><code>VESTIGINGSCODE</code></td>
+<td>location code: which building, if a school has more than one</td>
+</tr>
+<tr class="odd">
+<td><code>INSTELLINGSNAAM_VESTIGING</code></td>
+<td>name of the school (location)</td>
+</tr>
+<tr class="even">
+<td><code>POSTCODE_VESTIGING</code></td>
+<td>postal code</td>
+</tr>
+<tr class="odd">
+<td><code>PLAATSNAAM</code></td>
+<td>town or city</td>
+</tr>
+<tr class="even">
+<td><code>GEMEENTENUMMER</code> / <code>GEMEENTENAAM</code></td>
+<td>municipality code / name</td>
+</tr>
+<tr class="odd">
+<td><code>PROVINCIE</code></td>
+<td>province (the Netherlands has 12)</td>
+</tr>
+<tr class="even">
+<td><code>SOORT_PO</code></td>
+<td>school type: <code>Bo</code> (regular primary) or <code>Sbo</code> (special primary)</td>
+</tr>
+<tr class="odd">
+<td><code>DENOMINATIE_VESTIGING</code></td>
+<td>religious or educational denomination, e.g.&nbsp;<em>Openbaar</em> (public, non-denominational), <em>Rooms-Katholiek</em> (Roman Catholic), <em>Protestants-Christelijk</em> (Protestant Christian), <em>Algemeen bijzonder</em> (private, non-religious)</td>
+</tr>
+<tr class="even">
+<td><code>BEVOEGD_GEZAG_NUMMER</code></td>
+<td>ID of the school board (<em>bevoegd gezag</em>)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="eindscores_2024-2025.csv" class="level3">
+<h3 class="anchored" data-anchor-id="eindscores_2024-2025.csv"><code>eindscores_2024-2025.csv</code></h3>
+<p>The average doorstroomtoets score per school, per provider. A school only has values for the provider(s) it used; the other providers’ columns are <code>0</code>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ONTHEFFING_REDEN_ND</code></td>
+<td>number of students exempted from taking a doorstroomtoets</td>
+</tr>
+<tr class="even">
+<td><code>IEP_AANTAL</code> / <code>IEP_GEM</code></td>
+<td>number of students tested (<em>aantal</em>) / their average score (<em>gemiddelde</em>), IEP</td>
+</tr>
+<tr class="odd">
+<td><code>ROUTE8_AANTAL</code> / <code>ROUTE8_GEM</code></td>
+<td>same, Route 8</td>
+</tr>
+<tr class="even">
+<td><code>DIA_AANTAL</code> / <code>DIA_GEM</code></td>
+<td>same, Dia-Eindtoets</td>
+</tr>
+<tr class="odd">
+<td><code>AMN_AANTAL</code> / <code>AMN_GEM</code></td>
+<td>same, AMN Eindtoets</td>
+</tr>
+<tr class="even">
+<td><code>DOE_AANTAL</code> / <code>DOE_GEM</code></td>
+<td>same, DOE (government test)</td>
+</tr>
+<tr class="odd">
+<td><code>LIB_AANTAL</code> / <code>LIB_GEM</code></td>
+<td>same, Leerling in Beeld</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <code>_GEM</code> scores are on six <strong>different scales</strong> (e.g.&nbsp;IEP roughly 50–90, AMN roughly 320–460).</p>
+</div>
+</div>
+</section>
+<section id="referentieniveaus_2024-2025.csv" class="level3">
+<h3 class="anchored" data-anchor-id="referentieniveaus_2024-2025.csv"><code>referentieniveaus_2024-2025.csv</code></h3>
+<p>The number of students per school who reached each reference level, for three subjects. Within a subject, the columns are mutually exclusive: add them up to get the number of students who took that part of the test.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>REKENEN_LAGER1F</code></td>
+<td>students <strong>below</strong> the basic level 1F in <strong>maths</strong> (<em>rekenen</em>)</td>
+</tr>
+<tr class="even">
+<td><code>REKENEN_1F</code></td>
+<td>students who reached 1F, but not 1S, in maths</td>
+</tr>
+<tr class="odd">
+<td><code>REKENEN_1S</code></td>
+<td>students who reached the maths target level 1S</td>
+</tr>
+<tr class="even">
+<td><code>REKENEN_2F</code></td>
+<td>not used for maths in primary school (always 0)</td>
+</tr>
+<tr class="odd">
+<td><code>LV_LAGER1F</code> / <code>LV_1F</code> / <code>LV_2F</code></td>
+<td>the same for <strong>reading comprehension</strong> (<em>leesvaardigheid</em>); target level 2F</td>
+</tr>
+<tr class="even">
+<td><code>TV_LAGER1F</code> / <code>TV_1F</code> / <code>TV_2F</code></td>
+<td>the same for <strong>language conventions</strong>: spelling and grammar (<em>taalverzorging</em>); target level 2F</td>
+</tr>
+</tbody>
+</table>
+<p>This file only contains regular primary schools (<code>Bo</code>), and has no information about which provider a school used. To compare reference levels between providers, you need to join it to <code>eindscores</code>.</p>
+</section>
+<section id="schooladviezen_2024-2025.csv" class="level3">
+<h3 class="anchored" data-anchor-id="schooladviezen_2024-2025.csv"><code>schooladviezen_2024-2025.csv</code></h3>
+<p>The number of students per school who received each school advice (the final advice, after any reconsideration).</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>VSO</code></td>
+<td>special-needs secondary education</td>
+</tr>
+<tr class="even">
+<td><code>PRO</code></td>
+<td>practical education</td>
+</tr>
+<tr class="odd">
+<td><code>VMBO_B</code></td>
+<td>VMBO, basic track</td>
+</tr>
+<tr class="even">
+<td><code>VMBO_B_K</code></td>
+<td>combined advice VMBO-B / VMBO-K</td>
+</tr>
+<tr class="odd">
+<td><code>VMBO_K</code></td>
+<td>VMBO, “framework” track</td>
+</tr>
+<tr class="even">
+<td><code>VMBO_K_GT</code></td>
+<td>combined advice VMBO-K / VMBO-GT</td>
+</tr>
+<tr class="odd">
+<td><code>VMBO_GT</code></td>
+<td>VMBO, mixed/theoretical track</td>
+</tr>
+<tr class="even">
+<td><code>VMBO_GT_HAVO</code></td>
+<td>combined advice VMBO-GT / HAVO</td>
+</tr>
+<tr class="odd">
+<td><code>HAVO</code></td>
+<td>senior general secondary education</td>
+</tr>
+<tr class="even">
+<td><code>HAVO_VWO</code></td>
+<td>combined advice HAVO / VWO</td>
+</tr>
+<tr class="odd">
+<td><code>VWO</code></td>
+<td>pre-university education</td>
+</tr>
+<tr class="even">
+<td><code>ADVIES_NIET_MOGELIJK</code></td>
+<td>no advice possible</td>
+</tr>
+</tbody>
+</table>
+<p>Order, lowest to highest: <code>PRO</code> &lt; <code>VMBO_B</code> &lt; <code>VMBO_K</code> &lt; <code>VMBO_GT</code> &lt; <code>HAVO</code> &lt; <code>VWO</code>, with the combined advices in between.</p>
+</section>
+<section id="schoolweging_2022-2025.ods" class="level3">
+<h3 class="anchored" data-anchor-id="schoolweging_2022-2025.ods"><code>schoolweging_2022-2025.ods</code></h3>
+<p>Published by the Education Inspectorate (<em>Onderwijsinspectie</em>) and calculated by Statistics Netherlands (CBS). This is a spreadsheet workbook with one sheet per school year; the download scripts read the <code>"2024-2025"</code> sheet.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>OVT</code></td>
+<td>school location ID, formatted like <code>"00AP\|C1"</code>: the part before the <code>\|</code> is the <code>INSTELLINGSCODE</code>, the part after identifies the location</td>
+</tr>
+<tr class="even">
+<td><code>Naam</code></td>
+<td>name of the school (location)</td>
+</tr>
+<tr class="odd">
+<td><code>BGNR</code></td>
+<td>ID of the school board (same as <code>BEVOEGD_GEZAG_NUMMER</code>)</td>
+</tr>
+<tr class="even">
+<td><code>schoolweging</code></td>
+<td>how socio-economically disadvantaged the school’s student population is, based on e.g.&nbsp;the parents’ education level and income. <strong>Higher = more disadvantaged.</strong> Values run roughly from 20 to 40</td>
+</tr>
+<tr class="odd">
+<td><code>aantal_leerlingen</code></td>
+<td>number of students the schoolweging is based on</td>
+</tr>
+<tr class="even">
+<td><code>spreiding</code></td>
+<td>“spread”: how much the students within the school differ from each other in disadvantage</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<p>Look out for these features in the data:</p>
+<ol type="1">
+<li><p><strong>One row is one school, not one student.</strong> Every number is a count or average for a whole school. A school with 10 students in groep 8 counts as one row, just like a school with 100. Think about whether you want to weigh schools by their number of students, and be careful with conclusions about individual students.</p></li>
+<li><p><strong>Hidden counts (<code>"&lt;5"</code>).</strong> Convert these explicitly instead of letting <code>as.numeric()</code> turn them into <code>NA</code>. In <code>eindscores</code> this affects only a few percent of schools. In <code>referentieniveaus</code> and <code>schooladviezen</code> it affects the large majority of schools, because students are split over many small categories, so dropping those schools is not an option. A reasonable approach is to replace <code>"&lt;5"</code> with 2.5 (the midpoint of 1–4) and check whether your conclusion changes when you use 1 or 4 instead.</p></li>
+<li><p><strong>Wide format.</strong> <code>eindscores</code> has a pair of columns per provider, instead of one “provider” column. Use <code>pivot_longer()</code> to get one row per school per provider, and keep the provider with the most students (about 96% of schools use exactly one provider). See <a href="../worksheets/ggplot-recap.html">Worksheet 1</a> for a worked example.</p></li>
+<li><p><strong>Different score scales.</strong> Only compare providers on reference levels or school advice, never on the raw <code>_GEM</code> scores.</p></li>
+</ol>
+</section>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dutch</th>
+<th>English</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aantal</td>
+<td>number</td>
+<td>e.g.&nbsp;<code>IEP_AANTAL</code>, <code>aantal_leerlingen</code></td>
+</tr>
+<tr class="even">
+<td>basisonderwijs (Bo, PO)</td>
+<td>primary education</td>
+<td>regular primary school</td>
+</tr>
+<tr class="odd">
+<td>bevoegd gezag</td>
+<td>competent authority</td>
+<td>the school board</td>
+</tr>
+<tr class="even">
+<td>CBS</td>
+<td>Statistics Netherlands</td>
+<td>the national statistics office</td>
+</tr>
+<tr class="odd">
+<td>CvTE</td>
+<td>Board of Tests and Examinations</td>
+<td>oversees the doorstroomtoets providers</td>
+</tr>
+<tr class="even">
+<td>doorstroomtoets</td>
+<td>transfer test</td>
+<td>the standardized test at the end of primary school</td>
+</tr>
+<tr class="odd">
+<td>DUO</td>
+<td><em>Dienst Uitvoering Onderwijs</em></td>
+<td>government agency that publishes the data</td>
+</tr>
+<tr class="even">
+<td>gemeente</td>
+<td>municipality</td>
+<td><code>GEMEENTENAAM</code></td>
+</tr>
+<tr class="odd">
+<td>gemiddelde</td>
+<td>average</td>
+<td>e.g.&nbsp;<code>IEP_GEM</code></td>
+</tr>
+<tr class="even">
+<td>groep 8</td>
+<td>group 8</td>
+<td>the final year of primary school (age ~11–12)</td>
+</tr>
+<tr class="odd">
+<td>heroverweging</td>
+<td>reconsideration</td>
+<td>adjusting the school advice upwards after the test</td>
+</tr>
+<tr class="even">
+<td>instelling / vestiging</td>
+<td>institution / location</td>
+<td>a school can have multiple locations</td>
+</tr>
+<tr class="odd">
+<td>leerling(en)</td>
+<td>student(s)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Onderwijsinspectie</td>
+<td>Education Inspectorate</td>
+<td>evaluates school quality; publishes schoolweging</td>
+</tr>
+<tr class="odd">
+<td>provincie</td>
+<td>province</td>
+<td><code>PROVINCIE</code></td>
+</tr>
+<tr class="even">
+<td>referentieniveau</td>
+<td>reference level</td>
+<td>standardized skill level (1F, 1S, 2F)</td>
+</tr>
+<tr class="odd">
+<td>schooladvies</td>
+<td>school advice</td>
+<td>the recommended secondary-school track</td>
+</tr>
+<tr class="even">
+<td>schoolweging</td>
+<td>school weighting</td>
+<td>how disadvantaged a school’s student population is</td>
+</tr>
+<tr class="odd">
+<td>speciaal basisonderwijs (Sbo)</td>
+<td>special primary education</td>
+<td>primary school for students who need extra support</td>
+</tr>
+<tr class="even">
+<td>voortgezet onderwijs (VO)</td>
+<td>secondary education</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<p><strong>Data</strong></p>
+<ul>
+<li><a href="https://duo.nl/open_onderwijsdata/">DUO open onderwijsdata</a>: <code>eindscores</code>, <code>referentieniveaus</code> and <code>schooladviezen</code></li>
+<li><a href="https://www.onderwijsinspectie.nl/">Onderwijsinspectie</a>: <code>schoolweging</code></li>
+</ul>
+<p><strong>Background</strong> (in Dutch; a browser’s translate function works well)</p>
+<ul>
+<li><a href="https://www.poraad.nl/onderwijskwaliteit/overgang-po-vo/onderzoek-volkskrant-benadrukt-noodzaak-van-een-doorstroomtoets">Onderzoek Volkskrant benadrukt noodzaak van één doorstroomtoets — PO-Raad</a></li>
+<li><a href="https://www.vosabb.nl/doorstroomtoets-vergroot-kansenongelijkheid-po-vo/">Doorstroomtoets vergroot kansenongelijkheid — VOS/ABB</a></li>
+<li><a href="https://www.vosabb.nl/doorstroomtoets-is-ongelijkheidsmachine-po-vo/">Doorstroomtoets is ‘ongelijkheidsmachine’ — VOS/ABB</a></li>
+<li><a href="https://www.nationaleonderwijsgids.nl/basisonderwijs/gelijkheid-blijft-uit-doorstroomtoets-2026-toont-hardnekkige-verschillen/">Gelijkheid blijft uit: doorstroomtoets 2026 toont hardnekkige verschillen — Nationale Onderwijsgids</a></li>
+<li><a href="https://wij-leren.nl/discussies-doorstroomtoets-deel-5.php">Discussies doorstroomtoets (5): verschillen tussen toetsaanbieders — Wij-leren.nl</a></li>
+<li><a href="https://wij-leren.nl/discussies-doorstroomtoets-deel-3.php">Discussies doorstroomtoets (3): Objectieve graadmeter of versterker van ongelijkheid? — Wij-leren.nl</a></li>
+<li><a href="https://www.tweedekamer.nl/kamerstukken/plenaire_verslagen/kamer_in_het_kort/onderzoek-naar-doorstroomtoetsen">Onderzoek naar doorstroomtoetsen — Tweede Kamer</a></li>
+<li><a href="https://www.poraad.nl/onderwijskwaliteit/overgang-po-vo/kabinet-wil-in-2030-terug-naar-een-doorstroomtoets">Kabinet wil in 2030 terug naar één doorstroomtoets — PO-Raad</a></li>
+<li><a href="https://www.vo-raad.nl/nieuws/kamer-wil-snel-een-doorstroomtoets">Kamer wil snel één doorstroomtoets — VO-raad</a></li>
+<li><a href="https://www.rijksoverheid.nl/actueel/nieuws/2026/07/02/staatssecretaris-wil-van-zes-naar-een-doorstroomtoets">Staatssecretaris wil van 6 naar 1 doorstroomtoets — Rijksoverheid.nl</a></li>
+<li><a href="https://www.ocwincijfers.nl/sectoren/primair-onderwijs/leerlingen/prestaties-eindtoets">Doorstroomtoets in het basisonderwijs — OCW in cijfers</a></li>
+<li><a href="https://cito.nl/centrale-toetsen-en-examens/toetsen-po/overheidsdoorstroomtoets-doe/">Overheidsdoorstroomtoets DOE — Cito</a></li>
+<li><a href="https://cito.nl/de-doorstroomtoets-helpt-om-door-te-stromen/verschillen-doorstroomtoets/">Verschillen doorstroomtoets — Cito</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ann1ejohansson\.github\.io\/data-visualization-2026\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

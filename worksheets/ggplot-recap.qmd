@@ -16,7 +16,7 @@ This module uses **DUO's open onderwijsdata**. This data is public, from the Dut
 1.  Download this course's GitHub repository: go to [github.com/ann1ejohansson/data-visualization-2026](https://github.com/ann1ejohansson/data-visualization-2026), click the green **Code** button, and choose **Download ZIP** (no git needed — if you're already comfortable with git, cloning works too). Unzip it and open `data-visualization-2026.Rproj` in RStudio.  
 2.  You'll need the folders `data/` and `templates/`. Copy these into your own, local folder to work in.  
 3.  The script you need to load in the data is `data/get-data.R`. Run it once — it downloads four DUO source files into `data/raw/`. Skim the comments at the top of that script first; they explain what each file is and why it's there.  
-4.  Read background information about the data [here](). 
+4.  Read the background information and codebook for the data [here](../documents/data-resources.qmd). 
 
 
 ## Part 1 — Load and inspect the data

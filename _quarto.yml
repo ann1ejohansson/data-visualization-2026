@@ -37,8 +37,8 @@ website:
             text: "3: Working with AI"
       - text: Resources
         menu:
-          - href: documents/working-on-the-server.qmd
-            text: "Working on the server"
+          - href: documents/data-resources.qmd
+            text: "The data: background & codebook"
           - href: documents/git-workflow.qmd
             text: "Working with Git"
           - href: https://socviz.co/

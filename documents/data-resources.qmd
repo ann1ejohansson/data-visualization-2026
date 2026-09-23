@@ -1,0 +1,234 @@
+---
+title: "The DUO Data: Background & Codebook"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+This module uses public data from **DUO** (*Dienst Uitvoering Onderwijs*), the Dutch government agency that administers and publishes education data. The data is about the **doorstroomtoets**, the test every Dutch student takes at the end of primary school, and the debate about whether that test is fair. This page gives you the background you need to understand the data, a codebook for every file, and a list of pitfalls to watch out for.
+
+You don't need to be Dutch, or know anything about the Dutch education system, to work with this data. You do need the handful of terms below, because they show up directly as column names and category labels.
+
+## Getting the data
+
+The data is downloaded by an R script, so nobody has to download files by hand and everything is reproducible:
+
+-   In the worksheets, use `data/get-data.R` from the [course repository](https://github.com/ann1ejohansson/data-visualization-2026) (see the setup section of [Worksheet 1](../worksheets/ggplot-recap.qmd)).
+-   For Assignment 2, use `scripts/01-get-data.R` in the [starter project](https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name). It downloads the same four files and loads them into your R session.
+
+Both scripts save the files in `data/raw/`. Never edit anything in that folder by hand, and **never push data to GitHub**. Anyone can recreate it by rerunning the script.
+
+## Background
+
+### The Dutch school system, just enough of it
+
+Dutch primary school (*basisonderwijs*, **PO**) runs from **groep 1** to **groep 8**, roughly ages 4 to 12. Most students attend a regular primary school (**Bo**); students who need extra support may attend a special primary school (**Sbo**, *speciaal basisonderwijs*).
+
+At the end of groep 8, every student gets a **school advice** (*schooladvies*): the secondary-school (*voortgezet onderwijs*, **VO**) track that the student should go to. From the most practical to the most academic:
+
+| Track | Full name | What it is |
+|---|---|---|
+| **PRO** | *praktijkonderwijs* | practical education, for students who need the most support |
+| **VMBO-B** | *basisberoepsgerichte leerweg* | preparatory vocational education, basic track |
+| **VMBO-K** | *kaderberoepsgerichte leerweg* | preparatory vocational education, "framework" track |
+| **VMBO-GT** | *gemengde/theoretische leerweg* | preparatory vocational education, mixed/theoretical track |
+| **HAVO** | *hoger algemeen voortgezet onderwijs* | senior general secondary education |
+| **VWO** | *voorbereidend wetenschappelijk onderwijs* | pre-university education |
+
+There is also **VSO** (*voortgezet speciaal onderwijs*), special-needs secondary education, which sits outside this ranking. A student can also get a combined advice, like **VMBO-GT/HAVO**, when the school thinks either track could fit.
+
+The track a student starts in matters a lot: switching tracks later is possible, but not easy. This is why the advice, and everything that feeds into it, is a sensitive topic.
+
+### What is a doorstroomtoets?
+
+Near the end of groep 8 (around February), every student takes a **doorstroomtoets** ("transfer test"; *doorstroom* = "flow-through", *toets* = "test"). It is a standardized test of reading, language and maths. Its main purpose is to be an objective second opinion next to the teacher's judgement: if a student scores higher than their teacher's advice suggests, the school must reconsider (*heroverweging*) the advice. In principle, the advice can only be adjusted upwards.
+
+The doorstroomtoets replaced the old *eindtoets* ("final test", including the well-known *Citotoets*) from the 2023–2024 school year. Since then, schools can choose **which** doorstroomtoets their students take, from six approved providers:
+
+| Code in the data | Test | Publisher | Notes |
+|---|---|---|---|
+| `LIB` | Leerling in Beeld | Cito B.V. | successor of the old Citotoets; used by almost half of all schools |
+| `IEP` | IEP Eindtoets | Bureau ICE | used by about 40% of schools |
+| `ROUTE8` | Route 8 | A-VISION | digital and adaptive |
+| `DIA` | Dia-Eindtoets | Diataal BV | |
+| `AMN` | AMN Eindtoets | AMN B.V. | |
+| `DOE` | Overheidsdoorstroomtoets | Stichting Cito | the free, government-funded test; used by less than 1% of schools |
+
+Each provider reports its scores on its own scale, so an IEP score of 80 and a LIB score of 180 can't be compared. To make the tests comparable, all results are also translated into **reference levels** (*referentieniveaus*): standardized skill levels that are meant to mean the same thing, whichever test a student took.
+
+-   **1F** (*fundamenteel niveau*): the basic level, which nearly every student should reach.
+-   **1S** (maths) and **2F** (reading and language): the higher target level (*streefniveau*).
+
+### The fairness debate
+
+The idea behind letting schools choose was that all six tests are equivalent. A series of investigations by the newspaper *de Volkskrant*, starting in January 2025, found that they are not:
+
+-   **Reference levels differ by provider.** For example, about 49% of students who took Route 8 reached reading level 2F, compared to about 80% of students who took the paper version of LIB. In maths, students who took LIB reached level 1S about twice as often as students who took Route 8.
+-   **School advice differs by provider, even more starkly.** students who took AMN got a PRO or VMBO-B advice about 18 times as often as students who took paper LIB (14.6% vs. 0.8%). Paper LIB students got a VWO advice 15.4% of the time, AMN students 4.4%.
+-   **This is not (only) because different kinds of schools choose different tests.** The obvious objection is that schools don't choose a provider at random. Maybe schools with more disadvantaged students happen to prefer certain tests. The Volkskrant therefore compared schools with an equal **schoolweging** (a measure of how disadvantaged a school's student population is, see the [codebook](#schoolweging_2022-2025.ods)). The gap between providers remained. In other words, it's partly a property of the test itself.
+-   **Test format matters too.** According to the *College voor Toetsen en Examens* (CvTE), which oversees the tests, 77% of students with a VWO teacher advice got a VWO test result on the paper LIB test, compared to 43% on the digital IEP test.
+
+Critics called the doorstroomtoets an "*ongelijkheidsmachine*" ("inequality machine"): a test that was introduced to make educational opportunities more equal might be doing the opposite. Reporting on the 2026 results found that the gaps between providers had narrowed somewhat, but not disappeared. Schools with a more disadvantaged population also adjust their advice more often than other schools.
+
+**Where things stand.** Sector organisations (PO-Raad, VO-raad) and the Dutch parliament pushed for a single national test. On 2 July 2026, the State Secretary for Education announced a plan to go from six providers back to **one national doorstroomtoets by school year 2029/2030**, stating that "full comparability is a utopia": every difference in test design shifts the results.
+
+::: {.callout-note}
+The numbers above come from the Volkskrant, CvTE and other sources (see [Sources](#sources)), which had access to **student-level** data. The DUO files you work with are **school-level**: you know how many students at a school reached each level, and which provider the school used, but not the results of individual students. Keep this in mind when you draw conclusions.
+:::
+
+## Codebook
+
+All files contain data from the 2024–2025 school year, with **one row per school location**. The three DUO files (`eindscores`, `referentieniveaus`, `schooladviezen`) share the same identifying columns; `schoolweging` comes from a different organisation and is structured differently.
+
+::: {.callout-warning}
+## `"<5"` means "fewer than 5"
+
+To protect students' privacy, DUO hides every count below 5 and writes the text `"<5"` instead. This means that count columns are read into R as **text**, not numbers, and `as.numeric()` silently turns every `"<5"` into `NA`. See [Pitfalls](#pitfalls) for how to deal with this.
+:::
+
+### Identifying columns (all DUO files)
+
+| Column | Meaning |
+|---|---|
+| `PEILDATUM_LEERLINGEN` / `PEILDATUM` | reference date for the student counts (1 October 2024) |
+| `PRIKDATUM` | date the data was extracted |
+| `INSTELLINGSCODE` | school code (also known as the "BRIN" code), the school's main ID |
+| `VESTIGINGSCODE` | location code: which building, if a school has more than one |
+| `INSTELLINGSNAAM_VESTIGING` | name of the school (location) |
+| `POSTCODE_VESTIGING` | postal code |
+| `PLAATSNAAM` | town or city |
+| `GEMEENTENUMMER` / `GEMEENTENAAM` | municipality code / name |
+| `PROVINCIE` | province (the Netherlands has 12) |
+| `SOORT_PO` | school type: `Bo` (regular primary) or `Sbo` (special primary) |
+| `DENOMINATIE_VESTIGING` | religious or educational denomination, e.g. *Openbaar* (public, non-denominational), *Rooms-Katholiek* (Roman Catholic), *Protestants-Christelijk* (Protestant Christian), *Algemeen bijzonder* (private, non-religious) |
+| `BEVOEGD_GEZAG_NUMMER` | ID of the school board (*bevoegd gezag*) |
+
+### `eindscores_2024-2025.csv`
+
+The average doorstroomtoets score per school, per provider. A school only has values for the provider(s) it used; the other providers' columns are `0`.
+
+| Column | Meaning |
+|---|---|
+| `ONTHEFFING_REDEN_ND` | number of students exempted from taking a doorstroomtoets |
+| `IEP_AANTAL` / `IEP_GEM` | number of students tested (*aantal*) / their average score (*gemiddelde*), IEP |
+| `ROUTE8_AANTAL` / `ROUTE8_GEM` | same, Route 8 |
+| `DIA_AANTAL` / `DIA_GEM` | same, Dia-Eindtoets |
+| `AMN_AANTAL` / `AMN_GEM` | same, AMN Eindtoets |
+| `DOE_AANTAL` / `DOE_GEM` | same, DOE (government test) |
+| `LIB_AANTAL` / `LIB_GEM` | same, Leerling in Beeld |
+
+::: {.callout-warning}
+The `_GEM` scores are on six **different scales** (e.g. IEP roughly 50–90, AMN roughly 320–460). 
+:::
+
+### `referentieniveaus_2024-2025.csv`
+
+The number of students per school who reached each reference level, for three subjects. Within a subject, the columns are mutually exclusive: add them up to get the number of students who took that part of the test.
+
+| Column | Meaning |
+|---|---|
+| `REKENEN_LAGER1F` | students **below** the basic level 1F in **maths** (*rekenen*) |
+| `REKENEN_1F` | students who reached 1F, but not 1S, in maths |
+| `REKENEN_1S` | students who reached the maths target level 1S |
+| `REKENEN_2F` | not used for maths in primary school (always 0) |
+| `LV_LAGER1F` / `LV_1F` / `LV_2F` | the same for **reading comprehension** (*leesvaardigheid*); target level 2F |
+| `TV_LAGER1F` / `TV_1F` / `TV_2F` | the same for **language conventions**: spelling and grammar (*taalverzorging*); target level 2F |
+
+This file only contains regular primary schools (`Bo`), and has no information about which provider a school used. To compare reference levels between providers, you need to join it to `eindscores`.
+
+### `schooladviezen_2024-2025.csv`
+
+The number of students per school who received each school advice (the final advice, after any reconsideration).
+
+| Column | Meaning |
+|---|---|
+| `VSO` | special-needs secondary education |
+| `PRO` | practical education |
+| `VMBO_B` | VMBO, basic track |
+| `VMBO_B_K` | combined advice VMBO-B / VMBO-K |
+| `VMBO_K` | VMBO, "framework" track |
+| `VMBO_K_GT` | combined advice VMBO-K / VMBO-GT |
+| `VMBO_GT` | VMBO, mixed/theoretical track |
+| `VMBO_GT_HAVO` | combined advice VMBO-GT / HAVO |
+| `HAVO` | senior general secondary education |
+| `HAVO_VWO` | combined advice HAVO / VWO |
+| `VWO` | pre-university education |
+| `ADVIES_NIET_MOGELIJK` | no advice possible |
+
+Order, lowest to highest: `PRO` < `VMBO_B` < `VMBO_K` < `VMBO_GT` < `HAVO` < `VWO`, with the combined advices in between.
+
+### `schoolweging_2022-2025.ods`
+
+Published by the Education Inspectorate (*Onderwijsinspectie*) and calculated by Statistics Netherlands (CBS). This is a spreadsheet workbook with one sheet per school year; the download scripts read the `"2024-2025"` sheet.
+
+| Column | Meaning |
+|---|---|
+| `OVT` | school location ID, formatted like `"00AP\|C1"`: the part before the `\|` is the `INSTELLINGSCODE`, the part after identifies the location |
+| `Naam` | name of the school (location) |
+| `BGNR` | ID of the school board (same as `BEVOEGD_GEZAG_NUMMER`) |
+| `schoolweging` | how socio-economically disadvantaged the school's student population is, based on e.g. the parents' education level and income. **Higher = more disadvantaged.** Values run roughly from 20 to 40 |
+| `aantal_leerlingen` | number of students the schoolweging is based on |
+| `spreiding` | "spread": how much the students within the school differ from each other in disadvantage |
+
+## Tips
+
+Look out for these features in the data: 
+
+
+1.  **One row is one school, not one student.** Every number is a count or average for a whole school. A school with 10 students in groep 8 counts as one row, just like a school with 100. Think about whether you want to weigh schools by their number of students, and be careful with conclusions about individual students.
+
+2.  **Hidden counts (`"<5"`).** Convert these explicitly instead of letting `as.numeric()` turn them into `NA`. In `eindscores` this affects only a few percent of schools. In `referentieniveaus` and `schooladviezen` it affects the large majority of schools, because students are split over many small categories, so dropping those schools is not an option. A reasonable approach is to replace `"<5"` with 2.5 (the midpoint of 1–4) and check whether your conclusion changes when you use 1 or 4 instead.
+
+3.  **Wide format.** `eindscores` has a pair of columns per provider, instead of one "provider" column. Use `pivot_longer()` to get one row per school per provider, and keep the provider with the most students (about 96% of schools use exactly one provider). See [Worksheet 1](../worksheets/ggplot-recap.qmd) for a worked example.
+
+4.  **Different score scales.** Only compare providers on reference levels or school advice, never on the raw `_GEM` scores.
+
+
+## Glossary
+
+| Dutch | English | Meaning |
+|---|---|---|
+| aantal | number | e.g. `IEP_AANTAL`, `aantal_leerlingen` |
+| basisonderwijs (Bo, PO) | primary education | regular primary school |
+| bevoegd gezag | competent authority | the school board |
+| CBS | Statistics Netherlands | the national statistics office |
+| CvTE | Board of Tests and Examinations | oversees the doorstroomtoets providers |
+| doorstroomtoets | transfer test | the standardized test at the end of primary school |
+| DUO | *Dienst Uitvoering Onderwijs* | government agency that publishes the data |
+| gemeente | municipality | `GEMEENTENAAM` |
+| gemiddelde | average | e.g. `IEP_GEM` |
+| groep 8 | group 8 | the final year of primary school (age ~11–12) |
+| heroverweging | reconsideration | adjusting the school advice upwards after the test |
+| instelling / vestiging | institution / location | a school can have multiple locations |
+| leerling(en) | student(s) | |
+| Onderwijsinspectie | Education Inspectorate | evaluates school quality; publishes schoolweging |
+| provincie | province | `PROVINCIE` |
+| referentieniveau | reference level | standardized skill level (1F, 1S, 2F) |
+| schooladvies | school advice | the recommended secondary-school track |
+| schoolweging | school weighting | how disadvantaged a school's student population is |
+| speciaal basisonderwijs (Sbo) | special primary education | primary school for students who need extra support |
+| voortgezet onderwijs (VO) | secondary education | |
+
+## Sources
+
+**Data**
+
+-   [DUO open onderwijsdata](https://duo.nl/open_onderwijsdata/): `eindscores`, `referentieniveaus` and `schooladviezen`
+-   [Onderwijsinspectie](https://www.onderwijsinspectie.nl/): `schoolweging`
+
+**Background** (in Dutch; a browser's translate function works well)
+
+-   [Onderzoek Volkskrant benadrukt noodzaak van één doorstroomtoets — PO-Raad](https://www.poraad.nl/onderwijskwaliteit/overgang-po-vo/onderzoek-volkskrant-benadrukt-noodzaak-van-een-doorstroomtoets)
+-   [Doorstroomtoets vergroot kansenongelijkheid — VOS/ABB](https://www.vosabb.nl/doorstroomtoets-vergroot-kansenongelijkheid-po-vo/)
+-   [Doorstroomtoets is 'ongelijkheidsmachine' — VOS/ABB](https://www.vosabb.nl/doorstroomtoets-is-ongelijkheidsmachine-po-vo/)
+-   [Gelijkheid blijft uit: doorstroomtoets 2026 toont hardnekkige verschillen — Nationale Onderwijsgids](https://www.nationaleonderwijsgids.nl/basisonderwijs/gelijkheid-blijft-uit-doorstroomtoets-2026-toont-hardnekkige-verschillen/)
+-   [Discussies doorstroomtoets (5): verschillen tussen toetsaanbieders — Wij-leren.nl](https://wij-leren.nl/discussies-doorstroomtoets-deel-5.php)
+-   [Discussies doorstroomtoets (3): Objectieve graadmeter of versterker van ongelijkheid? — Wij-leren.nl](https://wij-leren.nl/discussies-doorstroomtoets-deel-3.php)
+-   [Onderzoek naar doorstroomtoetsen — Tweede Kamer](https://www.tweedekamer.nl/kamerstukken/plenaire_verslagen/kamer_in_het_kort/onderzoek-naar-doorstroomtoetsen)
+-   [Kabinet wil in 2030 terug naar één doorstroomtoets — PO-Raad](https://www.poraad.nl/onderwijskwaliteit/overgang-po-vo/kabinet-wil-in-2030-terug-naar-een-doorstroomtoets)
+-   [Kamer wil snel één doorstroomtoets — VO-raad](https://www.vo-raad.nl/nieuws/kamer-wil-snel-een-doorstroomtoets)
+-   [Staatssecretaris wil van 6 naar 1 doorstroomtoets — Rijksoverheid.nl](https://www.rijksoverheid.nl/actueel/nieuws/2026/07/02/staatssecretaris-wil-van-zes-naar-een-doorstroomtoets)
+-   [Doorstroomtoets in het basisonderwijs — OCW in cijfers](https://www.ocwincijfers.nl/sectoren/primair-onderwijs/leerlingen/prestaties-eindtoets)
+-   [Overheidsdoorstroomtoets DOE — Cito](https://cito.nl/centrale-toetsen-en-examens/toetsen-po/overheidsdoorstroomtoets-doe/)
+-   [Verschillen doorstroomtoets — Cito](https://cito.nl/de-doorstroomtoets-helpt-om-door-te-stromen/verschillen-doorstroomtoets/)
