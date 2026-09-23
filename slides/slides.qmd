@@ -589,7 +589,7 @@ Two main ways to creating a **plotly** object in R:
 -   Convert a ggplot2 object with `ggplotly()`
 -   Directly initialize a plotly object with `plot_ly()`
 
-➡️ [**ggplotly() example**](https://ann1ejohansson.github.io/data-visualization-2026/documents/ggplotly-handout.html){target="_blank"}
+➡️ [**ggplotly() example**](https://ann1ejohansson.github.io/data-visualization-2026/worksheets/ggplotly-handout.html){target="_blank"}
 
 ## Additional functionalities in Plotly
 

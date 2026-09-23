@@ -26,25 +26,24 @@ website:
         text: Assignment 1
       - href: assignments/assignment-2.qmd
         text: Assignment 2
+      - text: Worksheets
+        menu:
+          - href: worksheets/ggplot-recap.qmd
+            text: "1: Data & ggplot"
+          - href: worksheets/ggplotly-handout.qmd
+            text: "2: ggplotly" 
+          - href: worksheets/working-with-ai.qmd
+            text: "3: Working with AI"
       - text: Resources
         menu:
           - href: documents/working-on-the-server.qmd
             text: "Working on the server"
           - href: documents/git-workflow.qmd
             text: "Working with Git"
-          - href: documents/ggplotly-handout.qmd
-            text: "ggplotly"
-          - href: documents/ggplot-recap.qmd
-            text: "ggplot Recap"
-          - href: documents/working-with-ai.qmd
-            text: "Working with AI"
           - href: https://socviz.co/
             text: "Data Visualization: A Practical Introduction (Healy)"
           - href: https://r4ds.hadley.nz/data-visualize.html
             text: "R for Data Science - Data visualization chapter"
-          - href: https://canvas.uva.nl/courses/54361/modules
-            text: "Videos on Canvas"
-
 
 format:
   html:
