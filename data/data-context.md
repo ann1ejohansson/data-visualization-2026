@@ -203,5 +203,6 @@ One row per school **location** (not per school - see the join note in
 - `get-data.R` - downloads all four files above, with more detail in its own
   comments on exactly how they join together (and where that join gets
   tricky)
-- `drafts/build-copy-this-5.R` / `drafts/build-copy-this-3.R` - worked
-  examples that actually use this data end to end
+- `plot-source-code/assignment-1_part-a_copy-this-1.R` /
+  `plot-source-code/assignment-1-alternative-dumbbell/` - worked examples
+  that actually use this data end to end

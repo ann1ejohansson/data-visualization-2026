@@ -5,6 +5,7 @@ project:
     - "*.qmd"
     - "!CLAUDE.md"
     - "!drafts/**"
+    - "!plot-source-code/**"
   post-render:
     - touch docs/.nojekyll
 
