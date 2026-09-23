@@ -1,52 +1,66 @@
 ---
-title: "Working with Git on the Server"
+title: "Working with Git"
 format: html
 ---
 
+![Artwork by [Allison Horst](https://allisonhorst.com/)](images/commit-climber.png){fig-alt="A fuzzy pink monster falls off a rock face, but is caught by a rope clipped into anchors labelled COMMIT."}
+
 ## Introduction
 
-In this tutorial, you will learn how to:
+This tutorial walks you through how to get you started with Git, which you need to use for your group project. 
 
-1.  Connect your GitHub account to the online RStudio server
-2.  Clone your assigned GitHub repository for the group assignments into Rstudio and initialize Git in your RStudio project, so you can track changes and collaborate with your team
+Before you start, make sure you have a GitHub account and that Git is installed on your computer. You can check the second part in RStudio: go to `Tools` \> `Global Options` \> `Git/SVN`. If the `Git executable` field shows a path, you're good to go. If it's empty, install Git first ([instructions](https://happygitwithr.com/install-git)), then restart RStudio.
+
+## Repo structure
+
+Your group repo should look like this (this template is available in `templates/assignment-2/`):
+
+```
+your-project-name/
+├── .gitignore
+├── README.md
+├── your-project-name.Rproj
+├── scripts/
+│   ├── 00-packages.R
+│   └── 01-get-data.R
+└── report/
+    └── DV-Assignment2-GroupX.Rmd
+```
+
+-   `scripts/00-packages.R` — installs (if missing) and loads every package the project uses.
+-   `scripts/01-get-data.R` — downloads/loads the DUO data your group is using. 
+-   All external R scripts used to build dataframes, visualizations, etc, and are sourced for your final report, belong in `scripts/`. Use logical naming conventions here.  
+-   `report/` — your group's report and final visualization.  
+-   `README` is a short, summarized description of your project goals and outcomes. You can also use this file to guide readers through your speciifc files, and how to run them.   
+-   `.gitignore` is a list of all files that won't be git-tracked. Make sure you ignore `data/` — even though we work with public data, it is good practice to never push data to github. This data is always reproducible by re-running `01-get-data.R`, so a copy in version control is not necessary.  
+
+This is based on the [reproducible workflows described in Telling Stories with Data](https://tellingstorieswithdata.com/03-workflow.html). We expect you to stick to this workflow and structure throughout the assignment. Points can be deducted if it is not clear which script we should run, and how. 
 
 ## Connecting GitHub to RStudio
 
-In order to be able to connect your online RStudio environment to your group's GitHub repository, you first have to create a SSH key through the following steps.
+### Step 1: Adding git-tracked R projects
 
-### Step 1: Create and add SSH key to GitHub
+1.  Go to your group's GitHub repository and click on the green `<> Code` button. Choose to clone the repository via **HTTPS** and copy the URL.
 
-1.  Log into your online RStudio environment: <https://data-visualization.oefenweb.nl/rstudio/auth-sign-in>.
+    ![](images/copy-https.png){fig-alt="GitHub repository page with the Code dropdown open, the HTTPS tab selected and the copy button highlighted."}
 
-2.  Create a SSH key: Go to `Tools` \> `global options` \> `GIT/SVN` \> click on `Create SSH Key...` \> and click `create` again; a passphrase is not necessary. Make sure the SSH key type `ED25519` is selected in the dropdown menu (should already be selected for you).
+2.  Now go to RStudio. On the top right (sort of cubical icon) you can find a project overview `Project: (none)`. **Make sure this is in fact set to no project**, if you see the name of a different repository/project, click it and select `Close Project`.
 
-![SSH Key](../images/link-data-viz-to-github-1.png) ![SSH Key](../images/link-data-viz-to-github-2.png)
+    ![](images/project-button.png){fig-alt="RStudio window with the Project: (None) button in the top right corner highlighted."}
 
-3.  Now go to your `Files` pane in RStudio and select `Show Hidden Files` like this:
+3.  Make a new R project for your group assignment: click on `New Project` \> `Version Control` \> `Git`. Paste the URL you just copied from GitHub into `Repository URL`, choose where on your computer the project should live, and create the project (the Project directory name will automatically be filled in for you).
 
-![SSH Key](../images/link-data-viz-to-github-3.png)
+    ![](images/click-new-project.png){width="60%" fig-alt="The Project dropdown menu in RStudio with New Project highlighted."}
 
-4.  You can find your SSH key in the `.ssh` folder. Open the file with the public key (ending with `.pub`) and copy the entire content of the file. We need to add this public key to your GitHub account
+    ::: {layout-ncol=3}
+    ![](images/click-version-control.png){fig-alt="New Project Wizard with Version Control selected."}
 
-![SSH Key](../images/link-data-viz-to-github-4.png) ![SSH Key](../images/link-data-viz-to-github-5.png)
+    ![](images/click-git.png){fig-alt="Create Project from Version Control dialog with Git selected."}
 
-5.  Now open GitHub and go to your `Settings`. From here, go to `SSH and GPG keys`, and click on `New SSH key`. Add the public key you just copied from your online RStudio, and give your key a title (for example, `Data viz server`).
+    ![](images/clone-git.png){fig-alt="Clone Git Repository dialog with fields for the repository URL, project directory name and parent folder."}
+    :::
 
-![SSH Key](../images/link-data-viz-to-github-6.png)
-
-And there you go! You have now successfully let your online RStudio environment and your GitHub account know that these are allowed to communicate with each other. We can now clone your assigned GitHub group repository into your RStudio account.
-
-### Step 2: Adding git-tracked R projects
-
-1.  Go to your group's GitHub repository and click on the green `<> Code` button. Choose to clone the repository via **SSH** and copy the code:
-
-![SSH Key](../images/set-git-r-project-1.png)
-
-2.  Now go back to RStudio. On the top right (sort of cubical icon) you can find a project overview `Project: (none)`. **Make sure this is in fact set to no project**, if you see the name of a different repository/project, click it and select `close project`.
-
-3.  Make a new R project for your group assignment: click on `New project` \> `Clone Git Repository`. Add the code you just copied from GitHub to `Repository URL` and create the project (the Project directory name will automatically be created for you).
-
-![SSH Key](../images/set-git-r-project-2.png)
+4.  The first time you do this, RStudio may ask for your GitHub username and password. GitHub does not accept your normal password here - use a **personal access token** instead. You can create one on GitHub under `Settings` \> `Developer settings` \> `Personal access tokens` \> `Tokens (classic)` \> `Generate new token (classic)`. Give it a name (for example, `Data viz`), tick the `repo` scope, generate it, and copy it - GitHub only shows it once. Paste the token wherever RStudio asks for your password.
 
 It will now appear as if your RStudio is re-starting; don't be feared, this is what is supposed to be happening. Projects are temporary representations of your RStudio environment, so that you can work on different projects with different data to keep your work structure clear.
 
@@ -54,21 +68,44 @@ If you look in your `Files` pane, you will see that the folder was selected, whi
 
 If you look in your `Environment` pane, you can now see an extra tab called `Git`. You have now successfully cloned your repository and let Git track your changes!
 
-### Step 3: Configure Git (only the first time)
+### Step 2: Configure Git (only the first time)
 
-Git needs to know who you are, so it can keep track of who made which changes. You only have to do this once. Go to the `Terminal` tab in RStudio and type the following commands (replace `<your-name>` and `<your-email>` with your actual name and email address that you use for GitHub):
+Git needs to know who you are, so it can keep track of who made which changes. You only have to do this once per computer. Go to the `Terminal` tab in RStudio and type the following commands (replace `<your-name>` and `<your-email>` with your actual name and the email address that you use for GitHub):
 
 ```bash
 git config --global user.email "<your-email>"
 git config --global user.name "<your-name>"
 ```
 
-Enter each command separately. The lines should be entered exactly like this, including the quotation marks, and you should see no output after entering the commands. 
+Enter each command separately. The lines should be entered exactly like this, including the quotation marks, and you should see no output after entering the commands.
 
 ## Now you can work in your project
 
-Open this project whenever you are working on the group assignments. You do this by either by clicking on the `Project: <your-repo-name>` button in the top right corner, or by double-clicking the `.Rproj` file in your project directory.
+Open this project whenever you are working on the group assignments. You do this by either clicking on the `Project: <your-repo-name>` button in the top right corner, or by double-clicking the `.Rproj` file in your project directory.
 
-Commit, push, and pull changes via the terminal in the online RStudio editor, or in the tab called `Git`. **Remember to always pull changes into your environment before you start working on the project, and push your changes when you are done working on it.** This way, you and your team members will always have access to the most recent version of the project, and you (hopefully) avoid merge conflicts.
+Commit, push, and pull changes via the terminal in RStudio, in the tab called `Git`, or in GitHub Desktop if you have that downloaded. 
 
-It is good practice to close the project when you are done working on it, to avoid accidentally making changes to the wrong project the next time you open RStudio.
+A few habits to enforce:
+
+1.  **Pull before you start working, every single time** (`git pull`, or the ⬇ button in the `Git` tab) — even if you were "just working on it five minutes ago." A groupmate may have pushed since.
+2.  **Commit small and often**, with messages that say *what changed* (`"add school-provider tidying step"`, not `"updates"`). Small commits are much easier to understand — and undo — than one giant one at the end.
+3.  **Push when you're done working**, don't sit on local changes overnight.  
+4.  **Close the project when you're done working**, to avoid accidentally making changes to the wrong project the next time you open RStudio.  
+4.  **Coordinate on who's editing what.** With a small group, it's usually enough to communicate with each other to decide who is working in which script/document. Two people editing the *same file* at the same time is the main thing that causes trouble. **Tip:** If you do want to work on different versions of the same code, create subfolders with your names, and duplicate the code from the main folder that you want to edit. That way, you work "locally", then decide together on the final code.  
+5.  You do **not** need feature branches for a project this size — working directly on `main`, carefully, is simpler and easier to reason about for a two-week group project.
+
+## If you do get a merge conflict
+
+It's not a disaster — git is telling you it found two different versions of the same lines and needs you to pick. Open the file; git marks the conflicting section like this:
+
+```
+<<<<<<< HEAD
+your version
+=======
+your groupmate's version
+>>>>>>> their-commit
+```
+
+Decide (with them, if it's not obvious) which lines should stay, delete the `<<<<<<<`/`=======`/`>>>>>>>` markers, save the file, then `git add` it and finish the commit. Ask for help if you're stuck!
+
+![Artwork by [Allison Horst](https://allisonhorst.com/)](images/git-hug.png)

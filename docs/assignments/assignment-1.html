@@ -517,14 +517,15 @@ Don’t worry if you cannot reproduce the plots exactly. You can, for example, u
 ├── .gitignore
 ├── README.md
 ├── your-project-name.Rproj
-├── code/
-|   └── 00-load-data.R
+├── scripts/
+|   ├── 00-packages.R
+|   └── 01-get-data.R
 └── report/
     └── DV-Assignment2-GroupX.Rmd
     └── DV-Assignment2-GroupX.html</code></pre>
 <p>All group members should clone the assigned group repository to their server environment. Once you have cloned the repo and initialized Git, make a first commit and push it. Check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!</p>
 <p>Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a <a href="https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure">reproducible workflow</a>. Additionally, it is important that you <strong>never push data to GitHub</strong>. If you have to store data, do this in a separate folder outside of your Git repository.</p>
-<p>Now, load in the necessary data for your visualization. The code for this is available in <a href="../assignments/assignment-2.html">Assignment 2</a>. Use the script <code>00-load-data.R</code> in the <code>code/</code> folder to load in the data. Examine the data. Discuss with your group:</p>
+<p>Now, load in the necessary data for your visualization. In the <code>scripts/</code> folder, first run <code>00-packages.R</code> to install and load all the packages you need, then run <code>01-get-data.R</code> to download the data into <code>data/raw/</code> and load it. Examine the data. Discuss with your group:</p>
 <ul>
 <li>What is the structure of the data?<br>
 </li>

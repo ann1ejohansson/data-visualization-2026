@@ -12,12 +12,14 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 rm(list = ls()) # clear environment so knitting only depends on what's in this file
 
+# installs (if missing) and loads every package this project uses - add any
+# new packages to scripts/00-packages.R, not here
+source("../scripts/00-packages.R")
+
 # downloads the data into data/raw/ if you don't already have it, then loads
 # eindscores, referentieniveaus, schooladviezen and schoolweging into this
-# session - see scripts/00-get-data.R for what each one contains
-source("../scripts/00-get-data.R")
-
-library(tidyverse)
+# session - see scripts/01-get-data.R for what each one contains
+source(here("scripts", "01-get-data.R"))
 ```
 
 ## Research question

@@ -21,5 +21,6 @@ A short paragraph (3-5 sentences) on what this project looks at in the DUO doors
 ## Reproducing this project
 
 1. Open `your-project-name.Rproj` in RStudio.
-2. Run `scripts/00-get-data.R` once to download the data into `data/raw/` (gitignored — never pushed to GitHub).
-3. Knit `report/DV-Assignment2-GroupX.Rmd`.
+2. Run `scripts/00-packages.R` to install and load the packages this project uses.
+3. Run `scripts/01-get-data.R` once to download the data into `data/raw/` (gitignored — never pushed to GitHub).
+4. Knit `report/DV-Assignment2-GroupX.Rmd`.

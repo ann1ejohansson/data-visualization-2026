@@ -334,8 +334,9 @@ your-project-name/
 ├── .gitignore
 ├── README.md
 ├── your-project-name.Rproj
-├── code/
-|   └── 00-load-data.R
+├── scripts/
+|   ├── 00-packages.R
+|   └── 01-get-data.R
 └── report/
     └── DV-Assignment2-GroupX.Rmd
     └── DV-Assignment2-GroupX.html
@@ -345,7 +346,7 @@ All group members should clone the assigned group repository to their server env
 
 Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure). Additionally, it is important that you **never push data to GitHub**. If you have to store data, do this in a separate folder outside of your Git repository.
 
-Now, load in the necessary data for your visualization. The code for this is available in [Assignment 2](assignment-2.qmd). Use the script `00-load-data.R` in the `code/` folder to load in the data. Examine the data. Discuss with your group:
+Now, load in the necessary data for your visualization. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Examine the data. Discuss with your group:
 
 -   What is the structure of the data?\
 -   What are the main variables? Can you already make some exploratory plots to understand these variables better?\

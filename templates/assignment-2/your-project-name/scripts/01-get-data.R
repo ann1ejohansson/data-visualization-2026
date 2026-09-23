@@ -1,4 +1,4 @@
-# 00-get-data.R
+# 01-get-data.R
 #
 # This script downloads everything you need to dig into the doorstroomtoets
 # ("transfer test") fairness debate. Background on what that debate actually
@@ -60,17 +60,8 @@
 # directly or source() it from report/ (knitr's working directory is
 # wherever the .Rmd lives, not the project root - here::here() fixes that).
 #
-# If your R has never installed a package before, install.packages() doesn't
-# know which download server (a "CRAN mirror") to use. RStudio usually sets
-# one for you, but if you're running this from a plain R console, the line
-# below picks one so the installs don't fail with a confusing error.
-if (is.null(getOption("repos")) || identical(getOption("repos")[["CRAN"]], "@CRAN@")) {
-  options(repos = c(CRAN = "https://cloud.r-project.org"))
-}
-
-if (!requireNamespace("readr", quietly = TRUE)) install.packages("readr")
-if (!requireNamespace("readODS", quietly = TRUE)) install.packages("readODS")
-if (!requireNamespace("here", quietly = TRUE)) install.packages("here")
+# All three are installed and loaded by 00-packages.R - run that first (the
+# report sources both scripts in order, so knitting takes care of it).
 
 library(readr)
 library(readODS)
@@ -132,7 +123,7 @@ sources <- list(
 # We check file.exists() before downloading anything. This is just good
 # manners towards DUO's servers (no reason to re-download the same 1-2MB
 # file every single time you run this script), and it also means you can
-# safely re-run 00-get-data.R as often as you like - including every time
+# safely re-run 01-get-data.R as often as you like - including every time
 # you knit the report - since it only ever fetches what's actually missing.
 
 for (name in names(sources)) {
