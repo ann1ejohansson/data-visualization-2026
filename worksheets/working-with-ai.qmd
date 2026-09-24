@@ -5,7 +5,7 @@ format:
     toc: true
 ---
 
-!["Hi ChatGPT! Can you generate an image that suits as an engaging catch, to put at the top of this worksheet?"](images/working-with-ai.png)
+!["Hi Chat! Can you generate an image that suits as an engaging catch, to put at the top of this worksheet?"](images/working-with-ai.png)
 
 ## Introduction
 
@@ -15,7 +15,7 @@ This also means that your role as a data scientist changes from only building st
 
 Importantly, a visualization carries a message about data to people who usually don't have access to, or the skills to understand, the raw data used to produce it. This makes data literacy more important than ever. As behavioral data scientists, you bring something the AI does not have: knowledge of psychology, statistics, and the data at hand.
 
-### Five guiding principles
+### Six guiding principles
 
 #### 1. You are the data scientist; the AI is your assistant
 
@@ -54,7 +54,7 @@ Because a polished chart takes only one prompt, making a *good* chart seems simp
 
 -   Don't add elements (gradients, icons, annotations, 3D, interactivity) just because they are now cheap. Add them when they improve the clarity of the message you want to get across.   
 -   A plain chart that is correct beats a beautiful chart that is wrong.  
--   Check how robust the trend is by creating several visualizations of the same data. Also check it's robustness across different data decisions (item 2).   
+-   Check how robust the trend is by creating several visualizations of the same data. Also check its robustness across different data decisions (item 2).   
 
 #### 5. Curate, don't just prompt
 
@@ -66,6 +66,18 @@ Define the parameters of the system *before* you ask it to build:
 -   Which encodings, colors, and constraints (colorblind-safe, fits the report)?
 
 Then evaluate what comes back against those parameters. 
+
+#### 6. Evaluate, evaluate, evaluate! 
+
+Decide your own verification criteria before you see the result, so that the AI's output doesn't set the standard it is judged by. For example:
+
+-   Counts: how many rows (schools, pupils) went in, and how many ended up in the chart? You should be able to explain every difference.
+-   Manual checks: reproduce one or two numbers from the chart (a count, a mean) manually. 
+-   Plausibility: do the values fall within plausible ranges? Do they match what you know about the context?
+-   Robustness: does the pattern survive a different chart type, a different summary statistic (median instead of mean), or a different filtering decision?
+-   Independence: does a teammate, or a different model, reach the same result from the same question?
+-   Understanding: can you explain the code?
+
 
 ### Guidelines: working with AI. 
 We encourage you to make use of AI tools in your data visualizations in this course. To guide you in that process, we've put together a checklist of important concepts to keep in mind. 
@@ -149,7 +161,7 @@ Discuss these questions with your group, then write down guidelines for the team
 
 ## Part 2: AI for explaining (Session 3)
 
-**What AI is good at here:** technical execution and generating alternatives. For example: annotations, highlighting a key group, `ggtext`, multiple-plot layouts, custom themes, colorblind-safe palettes, `plotly` tooltips, and many design options in a short time. Research shows LLMs are good at quickly producing diverse design options but weaker at contextual nuance ([Kim et al., 2025](https://dl.acm.org/doi/10.1145/3745768)), reflecting what data scientists prefer when working with AI tools ([Li et al., 2023](https://arxiv.org/abs/2304.08366)).
+**What AI is good at here:** technical execution and generating alternatives. For example: annotations, highlighting a key group, `ggtext`, multiple-plot layouts, custom themes and color palettes, `plotly` tooltips, and many design options in a short time. Research shows LLMs are good at quickly producing diverse design options but weaker at contextual nuance ([Kim et al., 2025](https://dl.acm.org/doi/10.1145/3745768)), reflecting what data scientists prefer when working with AI tools ([Li et al., 2023](https://arxiv.org/abs/2304.08366); [Hong et al., 2025](https://www.uw-insight-lab.com/assets/papers/TiiS-AIThreads.pdf)).
 
 **Guiding points**
 
@@ -159,7 +171,8 @@ Discuss these questions with your group, then write down guidelines for the team
 4.  **Check the title.** Is it using unjustified causal language? Is it meaningful and does it support your conclusion? 
 5.  **Show uncertainty and sample size.** Polished charts tend to hide these; you have to ask for them explicitly.
 6.  **Use AI as a critic, carefully.** You can ask AI to critique your chart as a skeptical reviewer, but you decide which critiques are valid.
-7.  **Test with a naïve reader.** Show the chart to someone outside the course for five seconds. What do they conclude? Is that conclusion true?
+7.  **Test with a naïve reader.** Show the chart to someone outside the course for five seconds. What do they conclude? Is that conclusion true?  
+8.  **AI is one tool among many.**  For example, AI can probably check whether your chosen color palette is color-blind friendly, but you are also [one click away](https://www.color-blindness.com/coblis-color-blindness-simulator/) from checking it yourself. 
 
 ### Exercise 2
 
@@ -167,9 +180,9 @@ Discuss with your group:
 
 -   Which stages of your project (question, cleaning, exploring, designing, writing) would you hand to AI, and which would you not? Why?
 -   AI slop is a real problem. Who is responsible when a "cheap chart" misleads people?  
--   [AI consumes resources](https://news.un.org/en/story/2026/06/1167658). How will you approach this responsibly?  
+-   [AI consumes resources](https://news.un.org/en/story/2026/06/1167658). How can you (now and in the future) approach this responsibly?  
 
-As a group, decide on a disclosure statement for your use of AI tools. Write a short "AI use" section in your final report. List what tools you used, what they were used for, and how this output was checked. This section is a requirement for your final report. 
+As a group, decide on a disclosure statement for your use of AI tools. Write a short "AI use" section in your final report. List what tools you used, what they were used for, and how this output was checked. This section is a requirement in your final report. 
 
 
 ## Sources

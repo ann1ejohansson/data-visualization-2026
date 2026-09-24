@@ -8,17 +8,11 @@
 # We need FOUR files in total, and it's worth understanding why each one
 # is here before you run this:
 #
-#   1. eindscores        - the file you already found and dropped into this
-#                           folder by hand (gemiddelde_eindscores.txt). It has
-#                           the average doorstroomtoets score per school, per
-#                           test provider (IEP, Route8, DIA, AMN, DOE, LIB).
-#                           We re-download it here too, from its original
-#                           source, so that the whole dataset is reproducible
-#                           from this one script - nobody has to remember
-#                           "oh and then also go download this one file by
-#                           hand from some website".
+#   1. eindscores        - It has the average doorstroomtoets score per school, 
+#                           per test provider (IEP, Route8, DIA, AMN, DOE, LIB).
+#                         
 #
-#   2. referentieniveaus  - the piece eindscores is missing: how many pupils
+#   2. referentieniveaus  - how many pupils
 #                           per school actually reached the 1F/1S/2F reference
 #                           levels for taal (language) and rekenen (maths).
 #                           This matters because the six providers' raw scores
@@ -29,31 +23,15 @@
 #                           thing regardless of which test a school used.
 #
 #   3. schooladviezen     - the secondary-school advice each school's pupils
-#                           ended up with (PRO, VMBO, HAVO, VWO, ...). This is
-#                           the other half of the Volkskrant story: it's not
-#                           just that test scores differ by provider, it's
-#                           that the *advice* pupils get differs too.
+#                           ended up with (PRO, VMBO, HAVO, VWO, ...). 
 #
 #   4. schoolweging       - schoolweging is a school-level score for how
 #                           disadvantaged a school's pupil population is
 #                           (based on parents' education level, income, etc).
-#                           This is the variable the Volkskrant used to check
-#                           whether "different providers give different
-#                           results" was actually just "different providers
-#                           happen to be used by different kinds of schools".
-#                           Comparing scores WITHOUT controlling for this is
-#                           misleading - comparing scores at equal schoolweging
-#                           is what makes the comparison fair.
 #
 # All four files share the same school identifiers (more on that at the very
 # bottom of this script, because the schoolweging file does it slightly
 # differently and that will trip you up if you don't know to expect it).
-#
-# A quick warning up front: files 1-3 are all snapshots of school year
-# 2024-2025. File 4 (schoolweging) is a three-year average covering
-# 2022/2023 through 2024/2025 - the Inspectorate publishes it that way on
-# purpose, to smooth out year-to-year noise, but it does mean you're not
-# comparing perfectly matched time windows. Keep that in mind later.
 
 
 # ---- 0. packages -------------------------------------------------------
@@ -246,15 +224,4 @@ print(names(schoolweging))
 #     *different school name entirely*, so "C2" is not simply "VESTIGINGSCODE
 #     01 renamed". Match on INSTELLINGSCODE alone, and only worry about the
 #     vestiging-level detail for the specific 102 schools where it applies.
-#
-# One more thing worth remembering before you build any charts from this:
-# none of referentieniveaus or schooladviezen is broken down by *which*
-# doorstroomtoets provider a school used - that information only lives in
-# eindscores. So "reference levels by provider" or "advice by provider"
-# isn't something you can read directly off one file; you have to bring in
-# eindscores' provider columns and label each school by whichever provider
-# it used (which works reasonably well, since data/doorstroomtoetsen-context.md
-# section 7 found that 96% of schools use exactly one provider). Just be
-# upfront in your write-up that this is a school-level approximation, not
-# the pupil-level data the Volkskrant journalists likely had access to -
-# that distinction matters for what conclusions the numbers can support.
+
