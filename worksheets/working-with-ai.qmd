@@ -9,7 +9,7 @@ format:
 
 ## Introduction
 
-AI can now make a polished chart in seconds. A polished chart is no longer hard to make, so the hard part is knowing whether it is right: whether the data means what the chart suggests, and whether the conclusion holds.
+AI can now make a polished chart in seconds. Since this is no longer hard to make, the hard part is knowing whether it is right: whether the data means what the chart suggests, and whether the conclusion holds.
 
 This also means that your role as a data scientist changes from only building static visualizations to curating its generative system. Although the AI can build your product, you set its parameters (the question, the data, the transformations, the audience, the claim) and you judge what it produces. **Remember that you are responsible for every chart you hand in (in class and in your future work), including the ones AI made.**
 
@@ -166,7 +166,7 @@ Discuss these questions with your group, then write down guidelines for the team
 Discuss with your group:  
 
 -   Which stages of your project (question, cleaning, exploring, designing, writing) would you hand to AI, and which would you not? Why?
--   AI makes charts cheap. Who is responsible when a cheap chart misleads people?  
+-   AI slop is a real problem. Who is responsible when a "cheap chart" misleads people?  
 -   [AI consumes resources](https://news.un.org/en/story/2026/06/1167658). How will you approach this responsibly?  
 
 As a group, decide on a disclosure statement for your use of AI tools. Write a short "AI use" section in your final report. List what tools you used, what they were used for, and how this output was checked. This section is a requirement for your final report. 
