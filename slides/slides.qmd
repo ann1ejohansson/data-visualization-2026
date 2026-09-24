@@ -29,16 +29,34 @@ title-slide-attributes:
 all_installed_packages <- installed.packages()[, "Package"]
 # Install any missing, but required packages
 # nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
-if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
-if (!"devtools" %in% all_installed_packages) {install.packages("devtools")}
-if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
-if (!"ggplot2" %in% all_installed_packages) {install.packages("ggplot2")}
-if (!"datasauRus" %in% all_installed_packages) {install.packages("datasauRus")}
-if (!"gt" %in% all_installed_packages) {install.packages("gt")}
-#if (!"ggimage" %in% all_installed_packages) {install.packages("ggimage")}
-if (!"RXKCD" %in% all_installed_packages) {install.packages("RXKCD")}
-if (!"plotly" %in% all_installed_packages) {install.packages("plotly")}
-if (!"viridis" %in% all_installed_packages) {install.packages("viridis")}
+if (!"tidyverse" %in% all_installed_packages) {
+  install.packages("tidyverse")
+}
+if (!"devtools" %in% all_installed_packages) {
+  install.packages("devtools")
+}
+if (!"cowplot" %in% all_installed_packages) {
+  install.packages("cowplot")
+}
+if (!"ggplot2" %in% all_installed_packages) {
+  install.packages("ggplot2")
+}
+if (!"datasauRus" %in% all_installed_packages) {
+  install.packages("datasauRus")
+}
+if (!"gt" %in% all_installed_packages) {
+  install.packages("gt")
+}
+# if (!"ggimage" %in% all_installed_packages) {install.packages("ggimage")}
+if (!"RXKCD" %in% all_installed_packages) {
+  install.packages("RXKCD")
+}
+if (!"plotly" %in% all_installed_packages) {
+  install.packages("plotly")
+}
+if (!"viridis" %in% all_installed_packages) {
+  install.packages("viridis")
+}
 # nolint end
 
 # Load Required Packages
@@ -47,7 +65,7 @@ library(cowplot)
 library(ggplot2)
 library(datasauRus)
 library(gt)
-#library(ggimage)
+# the ggimage package is needed for this slide
 library(RXKCD)
 library(plotly)
 library(viridis)
@@ -125,11 +143,16 @@ Cover photo made in R by [Danielle Navarro](https://art.djnavarro.net){target="_
 library("datasauRus")
 library(scales)
 
-datasaurus_dozen %>% 
+datasaurus_dozen |>
   ggplot2::ggplot(aes(x = x, y = y, color = dataset)) +
   ggplot2::geom_point() +
   ggplot2::theme_void() +
-  ggplot2::geom_smooth(method = "lm", color = "gray", fill = "gray", alpha = .5) +
+  ggplot2::geom_smooth(
+    method = "lm",
+    color = "gray",
+    fill = "gray",
+    alpha = .5
+  ) +
   ggplot2::theme(legend.position = "none", text = element_text(size = 30)) +
   ggplot2::facet_wrap(~dataset, ncol = 4)
 ```
@@ -671,17 +694,21 @@ p2 <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
   theme(legend.position = "none")
 
 # Combine with patchwork and add title
-combined <- p1 + p2 + 
+combined <- p1 + p2 +
   plot_annotation(
     title = "Analysis of mtcars dataset",
-    subtitle = "Exploring relationships between engine features and fuel efficiency",
+    subtitle = paste(
+      "Exploring relationships between engine features",
+      "and fuel efficiency"
+    ),
     caption = "Data source: mtcars",
-    theme = theme(plot.title = element_text(face = "bold", size = 16),
-                  plot.subtitle = element_text(size = 14))
-  ) 
+    theme = theme(
+      plot.title = element_text(face = "bold", size = 16),
+      plot.subtitle = element_text(size = 14)
+    )
+  )
 
 combined
-
 ```
 
 ::: footer
@@ -697,15 +724,20 @@ combined
 #| code-fold: true
 library("gt")
 data("pizzaplace")
-pizza_top <- pizzaplace %>%
-  mutate(size = factor(size, levels = c("S", "M", "L"))) %>%
-  count(name, type, size, price, sort = TRUE) %>%
+pizza_top <- pizzaplace |>
+  mutate(size = factor(size, levels = c("S", "M", "L"))) |>
+  count(name, type, size, price, sort = TRUE) |>
   top_n(n = 5)
-pizza_top %>%
-  gt() %>%
-  tab_header(title = "Pizza Top 5", subtitle = "2015") %>%
-  fmt_currency(columns = price, currency = "USD") %>%
-  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) %>%
+pizza_top |>
+  gt() |>
+  tab_header(title = "Pizza Top 5", subtitle = "2015") |>
+  fmt_currency(columns = price, currency = "USD") |>
+  tab_source_note(
+    source_note = md(paste0(
+      "Source: [pizzaplace dataset]",
+      "(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"
+    ))
+  ) |>
   opt_stylize(style = 6)
 ```
 :::
@@ -715,11 +747,11 @@ pizza_top %>%
 #| echo: true
 #| code-fold: true
 library("ggplot2")
-pizza_top %>%
+pizza_top |>
   ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +
   geom_point(aes(color = type, size = size)) +
   geom_text(aes(label = price), nudge_y = -30) +
-  labs(title = "Pizza Top 5", subtitle = "2015", x = "name") 
+  labs(title = "Pizza Top 5", subtitle = "2015", x = "name")
 ```
 :::
 :::::
@@ -732,15 +764,20 @@ pizza_top %>%
 #| echo: true
 #| code-fold: true
 library("gt")
-pizza_season <- pizzaplace %>%
-  mutate(month = lubridate::month(date, label = TRUE)) %>%
-  group_by(month) %>%
+pizza_season <- pizzaplace |>
+  mutate(month = lubridate::month(date, label = TRUE)) |>
+  group_by(month) |>
   count(type)
-pizza_season %>%
-  pivot_wider(names_from = month, values_from = n) %>%
-  gt() %>%
-  tab_header(title = "Pizza Season", subtitle = "2015") %>%
-  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) %>%
+pizza_season |>
+  pivot_wider(names_from = month, values_from = n) |>
+  gt() |>
+  tab_header(title = "Pizza Season", subtitle = "2015") |>
+  tab_source_note(
+    source_note = md(paste0(
+      "Source: [pizzaplace dataset]",
+      "(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"
+    ))
+  ) |>
   opt_stylize(style = 6)
 ```
 :::
@@ -754,10 +791,15 @@ pizza_season %>%
 #| fig.show: "hold"
 library("ggplot2")
 library("lubridate")
-fig_season_1 <- pizza_season %>%
+fig_season_1 <- pizza_season |>
   ggplot(aes(x = month, y = n, group = type)) +
   geom_bar(aes(fill = type), stat = "identity") +
-  labs(title = "Pizza Season", subtitle = "2015", y = "Number of pizzas sold", x = "Month")
+  labs(
+    title = "Pizza Season",
+    subtitle = "2015",
+    y = "Number of pizzas sold",
+    x = "Month"
+  )
 fig_season_1
 ```
 :::
@@ -768,10 +810,15 @@ fig_season_1
 #| code-fold: true
 #| fig.height: 5
 #| fig.show: "hold"
-fig_season_2 <- pizza_season %>%
+fig_season_2 <- pizza_season |>
   ggplot(aes(x = month, y = n, group = type)) +
   geom_line(aes(linetype = type)) +
-  labs(title = "Pizza Season", subtitle = "2015", y = "Number of pizzas sold", x = "Month")
+  labs(
+    title = "Pizza Season",
+    subtitle = "2015",
+    y = "Number of pizzas sold",
+    x = "Month"
+  )
 fig_season_2
 ```
 :::
@@ -824,17 +871,18 @@ You can try it yourself with `geom_image()` from `ggimage`
 #| code-fold: true
 library(ggimage)
 # aggregate to totals
-pizza_totals <- pizza_season %>%
-  group_by(type) %>%
-  summarise(total = sum(n), .groups = "drop") %>%
-  mutate(n_icons = round(total / 1000))  # 1 pizza = 1000 sales
+pizza_totals <- pizza_season |>
+  group_by(type) |>
+  summarise(total = sum(n), .groups = "drop") |>
+  mutate(n_icons = round(total / 1000)) # 1 pizza = 1000 sales
 
 # expand data: one row per pizza icon
-# this is a trick so that each pizza icon can be plotted separately (essentially using geom_point but appearing as a bar)
-chart_junk_data <- pizza_totals %>%
-  rowwise() %>%
-  mutate(icon_id = list(1:n_icons)) %>%
-  unnest(icon_id) 
+# this is a trick so that each pizza icon can be plotted separately (essentially
+# using geom_point but appearing as a bar)
+chart_junk_data <- pizza_totals |>
+  rowwise() |>
+  mutate(icon_id = list(1:n_icons)) |>
+  unnest(icon_id)
 
 # plot with 🍕
 pizza_plot <- ggplot(chart_junk_data, aes(x = icon_id, y = type)) +
@@ -842,9 +890,11 @@ pizza_plot <- ggplot(chart_junk_data, aes(x = icon_id, y = type)) +
   # add white rectangle to cover up excess icons (taken from pizza_totals data)
   geom_rect(
     data = pizza_totals,
-    aes(xmin = total/1000, xmax = total/1000 + 2, 
-        ymin = as.numeric(factor(type)) - 0.5, 
-        ymax = as.numeric(factor(type)) + 0.5),
+    aes(
+      xmin = total / 1000, xmax = total / 1000 + 2,
+      ymin = as.numeric(factor(type)) - 0.5,
+      ymax = as.numeric(factor(type)) + 0.5
+    ),
     inherit.aes = FALSE,
     fill = "white"
   ) +
@@ -926,9 +976,11 @@ fig_season_2 +
   geom_line(linetype = "solid", color = "gray30", linewidth = 0.5) +
   facet_wrap(~type) +
   theme_minimal(12) +
-  theme(legend.position = "none",
-        strip.text = element_text(face = "bold", color = "plum4"),
-        strip.background = element_rect(fill = "thistle2", color = NA)) # fill for background; color for border
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", color = "plum4"),
+    strip.background = element_rect(fill = "thistle2", color = NA)
+  ) # fill for background; color for border
 ```
 :::
 ::::
@@ -939,16 +991,21 @@ fig_season_2 +
 ```{r colors}
 #| echo: true
 #| code-fold: true
-fig_quarter <- pizza_season %>%
+fig_quarter <- pizza_season |>
   mutate(quarter = case_when(
     month %in% c("Jan", "Feb", "Mar") ~ "Q1",
     month %in% c("Apr", "May", "Jun") ~ "Q2",
     month %in% c("Jul", "Aug", "Sep") ~ "Q3",
     month %in% c("Oct", "Nov", "Dec") ~ "Q4"
-  )) %>%
+  )) |>
   ggplot(aes(x = quarter, y = n, group = type)) +
   geom_bar(aes(fill = type), stat = "identity", position = "dodge") +
-  labs(title = "Pizza Season", subtitle = "2015, split by quarter", y = "Number of pizzas sold", x = "")
+  labs(
+    title = "Pizza Season",
+    subtitle = "2015, split by quarter",
+    y = "Number of pizzas sold",
+    x = ""
+  )
 
 fig_quarter +
   scale_fill_viridis_d()
@@ -1002,7 +1059,7 @@ fig_quarter +
 ```{r colors-colorblindness-2}
 #| echo: true
 #| code-fold: true
-# remotes::install_github("clauswilke/colorblindr")
+# colorblindr is installed from GitHub (clauswilke/colorblindr)
 library("colorblindr")
 colorblindr::cvd_grid(fig_quarter)
 ```
@@ -1023,7 +1080,9 @@ MetBrewer::colorblind_palettes
 ```{r colors-colorblindness-4}
 #| echo: true
 #| code-fold: true
-fig_quarter +scale_fill_manual(values = MetBrewer::met.brewer("VanGogh3", n = 4))
+fig_quarter + scale_fill_manual(
+  values = MetBrewer::met.brewer("VanGogh3", n = 4)
+)
 ```
 :::
 :::::
@@ -1124,27 +1183,34 @@ sysfonts::font_add_google("Lexend")
 showtext::showtext_auto()
 
 pizza_plot +
-  # add a geom_rect element with opacity on top of pizza bars, to highlight the biggest bar
+  # add a geom_rect element with opacity on top of pizza bars, to highlight the
+  # biggest bar
   geom_rect(
-    data = pizza_totals %>%
+    data = pizza_totals |>
       mutate(highlight = ifelse(type == "classic", TRUE, FALSE)),
-    aes(xmin = 0, xmax = total/1000, 
-        ymin = as.numeric(factor(type)) - 0.5, 
-        ymax = as.numeric(factor(type)) + 0.5,
-        alpha = highlight),
+    aes(
+      xmin = 0, xmax = total / 1000,
+      ymin = as.numeric(factor(type)) - 0.5,
+      ymax = as.numeric(factor(type)) + 0.5,
+      alpha = highlight
+    ),
     inherit.aes = FALSE,
     fill = "white"
   ) +
   scale_alpha_manual(values = c("TRUE" = 0, "FALSE" = 0.3), guide = "none") +
-  labs(title = "The classic is a classic for a reason.",
-       subtitle = "Total Pizza Sales in 2015",
-       caption = "Source: pizzaplace dataset") +
+  labs(
+    title = "The classic is a classic for a reason.",
+    subtitle = "Total Pizza Sales in 2015",
+    caption = "Source: pizzaplace dataset"
+  ) +
   # change fonts
-  theme(text = element_text(family = "Lexend", color = "gray30"),
-                 plot.title = element_text(family = "Lobster", size = 20, color = "tomato3"),
-                 plot.subtitle = element_text(family = "Lexend", size = 16), 
-                 axis.title.x = element_text(family = "Lobster", size = 16),
-                 axis.text.y = element_text(family = "Lobster", size = 16, color = "tomato3"))
+  theme(
+    text = element_text(family = "Lexend", color = "gray30"),
+    plot.title = element_text(family = "Lobster", size = 20, color = "tomato3"),
+    plot.subtitle = element_text(family = "Lexend", size = 16),
+    axis.title.x = element_text(family = "Lobster", size = 16),
+    axis.text.y = element_text(family = "Lobster", size = 16, color = "tomato3")
+  )
 ```
 
 ::: footer
@@ -1161,15 +1227,15 @@ Packages: [showtext](https://github.com/yixuan/showtext).
 max_sales <- max(pizza_totals$total)
 best_seller <- pizza_totals$type[pizza_totals$total == max_sales]
 
-plot_data <- pizza_totals %>%
+plot_data <- pizza_totals |>
   # Create a logical column to highlight the best seller
-  mutate(is_max = total == max_sales) %>%
+  mutate(is_max = total == max_sales) |>
   # Order the bars by total sales (optional, but professional practice)
   mutate(type = forcats::fct_reorder(type, total, .desc = TRUE))
 
 # Define the subtitle
 main_conclusion <- paste0(
-  "The '", best_seller, "' pizza is the clear leader with ", 
+  "The '", best_seller, "' pizza is the clear leader with ",
   scales::comma(max_sales), " units sold."
 )
 
@@ -1179,16 +1245,16 @@ pizza_plot2 <- ggplot(plot_data, aes(x = type, y = total, fill = is_max)) +
   geom_text(
     aes(label = scales::comma(total)),
     vjust = -0.5, # Position the text slightly above the bar
-    size = 4, 
+    size = 4,
     fontface = "bold"
   ) +
-  
+
   # Apply manual colors: Highlight color for TRUE, Neutral gray for FALSE
   scale_fill_manual(
     values = c("TRUE" = "tomato3", "FALSE" = "grey70"), # Red for highlight
     guide = "none" # Remove the legend for the fill color
   ) +
-  
+
   # Customize Titles and Labels
   labs(
     title = "Total Sales by Pizza Type",
@@ -1196,27 +1262,27 @@ pizza_plot2 <- ggplot(plot_data, aes(x = type, y = total, fill = is_max)) +
     x = "Pizza Type",
     y = "Total Units Sold"
   ) +
-  
+
   # Apply a clean cowplot theme
   theme_cowplot() +
-  
+
   # Remove y-axis clutter)
   theme(
     # Align and style title/subtitle
     plot.title.position = "plot",
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 14, color = "grey30"),
-    
+
     # Hide the y-axis line, ticks, and label as the data is already on the bars
     axis.line.y = element_blank(),
     axis.ticks.y = element_blank(),
     axis.text.y = element_blank(),
     axis.title.y = element_blank(),
-    
+
     # Add a faint grid line (a cowplot feature)
     panel.grid.major.y = element_line(color = "grey90", linetype = "dashed")
   ) +
-  
+
   # Ensure there is enough room for the labels on top
   scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
 
@@ -1235,10 +1301,11 @@ pizza_plot2
 #| echo: true
 #| eval: false
 ggplot2::ggsave("awesome_plot.png",
-                width = 5,
-                height = 5,
-                units = "cm",
-                dpi = "retina")
+  width = 5,
+  height = 5,
+  units = "cm",
+  dpi = "retina"
+)
 ```
 :::
 
@@ -1328,7 +1395,7 @@ Explorable explanations: [Nicky Case](https://ncase.me/), [Setosa](https://setos
 -  Hide code with `echo = FALSE` 
 -  or in your pre-amble: 
 
-```{r echo=TRUE, eval=FALSE}
+```yaml
 ---
 title: "example rmd"
 author: "Annie Johansson"
@@ -1352,7 +1419,7 @@ output:
 #| echo: true
 #| code-fold: true
 
-# your code here 
+# your code here
 ```
 
 

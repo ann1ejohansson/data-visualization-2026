@@ -2,8 +2,8 @@
 #
 # This script downloads everything you need to dig into the doorstroomtoets
 # ("transfer test") fairness debate. Background on what that debate actually
-# is, and why it matters, is in the main course repo:
-# https://github.com/ann1ejohansson/data-visualization-2026/blob/main/data/doorstroomtoetsen-context.md
+# is, and why it matters, is on the course website, under Resources >
+# "The data: background & codebook".
 #
 # We need FOUR files in total, and it's worth understanding why each one
 # is here before you run this:
@@ -91,29 +91,28 @@ if (!dir.exists(raw_dir)) dir.create(raw_dir, recursive = TRUE)
 # else in the script has to change.
 
 sources <- list(
-
   eindscores = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/05.-gemiddelde-eindscores-bo-sbo-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/05.-gemiddelde-eindscores-bo-sbo-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "eindscores_2024-2025.csv"),
     what = "average doorstroomtoets score per school per provider"
   ),
-
   referentieniveaus = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/10.-leerlingen-bo-referentieniveaus-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/10.-leerlingen-bo-referentieniveaus-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "referentieniveaus_2024-2025.csv"),
     what = "number of pupils per school reaching each 1F/1S/2F reference level"
   ),
-
   schooladviezen = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/04-leerlingen-bo-sbo-schooladviezen-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/04-leerlingen-bo-sbo-schooladviezen-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "schooladviezen_2024-2025.csv"),
     what = "number of pupils per school per secondary-school advice level"
   ),
-
   schoolweging = list(
-    url  = "https://www.onderwijsinspectie.nl/site/binaries/site-content/collections/documents/2026/02/09/schoolweging-2022-2023---2023-2024---2024-2025/schoolweging-2022-2023-2024.ods",
+    url = "https://www.onderwijsinspectie.nl/site/binaries/site-content/collections/documents/2026/02/09/schoolweging-2022-2023---2023-2024---2024-2025/schoolweging-2022-2023-2024.ods", # nolint: line_length_linter.
     dest = file.path(raw_dir, "schoolweging_2022-2025.ods"),
-    what = "schoolweging (disadvantage score) per school, published by the Onderwijsinspectie"
+    what = paste(
+      "schoolweging (disadvantage score) per school,",
+      "published by the Onderwijsinspectie"
+    )
   )
 )
 
@@ -153,7 +152,13 @@ eindscores <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("eindscores: ", nrow(eindscores), " rows, ", ncol(eindscores), " columns")
+message(
+  "eindscores: ",
+  nrow(eindscores),
+  " rows, ",
+  ncol(eindscores),
+  " columns"
+)
 
 referentieniveaus <- read_delim(
   sources$referentieniveaus$dest,
@@ -161,7 +166,13 @@ referentieniveaus <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("referentieniveaus: ", nrow(referentieniveaus), " rows, ", ncol(referentieniveaus), " columns")
+message(
+  "referentieniveaus: ",
+  nrow(referentieniveaus),
+  " rows, ",
+  ncol(referentieniveaus),
+  " columns"
+)
 
 schooladviezen <- read_delim(
   sources$schooladviezen$dest,
@@ -169,14 +180,26 @@ schooladviezen <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-message("schooladviezen: ", nrow(schooladviezen), " rows, ", ncol(schooladviezen), " columns")
+message(
+  "schooladviezen: ",
+  nrow(schooladviezen),
+  " rows, ",
+  ncol(schooladviezen),
+  " columns"
+)
 
 # The schoolweging file is a whole workbook, not a single table: it has one
 # sheet per school year, plus a three-year-average sheet and an explanatory
 # sheet. We want the "2024-2025" sheet specifically, because that's the one
 # school year that actually lines up with the other three files above.
 schoolweging <- read_ods(sources$schoolweging$dest, sheet = "2024-2025")
-message("schoolweging (2024-2025 sheet): ", nrow(schoolweging), " rows, ", ncol(schoolweging), " columns")
+message(
+  "schoolweging (2024-2025 sheet): ",
+  nrow(schoolweging),
+  " rows, ",
+  ncol(schoolweging),
+  " columns"
+)
 
 
 # ---- 5. before you try to join these together -----------------------------

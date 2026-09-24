@@ -1,28 +1,28 @@
 # ---------------------------
 # Function: allocate_groups
-# Rules: 
-# - Groups are only size 2 or 3 
-# - Split by RQ into groups of 3 
-# - Special case: exactly 5 -> 2 + 3 
+# Rules:
+# - Groups are only size 2 or 3
+# - Split by RQ into groups of 3
+# - Special case: exactly 5 -> 2 + 3
 # - Special case: exactly 4 -> 2 + 2
 # ---------------------------
 
 allocate_groups <- function(data) {
-  set.seed(NULL)  # randomize
-  
+  set.seed(NULL) # randomize
+
   groups <- list()
   group_id <- 1
-  
+
   # Split students by their RQ choice
-  split_RQs <- split(data, data$RQ)
-  
-  for (proj in names(split_RQs)) {
-    students <- split_RQs[[proj]]
-    
+  split_rqs <- split(data, data$RQ)
+
+  for (proj in names(split_rqs)) {
+    students <- split_rqs[[proj]]
+
     # Random shuffle
     students <- students[sample(nrow(students)), ]
     n <- nrow(students)
-    
+
     # --- Handle small cases ---
     if (n == 1) {
       groups[[group_id]] <- students
@@ -48,11 +48,11 @@ allocate_groups <- function(data) {
       group_id <- group_id + 1
       next
     }
-    
+
     # --- Normal case ---
-    full_groups <- n %/% 3   # how many full groups of 3
-    leftover <- n %% 3       # 0, 1, or 2
-    
+    full_groups <- n %/% 3 # how many full groups of 3
+    leftover <- n %% 3 # 0, 1, or 2
+
     # Make groups of 3
     if (full_groups > 0) {
       for (i in 1:full_groups) {
@@ -61,7 +61,7 @@ allocate_groups <- function(data) {
         group_id <- group_id + 1
       }
     }
-    
+
     # Handle leftover (1 or 2)
     if (leftover == 1) {
       # Turn last 3 into a 2 + 2 split
@@ -75,30 +75,23 @@ allocate_groups <- function(data) {
       group_id <- group_id + 1
     }
   }
-  
-  return(groups)
+
+  groups
 }
 
 # ---------------------------
 # Data
 # ---------------------------
 
-# # Test
-# set.seed(444)
-# students <- data.frame(
-#   Name = paste0("S", 1:35),
-#   RQ = sample(paste0("RQ", 1:4), 35, replace = TRUE)
-# )
-# 
-# # test with n < 3
-# students[which(students$RQ == "RQ1"), "RQ"] <- "RQ2"
-# students[1:2, "RQ"] <- "RQ1"
+# To test the allocation, replace `students` below with simulated data: e.g.
+# 35 students named S1-S35, each with a random choice out of RQ1-RQ5. Also
+# test a research question chosen by fewer than 3 students.
 
 students <- read.csv("choose-rq.csv", header = TRUE)
 names(students)[1] <- "Name"
 
 # ---------------------------
-# Allocate groups 
+# Allocate groups
 # ---------------------------
 groups <- allocate_groups(students)
 
@@ -112,14 +105,18 @@ for (i in seq_along(groups)) {
 final_groups <- do.call(rbind, lapply(seq_along(groups), function(i) {
   df <- groups[[i]]
   df$Group <- i
-  return(df)
+  df
 }))
 
-#remove row numbers
+# remove row numbers
 rownames(final_groups) <- NULL
 print(final_groups)
 table(final_groups$Group)
 write.csv(final_groups, file = "final_groups.csv")
 
-merged <- merge(students[, c("Name", "Github.username")], final_groups, by = c("Name"))
+merged <- merge(
+  students[, c("Name", "Github.username")],
+  final_groups,
+  by = c("Name")
+)
 write.csv(merged, file = "final_groups_username.csv")

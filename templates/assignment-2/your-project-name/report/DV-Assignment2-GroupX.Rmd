@@ -10,7 +10,8 @@ output:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-rm(list = ls()) # clear environment so knitting only depends on what's in this file
+# clear environment so knitting only depends on what's in this file
+rm(list = ls())
 
 # installs (if missing) and loads every package this project uses - add any
 # new packages to scripts/00-packages.R, not here
@@ -33,7 +34,6 @@ source(here("scripts", "01-get-data.R"))
 *Describe how you explored the data before settling on your final visualization. Include at least one exploratory plot below, and a short note on what it told you (or didn't).*
 
 ```{r exploratory-plot}
-
 ```
 
 ## Final visualization
@@ -41,7 +41,6 @@ source(here("scripts", "01-get-data.R"))
 *Your final, explanatory visualization goes below. Include a short write-up: what does it communicate, why is this the best way to communicate it, and how robust is the finding?*
 
 ```{r final-plot}
-
 ```
 
 ## Conclusion

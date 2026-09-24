@@ -15,21 +15,23 @@
 # know which download server (a "CRAN mirror") to use. RStudio usually sets
 # one for you, but if you're running this from a plain R console, the line
 # below picks one so the installs don't fail with a confusing error.
-if (is.null(getOption("repos")) || identical(getOption("repos")[["CRAN"]], "@CRAN@")) {
+no_cran_mirror <- is.null(getOption("repos")) ||
+  identical(getOption("repos")[["CRAN"]], "@CRAN@")
+if (no_cran_mirror) {
   options(repos = c(CRAN = "https://cloud.r-project.org"))
 }
 
 packages <- c(
-  "here",        # file paths that work from the project root AND from report/
-  "readODS",     # reads the schoolweging .ods spreadsheet
-  "cowplot",     # combining several ggplots into one figure (plot_grid())
-  "scales",      # nicer axis labels (percentages, thousands separators)
-  "plotly",      # interactive plots - ggplotly() turns a ggplot interactive
+  "here", # file paths that work from the project root AND from report/
+  "readODS", # reads the schoolweging .ods spreadsheet
+  "cowplot", # combining several ggplots into one figure (plot_grid())
+  "scales", # nicer axis labels (percentages, thousands separators)
+  "plotly", # interactive plots - ggplotly() turns a ggplot interactive
   "htmlwidgets", # saving an interactive plot as its own .html file
-  "lintr",       # code style check before submitting
-  "rmarkdown",   # knitting the report
-  "tidyverse"    # readr, dplyr, tidyr, ggplot2, stringr, ... - loaded last
-                 # so its functions win any name clash with the packages above
+  "lintr", # code style check before submitting
+  "rmarkdown", # knitting the report
+  "tidyverse" # readr, dplyr, tidyr, ggplot2, stringr, ... - loaded last
+  # so its functions win any name clash with the packages above
 )
 
 missing <- packages[!packages %in% installed.packages()[, "Package"]]

@@ -48,15 +48,15 @@ library(tidyverse)
 #| code-fold: true
 library("gt")
 data("pizzaplace")
-pizza_top <- pizzaplace %>%
-  mutate(size = factor(size, levels = c("S", "M", "L"))) %>%
-  count(name, type, size, price, sort = TRUE) %>%
+pizza_top <- pizzaplace |>
+  mutate(size = factor(size, levels = c("S", "M", "L"))) |>
+  count(name, type, size, price, sort = TRUE) |>
   top_n(n = 5)
-pizza_top %>%
-  gt() %>%
-  tab_header(title = "Pizza Top 5", subtitle = "2015") %>%
-  fmt_currency(columns = price, currency = "USD") %>%
-  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) %>%
+pizza_top |>
+  gt() |>
+  tab_header(title = "Pizza Top 5", subtitle = "2015") |>
+  fmt_currency(columns = price, currency = "USD") |>
+  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) |>
   opt_stylize(style = 6)
 ```
 :::
@@ -66,7 +66,7 @@ pizza_top %>%
 #| echo: true
 #| code-fold: true
 library("ggplot2")
-pizza_top %>%
+pizza_top |>
   ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +
   geom_point(aes(color = type, size = size)) +
   geom_text(aes(label = price), nudge_y = -30) +
@@ -83,15 +83,15 @@ pizza_top %>%
 #| echo: true
 #| code-fold: true
 library("gt")
-pizza_season <- pizzaplace %>%
-  mutate(month = lubridate::month(date, label = TRUE)) %>%
-  group_by(month) %>%
+pizza_season <- pizzaplace |>
+  mutate(month = lubridate::month(date, label = TRUE)) |>
+  group_by(month) |>
   count(type)
-pizza_season %>%
-  pivot_wider(names_from = month, values_from = n) %>%
-  gt() %>%
-  tab_header(title = "Pizza Season", subtitle = "2015") %>%
-  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) %>%
+pizza_season |>
+  pivot_wider(names_from = month, values_from = n) |>
+  gt() |>
+  tab_header(title = "Pizza Season", subtitle = "2015") |>
+  tab_source_note(source_note = md("Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)")) |>
   opt_stylize(style = 6)
 ```
 :::
@@ -104,13 +104,13 @@ pizza_season %>%
 #| fig.show: "hold"
 library("ggplot2")
 library("lubridate")
-fig_season_1 <- pizza_season %>%
+fig_season_1 <- pizza_season |>
   ggplot(aes(x = month, y = n, group = type)) +
   geom_bar(aes(fill = type), stat = "identity") +
   labs(title = "Pizza Season", subtitle = "2015", y = "Number of pizzas sold", x = "Month")
 fig_season_1
 
-fig_season_2 <- pizza_season %>%
+fig_season_2 <- pizza_season |>
   ggplot(aes(x = month, y = n, group = type)) +
   geom_line(aes(linetype = type)) +
   labs(title = "Pizza Season", subtitle = "2015", y = "Number of pizzas sold", x = "Month")
@@ -176,16 +176,16 @@ You can try it yourself with `geom_image()` from `ggimage`
 ```{r chart-junk, message=FALSE, fig.height=5, fig.width=10}
 library(ggimage)
 # aggregate to totals
-pizza_totals <- pizza_season %>%
-  group_by(type) %>%
-  summarise(total = sum(n), .groups = "drop") %>%
+pizza_totals <- pizza_season |>
+  group_by(type) |>
+  summarise(total = sum(n), .groups = "drop") |>
   mutate(n_icons = round(total / 1000))  # 1 pizza = 1000 sales
 
 # expand data: one row per pizza icon
 # this is a trick so that each pizza icon can be plotted separately (essentially using geom_point but appearing as a bar)
-chart_junk_data <- pizza_totals %>%
-  rowwise() %>%
-  mutate(icon_id = list(1:n_icons)) %>%
+chart_junk_data <- pizza_totals |>
+  rowwise() |>
+  mutate(icon_id = list(1:n_icons)) |>
   unnest(icon_id) 
 
 # plot with 🍕
@@ -293,13 +293,13 @@ fig_season_2 +
 ```{r}
 #| echo: true
 #| code-fold: true
-fig_season_1 <- pizza_season %>%
+fig_season_1 <- pizza_season |>
   mutate(quarter = case_when(
     month %in% c("Jan", "Feb", "Mar") ~ "Q1",
     month %in% c("Apr", "May", "Jun") ~ "Q2",
     month %in% c("Jul", "Aug", "Sep") ~ "Q3",
     month %in% c("Oct", "Nov", "Dec") ~ "Q4"
-  )) %>%
+  )) |>
   ggplot(aes(x = quarter, y = n, group = type)) +
   geom_bar(aes(fill = type), stat = "identity", position = "dodge") +
   labs(title = "Pizza Season", subtitle = "2015, split by quarter", y = "Number of pizzas sold", x = "")
@@ -474,7 +474,7 @@ showtext::showtext_auto()
 pizza_plot +
   # add a geom_rect element with opacity on top of pizza bars, to highlight the biggest bar
   geom_rect(
-    data = pizza_totals %>%
+    data = pizza_totals |>
       mutate(highlight = ifelse(type == "classic", TRUE, FALSE)),
     aes(xmin = 0, xmax = total/1000, 
         ymin = as.numeric(factor(type)) - 0.5, 

@@ -487,13 +487,18 @@
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(<span class="st">"datasauRus"</span>)</span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(scales)</span>
 <span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>datasaurus_dozen <span class="sc">%&gt;%</span> </span>
+<span id="cb1-4"><a></a>datasaurus_dozen <span class="sc">|&gt;</span></span>
 <span id="cb1-5"><a></a>  ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> dataset)) <span class="sc">+</span></span>
 <span id="cb1-6"><a></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb1-7"><a></a>  ggplot2<span class="sc">::</span><span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb1-8"><a></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"gray"</span>, <span class="at">fill =</span> <span class="st">"gray"</span>, <span class="at">alpha =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1-9"><a></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">+</span></span>
-<span id="cb1-10"><a></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-8"><a></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(</span>
+<span id="cb1-9"><a></a>    <span class="at">method =</span> <span class="st">"lm"</span>,</span>
+<span id="cb1-10"><a></a>    <span class="at">color =</span> <span class="st">"gray"</span>,</span>
+<span id="cb1-11"><a></a>    <span class="at">fill =</span> <span class="st">"gray"</span>,</span>
+<span id="cb1-12"><a></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
+<span id="cb1-13"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb1-14"><a></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">30</span>)) <span class="sc">+</span></span>
+<span id="cb1-15"><a></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1087,16 +1092,21 @@ the fundamentals of good data visualization</strong></p>
 <span id="cb3-12"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
 <span id="cb3-13"><a></a></span>
 <span id="cb3-14"><a></a><span class="co"># Combine with patchwork and add title</span></span>
-<span id="cb3-15"><a></a>combined <span class="ot">&lt;-</span> p1 <span class="sc">+</span> p2 <span class="sc">+</span> </span>
+<span id="cb3-15"><a></a>combined <span class="ot">&lt;-</span> p1 <span class="sc">+</span> p2 <span class="sc">+</span></span>
 <span id="cb3-16"><a></a>  <span class="fu">plot_annotation</span>(</span>
 <span id="cb3-17"><a></a>    <span class="at">title =</span> <span class="st">"Analysis of mtcars dataset"</span>,</span>
-<span id="cb3-18"><a></a>    <span class="at">subtitle =</span> <span class="st">"Exploring relationships between engine features and fuel efficiency"</span>,</span>
-<span id="cb3-19"><a></a>    <span class="at">caption =</span> <span class="st">"Data source: mtcars"</span>,</span>
-<span id="cb3-20"><a></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb3-21"><a></a>                  <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span>
-<span id="cb3-22"><a></a>  ) </span>
-<span id="cb3-23"><a></a></span>
-<span id="cb3-24"><a></a>combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-18"><a></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(</span>
+<span id="cb3-19"><a></a>      <span class="st">"Exploring relationships between engine features"</span>,</span>
+<span id="cb3-20"><a></a>      <span class="st">"and fuel efficiency"</span></span>
+<span id="cb3-21"><a></a>    ),</span>
+<span id="cb3-22"><a></a>    <span class="at">caption =</span> <span class="st">"Data source: mtcars"</span>,</span>
+<span id="cb3-23"><a></a>    <span class="at">theme =</span> <span class="fu">theme</span>(</span>
+<span id="cb3-24"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb3-25"><a></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb3-26"><a></a>    )</span>
+<span id="cb3-27"><a></a>  )</span>
+<span id="cb3-28"><a></a></span>
+<span id="cb3-29"><a></a>combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1119,35 +1129,40 @@ the fundamentals of good data visualization</strong></p>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
 <span id="cb4-2"><a></a><span class="fu">data</span>(<span class="st">"pizzaplace"</span>)</span>
-<span id="cb4-3"><a></a>pizza_top <span class="ot">&lt;-</span> pizzaplace <span class="sc">%&gt;%</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">factor</span>(size, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"M"</span>, <span class="st">"L"</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">count</span>(name, type, size, price, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a></a>pizza_top <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">factor</span>(size, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"M"</span>, <span class="st">"L"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">count</span>(name, type, size, price, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb4-6"><a></a>  <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb4-7"><a></a>pizza_top <span class="sc">%&gt;%</span></span>
-<span id="cb4-8"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb4-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-10"><a></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> price, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-11"><a></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb4-12"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a></a>pizza_top <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> price, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-11"><a></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb4-12"><a></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="fu">paste0</span>(</span>
+<span id="cb4-13"><a></a>      <span class="st">"Source: [pizzaplace dataset]"</span>,</span>
+<span id="cb4-14"><a></a>      <span class="st">"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span></span>
+<span id="cb4-15"><a></a>    ))</span>
+<span id="cb4-16"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="tiqnyoctqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tiqnyoctqu table {
+<div id="gzmrmhoqlt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gzmrmhoqlt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tiqnyoctqu thead, #tiqnyoctqu tbody, #tiqnyoctqu tfoot, #tiqnyoctqu tr, #tiqnyoctqu td, #tiqnyoctqu th {
+#gzmrmhoqlt thead, #gzmrmhoqlt tbody, #gzmrmhoqlt tfoot, #gzmrmhoqlt tr, #gzmrmhoqlt td, #gzmrmhoqlt th {
   border-style: none;
 }
 
-#tiqnyoctqu p {
+#gzmrmhoqlt p {
   margin: 0;
   padding: 0;
 }
 
-#tiqnyoctqu .gt_table {
+#gzmrmhoqlt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1173,12 +1188,12 @@ the fundamentals of good data visualization</strong></p>
   border-left-color: #D3D3D3;
 }
 
-#tiqnyoctqu .gt_caption {
+#gzmrmhoqlt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tiqnyoctqu .gt_title {
+#gzmrmhoqlt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1190,7 +1205,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-width: 0;
 }
 
-#tiqnyoctqu .gt_subtitle {
+#gzmrmhoqlt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1202,7 +1217,7 @@ the fundamentals of good data visualization</strong></p>
   border-top-width: 0;
 }
 
-#tiqnyoctqu .gt_heading {
+#gzmrmhoqlt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1214,13 +1229,13 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#tiqnyoctqu .gt_bottom_border {
+#gzmrmhoqlt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_col_headings {
+#gzmrmhoqlt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -1235,7 +1250,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#tiqnyoctqu .gt_col_heading {
+#gzmrmhoqlt .gt_col_heading {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1255,7 +1270,7 @@ the fundamentals of good data visualization</strong></p>
   overflow-x: hidden;
 }
 
-#tiqnyoctqu .gt_column_spanner_outer {
+#gzmrmhoqlt .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1267,15 +1282,15 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 4px;
 }
 
-#tiqnyoctqu .gt_column_spanner_outer:first-child {
+#gzmrmhoqlt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tiqnyoctqu .gt_column_spanner_outer:last-child {
+#gzmrmhoqlt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tiqnyoctqu .gt_column_spanner {
+#gzmrmhoqlt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -1287,11 +1302,11 @@ the fundamentals of good data visualization</strong></p>
   width: 100%;
 }
 
-#tiqnyoctqu .gt_spanner_row {
+#gzmrmhoqlt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tiqnyoctqu .gt_group_heading {
+#gzmrmhoqlt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1317,7 +1332,7 @@ the fundamentals of good data visualization</strong></p>
   text-align: left;
 }
 
-#tiqnyoctqu .gt_empty_group_heading {
+#gzmrmhoqlt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1332,15 +1347,15 @@ the fundamentals of good data visualization</strong></p>
   vertical-align: middle;
 }
 
-#tiqnyoctqu .gt_from_md > :first-child {
+#gzmrmhoqlt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tiqnyoctqu .gt_from_md > :last-child {
+#gzmrmhoqlt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tiqnyoctqu .gt_row {
+#gzmrmhoqlt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1359,7 +1374,7 @@ the fundamentals of good data visualization</strong></p>
   overflow-x: hidden;
 }
 
-#tiqnyoctqu .gt_stub {
+#gzmrmhoqlt .gt_stub {
   color: #333333;
   background-color: #89D3FE;
   font-size: 100%;
@@ -1372,7 +1387,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#tiqnyoctqu .gt_stub_row_group {
+#gzmrmhoqlt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1386,15 +1401,15 @@ the fundamentals of good data visualization</strong></p>
   vertical-align: top;
 }
 
-#tiqnyoctqu .gt_row_group_first td {
+#gzmrmhoqlt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tiqnyoctqu .gt_row_group_first th {
+#gzmrmhoqlt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tiqnyoctqu .gt_summary_row {
+#gzmrmhoqlt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1404,16 +1419,16 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#tiqnyoctqu .gt_first_summary_row {
+#gzmrmhoqlt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_first_summary_row.thick {
+#gzmrmhoqlt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tiqnyoctqu .gt_last_summary_row {
+#gzmrmhoqlt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1423,7 +1438,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_grand_summary_row {
+#gzmrmhoqlt .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -1433,7 +1448,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#tiqnyoctqu .gt_first_grand_summary_row {
+#gzmrmhoqlt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1443,7 +1458,7 @@ the fundamentals of good data visualization</strong></p>
   border-top-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_last_grand_summary_row_top {
+#gzmrmhoqlt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1453,11 +1468,11 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_striped {
+#gzmrmhoqlt .gt_striped {
   background-color: #EDF7FC;
 }
 
-#tiqnyoctqu .gt_table_body {
+#gzmrmhoqlt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -1466,7 +1481,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#tiqnyoctqu .gt_footnotes {
+#gzmrmhoqlt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1480,7 +1495,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#tiqnyoctqu .gt_footnote {
+#gzmrmhoqlt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1489,7 +1504,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#tiqnyoctqu .gt_sourcenotes {
+#gzmrmhoqlt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1503,7 +1518,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#tiqnyoctqu .gt_sourcenote {
+#gzmrmhoqlt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1511,72 +1526,72 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#tiqnyoctqu .gt_left {
+#gzmrmhoqlt .gt_left {
   text-align: left;
 }
 
-#tiqnyoctqu .gt_center {
+#gzmrmhoqlt .gt_center {
   text-align: center;
 }
 
-#tiqnyoctqu .gt_right {
+#gzmrmhoqlt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tiqnyoctqu .gt_font_normal {
+#gzmrmhoqlt .gt_font_normal {
   font-weight: normal;
 }
 
-#tiqnyoctqu .gt_font_bold {
+#gzmrmhoqlt .gt_font_bold {
   font-weight: bold;
 }
 
-#tiqnyoctqu .gt_font_italic {
+#gzmrmhoqlt .gt_font_italic {
   font-style: italic;
 }
 
-#tiqnyoctqu .gt_super {
+#gzmrmhoqlt .gt_super {
   font-size: 65%;
 }
 
-#tiqnyoctqu .gt_footnote_marks {
+#gzmrmhoqlt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tiqnyoctqu .gt_asterisk {
+#gzmrmhoqlt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tiqnyoctqu .gt_indent_1 {
+#gzmrmhoqlt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tiqnyoctqu .gt_indent_2 {
+#gzmrmhoqlt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tiqnyoctqu .gt_indent_3 {
+#gzmrmhoqlt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tiqnyoctqu .gt_indent_4 {
+#gzmrmhoqlt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tiqnyoctqu .gt_indent_5 {
+#gzmrmhoqlt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tiqnyoctqu .katex-display {
+#gzmrmhoqlt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tiqnyoctqu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gzmrmhoqlt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1656,11 +1671,11 @@ the fundamentals of good data visualization</strong></p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb5-2"><a></a>pizza_top <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a></a>pizza_top <span class="sc">|&gt;</span></span>
 <span id="cb5-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), <span class="at">y =</span> n)) <span class="sc">+</span></span>
 <span id="cb5-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type, <span class="at">size =</span> size)) <span class="sc">+</span></span>
 <span id="cb5-5"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> price), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">x =</span> <span class="st">"name"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">x =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -1680,35 +1695,40 @@ the fundamentals of good data visualization</strong></p>
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
-<span id="cb6-2"><a></a>pizza_season <span class="ot">&lt;-</span> pizzaplace <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a></a>pizza_season <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
 <span id="cb6-5"><a></a>  <span class="fu">count</span>(type)</span>
-<span id="cb6-6"><a></a>pizza_season <span class="sc">%&gt;%</span></span>
-<span id="cb6-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> month, <span class="at">values_from =</span> n) <span class="sc">%&gt;%</span></span>
-<span id="cb6-8"><a></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-10"><a></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb6-11"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-6"><a></a>pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> month, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb6-11"><a></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="fu">paste0</span>(</span>
+<span id="cb6-12"><a></a>      <span class="st">"Source: [pizzaplace dataset]"</span>,</span>
+<span id="cb6-13"><a></a>      <span class="st">"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span></span>
+<span id="cb6-14"><a></a>    ))</span>
+<span id="cb6-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="bhriwarfll" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bhriwarfll table {
+<div id="hcdqveghmr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hcdqveghmr table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bhriwarfll thead, #bhriwarfll tbody, #bhriwarfll tfoot, #bhriwarfll tr, #bhriwarfll td, #bhriwarfll th {
+#hcdqveghmr thead, #hcdqveghmr tbody, #hcdqveghmr tfoot, #hcdqveghmr tr, #hcdqveghmr td, #hcdqveghmr th {
   border-style: none;
 }
 
-#bhriwarfll p {
+#hcdqveghmr p {
   margin: 0;
   padding: 0;
 }
 
-#bhriwarfll .gt_table {
+#hcdqveghmr .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1734,12 +1754,12 @@ the fundamentals of good data visualization</strong></p>
   border-left-color: #D3D3D3;
 }
 
-#bhriwarfll .gt_caption {
+#hcdqveghmr .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bhriwarfll .gt_title {
+#hcdqveghmr .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1751,7 +1771,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-width: 0;
 }
 
-#bhriwarfll .gt_subtitle {
+#hcdqveghmr .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1763,7 +1783,7 @@ the fundamentals of good data visualization</strong></p>
   border-top-width: 0;
 }
 
-#bhriwarfll .gt_heading {
+#hcdqveghmr .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1775,13 +1795,13 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#bhriwarfll .gt_bottom_border {
+#hcdqveghmr .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_col_headings {
+#hcdqveghmr .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -1796,7 +1816,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#bhriwarfll .gt_col_heading {
+#hcdqveghmr .gt_col_heading {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1816,7 +1836,7 @@ the fundamentals of good data visualization</strong></p>
   overflow-x: hidden;
 }
 
-#bhriwarfll .gt_column_spanner_outer {
+#hcdqveghmr .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1828,15 +1848,15 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 4px;
 }
 
-#bhriwarfll .gt_column_spanner_outer:first-child {
+#hcdqveghmr .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bhriwarfll .gt_column_spanner_outer:last-child {
+#hcdqveghmr .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bhriwarfll .gt_column_spanner {
+#hcdqveghmr .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -1848,11 +1868,11 @@ the fundamentals of good data visualization</strong></p>
   width: 100%;
 }
 
-#bhriwarfll .gt_spanner_row {
+#hcdqveghmr .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bhriwarfll .gt_group_heading {
+#hcdqveghmr .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1878,7 +1898,7 @@ the fundamentals of good data visualization</strong></p>
   text-align: left;
 }
 
-#bhriwarfll .gt_empty_group_heading {
+#hcdqveghmr .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1893,15 +1913,15 @@ the fundamentals of good data visualization</strong></p>
   vertical-align: middle;
 }
 
-#bhriwarfll .gt_from_md > :first-child {
+#hcdqveghmr .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bhriwarfll .gt_from_md > :last-child {
+#hcdqveghmr .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bhriwarfll .gt_row {
+#hcdqveghmr .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1920,7 +1940,7 @@ the fundamentals of good data visualization</strong></p>
   overflow-x: hidden;
 }
 
-#bhriwarfll .gt_stub {
+#hcdqveghmr .gt_stub {
   color: #333333;
   background-color: #89D3FE;
   font-size: 100%;
@@ -1933,7 +1953,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#bhriwarfll .gt_stub_row_group {
+#hcdqveghmr .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1947,15 +1967,15 @@ the fundamentals of good data visualization</strong></p>
   vertical-align: top;
 }
 
-#bhriwarfll .gt_row_group_first td {
+#hcdqveghmr .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bhriwarfll .gt_row_group_first th {
+#hcdqveghmr .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bhriwarfll .gt_summary_row {
+#hcdqveghmr .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1965,16 +1985,16 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#bhriwarfll .gt_first_summary_row {
+#hcdqveghmr .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_first_summary_row.thick {
+#hcdqveghmr .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bhriwarfll .gt_last_summary_row {
+#hcdqveghmr .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1984,7 +2004,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_grand_summary_row {
+#hcdqveghmr .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -1994,7 +2014,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#bhriwarfll .gt_first_grand_summary_row {
+#hcdqveghmr .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2004,7 +2024,7 @@ the fundamentals of good data visualization</strong></p>
   border-top-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_last_grand_summary_row_top {
+#hcdqveghmr .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2014,11 +2034,11 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_striped {
+#hcdqveghmr .gt_striped {
   background-color: #EDF7FC;
 }
 
-#bhriwarfll .gt_table_body {
+#hcdqveghmr .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -2027,7 +2047,7 @@ the fundamentals of good data visualization</strong></p>
   border-bottom-color: #5F5F5F;
 }
 
-#bhriwarfll .gt_footnotes {
+#hcdqveghmr .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2041,7 +2061,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#bhriwarfll .gt_footnote {
+#hcdqveghmr .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2050,7 +2070,7 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#bhriwarfll .gt_sourcenotes {
+#hcdqveghmr .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2064,7 +2084,7 @@ the fundamentals of good data visualization</strong></p>
   border-right-color: #D3D3D3;
 }
 
-#bhriwarfll .gt_sourcenote {
+#hcdqveghmr .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2072,72 +2092,72 @@ the fundamentals of good data visualization</strong></p>
   padding-right: 5px;
 }
 
-#bhriwarfll .gt_left {
+#hcdqveghmr .gt_left {
   text-align: left;
 }
 
-#bhriwarfll .gt_center {
+#hcdqveghmr .gt_center {
   text-align: center;
 }
 
-#bhriwarfll .gt_right {
+#hcdqveghmr .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bhriwarfll .gt_font_normal {
+#hcdqveghmr .gt_font_normal {
   font-weight: normal;
 }
 
-#bhriwarfll .gt_font_bold {
+#hcdqveghmr .gt_font_bold {
   font-weight: bold;
 }
 
-#bhriwarfll .gt_font_italic {
+#hcdqveghmr .gt_font_italic {
   font-style: italic;
 }
 
-#bhriwarfll .gt_super {
+#hcdqveghmr .gt_super {
   font-size: 65%;
 }
 
-#bhriwarfll .gt_footnote_marks {
+#hcdqveghmr .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bhriwarfll .gt_asterisk {
+#hcdqveghmr .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bhriwarfll .gt_indent_1 {
+#hcdqveghmr .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bhriwarfll .gt_indent_2 {
+#hcdqveghmr .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bhriwarfll .gt_indent_3 {
+#hcdqveghmr .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bhriwarfll .gt_indent_4 {
+#hcdqveghmr .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bhriwarfll .gt_indent_5 {
+#hcdqveghmr .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bhriwarfll .katex-display {
+#hcdqveghmr .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bhriwarfll div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#hcdqveghmr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2260,11 +2280,16 @@ the fundamentals of good data visualization</strong></p>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
 <span id="cb7-2"><a></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
-<span id="cb7-3"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
 <span id="cb7-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
 <span id="cb7-5"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb7-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">"Month"</span>)</span>
-<span id="cb7-7"><a></a>fig_season_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-6"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-7"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb7-8"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb7-9"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb7-10"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb7-11"><a></a>  )</span>
+<span id="cb7-12"><a></a>fig_season_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2279,11 +2304,16 @@ the fundamentals of good data visualization</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fig_season_2 <span class="ot">&lt;-</span> pizza_season <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fig_season_2 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
 <span id="cb8-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> type)) <span class="sc">+</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">"Month"</span>)</span>
-<span id="cb8-5"><a></a>fig_season_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-5"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb8-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb8-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb8-8"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb8-9"><a></a>  )</span>
+<span id="cb8-10"><a></a>fig_season_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2375,44 +2405,47 @@ the fundamentals of good data visualization</strong></p>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(ggimage)</span>
 <span id="cb9-2"><a></a><span class="co"># aggregate to totals</span></span>
-<span id="cb9-3"><a></a>pizza_totals <span class="ot">&lt;-</span> pizza_season <span class="sc">%&gt;%</span></span>
-<span id="cb9-4"><a></a>  <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(n), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-6"><a></a>  <span class="fu">mutate</span>(<span class="at">n_icons =</span> <span class="fu">round</span>(total <span class="sc">/</span> <span class="dv">1000</span>))  <span class="co"># 1 pizza = 1000 sales</span></span>
+<span id="cb9-3"><a></a>pizza_totals <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(n), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a></a>  <span class="fu">mutate</span>(<span class="at">n_icons =</span> <span class="fu">round</span>(total <span class="sc">/</span> <span class="dv">1000</span>)) <span class="co"># 1 pizza = 1000 sales</span></span>
 <span id="cb9-7"><a></a></span>
 <span id="cb9-8"><a></a><span class="co"># expand data: one row per pizza icon</span></span>
-<span id="cb9-9"><a></a><span class="co"># this is a trick so that each pizza icon can be plotted separately (essentially using geom_point but appearing as a bar)</span></span>
-<span id="cb9-10"><a></a>chart_junk_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">%&gt;%</span></span>
-<span id="cb9-11"><a></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-12"><a></a>  <span class="fu">mutate</span>(<span class="at">icon_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span>n_icons)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-13"><a></a>  <span class="fu">unnest</span>(icon_id) </span>
-<span id="cb9-14"><a></a></span>
-<span id="cb9-15"><a></a><span class="co"># plot with 🍕</span></span>
-<span id="cb9-16"><a></a>pizza_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chart_junk_data, <span class="fu">aes</span>(<span class="at">x =</span> icon_id, <span class="at">y =</span> type)) <span class="sc">+</span></span>
-<span id="cb9-17"><a></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> <span class="st">"images/pizza.png"</span>), <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb9-18"><a></a>  <span class="co"># add white rectangle to cover up excess icons (taken from pizza_totals data)</span></span>
-<span id="cb9-19"><a></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb9-20"><a></a>    <span class="at">data =</span> pizza_totals,</span>
-<span id="cb9-21"><a></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> total<span class="sc">/</span><span class="dv">1000</span>, <span class="at">xmax =</span> total<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">2</span>, </span>
-<span id="cb9-22"><a></a>        <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>, </span>
-<span id="cb9-23"><a></a>        <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>),</span>
-<span id="cb9-24"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb9-25"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
-<span id="cb9-26"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb9-27"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-28"><a></a>    <span class="at">title =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
-<span id="cb9-29"><a></a>    <span class="at">x =</span> <span class="st">"Sales (Scale 1:1000)"</span>,</span>
-<span id="cb9-30"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
-<span id="cb9-31"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb9-32"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
-<span id="cb9-33"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb9-34"><a></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-35"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-36"><a></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb9-37"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb9-38"><a></a>  )</span>
-<span id="cb9-39"><a></a></span>
-<span id="cb9-40"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a></a><span class="co"># this is a trick so that each pizza icon can be plotted separately (essentially</span></span>
+<span id="cb9-10"><a></a><span class="co"># using geom_point but appearing as a bar)</span></span>
+<span id="cb9-11"><a></a>chart_junk_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a></a>  <span class="fu">mutate</span>(<span class="at">icon_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span>n_icons)) <span class="sc">|&gt;</span></span>
+<span id="cb9-14"><a></a>  <span class="fu">unnest</span>(icon_id)</span>
+<span id="cb9-15"><a></a></span>
+<span id="cb9-16"><a></a><span class="co"># plot with 🍕</span></span>
+<span id="cb9-17"><a></a>pizza_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chart_junk_data, <span class="fu">aes</span>(<span class="at">x =</span> icon_id, <span class="at">y =</span> type)) <span class="sc">+</span></span>
+<span id="cb9-18"><a></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> <span class="st">"images/pizza.png"</span>), <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a></a>  <span class="co"># add white rectangle to cover up excess icons (taken from pizza_totals data)</span></span>
+<span id="cb9-20"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb9-21"><a></a>    <span class="at">data =</span> pizza_totals,</span>
+<span id="cb9-22"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb9-23"><a></a>      <span class="at">xmin =</span> total <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb9-24"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb9-25"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span></span>
+<span id="cb9-26"><a></a>    ),</span>
+<span id="cb9-27"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-28"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb9-29"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-30"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-31"><a></a>    <span class="at">title =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb9-32"><a></a>    <span class="at">x =</span> <span class="st">"Sales (Scale 1:1000)"</span>,</span>
+<span id="cb9-33"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb9-34"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-35"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb9-36"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-37"><a></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-38"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-39"><a></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-40"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-41"><a></a>  )</span>
+<span id="cb9-42"><a></a></span>
+<span id="cb9-43"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2504,9 +2537,11 @@ the fundamentals of good data visualization</strong></p>
 <span id="cb13-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
 <span id="cb13-4"><a></a>  <span class="fu">theme_minimal</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb13-6"><a></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"plum4"</span>),</span>
-<span id="cb13-7"><a></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"thistle2"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># fill for background; color for border</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-6"><a></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb13-7"><a></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"plum4"</span>),</span>
+<span id="cb13-8"><a></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"thistle2"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb13-9"><a></a>  ) <span class="co"># fill for background; color for border</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2524,19 +2559,24 @@ the fundamentals of good data visualization</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>fig_quarter <span class="ot">&lt;-</span> pizza_season <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>fig_quarter <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">mutate</span>(<span class="at">quarter =</span> <span class="fu">case_when</span>(</span>
 <span id="cb14-3"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>) <span class="sc">~</span> <span class="st">"Q1"</span>,</span>
 <span id="cb14-4"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>) <span class="sc">~</span> <span class="st">"Q2"</span>,</span>
 <span id="cb14-5"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>) <span class="sc">~</span> <span class="st">"Q3"</span>,</span>
 <span id="cb14-6"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>) <span class="sc">~</span> <span class="st">"Q4"</span></span>
-<span id="cb14-7"><a></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a></a>  )) <span class="sc">|&gt;</span></span>
 <span id="cb14-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quarter, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
 <span id="cb14-9"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb14-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015, split by quarter"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">""</span>)</span>
-<span id="cb14-11"><a></a></span>
-<span id="cb14-12"><a></a>fig_quarter <span class="sc">+</span></span>
-<span id="cb14-13"><a></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-11"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb14-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015, split by quarter"</span>,</span>
+<span id="cb14-13"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb14-14"><a></a>    <span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb14-15"><a></a>  )</span>
+<span id="cb14-16"><a></a></span>
+<span id="cb14-17"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb14-18"><a></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2611,7 +2651,7 @@ the fundamentals of good data visualization</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># remotes::install_github("clauswilke/colorblindr")</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># colorblindr is installed from GitHub (clauswilke/colorblindr)</span></span>
 <span id="cb18-2"><a></a><span class="fu">library</span>(<span class="st">"colorblindr"</span>)</span>
 <span id="cb18-3"><a></a>colorblindr<span class="sc">::</span><span class="fu">cvd_grid</span>(fig_quarter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -2644,7 +2684,9 @@ the fundamentals of good data visualization</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>fig_quarter <span class="sc">+</span><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> MetBrewer<span class="sc">::</span><span class="fu">met.brewer</span>(<span class="st">"VanGogh3"</span>, <span class="at">n =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>fig_quarter <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb21-2"><a></a>  <span class="at">values =</span> MetBrewer<span class="sc">::</span><span class="fu">met.brewer</span>(<span class="st">"VanGogh3"</span>, <span class="at">n =</span> <span class="dv">4</span>)</span>
+<span id="cb21-3"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2777,27 +2819,34 @@ the fundamentals of good data visualization</strong></p>
 <span id="cb24-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
 <span id="cb24-4"><a></a></span>
 <span id="cb24-5"><a></a>pizza_plot <span class="sc">+</span></span>
-<span id="cb24-6"><a></a>  <span class="co"># add a geom_rect element with opacity on top of pizza bars, to highlight the biggest bar</span></span>
-<span id="cb24-7"><a></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb24-8"><a></a>    <span class="at">data =</span> pizza_totals <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a></a>      <span class="fu">mutate</span>(<span class="at">highlight =</span> <span class="fu">ifelse</span>(type <span class="sc">==</span> <span class="st">"classic"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
-<span id="cb24-10"><a></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> total<span class="sc">/</span><span class="dv">1000</span>, </span>
-<span id="cb24-11"><a></a>        <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>, </span>
-<span id="cb24-12"><a></a>        <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
-<span id="cb24-13"><a></a>        <span class="at">alpha =</span> highlight),</span>
-<span id="cb24-14"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb24-15"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
-<span id="cb24-16"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb24-17"><a></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="fl">0.3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb24-18"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The classic is a classic for a reason."</span>,</span>
-<span id="cb24-19"><a></a>       <span class="at">subtitle =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
-<span id="cb24-20"><a></a>       <span class="at">caption =</span> <span class="st">"Source: pizzaplace dataset"</span>) <span class="sc">+</span></span>
-<span id="cb24-21"><a></a>  <span class="co"># change fonts</span></span>
-<span id="cb24-22"><a></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
-<span id="cb24-23"><a></a>                 <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>),</span>
-<span id="cb24-24"><a></a>                 <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">size =</span> <span class="dv">16</span>), </span>
-<span id="cb24-25"><a></a>                 <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb24-26"><a></a>                 <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a></a>  <span class="co"># add a geom_rect element with opacity on top of pizza bars, to highlight the</span></span>
+<span id="cb24-7"><a></a>  <span class="co"># biggest bar</span></span>
+<span id="cb24-8"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb24-9"><a></a>    <span class="at">data =</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb24-10"><a></a>      <span class="fu">mutate</span>(<span class="at">highlight =</span> <span class="fu">ifelse</span>(type <span class="sc">==</span> <span class="st">"classic"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb24-11"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb24-12"><a></a>      <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb24-13"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb24-14"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb24-15"><a></a>      <span class="at">alpha =</span> highlight</span>
+<span id="cb24-16"><a></a>    ),</span>
+<span id="cb24-17"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb24-18"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb24-19"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-20"><a></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="fl">0.3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb24-21"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-22"><a></a>    <span class="at">title =</span> <span class="st">"The classic is a classic for a reason."</span>,</span>
+<span id="cb24-23"><a></a>    <span class="at">subtitle =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb24-24"><a></a>    <span class="at">caption =</span> <span class="st">"Source: pizzaplace dataset"</span></span>
+<span id="cb24-25"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb24-26"><a></a>  <span class="co"># change fonts</span></span>
+<span id="cb24-27"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb24-28"><a></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
+<span id="cb24-29"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>),</span>
+<span id="cb24-30"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb24-31"><a></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb24-32"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>)</span>
+<span id="cb24-33"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2820,15 +2869,15 @@ the fundamentals of good data visualization</strong></p>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>max_sales <span class="ot">&lt;-</span> <span class="fu">max</span>(pizza_totals<span class="sc">$</span>total)</span>
 <span id="cb25-2"><a></a>best_seller <span class="ot">&lt;-</span> pizza_totals<span class="sc">$</span>type[pizza_totals<span class="sc">$</span>total <span class="sc">==</span> max_sales]</span>
 <span id="cb25-3"><a></a></span>
-<span id="cb25-4"><a></a>plot_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a></a>plot_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
 <span id="cb25-5"><a></a>  <span class="co"># Create a logical column to highlight the best seller</span></span>
-<span id="cb25-6"><a></a>  <span class="fu">mutate</span>(<span class="at">is_max =</span> total <span class="sc">==</span> max_sales) <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a></a>  <span class="fu">mutate</span>(<span class="at">is_max =</span> total <span class="sc">==</span> max_sales) <span class="sc">|&gt;</span></span>
 <span id="cb25-7"><a></a>  <span class="co"># Order the bars by total sales (optional, but professional practice)</span></span>
 <span id="cb25-8"><a></a>  <span class="fu">mutate</span>(<span class="at">type =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(type, total, <span class="at">.desc =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb25-9"><a></a></span>
 <span id="cb25-10"><a></a><span class="co"># Define the subtitle</span></span>
 <span id="cb25-11"><a></a>main_conclusion <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb25-12"><a></a>  <span class="st">"The '"</span>, best_seller, <span class="st">"' pizza is the clear leader with "</span>, </span>
+<span id="cb25-12"><a></a>  <span class="st">"The '"</span>, best_seller, <span class="st">"' pizza is the clear leader with "</span>,</span>
 <span id="cb25-13"><a></a>  scales<span class="sc">::</span><span class="fu">comma</span>(max_sales), <span class="st">" units sold."</span></span>
 <span id="cb25-14"><a></a>)</span>
 <span id="cb25-15"><a></a></span>
@@ -2838,16 +2887,16 @@ the fundamentals of good data visualization</strong></p>
 <span id="cb25-19"><a></a>  <span class="fu">geom_text</span>(</span>
 <span id="cb25-20"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total)),</span>
 <span id="cb25-21"><a></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="co"># Position the text slightly above the bar</span></span>
-<span id="cb25-22"><a></a>    <span class="at">size =</span> <span class="dv">4</span>, </span>
+<span id="cb25-22"><a></a>    <span class="at">size =</span> <span class="dv">4</span>,</span>
 <span id="cb25-23"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
 <span id="cb25-24"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb25-25"><a></a>  </span>
+<span id="cb25-25"><a></a></span>
 <span id="cb25-26"><a></a>  <span class="co"># Apply manual colors: Highlight color for TRUE, Neutral gray for FALSE</span></span>
 <span id="cb25-27"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
 <span id="cb25-28"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"tomato3"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"grey70"</span>), <span class="co"># Red for highlight</span></span>
 <span id="cb25-29"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span> <span class="co"># Remove the legend for the fill color</span></span>
 <span id="cb25-30"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb25-31"><a></a>  </span>
+<span id="cb25-31"><a></a></span>
 <span id="cb25-32"><a></a>  <span class="co"># Customize Titles and Labels</span></span>
 <span id="cb25-33"><a></a>  <span class="fu">labs</span>(</span>
 <span id="cb25-34"><a></a>    <span class="at">title =</span> <span class="st">"Total Sales by Pizza Type"</span>,</span>
@@ -2855,27 +2904,27 @@ the fundamentals of good data visualization</strong></p>
 <span id="cb25-36"><a></a>    <span class="at">x =</span> <span class="st">"Pizza Type"</span>,</span>
 <span id="cb25-37"><a></a>    <span class="at">y =</span> <span class="st">"Total Units Sold"</span></span>
 <span id="cb25-38"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb25-39"><a></a>  </span>
+<span id="cb25-39"><a></a></span>
 <span id="cb25-40"><a></a>  <span class="co"># Apply a clean cowplot theme</span></span>
 <span id="cb25-41"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb25-42"><a></a>  </span>
+<span id="cb25-42"><a></a></span>
 <span id="cb25-43"><a></a>  <span class="co"># Remove y-axis clutter)</span></span>
 <span id="cb25-44"><a></a>  <span class="fu">theme</span>(</span>
 <span id="cb25-45"><a></a>    <span class="co"># Align and style title/subtitle</span></span>
 <span id="cb25-46"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
 <span id="cb25-47"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
 <span id="cb25-48"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">"grey30"</span>),</span>
-<span id="cb25-49"><a></a>    </span>
+<span id="cb25-49"><a></a></span>
 <span id="cb25-50"><a></a>    <span class="co"># Hide the y-axis line, ticks, and label as the data is already on the bars</span></span>
 <span id="cb25-51"><a></a>    <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb25-52"><a></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb25-53"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb25-54"><a></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb25-55"><a></a>    </span>
+<span id="cb25-55"><a></a></span>
 <span id="cb25-56"><a></a>    <span class="co"># Add a faint grid line (a cowplot feature)</span></span>
 <span id="cb25-57"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span>
 <span id="cb25-58"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb25-59"><a></a>  </span>
+<span id="cb25-59"><a></a></span>
 <span id="cb25-60"><a></a>  <span class="co"># Ensure there is enough room for the labels on top</span></span>
 <span id="cb25-61"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>)))</span>
 <span id="cb25-62"><a></a></span>
@@ -2901,10 +2950,11 @@ the fundamentals of good data visualization</strong></p>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"awesome_plot.png"</span>,</span>
-<span id="cb26-2"><a></a>                <span class="at">width =</span> <span class="dv">5</span>,</span>
-<span id="cb26-3"><a></a>                <span class="at">height =</span> <span class="dv">5</span>,</span>
-<span id="cb26-4"><a></a>                <span class="at">units =</span> <span class="st">"cm"</span>,</span>
-<span id="cb26-5"><a></a>                <span class="at">dpi =</span> <span class="st">"retina"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-2"><a></a>  <span class="at">width =</span> <span class="dv">5</span>,</span>
+<span id="cb26-3"><a></a>  <span class="at">height =</span> <span class="dv">5</span>,</span>
+<span id="cb26-4"><a></a>  <span class="at">units =</span> <span class="st">"cm"</span>,</span>
+<span id="cb26-5"><a></a>  <span class="at">dpi =</span> <span class="st">"retina"</span></span>
+<span id="cb26-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
@@ -3006,16 +3056,14 @@ the fundamentals of good data visualization</strong></p>
 <li>Hide code with <code>echo = FALSE</code></li>
 <li>or in your pre-amble:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="sc">---</span></span>
-<span id="cb27-2"><a></a>title<span class="sc">:</span> <span class="st">"example rmd"</span></span>
-<span id="cb27-3"><a></a>author<span class="sc">:</span> <span class="st">"Annie Johansson"</span></span>
-<span id="cb27-4"><a></a>date<span class="sc">:</span> <span class="st">"`r Sys.Date()`"</span></span>
-<span id="cb27-5"><a></a>output<span class="sc">:</span> </span>
-<span id="cb27-6"><a></a>  html_document<span class="sc">:</span></span>
-<span id="cb27-7"><a></a>    code<span class="sc">-</span>folding<span class="sc">:</span> hide</span>
-<span id="cb27-8"><a></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a></a><span class="pp">---</span></span>
+<span id="cb27-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"example rmd"</span></span>
+<span id="cb27-3"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Annie Johansson"</span></span>
+<span id="cb27-4"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-09-23"</span></span>
+<span id="cb27-5"><a></a><span class="fu">output</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb27-6"><a></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb27-7"><a></a><span class="at">    </span><span class="fu">code-folding</span><span class="kw">:</span><span class="at"> hide</span></span>
+<span id="cb27-8"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>or in your code chunk:</li>
 </ul>
@@ -3026,7 +3074,7 @@ the fundamentals of good data visualization</strong></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># your code here </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -3496,7 +3544,7 @@ the fundamentals of good data visualization</strong></p>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":false});
+    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","openEffect":"zoom","loop":false,"closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

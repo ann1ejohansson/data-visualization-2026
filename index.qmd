@@ -32,26 +32,26 @@ In this module, you will learn a wide set of data visualisation tools for both s
 <th>Materials &amp; Assignments</th>
 </tr>
 <tr>
-<td><strong>1)</strong> Tuesday 29/9 15.00-18.00<br>GC-11</td>
-<td>Fundamentals — best/bad plots, ggplot recap, explain assignments</td>
-<td>Read: DV ch. 1, ch. 3<br>Worksheet: ggplot recap</td>
+<td><strong>Session 1.</strong> Tuesday 29/9 15.00-18.00<br>GS.11</td>
+<td>Fundamentals of DV<br>ggplot recap<br>Intro to Assignments</td>
+<td>Read: DV ch. 1; ch. 3<br>Worksheet: ggplot recap</td>
 </tr>
 <tr>
-<td><strong>2)</strong> Friday 2/10 12.00-15.00<br>HvA</td>
-<td>Recap exploratory/explanatory, interactive viz, working with AI — exploring data</td>
+<td><strong>Session 2.</strong> Friday 2/10 12.00-15.00<br>HvA</td>
+<td>Exploratory vs. Explanatory viz<br>Interactive viz<br>Using AI for exploratory viz</td>
 <td>Worksheet: ggplotly<br>Worksheet: working with AI, pt. 1</td>
 </tr>
 <tr>
 <td colspan="3"><strong>Deadline DV Assignment 1 (individual) + DV Assignment 2, Part 1 (group) – Sunday 4/10 23.59</strong></td>
 </tr>
 <tr>
-<td><strong>3)</strong> Tuesday 6/10 15.00-18.00<br>GC-11</td>
-<td>Advanced principles, working with AI — explaining data, explain pitches</td>
+<td><strong>Session 3.</strong> Tuesday 6/10 15.00-18.00<br>GS.11</td>
+<td>Advanced DV principles<br>Using AI for explanatory viz<br>Explanation of Pitches and Work on Assignment 2</td>
 <td>Worksheet: working with AI, pt. 2<br>Read: DV ch. 8</td>
 </tr>
 <tr>
-<td><strong>4)</strong> Friday 9/10 12.00-15.00<br>HvA</td>
-<td>Pitches, eval: working with AI, Q&amp;A</td>
+<td><strong>Session 4.</strong> Friday 9/10 12.00-15.00<br>HvA</td>
+<td>Pitches<br>Evaluations<br>Q&amp;A</td>
 <td> </td>
 </tr>
 <tr>

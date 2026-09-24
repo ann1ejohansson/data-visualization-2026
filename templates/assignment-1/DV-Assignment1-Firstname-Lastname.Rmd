@@ -34,11 +34,21 @@ rm(list = ls()) # Remove any existing objects in memory
 # Install any missing, but required packages
 all_installed_packages <- installed.packages()[, "Package"]
 # nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
-if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
-if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
-if (!"readODS" %in% all_installed_packages) {install.packages("readODS")}
-if (!"plotly" %in% all_installed_packages) {install.packages("plotly")}
-if (!"lintr" %in% all_installed_packages) {install.packages("lintr")}
+if (!"tidyverse" %in% all_installed_packages) {
+  install.packages("tidyverse")
+}
+if (!"cowplot" %in% all_installed_packages) {
+  install.packages("cowplot")
+}
+if (!"readODS" %in% all_installed_packages) {
+  install.packages("readODS")
+}
+if (!"plotly" %in% all_installed_packages) {
+  install.packages("plotly")
+}
+if (!"lintr" %in% all_installed_packages) {
+  install.packages("lintr")
+}
 # nolint end
 
 # Load Required Packages
@@ -53,14 +63,12 @@ library(lintr)
 ### Retrieve data
 
 ```{r load-data-1}
-
 ```
 
 *... add more code chunks as needed. *
 
 ### Create plot 
 ```{r plot-1}
-
 ```
 
 
@@ -68,12 +76,10 @@ library(lintr)
 ### Retrieve data
 
 ```{r load-data-2}
-
 ```
 
 ### Create interactive plot
 
 ```{r plot-2}
-
 ```
 

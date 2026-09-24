@@ -7,7 +7,7 @@ This handout shows a way to use `ggplotly()` to build an **interactive map**: on
 
 ```{r setup, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(plotly)    # turns a ggplot into an interactive widget
+library(plotly) # turns a ggplot into an interactive widget
 ```
 
 ## Getting the data
@@ -20,8 +20,9 @@ We'll use [4PP](https://github.com/bobdenotter/4pp) (MIT licensed), an open look
 #| eval: false
 download.file(
   "https://raw.githubusercontent.com/bobdenotter/4pp/master/4pp.csv",
-  destfile = "data/raw/postcodes_pc4.csv", # where to save it locally, alongside the other course data
-  mode = "wb"                              # "write binary" - avoids a corrupted file on Windows
+  # where to save it locally, alongside the other course data
+  destfile = "data/raw/postcodes_pc4.csv",
+  mode = "wb" # "write binary" - avoids a corrupted file on Windows
 )
 ```
 
@@ -33,32 +34,48 @@ Same `school_provider` shape as the ggplot recap worksheet, but this time we kee
 #| eval: false
 eindscores <- read_delim(
   "data/raw/eindscores_2024-2025.csv",
-  delim = ";",                                              # DUO's files are ;-separated, not comma-separated
-  locale = locale(decimal_mark = ",", encoding = "UTF-8"),  # NL uses , as the decimal point
+  delim = ";", # DUO's files are ;-separated, not comma-separated
+  # NL uses , as the decimal point
+  locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   show_col_types = FALSE
 )
 
 postcodes <- read_csv("data/raw/postcodes_pc4.csv", show_col_types = FALSE) |>
-  distinct(postcode, .keep_all = TRUE) |> # a few postcodes appear more than once in this file - keep just one row per postcode
-  select(postcode, latitude, longitude)   # we only need these three columns for the join below
+  # a few postcodes appear more than once in this file - keep just one row per
+  # postcode
+  distinct(postcode, .keep_all = TRUE) |>
+  # we only need these three columns for the join below
+  select(postcode, latitude, longitude)
 
 school_provider <- eindscores |>
   # keep just the school identifiers/labels, the postcode, and the six
   # *_AANTAL columns (number of students tested, per provider)
-  select(INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
-         GEMEENTENAAM, PROVINCIE, POSTCODE_VESTIGING, ends_with("_AANTAL")) |>
+  select(
+    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
+    GEMEENTENAAM, PROVINCIE, POSTCODE_VESTIGING, ends_with("_AANTAL")
+  ) |>
   # stack the six AANTAL columns into two: which provider, how many students -
   # turns "one row per school, six provider columns" into "one row per
   # (school, provider), with n_students telling us how many students it tested"
-  pivot_longer(cols = ends_with("_AANTAL"), names_to = "provider", values_to = "n_students") |>
-  mutate(
-    provider = sub("_AANTAL$", "", provider),                 # "IEP_AANTAL" -> "IEP"
-    n_students = as.numeric(n_students),                          # DUO writes "<5" for small counts -> this becomes NA
-    postcode = as.numeric(str_sub(POSTCODE_VESTIGING, 1, 4))  # keep only the numeric part: "2716PH" -> 2716
+  pivot_longer(
+    cols = ends_with("_AANTAL"),
+    names_to = "provider",
+    values_to = "n_students"
   ) |>
-  filter(!is.na(n_students), n_students > 0) |>           # drop the providers a school didn't actually use
-  group_by(INSTELLINGSCODE, VESTIGINGSCODE) |>        # group the rows back up by school...
-  slice_max(n_students, n = 1, with_ties = FALSE) |>    # ...and keep only its single largest provider (most schools use just one anyway)
+  mutate(
+    provider = sub("_AANTAL$", "", provider), # e.g. IEP_AANTAL becomes IEP
+    # DUO writes "<5" for small counts -> this becomes NA
+    n_students = as.numeric(n_students),
+    # keep only the numeric part: "2716PH" -> 2716
+    postcode = as.numeric(str_sub(POSTCODE_VESTIGING, 1, 4))
+  ) |>
+  # drop the providers a school didn't actually use
+  filter(!is.na(n_students), n_students > 0) |>
+  # group the rows back up by school...
+  group_by(INSTELLINGSCODE, VESTIGINGSCODE) |>
+  # ...and keep only its single largest provider (most schools use just one
+  # anyway)
+  slice_max(n_students, n = 1, with_ties = FALSE) |>
   ungroup()
 
 # join the coordinates onto each school by matching postcode -> postcode.
@@ -82,16 +99,27 @@ provider_colors <- c(
   DIA = "#4a3aa7", AMN = "#e87ba4", DOE = "#eda100"
 )
 
-nl_map <- ggplot(school_map, aes(x = longitude, y = latitude, color = provider)) +
-  geom_point(alpha = 0.5, size = 1.2) +             # alpha < 1 so overlapping points show up as darker patches
-  scale_color_manual(values = provider_colors) +    
-  coord_fixed(ratio = 1 / cos(52.1 * pi / 180)) +   # keep the map's proportions correct - NL sits at ~52.1°N
-  labs(title = "Schools by transfer test provider", color = "Provider", x = NULL, y = NULL) +
+nl_map <- ggplot(
+  school_map,
+  aes(x = longitude, y = latitude, color = provider)
+) +
+  # alpha < 1 so overlapping points show up as darker patches
+  geom_point(alpha = 0.5, size = 1.2) +
+  scale_color_manual(values = provider_colors) +
+  # keep the map's proportions correct - NL sits at ~52.1°N
+  coord_fixed(ratio = 1 / cos(52.1 * pi / 180)) +
+  labs(
+    title = "Schools by transfer test provider",
+    color = "Provider",
+    x = NULL,
+    y = NULL
+  ) +
   theme_minimal() +
   theme(
-    axis.text = element_blank(),  # hide the lat/long numbers - not meaningful to a reader
+    # hide the lat/long numbers - not meaningful to a reader
+    axis.text = element_blank(),
     axis.ticks = element_blank(),
-    panel.grid = element_blank()  # hide gridlines 
+    panel.grid = element_blank() # hide gridlines
   )
 
 nl_map
@@ -129,9 +157,18 @@ nl_map_interactive <- ggplot(
   geom_point(alpha = 0.5, size = 1.2) +
   scale_color_manual(values = provider_colors) +
   coord_fixed(ratio = 1 / cos(52.1 * pi / 180)) +
-  labs(title = "Schools by transfer test provider", color = "Provider", x = NULL, y = NULL) +
+  labs(
+    title = "Schools by transfer test provider",
+    color = "Provider",
+    x = NULL,
+    y = NULL
+  ) +
   theme_minimal() +
-  theme(axis.text = element_blank(), axis.ticks = element_blank(), panel.grid = element_blank())
+  theme(
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  )
 
 # convert the static ggplot into an interactive plotly widget;
 # tooltip = "text" shows our custom text column on hover

@@ -68,7 +68,9 @@
 # know which download server (a "CRAN mirror") to use. RStudio usually sets
 # one for you, but if you're running this from a plain R console, the line
 # below picks one so the installs don't fail with a confusing error.
-if (is.null(getOption("repos")) || identical(getOption("repos")[["CRAN"]], "@CRAN@")) {
+no_cran_mirror <- is.null(getOption("repos")) ||
+  identical(getOption("repos")[["CRAN"]], "@CRAN@")
+if (no_cran_mirror) {
   options(repos = c(CRAN = "https://cloud.r-project.org"))
 }
 
@@ -100,29 +102,28 @@ if (!dir.exists(raw_dir)) dir.create(raw_dir, recursive = TRUE)
 # else in the script has to change.
 
 sources <- list(
-
   eindscores = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/05.-gemiddelde-eindscores-bo-sbo-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/05.-gemiddelde-eindscores-bo-sbo-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "eindscores_2024-2025.csv"),
     what = "average doorstroomtoets score per school per provider"
   ),
-
   referentieniveaus = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/10.-leerlingen-bo-referentieniveaus-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/10.-leerlingen-bo-referentieniveaus-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "referentieniveaus_2024-2025.csv"),
     what = "number of pupils per school reaching each 1F/1S/2F reference level"
   ),
-
   schooladviezen = list(
-    url  = "https://duo.nl/open_onderwijsdata/images/04-leerlingen-bo-sbo-schooladviezen-2024-2025.csv",
+    url  = "https://duo.nl/open_onderwijsdata/images/04-leerlingen-bo-sbo-schooladviezen-2024-2025.csv", # nolint: line_length_linter.
     dest = file.path(raw_dir, "schooladviezen_2024-2025.csv"),
     what = "number of pupils per school per secondary-school advice level"
   ),
-
   schoolweging = list(
-    url  = "https://www.onderwijsinspectie.nl/site/binaries/site-content/collections/documents/2026/02/09/schoolweging-2022-2023---2023-2024---2024-2025/schoolweging-2022-2023-2024.ods",
+    url = "https://www.onderwijsinspectie.nl/site/binaries/site-content/collections/documents/2026/02/09/schoolweging-2022-2023---2023-2024---2024-2025/schoolweging-2022-2023-2024.ods", # nolint: line_length_linter.
     dest = file.path(raw_dir, "schoolweging_2022-2025.ods"),
-    what = "schoolweging (disadvantage score) per school, published by the Onderwijsinspectie"
+    what = paste(
+      "schoolweging (disadvantage score) per school,",
+      "published by the Onderwijsinspectie"
+    )
   )
 )
 
@@ -171,7 +172,13 @@ referentieniveaus <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-cat("\nreferentieniveaus:", nrow(referentieniveaus), "rows,", ncol(referentieniveaus), "columns\n")
+cat(
+  "\nreferentieniveaus:",
+  nrow(referentieniveaus),
+  "rows,",
+  ncol(referentieniveaus),
+  "columns\n"
+)
 print(head(names(referentieniveaus), 8))
 
 schooladviezen <- read_delim(
@@ -180,7 +187,13 @@ schooladviezen <- read_delim(
   locale = locale(decimal_mark = ",", encoding = "UTF-8"),
   na = c("NA", ""), show_col_types = FALSE
 )
-cat("\nschooladviezen:", nrow(schooladviezen), "rows,", ncol(schooladviezen), "columns\n")
+cat(
+  "\nschooladviezen:",
+  nrow(schooladviezen),
+  "rows,",
+  ncol(schooladviezen),
+  "columns\n"
+)
 print(head(names(schooladviezen), 8))
 
 # The schoolweging file is a whole workbook, not a single table: it has one
@@ -188,7 +201,13 @@ print(head(names(schooladviezen), 8))
 # sheet. We want the "2024-2025" sheet specifically, because that's the one
 # school year that actually lines up with the other three files above.
 schoolweging <- read_ods(sources$schoolweging$dest, sheet = "2024-2025")
-cat("\nschoolweging (2024-2025 sheet):", nrow(schoolweging), "rows,", ncol(schoolweging), "columns\n")
+cat(
+  "\nschoolweging (2024-2025 sheet):",
+  nrow(schoolweging),
+  "rows,",
+  ncol(schoolweging),
+  "columns\n"
+)
 print(names(schoolweging))
 
 

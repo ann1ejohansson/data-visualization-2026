@@ -77,10 +77,18 @@ rm(list = ls()) # Remove any existing objects in memory
 # Install Packages
 all_installed_packages <- installed.packages()[, "Package"]
 # nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
-if (!"tidyverse" %in% all_installed_packages) {install.packages("tidyverse")}
-if (!"cowplot" %in% all_installed_packages) {install.packages("cowplot")}
-if (!"readODS" %in% all_installed_packages) {install.packages("readODS")}
-if (!"lintr" %in% all_installed_packages) {install.packages("lintr")}
+if (!"tidyverse" %in% all_installed_packages) {
+  install.packages("tidyverse")
+}
+if (!"cowplot" %in% all_installed_packages) {
+  install.packages("cowplot")
+}
+if (!"readODS" %in% all_installed_packages) {
+  install.packages("readODS")
+}
+if (!"lintr" %in% all_installed_packages) {
+  install.packages("lintr")
+}
 # nolint end
 
 library(tidyverse)
@@ -102,66 +110,80 @@ referentieniveaus <- read_delim(
   delim = ";", quote = '"', show_col_types = FALSE
 )
 
-schoolweging_raw <- read_ods("data/raw/schoolweging_2022-2025.ods", sheet = "2024-2025")
+schoolweging_raw <- read_ods(
+  "data/raw/schoolweging_2022-2025.ods",
+  sheet = "2024-2025"
+)
 ```
 
 Now that we have the "raw" data, we can start to filter and prepare it. `eindscores` has one row per school with a pair of columns per test provider (`IEP_AANTAL`/`IEP_GEM`, and so on) - we need one row per (school, provider actually used) instead, so we `pivot_longer()` those pairs.
 
 ```{r 1A data-prep-1}
-school_provider <- eindscores %>%
-  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) %>%
+school_provider <- eindscores |>
+  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) |>
   pivot_longer(
     cols = matches("_(AANTAL|GEM)$"),
     names_to = c("provider", ".value"),
     names_pattern = "(.+)_(AANTAL|GEM)"
-  ) %>%
-  mutate(AANTAL = as.numeric(AANTAL)) %>% # DUO writes "<5" for small counts -> NA
-  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) %>%
-  group_by(INSTELLINGSCODE, provider) %>%
+  ) |>
+  # DUO writes "<5" for small counts -> NA
+  mutate(AANTAL = as.numeric(AANTAL)) |>
+  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) |>
+  group_by(INSTELLINGSCODE, provider) |>
   summarise(AANTAL = sum(AANTAL), .groups = "drop")
 
 # most schools only use one provider - take whichever tested the most students
-primary_provider <- school_provider %>%
-  group_by(INSTELLINGSCODE) %>%
-  slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
-  ungroup() %>%
+primary_provider <- school_provider |>
+  group_by(INSTELLINGSCODE) |>
+  slice_max(AANTAL, n = 1, with_ties = FALSE) |>
+  ungroup() |>
   select(INSTELLINGSCODE, provider)
 ```
 
 Next, the school weighting. That file identifies schools slightly differently (an `OVT` column like `"00AP|C1"` instead of separate `INSTELLINGSCODE`/`VESTIGINGSCODE` columns), so a bit of string splitting is needed before it can be joined to anything else.
 
 ```{r 1A data-prep-2}
-schoolweging <- schoolweging_raw %>%
-  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) %>%
-  group_by(INSTELLINGSCODE) %>%
-  summarise(schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen), .groups = "drop")
+schoolweging <- schoolweging_raw |>
+  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) |>
+  group_by(INSTELLINGSCODE) |>
+  summarise(
+    schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen),
+    .groups = "drop"
+  )
 ```
 
 Finally, the outcome we'll actually plot. Raw scores aren't comparable across providers (an IEP score and an AMN score are not the same kind of number), but the **percentage of students reaching the target reference level** (1S for maths, 2F for language) is - that's the one number CvTE's shared framework is designed to make provider-independent.
 
 ```{r 1A data-prep-3}
-count_cols <- c("REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
-                "LV_LAGER1F", "LV_1F", "LV_2F",
-                "TV_LAGER1F", "TV_1F", "TV_2F")
+count_cols <- c(
+  "REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
+  "LV_LAGER1F", "LV_1F", "LV_2F",
+  "TV_LAGER1F", "TV_1F", "TV_2F"
+)
 
-ref_levels <- referentieniveaus %>%
-  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) %>%
-  group_by(INSTELLINGSCODE) %>%
-  summarise(across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)), .groups = "drop") %>%
+ref_levels <- referentieniveaus |>
+  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) |>
+  group_by(INSTELLINGSCODE) |>
+  summarise(
+    across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)),
+    .groups = "drop"
+  ) |>
   mutate(
     rekenen_n = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S,
     taal_lv_n = LV_LAGER1F + LV_1F + LV_2F,
     taal_tv_n = TV_LAGER1F + TV_1F + TV_2F,
-    score = ( 100 * REKENEN_1S / rekenen_n
-            + 100 * LV_2F      / taal_lv_n
-            + 100 * TV_2F      / taal_tv_n ) / 3,
+    score = (
+      100 * REKENEN_1S / rekenen_n +
+        100 * LV_2F / taal_lv_n +
+        100 * TV_2F / taal_tv_n
+    ) / 3,
     n_students = rekenen_n
-  ) %>%
-  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
+  ) |>
+  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) |>
   select(INSTELLINGSCODE, score, n_students)
 
-school_data <- ref_levels %>%
-  inner_join(primary_provider, by = "INSTELLINGSCODE") %>%
+school_data <- ref_levels |>
+  inner_join(primary_provider, by = "INSTELLINGSCODE") |>
   left_join(schoolweging, by = "INSTELLINGSCODE")
 ```
 
@@ -219,73 +241,87 @@ referentieniveaus <- read_delim(
   delim = ";", quote = '"', show_col_types = FALSE
 )
 
-schoolweging_raw <- read_ods("data/raw/schoolweging_2022-2025.ods", sheet = "2024-2025")
+schoolweging_raw <- read_ods(
+  "data/raw/schoolweging_2022-2025.ods",
+  sheet = "2024-2025"
+)
 
 # one row per (school, provider actually used)
-school_provider <- eindscores %>%
-  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) %>%
+school_provider <- eindscores |>
+  select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) |>
   pivot_longer(
     cols = matches("_(AANTAL|GEM)$"),
     names_to = c("provider", ".value"),
     names_pattern = "(.+)_(AANTAL|GEM)"
-  ) %>%
-  mutate(AANTAL = as.numeric(AANTAL)) %>% # DUO writes "<5" for small counts -> NA
-  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) %>%
-  group_by(INSTELLINGSCODE, provider) %>%
+  ) |>
+  # DUO writes "<5" for small counts -> NA
+  mutate(AANTAL = as.numeric(AANTAL)) |>
+  filter(!is.na(AANTAL), AANTAL > 0, !is.na(GEM), GEM > 0) |>
+  group_by(INSTELLINGSCODE, provider) |>
   summarise(AANTAL = sum(AANTAL), .groups = "drop")
 
 # one row per school: whichever single provider tested the most of its students
-primary_provider <- school_provider %>%
-  group_by(INSTELLINGSCODE) %>%
-  slice_max(AANTAL, n = 1, with_ties = FALSE) %>%
-  ungroup() %>%
+primary_provider <- school_provider |>
+  group_by(INSTELLINGSCODE) |>
+  slice_max(AANTAL, n = 1, with_ties = FALSE) |>
+  ungroup() |>
   select(INSTELLINGSCODE, provider)
 ```
 
 `eindscores` also carries the columns a tooltip needs later: a school's name, province and municipality. Unlike province/municipality (always the same across a school's locations), a school's name sometimes isn't - its different physical locations can have different names. Grouping by school code and taking just the first location's row (name included) guarantees exactly one row per school, without silently duplicating any school whose locations disagree on a name.
 
 ```{r 1B data-prep-2}
-school_location <- eindscores %>%
-  select(INSTELLINGSCODE, INSTELLINGSNAAM_VESTIGING, PROVINCIE, GEMEENTENAAM) %>%
-  group_by(INSTELLINGSCODE) %>%
-  slice(1) %>%
+school_location <- eindscores |>
+  select(INSTELLINGSCODE, INSTELLINGSNAAM_VESTIGING, PROVINCIE, GEMEENTENAAM) |>
+  group_by(INSTELLINGSCODE) |>
+  slice(1) |>
   ungroup()
 
-schoolweging <- schoolweging_raw %>%
-  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) %>%
-  group_by(INSTELLINGSCODE) %>%
-  summarise(schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen), .groups = "drop")
+schoolweging <- schoolweging_raw |>
+  mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) |>
+  group_by(INSTELLINGSCODE) |>
+  summarise(
+    schoolweging = weighted.mean(schoolweging, w = aantal_leerlingen),
+    .groups = "drop"
+  )
 ```
 
 ```{r 1B data-prep-3}
-count_cols <- c("REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
-                "LV_LAGER1F", "LV_1F", "LV_2F",
-                "TV_LAGER1F", "TV_1F", "TV_2F")
+count_cols <- c(
+  "REKENEN_LAGER1F", "REKENEN_1F", "REKENEN_1S",
+  "LV_LAGER1F", "LV_1F", "LV_2F",
+  "TV_LAGER1F", "TV_1F", "TV_2F"
+)
 
-ref_levels <- referentieniveaus %>%
-  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) %>%
-  group_by(INSTELLINGSCODE) %>%
-  summarise(across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)), .groups = "drop") %>%
+ref_levels <- referentieniveaus |>
+  mutate(across(all_of(count_cols), ~ suppressWarnings(as.numeric(.)))) |>
+  group_by(INSTELLINGSCODE) |>
+  summarise(
+    across(all_of(count_cols), ~ sum(.x, na.rm = TRUE)),
+    .groups = "drop"
+  ) |>
   mutate(
     rekenen_n = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S,
     taal_lv_n = LV_LAGER1F + LV_1F + LV_2F,
     taal_tv_n = TV_LAGER1F + TV_1F + TV_2F,
-    score = ( 100 * REKENEN_1S / rekenen_n
-            + 100 * LV_2F      / taal_lv_n
-            + 100 * TV_2F      / taal_tv_n ) / 3,
+    score = (
+      100 * REKENEN_1S / rekenen_n +
+        100 * LV_2F / taal_lv_n +
+        100 * TV_2F / taal_tv_n
+    ) / 3,
     n_students = rekenen_n
-  ) %>%
-  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) %>%
+  ) |>
+  filter(rekenen_n > 0, taal_lv_n > 0, taal_tv_n > 0) |>
   select(INSTELLINGSCODE, score, n_students)
 
 # a school needs a known provider, a computable score, AND a schoolweging
 # value to appear on this chart - unlike Part A's school_data, which kept
 # schoolweging-less schools around for its density plot, this scatter has
 # no use for a school it can't place on the x-axis
-school_data <- ref_levels %>%
-  inner_join(primary_provider, by = "INSTELLINGSCODE") %>%
-  inner_join(school_location, by = "INSTELLINGSCODE") %>%
-  inner_join(schoolweging, by = "INSTELLINGSCODE") %>%
+school_data <- ref_levels |>
+  inner_join(primary_provider, by = "INSTELLINGSCODE") |>
+  inner_join(school_location, by = "INSTELLINGSCODE") |>
+  inner_join(schoolweging, by = "INSTELLINGSCODE") |>
   filter(!is.na(schoolweging))
 ```
 

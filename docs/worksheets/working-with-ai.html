@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Working with AI – Data Visualization 2026</title>
+<title>Working with AI for Exploratory and Explanatory Visualizations – Data Visualization 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -160,15 +160,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#part-1-ai-for-exploring-session-2" id="toc-part-1-ai-for-exploring-session-2" class="nav-link" data-scroll-target="#part-1-ai-for-exploring-session-2">Part 1: AI for exploring (Session 2)</a></li>
+  <li><a href="#part-2-ai-for-explaining-session-3" id="toc-part-2-ai-for-explaining-session-3" class="nav-link" data-scroll-target="#part-2-ai-for-explaining-session-3">Part 2: AI for explaining (Session 3)</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with AI</h1>
+<h1 class="title">Working with AI for Exploratory and Explanatory Visualizations</h1>
 </div>
 
 
@@ -185,22 +194,217 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/working-with-ai.png" class="img-fluid figure-img"></p>
+<figcaption>“Hi ChatGPT! Can you generate an image that suits as an engaging catch, to put at the top of this worksheet?”</figcaption>
+</figure>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>AI can now make a polished chart in seconds. A polished chart is no longer hard to make, so the hard part is knowing whether it is right: whether the data means what the chart suggests, and whether the conclusion holds.</p>
+<p>This also means that your role as a data scientist changes from only building static visualizations to curating its generative system. Although the AI can build your product, you set its parameters (the question, the data, the transformations, the audience, the claim) and you judge what it produces. <strong>Remember that you are responsible for every chart you hand in (in class and in your future work), including the ones AI made.</strong></p>
+<p>Importantly, a visualization carries a message about data to people who usually don’t have access to, or the skills to understand, the raw data used to produce it. This makes data literacy more important than ever. As behavioral data scientists, you bring something the AI does not have: knowledge of psychology, statistics, and the data at hand.</p>
+<section id="five-guiding-principles" class="level3">
+<h3 class="anchored" data-anchor-id="five-guiding-principles">Five guiding principles</h3>
+<section id="you-are-the-data-scientist-the-ai-is-your-assistant" class="level4">
+<h4 class="anchored" data-anchor-id="you-are-the-data-scientist-the-ai-is-your-assistant">1. You are the data scientist; the AI is your assistant</h4>
+<p>The AI can write code and produce charts. It cannot tell you whether any of it makes sense. That depends on conceptual knowledge only you can bring:</p>
+<ul>
+<li><strong>Meaning:</strong> what does this variable actually measure? What does it represent, and what does it not?</li>
+<li><strong>Validity:</strong> does this data suit the real-world phenomenon it is supposed to represent?</li>
+<li><strong>Conclusion:</strong> is this visualization leading to a conclusion that is understandable, meaningful, and applicable?</li>
+</ul>
+<p>If you can’t answer these questions yourself, the AI’s answer won’t help you.</p>
+</section>
+<section id="choices-matter" class="level4">
+<h4 class="anchored" data-anchor-id="choices-matter">2. Choices matter</h4>
+<p>Every chart starts with decisions about the data, made before any plotting (<a href="https://filwd.substack.com/p/shape-the-data-shape-the-thinking">read more</a>):</p>
+<ul>
+<li><strong>Variable selection:</strong> which columns are in, which are left out?</li>
+<li><strong>Summary statistics:</strong> counts, means, medians? Means over what?</li>
+<li><strong>Filtering and ranges:</strong> which schools or years are dropped, and why?</li>
+<li><strong>Granularity:</strong> pupil, school, municipality, province?</li>
+</ul>
+<p>AI makes these decisions silently and confidently, and each one affects what your reader will conclude. <strong>Ask the AI to list every transformation it made, and check each one.</strong></p>
+<blockquote class="blockquote">
+<p><em>DUO example:</em> the <code>*_AANTAL</code> columns contain the string <code>"&lt;5"</code> for privacy reasons. An AI that runs <code>as.numeric()</code> turns these into <code>NA</code> and drops them without telling you. What does that do to small schools, and to which providers?</p>
+</blockquote>
+</section>
+<section id="beware-the-illusion-of-causality" class="level4">
+<h4 class="anchored" data-anchor-id="beware-the-illusion-of-causality">3. Beware the illusion of causality</h4>
+<p>A clean chart with two variables that move together looks like an explanation. AI can now make confident, polished-looking plots without having any idea about the true meaning behind the variables. This can easily fool you, and your readers, into reading a correlation as causation.</p>
+<blockquote class="blockquote">
+<p><em>DUO example:</em> “Schools using test provider X have higher average scores.” Is that the test, or the kind of schools that choose that test?</p>
+</blockquote>
+<p>Ask of every chart: <strong>what is the claim a naïve reader would take away, and do I actually have evidence for it?</strong></p>
+</section>
+<section id="dont-mistake-polish-for-substance" class="level4">
+<h4 class="anchored" data-anchor-id="dont-mistake-polish-for-substance">4. Don’t mistake polish for substance</h4>
+<p>Because a polished chart takes only one prompt, making a <em>good</em> chart seems simple. But polish is not substance: a chart can look finished while the data or analysis behind it is hollow. AI can also produce visual hallucinations: trends, clusters, or correlations that come from a data filtering or coding mistake, not from the data.</p>
+<ul>
+<li>Don’t add elements (gradients, icons, annotations, 3D, interactivity) just because they are now cheap. Add them when they improve the clarity of the message you want to get across.<br>
+</li>
+<li>A plain chart that is correct beats a beautiful chart that is wrong.<br>
+</li>
+<li>Check how robust the trend is by creating several visualizations of the same data. Also check it’s robustness across different data decisions (item 2).</li>
+</ul>
+</section>
+<section id="curate-dont-just-prompt" class="level4">
+<h4 class="anchored" data-anchor-id="curate-dont-just-prompt">5. Curate, don’t just prompt</h4>
+<p>Define the parameters of the system <em>before</em> you ask it to build:</p>
+<ul>
+<li>What is my question? What is my one conclusion?</li>
+<li>Who is my audience, and what do they already know?</li>
+<li>Which data, which transformations, and which comparison?</li>
+<li>Which encodings, colors, and constraints (colorblind-safe, fits the report)?</li>
+</ul>
+<p>Then evaluate what comes back against those parameters.</p>
+</section>
+</section>
+<section id="guidelines-working-with-ai." class="level3">
+<h3 class="anchored" data-anchor-id="guidelines-working-with-ai.">Guidelines: working with AI.</h3>
+<p>We encourage you to make use of AI tools in your data visualizations in this course. To guide you in that process, we’ve put together a checklist of important concepts to keep in mind.</p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+A checklist for AI-assisted data visualization
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Placeholder worksheet.</strong> Content for this worksheet has not been written yet.</p>
+<p>Use this checklist whenever you use AI for your assignments. It is adapted from <a href="https://nightingaledvs.com/critically-evaluating-llms/">Eva Sibinga (Nightingale, 2026)</a>. We added a fourth section, <em>Meaning</em>, for data thinking.</p>
+<section id="accuracy" class="level4">
+<h4 class="anchored" data-anchor-id="accuracy">✔️ Accuracy</h4>
+<ul>
+<li>Am I working in a defined universe (I give it the data, the codebook, and an example) or an open one (it answers from the web or its “memory”)?</li>
+<li>Have I set up boundaries against sycophancy? For example, ask it to point out problems, and don’t say which answer I’m hoping for.</li>
+<li>Can I verify the result? Did I verify it? (Row counts, a few values checked by hand, the code read line by line.)</li>
+<li>Do I know enough about this topic to tell whether the answer makes sense?</li>
+<li>…and whether it is smart, not just technically correct?</li>
+</ul>
+</section>
+<section id="security" class="level4">
+<h4 class="anchored" data-anchor-id="security">🔒 Security</h4>
+<ul>
+<li>Am I working with private data, mine or someone else’s?</li>
+<li>Am I working with unpublished intellectual property, mine or someone else’s?</li>
+</ul>
+</section>
+<section id="sovereignty" class="level4">
+<h4 class="anchored" data-anchor-id="sovereignty">✍️ Sovereignty</h4>
+<ul>
+<li>Am I handing off a part of the process I actually want to learn, or would enjoy?</li>
+<li>Will I lose an opportunity to find the answer myself and understand it?</li>
+<li>Is this question worth the resources it uses?</li>
+<li>Would I be comfortable disclosing that I used AI for this part?</li>
+<li>Does it add value, especially for text?</li>
+<li>Is it up to my standards?</li>
+<li>Am I erasing my own voice or opinion?</li>
+</ul>
+</section>
+<section id="meaning-data-thinking" class="level4">
+<h4 class="anchored" data-anchor-id="meaning-data-thinking">🧠 Meaning (data thinking)</h4>
+<ul>
+<li>Do I know what each variable measures, and what it doesn’t?</li>
+<li>Does the data validly represent the real-world phenomenon I am making claims about?</li>
+<li>Which transformations (selection, summaries, filters, granularity) shape this chart, and did I choose them deliberately?</li>
+<li>Does the chart suggest a causal story that the data can’t support?</li>
+<li>Is the uncertainty visible? (Sample sizes, suppressed values, spread.)</li>
+<li>Would a reader without data literacy reach a conclusion that is correct?</li>
+</ul>
+</section>
 </div>
 </div>
-<p>This worksheet will cover working with AI tools for data visualization: what they’re useful for, their limitations, and how to use them responsibly in this course.</p>
+</section>
+</section>
+<section id="part-1-ai-for-exploring-session-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-ai-for-exploring-session-2">Part 1: AI for exploring (Session 2)</h2>
+<p><strong>What AI is good at here:</strong> speed and breadth. It can map distributions and relationships in minutes, describe an unfamiliar dataset, and suggest questions and views you hadn’t thought of (<a href="https://filwd.substack.com/p/things-you-can-now-ask-an-ai-when">Bertini, <em>Things you can now ask an AI</em></a>).</p>
+<p><strong>Guiding points</strong></p>
+<ol type="1">
+<li><strong>Give it context, not just columns.</strong> Paste the codebook (in this project, use e.g., <a href="../documents/data-resources.html">data resources</a>) along with the structure of the data (or the data itself, if privacy rules allow). This puts the AI in a defined universe.</li>
+<li><strong>Ask it to describe the data back to you first.</strong> Then check its description against the codebook. Where it is wrong, correct it. You now know where its limits of understanding are.</li>
+<li><strong>Go wide and fast.</strong> Ask for many quick views: distributions of every variable of interest, raw and grouped by any grouping structures available in the data. Exploratory plots can be ugly; their job is to help <em>you</em> understand.</li>
+<li><strong>Verify the pipeline.</strong> How much data went in, and how much turned up on the visualization? How were missing values, or groups with very few values, handled? What other filtering or transformation mechanisms were needed to end up with a clean visualization? How would the outcome change if these mechanisms were changed?</li>
+<li><strong>Brainstorm research questions.</strong> You can ask the AI for potential questions to explore with this data, but judge them yourself. Which of the suggested questions are meaningful given what you know about the data and its context? Which can this data actually answer?</li>
+<li><strong>Keep an AI log.</strong> Record what you asked, what you kept, and what you checked or corrected.</li>
+</ol>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<p>Individually (max. 15 minutes), ask an AI for three exploratory plots of <code>eindscores</code>. Run the code the AI gives you. Then check:</p>
+<ul>
+<li>Input vs.&nbsp;output: how many schools went in, and how many ended up in the plot?<br>
+</li>
+<li>How were the <code>"&lt;5"</code> values handled? Were they turned into <code>NA</code> or transformed? Were they noticed at all?<br>
+</li>
+<li>Transformations: which variables were selected, how was “provider” derived, which summary statistics were used, if any? Was any filtering made, and at which level (school, municipality, province)?</li>
+<li>Verification: Pick one value from one of the exploratory plots (a count, a mean) and reproduce it with your own code.</li>
+</ul>
+<p>Log your prompts, the outcome, and what you learned from it. Then,</p>
+<p>In your group (max. 20 minutes), compare the results:</p>
+<ul>
+<li>Do transformations differ, how do the plots agree or disagree?<br>
+</li>
+<li>Do differences in plots come from data transformations, data selection, or chart types?<br>
+</li>
+<li>Which plots might be useful for your research question? What would you plot next?<br>
+</li>
+<li>(How) would you refine your prompt next time?</li>
+</ul>
+<p>Discuss these questions with your group, then write down guidelines for the team:</p>
+<ol type="1">
+<li>Context: what will you always give the AI when prompting? Consider keeping a shared context file in your repo (e.g.&nbsp;<code>ai-context.md</code>) with your research question, the codebook, known data quirks, and your code style (e.g.&nbsp;lintr-styling). Check the Security questions in the checklist: what should not go in there?<br>
+</li>
+<li>Constraints: what will you tell the AI to do or not do? For example: types of plots, specific variables, filtering or statistical choices. Always ask it to list every transformation and assumption it made, and to flag data-quality issues or things it is otherwise unsure about before plotting.</li>
+<li>Verification: how will you, as a team, check that AI-generated results are correct and robust? Some starting points: comparing row counts, a teammate reproducing a result independently, running the same prompt in a different model, checking values against the ranges in the codebook, and seeing whether results change when different data selection decisions are applied.</li>
+</ol>
+<p><strong>Commit your guidelines to your group repo</strong> (e.g.&nbsp;in the README). You’ll use them again in Part 2.</p>
+</section>
+</section>
+<section id="part-2-ai-for-explaining-session-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-ai-for-explaining-session-3">Part 2: AI for explaining (Session 3)</h2>
+<p><strong>What AI is good at here:</strong> technical execution and generating alternatives. For example: annotations, highlighting a key group, <code>ggtext</code>, multiple-plot layouts, custom themes, colorblind-safe palettes, <code>plotly</code> tooltips, and many design options in a short time. Research shows LLMs are good at quickly producing diverse design options but weaker at contextual nuance (<a href="https://dl.acm.org/doi/10.1145/3745768">Kim et al., 2025</a>), reflecting what data scientists prefer when working with AI tools (<a href="https://arxiv.org/abs/2304.08366">Li et al., 2023</a>).</p>
+<p><strong>Guiding points</strong></p>
+<ol type="1">
+<li><strong>Write your conclusion first, without AI.</strong> The AI should help you show this conclusion, but not choose it.<br>
+</li>
+<li><strong>Ask for alternatives, then choose and justify.</strong> Request 3–4 different designs for the same message, keep a log and reason to yourself why you chose one.<br>
+</li>
+<li><strong>Criticize added elements.</strong> For each thing the AI adds, ask whether it makes the conclusion clearer or only decorates the chart.<br>
+</li>
+<li><strong>Check the title.</strong> Is it using unjustified causal language? Is it meaningful and does it support your conclusion?</li>
+<li><strong>Show uncertainty and sample size.</strong> Polished charts tend to hide these; you have to ask for them explicitly.</li>
+<li><strong>Use AI as a critic, carefully.</strong> You can ask AI to critique your chart as a skeptical reviewer, but you decide which critiques are valid.</li>
+<li><strong>Test with a naïve reader.</strong> Show the chart to someone outside the course for five seconds. What do they conclude? Is that conclusion true?</li>
+</ol>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>Discuss with your group:</p>
+<ul>
+<li>Which stages of your project (question, cleaning, exploring, designing, writing) would you hand to AI, and which would you not? Why?</li>
+<li>AI makes charts cheap. Who is responsible when a cheap chart misleads people?<br>
+</li>
+<li><a href="https://news.un.org/en/story/2026/06/1167658">AI consumes resources</a>. How will you approach this responsibly?</li>
+</ul>
+<p>As a group, decide on a disclosure statement for your use of AI tools. Write a short “AI use” section in your final report. List what tools you used, what they were used for, and how this output was checked. This section is a requirement for your final report.</p>
+</section>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<ul>
+<li>Sibinga, E. (2026). <a href="https://nightingaledvs.com/critically-evaluating-llms/">Critically evaluating LLMs</a>. <em>Nightingale</em>.</li>
+<li>Bertini, E. (2023). <a href="https://filwd.substack.com/p/shape-the-data-shape-the-thinking">Shape the data, shape the thinking</a>. <em>Filwd</em>.</li>
+<li>Bertini, E. (2025). <a href="https://filwd.substack.com/p/things-you-can-now-ask-an-ai-when">Things you can now ask an AI when analyzing data</a>. <em>Filwd</em>.</li>
+<li>Ciuccarelli, P. (2026). <a href="https://thevisualagency.com/tva-blog-articles/beyond-the-prompt-data-visualization-in-the-age-of-ai/">Beyond the prompt: Data visualization in the age of AI</a>. <em>The Visual Agency</em>.</li>
+<li>Kim, N. W., Ahn, Y., Myers, G., &amp; Bach, B. (2025). <a href="https://dl.acm.org/doi/10.1145/3745768">How good is ChatGPT in giving advice on your visualization design?</a> <em>ACM Transactions on Computer-Human Interaction</em>.</li>
+<li>Li, H., Wang, Y., Liao, Q. V., &amp; Qu, H. (2023). <a href="https://arxiv.org/abs/2304.08366">Why is AI not a panacea for data workers? An interview study on human-AI collaboration in data storytelling</a>. <em>IEEE TVCG</em>.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

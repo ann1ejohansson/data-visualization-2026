@@ -68,7 +68,11 @@ read_duo <- function(path) {
   )
 }
 
-parse_dec <- function(x) suppressWarnings(as.numeric(sub(",", ".", x, fixed = TRUE)))
+parse_dec <- function(x) {
+  suppressWarnings(
+    as.numeric(sub(",", ".", x, fixed = TRUE))
+  )
+}
 
 # similarity of two school names, 0-1 (1 = identical after cleaning)
 name_sim <- function(a, b) {
@@ -103,16 +107,24 @@ prepare_data <- function(raw_dir = "../data/raw") {
   ref <- read_duo(f("referentieniveaus_2024-2025.csv"))
   adv <- read_duo(f("schooladviezen_2024-2025.csv"))
 
-  sw_year <- readODS::read_ods(f("schoolweging_2022-2025.ods"), sheet = "2024-2025")
-  sw_3y <- readODS::read_ods(f("schoolweging_2022-2025.ods"), sheet = "Driejaarsgemiddelde")
-  names(sw_3y)[4] <- "schoolweging_3y" # long header: "schoolweging 2022/2023, ..."
+  sw_year <- readODS::read_ods(
+    f("schoolweging_2022-2025.ods"),
+    sheet = "2024-2025"
+  )
+  sw_3y <- readODS::read_ods(
+    f("schoolweging_2022-2025.ods"),
+    sheet = "Driejaarsgemiddelde"
+  )
+  # long header: "schoolweging 2022/2023, ..."
+  names(sw_3y)[4] <- "schoolweging_3y"
   sw <- sw_year |>
     left_join(select(sw_3y, OVT, schoolweging_3y), by = "OVT") |>
     mutate(INSTELLINGSCODE = sub("\\|.*$", "", OVT))
 
   key <- c("INSTELLINGSCODE", "VESTIGINGSCODE")
 
-  # which provider(s) did the school use? "0" = not used; a number or "<5" = used
+  # which provider(s) did the school use? "0" = not used; a number or "<5" =
+  # used
   used <- sapply(PROVIDERS, function(p) eind[[paste0(p, "_AANTAL")]] != "0")
   n_used <- rowSums(used)
   provider <- ifelse(
@@ -124,8 +136,14 @@ prepare_data <- function(raw_dir = "../data/raw") {
     mutate(
       provider = factor(provider, levels = names(PROVIDER_COLOURS)),
       n_providers = n_used,
-      in_ref = paste(INSTELLINGSCODE, VESTIGINGSCODE) %in% paste(ref$INSTELLINGSCODE, ref$VESTIGINGSCODE),
-      in_adv = paste(INSTELLINGSCODE, VESTIGINGSCODE) %in% paste(adv$INSTELLINGSCODE, adv$VESTIGINGSCODE)
+      in_ref = paste(INSTELLINGSCODE, VESTIGINGSCODE) %in% paste(
+        ref$INSTELLINGSCODE,
+        ref$VESTIGINGSCODE
+      ),
+      in_adv = paste(INSTELLINGSCODE, VESTIGINGSCODE) %in% paste(
+        adv$INSTELLINGSCODE,
+        adv$VESTIGINGSCODE
+      )
     ) |>
     left_join(select(ref, all_of(c(key, REF_COLS))), by = key) |>
     left_join(select(adv, all_of(c(key, ADV_COLS))), by = key)
@@ -134,7 +152,8 @@ prepare_data <- function(raw_dir = "../data/raw") {
   # sw is keyed "INST|C1", "INST|C2": the location part does NOT follow
   # VESTIGINGSCODE (see the notes at the bottom of get-data.R). So:
   #   * 1 location in eindscores and 1 row in sw -> match on the school code
-  #   * otherwise -> pick the sw row with the most similar name, if similar enough
+  #   * otherwise -> pick the sw row with the most similar name, if similar
+  # enough
   n_loc <- count(schools, INSTELLINGSCODE, name = "n_loc_eind")
   n_sw <- count(sw, INSTELLINGSCODE, name = "n_loc_sw")
   schools <- schools |>
@@ -177,7 +196,11 @@ prepare_data <- function(raw_dir = "../data/raw") {
   # postcodes_pc4.csv is NOT downloaded by get-data.R; if it's there we use
   # it for the map, otherwise the map tab says so.
   if (file.exists(f("postcodes_pc4.csv"))) {
-    pc <- read_csv(f("postcodes_pc4.csv"), col_types = cols(postcode = "c"), show_col_types = FALSE) |>
+    pc <- read_csv(
+      f("postcodes_pc4.csv"),
+      col_types = cols(postcode = "c"),
+      show_col_types = FALSE
+    ) |>
       distinct(postcode, .keep_all = TRUE) |>
       select(pc4 = postcode, lat = latitude, lon = longitude)
     schools <- schools |>
@@ -193,7 +216,9 @@ prepare_data <- function(raw_dir = "../data/raw") {
       SOORT_PO = factor(SOORT_PO, levels = c("Bo", "Sbo")),
       # raw score for single-provider schools; NA when suppressed/multi/none
       score_raw = mapply(function(p, i) {
-        if (!p %in% PROVIDERS) return(NA_real_)
+        if (!p %in% PROVIDERS) {
+          return(NA_real_)
+        }
         parse_dec(eind[[paste0(p, "_GEM")]][i])
       }, as.character(provider), seq_len(n()))
     ) |>
@@ -212,13 +237,19 @@ prepare_data <- function(raw_dir = "../data/raw") {
 # ---- stage 2: derived variables --------------------------------------------
 
 # How to read a count cell. "<5" means 1, 2, 3 or 4 pupils.
-#   "mid"  -> 2.5 (the midpoint: unbiased-ish on average, wrong for every school)
+#   "mid"  -> 2.5 (the midpoint: unbiased-ish on average, wrong for every
+# school)
 #   "zero" -> 0   (what a careless as.numeric() + replace_na(0) does)
-#   "drop" -> NA  (the school drops out of every percentage that needs that cell)
+#   "drop" -> NA  (the school drops out of every percentage that needs that
+# cell)
 count_value <- function(x, suppressed = c("mid", "zero", "drop")) {
   suppressed <- match.arg(suppressed)
   v <- suppressWarnings(as.numeric(x))
-  v[!is.na(x) & x == "<5"] <- switch(suppressed, mid = 2.5, zero = 0, drop = NA_real_)
+  v[!is.na(x) & x == "<5"] <- switch(suppressed,
+    mid = 2.5,
+    zero = 0,
+    drop = NA_real_
+  )
   v
 }
 
@@ -240,7 +271,10 @@ derive_vars <- function(schools, suppressed = "mid") {
   # advice denominator: every pupil with a regular track advice (no VSO,
   # no "advice not possible")
   adv_tot <- Reduce(`+`, a[names(ADV_LEVEL)])
-  adv_lvl <- Reduce(`+`, Map(function(col, w) w * a[[col]], names(ADV_LEVEL), ADV_LEVEL))
+  adv_lvl <- Reduce(
+    `+`,
+    Map(function(col, w) w * a[[col]], names(ADV_LEVEL), ADV_LEVEL)
+  )
 
   schools |>
     mutate(
@@ -290,7 +324,9 @@ NUM_VARS <- list(
   )
 )
 OUTCOME_VARS <- NUM_VARS[c(1, 2)]
-OUTCOME_VARS[["Test scores"]] <- c("Score as z-score within provider" = "score_z")
+OUTCOME_VARS[["Test scores"]] <- c(
+  "Score as z-score within provider" = "score_z"
+)
 
 var_label <- function(v) {
   all <- unlist(unname(NUM_VARS))

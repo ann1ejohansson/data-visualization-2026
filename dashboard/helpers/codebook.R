@@ -21,11 +21,19 @@ prov_rows <- function(p, who) {
     ~var, ~file, ~kind, ~label, ~description, ~gap,
     paste0(p, "_AANTAL"), "eindscores", "count",
     paste0("Pupils tested with ", p),
-    paste0("Number of group-8 pupils at this school who took the ", who, ". \"0\" means the school did not use this provider; \"<5\" means 1-4 pupils (suppressed for privacy)."),
+    paste0(
+      "Number of group-8 pupils at this school who took the ",
+      who,
+      ". \"0\" means the school did not use this provider; \"<5\" means 1-4 pupils (suppressed for privacy)."
+    ),
     "Recording: stored as text because of \"<5\". Reading it with as.numeric() silently turns every suppressed count into NA.",
     paste0(p, "_GEM"), "eindscores", "score",
     paste0("Average raw ", p, " score"),
-    paste0("School average on the ", who, " scale. Only meaningful for schools that used this provider; 0 otherwise, and NA when the count is \"<5\"."),
+    paste0(
+      "School average on the ",
+      who,
+      " scale. Only meaningful for schools that used this provider; 0 otherwise, and NA when the count is \"<5\"."
+    ),
     "Consistency: each provider has its own scale, so this column can only be compared with the same column at other schools, never with another provider's _GEM."
   )
 }

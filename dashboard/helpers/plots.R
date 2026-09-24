@@ -22,14 +22,25 @@ theme_dash <- function(base_size = 12) {
 }
 
 fmt <- function(x, digits = 1) {
-  ifelse(is.finite(x), formatC(x, format = "f", digits = digits, big.mark = ","), "–")
+  ifelse(
+    is.finite(x),
+    formatC(x, format = "f", digits = digits, big.mark = ","),
+    "–"
+  )
 }
 
 # the numeric summary used across the app (and in the codebook)
 num_summary <- function(x) {
   n_na <- sum(!is.finite(x))
   x <- x[is.finite(x)]
-  q <- if (length(x)) quantile(x, c(0, .25, .5, .75, 1), names = FALSE) else rep(NA_real_, 5)
+  q <- if (length(x)) {
+    quantile(x, c(0, .25, .5, .75, 1), names = FALSE)
+  } else {
+    rep(
+      NA_real_,
+      5
+    )
+  }
   tibble::tibble(
     n = length(x), missing = n_na,
     mean = if (length(x)) mean(x) else NA_real_,
@@ -42,12 +53,16 @@ num_summary <- function(x) {
 binned <- function(df, var, group, bins = 30, as_share = FALSE) {
   x <- df[[var]]
   rng <- range(x, na.rm = TRUE)
-  if (!all(is.finite(rng))) return(NULL)
+  if (!all(is.finite(rng))) {
+    return(NULL)
+  }
   if (diff(rng) == 0) rng <- rng + c(-0.5, 0.5)
   br <- seq(rng[1], rng[2], length.out = bins + 1)
   df |>
     dplyr::filter(is.finite(.data[[var]])) |>
-    dplyr::mutate(bin = cut(.data[[var]], br, include.lowest = TRUE, labels = FALSE)) |>
+    dplyr::mutate(
+      bin = cut(.data[[var]], br, include.lowest = TRUE, labels = FALSE)
+    ) |>
     dplyr::count(group = .data[[group]], bin, name = "n") |>
     tidyr::complete(group, bin = seq_len(bins), fill = list(n = 0)) |>
     dplyr::group_by(group) |>
@@ -68,5 +83,10 @@ binned_means <- function(df, x, y, group, nbins = 10, min_n = 40) {
     dplyr::filter(dplyr::n() >= min_n) |>
     dplyr::mutate(bin = dplyr::ntile(.data[[x]], nbins)) |>
     dplyr::group_by(group, bin) |>
-    dplyr::summarise(x = mean(.data[[x]]), y = mean(.data[[y]]), n = dplyr::n(), .groups = "drop")
+    dplyr::summarise(
+      x = mean(.data[[x]]),
+      y = mean(.data[[y]]),
+      n = dplyr::n(),
+      .groups = "drop"
+    )
 }
