@@ -122,6 +122,11 @@ This is our central hub! Access slides, textbook, worksheets, assignments and ot
 | **Session 4.**<br>Fri 9/10, 12.00–15.00<br>HvA | Pitches & Q&A | 🚨 **Sun 11/10, 23.59**<br>**Deadline Assignment 2, Part 2 (group)**  |
 :::
 
+::: {.fragment .fade-in .absolute .pop top="560" left="480"}
+Friday sessions: time to work on group project!\
+Bring a (charged) laptop! 💻
+:::
+
 ::: notes
 
 :::
@@ -141,11 +146,13 @@ This is our central hub! Access slides, textbook, worksheets, assignments and ot
 
 ## Data visualization = Data thinking
 
-There are many skills involved in producing a good data visualization: 
+[There are many skills involved in producing a good data visualization:]{.lead}
 
--   Technical (how to use particular tools) 
--   Design (how to make visual representations that are engaging and appeal aesthetically)
--   Perception (how do certain notions of visual perception and cognition affect data communication)
+::: spaced
+-   **Technical** [(how to use particular tools)]{.detail}
+-   **Design** [(how to make visual representations that are engaging and appeal aesthetically)]{.detail}
+-   **Perception** [(how do certain notions of visual perception and cognition affect data communication)]{.detail}
+:::
 
 ::: notes
 - Making a good visualization draws on several different skill sets.
@@ -156,7 +163,7 @@ There are many skills involved in producing a good data visualization:
 
 ## Data visualization = Data thinking
 
-Most important is to be able to **derive reliable information from data using visual representations**.  
+[Most important is to be able to **derive reliable information from data using visual representations**.]{.lead}
 
 ![](images/data-thinking.png)
 
@@ -168,15 +175,15 @@ Most important is to be able to **derive reliable information from data using vi
 
 ------------------------------------------------------------------------
 
-**Your data visualization is effective only if it helps you, and your audience, understand the real world better**
+[**Your data visualization is effective only if it helps you, and your audience, understand the real world better**]{.lead}
 
 This requires data thinking skills:
 
-::: {style="font-size: 75%;"}
--   Understanding of what the data represents (and what it doesn't)
--   Transparency about the transformations and aggregations done to the data to produce the visualization  
--   Awareness about how different visual representations affect the interpretation of the data, and an ability to justify which choice is most appropriate for your data and audience  
--   Knowledge about the context from which the data is taken, and later presented. 
+::: {.spaced style="font-size: 75%;"}
+-   **Understanding** [of what the data represents (and what it doesn't)]{.muted}
+-   **Transparency** [about the transformations and aggregations done to the data to produce the visualization]{.muted}
+-   **Awareness** [about how different visual representations affect the interpretation of the data, and an ability to justify which choice is most appropriate for your data and audience]{.muted}
+-   **Knowledge** [about the context from which the data is taken, and later presented.]{.muted}
 :::
 
 ::: notes
@@ -727,29 +734,6 @@ More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.
 - For your assignments: you'll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point.
 :::
 
-## [Some good examples]{style="font-size: 0.7em;"} {.smaller .scrollable}
-
-[![](images/good1.png){width="100%"}](images/good1.png) [Distributions are informative](https://clauswilke.com/dataviz/histograms-density-plots.html)
-
-::::: columns
-::: {.column width="50%"}
-[![](images/good2.png){width="100%"}](images/good2.png)
-:::
-
-::: {.column width="50%"}
-[![](images/good3.png){width="100%"}](images/good3.png)
-:::
-:::::
-
-[NYT Graphic - Obamacare spending](https://www.nytimes.com/interactive/2023/09/05/upshot/medicare-budget-threat-receded.html?pgtype=Article&action=click&module=RelatedLinks)
-
-::: notes
-- Some examples of good visualizations.
-- Butterfat by cow breed (Wilke): overlapping density plots with direct labels instead of a legend; distributions are more informative than just means.
-- NYT Medicare spending: projected trend vs. actual spending, with the gap shaded and annotated. One clear message.
-- NYT smoking rates: a simple line with a declarative title that states the conclusion.
-- Common thread: clear message, direct labels, minimal clutter.
-:::
 
 # Guiding principles [🪄]{.header-emoji} {background-color="#343a40"}
 
@@ -780,6 +764,30 @@ More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.
 - Each point maps to an example we saw: axes (Ireland), colours (safety map), elements (Cincinnati), data-to-ink (gun ownership), simplicity (stacked bars), one conclusion (warehouses).
 - "Explaining data": is this an explanatory plot with a clear message?
 - "Complete and correct": the pie chart that didn't add up to 100%.
+:::
+
+## [Some good examples]{style="font-size: 0.7em;"} {.smaller .scrollable}
+
+[![](images/good1.png){width="100%"}](images/good1.png) [Distributions are informative](https://clauswilke.com/dataviz/histograms-density-plots.html)
+
+::::: columns
+::: {.column width="50%"}
+[![](images/good2.png){width="100%"}](images/good2.png)
+:::
+
+::: {.column width="50%"}
+[![](images/good3.png){width="100%"}](images/good3.png)
+:::
+:::::
+
+[NYT Graphic - Obamacare spending](https://www.nytimes.com/interactive/2023/09/05/upshot/medicare-budget-threat-receded.html?pgtype=Article&action=click&module=RelatedLinks)
+
+::: notes
+- Some examples of good visualizations.
+- Butterfat by cow breed (Wilke): overlapping density plots with direct labels instead of a legend; distributions are more informative than just means.
+- NYT Medicare spending: projected trend vs. actual spending, with the gap shaded and annotated. One clear message.
+- NYT smoking rates: a simple line with a declarative title that states the conclusion.
+- Common thread: clear message, direct labels, minimal clutter.
 :::
 
 ## Making good plots: the BBC way {.smaller}

@@ -5,6 +5,7 @@
 $cosmo-blue: #2780e3;
 $cosmo-dark: #343a40;   // website text colour and navbar background
 $cosmo-light: #cacccd;  // website navbar text colour
+$cosmo-muted: #6c757d;  // website secondary text colour
 
 $body-bg: #ffffff;
 $body-color: $cosmo-dark;
@@ -43,4 +44,30 @@ $font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   transform: rotate(-3deg);
+}
+
+// Text hierarchy for dense slides
+// [..]{.lead}: intro sentence, slightly larger than the bullets
+.reveal .lead {
+  display: block;
+  font-size: 1.15em;
+  line-height: 1.3;
+  margin-bottom: 0.6em;
+}
+
+// [..]{.detail}: explanation on its own line under a bold keyword, smaller and grey
+.reveal .detail {
+  display: block;
+  font-size: 0.7em;
+  color: $cosmo-muted;
+}
+
+// [..]{.muted}: inline explanation after a bold keyword, grey
+.reveal .muted {
+  color: $cosmo-muted;
+}
+
+// ::: spaced: more breathing room between bullets
+.reveal .spaced li {
+  margin-bottom: 0.6em;
 }

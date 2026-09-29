@@ -354,7 +354,7 @@
     "href": "slides/slides.html#schedule",
     "title": "Data Visualization",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\n\n\n\n\nWhen\nTopic\nPreparation / Worksheets / Assignments\n\n\n\n\nSession 1.Tue 29/9, 15.00–18.00GS.11\nFundamentals of DV\nRead: DV ch. 1; ch. 3Worksheet: ggplot recap\n\n\nSession 2.Fri 2/10, 12.00–15.00HvA\nExploratory viz\nWorksheet: ggplotlyWorksheet: working with AI, pt. 1🚨 Sun 4/10, 23.59Deadline Assignment 1 (individual) + Assignment 2, Part 1 (group)\n\n\nSession 3.Tue 6/10, 15.00–18.00GS.11\nExplanatory viz\nWorksheet: working with AI, pt. 2Read: DV ch. 8\n\n\nSession 4.Fri 9/10, 12.00–15.00HvA\nPitches & Q&A\n🚨 Sun 11/10, 23.59Deadline Assignment 2, Part 2 (group)"
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\nWhen\nTopic\nPreparation / Worksheets / Assignments\n\n\n\n\nSession 1.Tue 29/9, 15.00–18.00GS.11\nFundamentals of DV\nRead: DV ch. 1; ch. 3Worksheet: ggplot recap\n\n\nSession 2.Fri 2/10, 12.00–15.00HvA\nExploratory viz\nWorksheet: ggplotlyWorksheet: working with AI, pt. 1🚨 Sun 4/10, 23.59Deadline Assignment 1 (individual) + Assignment 2, Part 1 (group)\n\n\nSession 3.Tue 6/10, 15.00–18.00GS.11\nExplanatory viz\nWorksheet: working with AI, pt. 2Read: DV ch. 8\n\n\nSession 4.Fri 9/10, 12.00–15.00HvA\nPitches & Q&A\n🚨 Sun 11/10, 23.59Deadline Assignment 2, Part 2 (group)\n\n\n\n\n\nFriday sessions: time to work on group project!\nBring a (charged) laptop! 💻"
   },
   {
     "objectID": "slides/slides.html#tuesday-sept-29",
@@ -368,7 +368,7 @@
     "href": "slides/slides.html#data-visualization-data-thinking",
     "title": "Data Visualization",
     "section": "Data visualization = Data thinking",
-    "text": "Data visualization = Data thinking\nThere are many skills involved in producing a good data visualization:\n\nTechnical (how to use particular tools)\nDesign (how to make visual representations that are engaging and appeal aesthetically)\nPerception (how do certain notions of visual perception and cognition affect data communication)\n\n\n\nMaking a good visualization draws on several different skill sets.\nTechnical: knowing your tools, e.g. ggplot. (covered in the worksheets, and a skill you’ll continue to build up over time)\nDesign: making it engaging and aesthetically pleasing. (next tuesday’s session)\nPerception: knowing how people actually read visual information (we discuss this a little bit, but more information is in your reading)."
+    "text": "Data visualization = Data thinking\nThere are many skills involved in producing a good data visualization:\n\n\nTechnical (how to use particular tools)\nDesign (how to make visual representations that are engaging and appeal aesthetically)\nPerception (how do certain notions of visual perception and cognition affect data communication)\n\n\n\n\nMaking a good visualization draws on several different skill sets.\nTechnical: knowing your tools, e.g. ggplot. (covered in the worksheets, and a skill you’ll continue to build up over time)\nDesign: making it engaging and aesthetically pleasing. (next tuesday’s session)\nPerception: knowing how people actually read visual information (we discuss this a little bit, but more information is in your reading)."
   },
   {
     "objectID": "slides/slides.html#data-visualization-data-thinking-1",
@@ -441,18 +441,18 @@
     "text": "Exploratory versus explanatory\n\n\n\n\n\n\nSource: storytellingwithdata.com\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory).\n\n\n\nStorytelling with data’s metaphor: exploratory analysis is like opening 100 oysters to find a couple of pearls.\nExplanatory: show your audience the pearls, not all the oysters.\nFor your assignments: you’ll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point."
   },
   {
-    "objectID": "slides/slides.html#some-good-examples",
-    "href": "slides/slides.html#some-good-examples",
-    "title": "Data Visualization",
-    "section": "Some good examples",
-    "text": "Some good examples\n Distributions are informative\n\n\n\n\n\n\nNYT Graphic - Obamacare spending\n\n\nSome examples of good visualizations.\nButterfat by cow breed (Wilke): overlapping density plots with direct labels instead of a legend; distributions are more informative than just means.\nNYT Medicare spending: projected trend vs. actual spending, with the gap shaded and annotated. One clear message.\nNYT smoking rates: a simple line with a declarative title that states the conclusion.\nCommon thread: clear message, direct labels, minimal clutter."
-  },
-  {
     "objectID": "slides/slides.html#tips-for-the-best-viz",
     "href": "slides/slides.html#tips-for-the-best-viz",
     "title": "Data Visualization",
     "section": "Tips for the best viz",
     "text": "Tips for the best viz\n\nIs it explaining data?\nIs the information complete and correct?\nAre axes correct? (+ Should they have a zero-point?)\nDo the colors work? ( + Do they map to a relevant attribute?)\nAre all elements needed?\nWhat is the data to ink ratio?\nIs it understandable & simple?\nDoes it portray one conclusion?\n\n\n\nUse this as a checklist for your own plots and for the assignments.\nEach point maps to an example we saw: axes (Ireland), colours (safety map), elements (Cincinnati), data-to-ink (gun ownership), simplicity (stacked bars), one conclusion (warehouses).\n“Explaining data”: is this an explanatory plot with a clear message?\n“Complete and correct”: the pie chart that didn’t add up to 100%."
+  },
+  {
+    "objectID": "slides/slides.html#some-good-examples",
+    "href": "slides/slides.html#some-good-examples",
+    "title": "Data Visualization",
+    "section": "Some good examples",
+    "text": "Some good examples\n Distributions are informative\n\n\n\n\n\n\nNYT Graphic - Obamacare spending\n\n\nSome examples of good visualizations.\nButterfat by cow breed (Wilke): overlapping density plots with direct labels instead of a legend; distributions are more informative than just means.\nNYT Medicare spending: projected trend vs. actual spending, with the gap shaded and annotated. One clear message.\nNYT smoking rates: a simple line with a declarative title that states the conclusion.\nCommon thread: clear message, direct labels, minimal clutter."
   },
   {
     "objectID": "slides/slides.html#making-good-plots-the-bbc-way",
