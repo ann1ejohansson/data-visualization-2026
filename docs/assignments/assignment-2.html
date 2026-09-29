@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -214,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report">The report</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
-  <li><a href="#first-draft-and-peer-review" id="toc-first-draft-and-peer-review" class="nav-link" data-scroll-target="#first-draft-and-peer-review">First draft and peer review</a></li>
+  <li><a href="#pitches" id="toc-pitches" class="nav-link" data-scroll-target="#pitches">Pitches</a></li>
   <li><a href="#submitting-part-2" id="toc-submitting-part-2" class="nav-link" data-scroll-target="#submitting-part-2">Submitting Part 2</a></li>
   </ul></li>
   <li><a href="#levels-of-visualization" id="toc-levels-of-visualization" class="nav-link" data-scroll-target="#levels-of-visualization">Levels of visualization</a>
@@ -259,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="instructions" class="level2">
 <h2 class="anchored" data-anchor-id="instructions">Instructions</h2>
-<p>For the second and final assignment of the Data Visualization module, which you complete <strong>in a group</strong>, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). Each of RQ1–RQ4 comes with a code chunk that prepares the relevant data. You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable – focus on using the data given to create a sound data visualization.</p>
+<p>For the second and final assignment of the Data Visualization module, which you complete <strong>in a group</strong>, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable – focus on using the data given to create a sound data visualization.</p>
 <p>The assignment consists of two parts:</p>
 <table class="caption-top table">
 <thead>
@@ -322,7 +288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     └── DV-Assignment2-GroupX.Rmd</code></pre>
 <p>All group members should clone the group repository. Make a first commit and push it, and check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!</p>
 <p>Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a <a href="https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure">reproducible workflow</a>. Additionally, it is important that you <strong>never push data to GitHub</strong>.</p>
-<p>Now, load in the data. In the <code>scripts/</code> folder, first run <code>00-packages.R</code> to install and load all the packages you need, then run <code>01-get-data.R</code> to download the data into <code>data/raw/</code> and load it. Then run the <a href="#data-and-codebook">data preparation code</a> for your research question. Examine the data, and discuss with your group:</p>
+<p>Now, load in the data. In the <code>scripts/</code> folder, first run <code>00-packages.R</code> to install and load all the packages you need, then run <code>01-get-data.R</code> to download the data into <code>data/raw/</code> and load it. Examine the data, and discuss with your group:</p>
 <ul>
 <li>What is the structure of the data?<br>
 </li>
@@ -376,9 +342,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Code Quality and Styling</strong> [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?</li>
 </ul>
 </section>
-<section id="first-draft-and-peer-review" class="level3">
-<h3 class="anchored" data-anchor-id="first-draft-and-peer-review">First draft and peer review</h3>
-<p>We would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&amp;A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.</p>
+<section id="pitches" class="level3">
+<h3 class="anchored" data-anchor-id="pitches">Pitches</h3>
+<p>By <strong>Session 4 (Friday, October 9th)</strong>, you should have a first draft of your final visualization ready. Render it in an html file, and upload to canvas. The draft is not graded, but the further along it is, the more useful the feedback you will get.</p>
+<p>In Friday’s class, each group gives a short pitch of their project. Cover:</p>
+<ul>
+<li><strong>Your research question</strong>: what did you want to find out, and for whom?</li>
+<li><strong>Your approach</strong>: how did you tackle the question in the data?</li>
+<li><strong>Your conclusion</strong>: what can you conclude, and how does your visualization support that conclusion?</li>
+<li><strong>Open questions</strong>: which aspects are you still unsure about?</li>
+</ul>
+<p>Use the pitch to get feedback from the rest of the group, so bring the questions you would like input on. You do not need to prepare slides, or have any text on the screen. Just show your data visualization so far. In this session, we would also like you to briefly share how you used AI in your project. What did you learn from it? Did you run into any obstacles, pitfalls, or risks along the way, especially ones not covered in the class? Please think about this beforehand so we can have a fruitful discussion.</p>
+<p>The pitches should be 3 minutes for presenting your plot, followed by a 3-minute discussion with the group.</p>
 </section>
 <section id="submitting-part-2" class="level3">
 <h3 class="anchored" data-anchor-id="submitting-part-2">Submitting Part 2</h3>
@@ -449,90 +424,9 @@ Hidden counts: <code>"&lt;5"</code>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p>DUO hides any count below 5 and writes the text <code>"&lt;5"</code> instead. In <code>referentieniveaus</code> and <code>schooladviezen</code> this happens <em>a lot</em>, because students are split over many small categories. If you simply drop the schools with a <code>"&lt;5"</code> somewhere, almost no schools are left over.</p>
-<p>The code below therefore replaces <code>"&lt;5"</code> with a number of your choice (2.5, the midpoint of 1–4, by default). This is an assumption, so <strong>check whether your conclusion changes when you use 1 or 4 instead</strong>, and report this in your robustness section.</p>
+<p>You will therefore need to decide how to handle <code>"&lt;5"</code>, for example by replacing it with a number (such as 2.5, the midpoint of 1–4). This is an assumption, so <strong>check whether your conclusion changes when you use 1 or 4 instead</strong>, and report this in your robustness section.</p>
 </div>
 </div>
-</div>
-<p>Run the chunk below first, whichever research question you choose. It loads the data and creates the helper objects that the RQ-specific chunks use.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data preparation (all RQs):</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages and data. Run this from your own project (the starter</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># template): 01-get-data.R downloads the data if needed, and loads</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># eindscores, referentieniveaus, schooladviezen and schoolweging.</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"00-packages.R"</span>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"01-get-data.R"</span>))</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># DUO writes "&lt;5" for counts under 5. This helper turns a count column into</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers, replacing "&lt;5" with `value`. Rerun your analysis with 1 and 4 to</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check that your conclusion doesn't depend on this choice.</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>suppressed_value <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>parse_count <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">value =</span> suppressed_value) {</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(<span class="fu">replace</span>(x, x <span class="sc">==</span> <span class="st">"&lt;5"</span>, value))</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Which test provider did each school use? Only eindscores has this. Most</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># schools use one provider; for the few that use more, we keep the provider</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># that tested the most students.</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>school_provider <span class="ot">&lt;-</span> eindscores <span class="sc">|&gt;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">ends_with</span>(<span class="st">"_AANTAL"</span>),</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"provider"</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"n_tested"</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">provider =</span> <span class="fu">str_remove</span>(provider, <span class="st">"_AANTAL"</span>),</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_tested =</span> <span class="fu">parse_count</span>(n_tested)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n_tested <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    n_tested,</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(INSTELLINGSCODE, VESTIGINGSCODE),</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">with_ties =</span> <span class="cn">FALSE</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INSTELLINGSCODE, VESTIGINGSCODE, provider, n_tested)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Schoolweging per school. OVT combines INSTELLINGSCODE and a location code</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># (e.g. "00AP|C1"), so we split it and summarise per INSTELLINGSCODE, which</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># is what we can join on (see the comments at the bottom of 01-get-data.R).</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>school_weging <span class="ot">&lt;-</span> schoolweging <span class="sc">|&gt;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    OVT,</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">"|"</span>,</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"INSTELLINGSCODE"</span>, <span class="st">"location"</span>)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">schoolweging =</span> <span class="fu">weighted.mean</span>(schoolweging, aantal_leerlingen),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">spreiding =</span> <span class="fu">weighted.mean</span>(spreiding, aantal_leerlingen),</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_students_school =</span> <span class="fu">sum</span>(aantal_leerlingen),</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> INSTELLINGSCODE</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference levels: share of students per school reaching each level.</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Maths (REKENEN): basic level 1F, target level 1S.</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Reading (LV, leesvaardigheid): basic level 1F, target level 2F.</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>ref_levels <span class="ot">&lt;-</span> referentieniveaus <span class="sc">|&gt;</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(REKENEN_LAGER1F<span class="sc">:</span>TV_2F, parse_count)) <span class="sc">|&gt;</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_maths =</span> REKENEN_LAGER1F <span class="sc">+</span> REKENEN_1F <span class="sc">+</span> REKENEN_1S <span class="sc">+</span> REKENEN_2F,</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_maths_1f =</span> <span class="dv">1</span> <span class="sc">-</span> REKENEN_LAGER1F <span class="sc">/</span> n_maths,</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_maths_1s =</span> (REKENEN_1S <span class="sc">+</span> REKENEN_2F) <span class="sc">/</span> n_maths,</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_reading =</span> LV_LAGER1F <span class="sc">+</span> LV_1F <span class="sc">+</span> LV_2F,</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_reading_1f =</span> <span class="dv">1</span> <span class="sc">-</span> LV_LAGER1F <span class="sc">/</span> n_reading,</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_reading_2f =</span> LV_2F <span class="sc">/</span> n_reading</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="co"># School advice: number of students per secondary-school track, plus the share</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="co"># of students with a HAVO-or-higher advice (you may define this differently!)</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>advice <span class="ot">&lt;-</span> schooladviezen <span class="sc">|&gt;</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(VSO<span class="sc">:</span>ADVIES_NIET_MOGELIJK, parse_count)) <span class="sc">|&gt;</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_advice =</span> <span class="fu">rowSums</span>(<span class="fu">pick</span>(VSO<span class="sc">:</span>ADVIES_NIET_MOGELIJK)),</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_havo_plus =</span> (HAVO <span class="sc">+</span> HAVO_VWO <span class="sc">+</span> VWO) <span class="sc">/</span> n_advice</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="research-questions" class="level2">
@@ -546,36 +440,12 @@ Hidden counts: <code>"&lt;5"</code>
 <hr>
 <p><strong>Level</strong>: Analytics</p>
 <p><strong>Target audience:</strong> a municipal education officer or a school board.</p>
-<p><strong>Instruction:</strong> Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. You can choose one of two ways to define “on track”:</p>
+<p><strong>Instruction:</strong> Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. There could be many ways to define “on track”, for example:</p>
 <ol type="1">
 <li><p><em>National benchmark:</em> compare each school to the national average share of students reaching each level.</p></li>
 <li><p><em>Comparable-schools benchmark:</em> compare each school to schools with a similar student population, i.e.&nbsp;a similar <code>schoolweging</code>. A school with many disadvantaged students and 40% at 1S may be doing better than expected, while a school with very few disadvantaged students and the same 40% may not be.</p></li>
 </ol>
 <p>Good municipalities to start with are Haarlem (38 schools), Leiden (25) or Delft (25). Larger cities like Amsterdam (200+ schools) are possible, but you will need to think harder about how to keep the plot readable.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data:</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the data preparation chunk above first.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Choose your municipality (see unique(ref_levels$GEMEENTENAAM))</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>my_municipality <span class="ot">&lt;-</span> <span class="st">"Haarlem"</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># National benchmark: average share per level across all schools</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>national <span class="ot">&lt;-</span> ref_levels <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">starts_with</span>(<span class="st">"pct_"</span>), \(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference levels of the schools in your municipality, with schoolweging</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>rq1_data <span class="ot">&lt;-</span> ref_levels <span class="sc">|&gt;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GEMEENTENAAM <span class="sc">==</span> my_municipality) <span class="sc">|&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(school_weging, <span class="at">by =</span> <span class="st">"INSTELLINGSCODE"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    n_maths, pct_maths_1f, pct_maths_1s,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    n_reading, pct_reading_1f, pct_reading_2f,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    schoolweging</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -615,25 +485,6 @@ Tip
 <li><code>pct_reading_2f</code>: share of students reaching the reading target level</li>
 </ol>
 <p>Compare these between providers, while accounting for <code>schoolweging</code> – schools do not choose their provider at random, so a raw comparison between providers is misleading. Support your visualization with a statistical model (e.g.&nbsp;a linear regression with provider and schoolweging as predictors).</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data:</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the data preparation chunk above first.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Reference levels per school, with the school's provider and schoolweging</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>rq2_data <span class="ot">&lt;-</span> ref_levels <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(school_provider, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"INSTELLINGSCODE"</span>, <span class="st">"VESTIGINGSCODE"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(school_weging, <span class="at">by =</span> <span class="st">"INSTELLINGSCODE"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># AMN and DOE are used by too few schools to compare reliably</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(provider <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"LIB"</span>, <span class="st">"IEP"</span>, <span class="st">"ROUTE8"</span>, <span class="st">"DIA"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    GEMEENTENAAM, PROVINCIE, provider,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    n_maths, pct_maths_1s, n_reading, pct_reading_2f,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    schoolweging</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -647,8 +498,8 @@ Tip
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>First look at the raw differences between providers, then at the differences for schools with a similar schoolweging. Does the picture change? This comparison could be the core of your story.</p></li>
-<li><p>A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands (e.g.&nbsp;“x more students per class of 25”)?</p></li>
+<li><p>You might not be able to replicate the patterns from the article exactly. Critically check why that may be; what statistical choices could affect the final outcome?</p></li>
+<li><p>A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands?</p></li>
 <li><p>This is school-level data: you know which provider a school used, not the scores of individual students. What can and can’t you conclude from that?</p></li>
 </ul>
 </div>
@@ -667,32 +518,7 @@ Tip
 <p><strong>Level:</strong> Inference</p>
 <p><strong>Target audience:</strong> secondary schools, or policymakers.</p>
 <p><strong>Instruction:</strong> At the end of primary school, every student receives a school advice for a secondary-school track (PRO, VMBO, HAVO, VWO, see the codebook). The advice is based on the teacher’s judgement and on the doorstroomtoets. In this RQ, you will investigate how closely a school’s advice follows its students’ test results, and whether this differs between schools with a more or less disadvantaged student population.</p>
-<p>Relate a measure of the school’s advice (e.g.&nbsp;<code>pct_havo_plus</code>) to a measure of its test results (<code>pct_maths_1s</code> and/or <code>pct_reading_2f</code>), and test whether <code>schoolweging</code> moderates this relationship (e.g.&nbsp;with an interaction in a linear regression). Do two schools with the same results give the same advice, regardless of who their students are?</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data:</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the data preparation chunk above first.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Test results and school advice per school, with schoolweging</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>rq3_data <span class="ot">&lt;-</span> ref_levels <span class="sc">|&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      advice,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      INSTELLINGSCODE, VESTIGINGSCODE,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      VSO<span class="sc">:</span>ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"INSTELLINGSCODE"</span>, <span class="st">"VESTIGINGSCODE"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(school_weging, <span class="at">by =</span> <span class="st">"INSTELLINGSCODE"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    GEMEENTENAAM, PROVINCIE,</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    n_maths, pct_maths_1s, n_reading, pct_reading_2f,</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    VSO<span class="sc">:</span>ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus,</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    schoolweging</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>Relate a measure of the school’s advice (e.g.&nbsp;<code>pct_havo_plus</code>) to a measure of its test results (<code>pct_maths_1s</code> and/or <code>pct_reading_2f</code>), and test whether <code>schoolweging</code> moderates this relationship. Do two schools with the same results give the same advice, regardless of who their students are?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -706,8 +532,8 @@ Tip
 <div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><code>pct_havo_plus</code> is only one way to summarise the advice. You could also turn the tracks into a numeric scale (PRO = 1, …, VWO = 6) and compute an average advice per school. Argue your choice.</p></li>
-<li><p>Suppose you find that schools with a higher schoolweging give lower advice than schools with the same test results. What are possible explanations? Is it necessarily unfair? Discuss this in your report.</p></li>
+<li><p><code>pct_havo_plus</code> is only one way to summarise the advice. You could also turn the tracks into a numeric scale (PRO = 1, …, VWO = 6) and compute an average advice per school, or do something else. Argue your choice.</p></li>
+<li><p>How will you communicate statistical differences in a simple and meaningful way?.</p></li>
 </ul>
 </div>
 </div>
@@ -724,7 +550,7 @@ Tip
 <hr>
 <p><strong>Level:</strong> Prediction</p>
 <p><strong>Target audience:</strong> school boards or the Inspectorate, who could use such a model to spot schools whose advice is unexpectedly high or low.</p>
-<p><strong>Instruction:</strong> Fit a model that predicts a school’s share of students with a HAVO-or-higher advice (<code>pct_havo_plus</code>) from characteristics of the school and its student population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. You can choose between the following predictors:</p>
+<p><strong>Instruction:</strong> Fit a model that predicts a school’s share of students with a HAVO-or-higher advice (<code>pct_havo_plus</code>) from characteristics of the school and its student population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. Examples of predictions you can choose between:</p>
 <ol type="1">
 <li><code>schoolweging</code> (how disadvantaged the student population is)</li>
 <li><code>spreiding</code> (how much the students within a school differ from each other in disadvantage)</li>
@@ -733,26 +559,7 @@ Tip
 <li><code>PROVINCIE</code></li>
 <li><code>DENOMINATIE_VESTIGING</code> (the school’s religious or educational denomination)</li>
 </ol>
-<p>You can be selective or choose all variables. If you choose to omit certain variables, please explain why. Evaluate your model on data it hasn’t seen (e.g.&nbsp;a train/test split) and communicate how well it performs, which predictors matter, and which schools deviate most from what the model predicts.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data:</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the data preparation chunk above first.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># School advice per school, with school context and provider</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>rq4_data <span class="ot">&lt;-</span> advice <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(school_weging, <span class="at">by =</span> <span class="st">"INSTELLINGSCODE"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(school_provider, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"INSTELLINGSCODE"</span>, <span class="st">"VESTIGINGSCODE"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># special primary schools (Sbo) have no schoolweging</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SOORT_PO <span class="sc">==</span> <span class="st">"Bo"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    GEMEENTENAAM, PROVINCIE, DENOMINATIE_VESTIGING,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    n_advice, pct_havo_plus,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    schoolweging, spreiding, n_students_school, provider</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>You can also look for more variables/data elsewhere. Evaluate your model on data it hasn’t seen (e.g.&nbsp;a train/test split) and communicate how well it performs, which predictors matter, and which schools deviate most from what the model predicts.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -766,9 +573,8 @@ Tip
 <div id="callout-6" class="callout-6-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><code>DENOMINATIE_VESTIGING</code> has 19 categories and some providers are rare. Categories with only a handful of schools make your model unstable – consider combining them.</p></li>
+<li><p>Some categories may only be associated with a few schools. How will you handle missing / too little data?</p></li>
 <li><p>A school with 8 students in group 8 will have a much noisier <code>pct_havo_plus</code> than a school with 80. How do you deal with that in your model, or in your visualization?</p></li>
-<li><p>A school that deviates from the model’s prediction is not necessarily doing something wrong. Keep this in mind when you present the “outliers”.</p></li>
 </ul>
 </div>
 </div>
@@ -786,25 +592,13 @@ Tip
 <p><strong>Level:</strong> Your choice (analytics, inference or prediction)</p>
 <p><strong>Instruction:</strong> If none of the questions above appeal to you, you can formulate your own. The DUO data should be the core of your project, but you are welcome to combine it with other data. This option gives you more freedom, but it also asks more of you: you have to make the choices that RQ1–RQ4 make for you. Before you start working on the data, make sure you have specified the following:</p>
 <ol type="1">
-<li><p><strong>A very specific research question.</strong> “Is the doorstroomtoets fair?” is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it’s clear which plot and which analysis would answer it. For example: “Do schools in Limburg that use Route 8 have a lower share of students at reading level 2F than Route 8 schools in the rest of the country, when comparing schools with a similar schoolweging?”</p></li>
+<li><p><strong>A very specific research question.</strong> “Is the doorstroomtoets fair?” is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it’s clear which plot and which analysis would answer it.</p></li>
 <li><p><strong>An approach.</strong> Is your question one of analytics, inference or prediction (see <a href="#levels-of-visualization">Levels of visualization</a>)? Explain why, and what statistical test or model (if any) you will use to support your visualization.</p></li>
-<li><p><strong>A target audience.</strong> Who is your visualization for, and what should they be able to do or conclude after seeing it? This shapes your choices just as much as the data does.</p></li>
+<li><p><strong>A target audience.</strong> Who is your visualization for, and what should they be able to do or conclude after seeing it?</p></li>
 </ol>
 <p>State all three explicitly at the start of your report.</p>
 <p><strong>Adding other data.</strong> You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (<code>INSTELLINGSCODE</code>, <code>VESTIGINGSCODE</code>), postcode (<code>POSTCODE_VESTIGING</code>) and municipality (<code>GEMEENTENAAM</code>, <code>GEMEENTENUMMER</code>) are the columns you can use to join other data to the DUO files.</p>
-<p>We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you. Make sure a dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don’t), and describe in your report which data you used, where it comes from, and how you combined it.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Data:</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the data preparation chunk above first. Then start from whichever of</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the prepared objects fits your question (ref_levels, advice,</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># school_provider, school_weging), or from the raw DUO files.</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># If you add other data, download it in a script (like 01-get-data.R) so</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># that your project stays reproducible, and save it in data/raw/ -- never</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># push data to GitHub.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you: Make sure the dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don’t), and describe in your report which data you used, where it comes from, and how you combined it.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -818,7 +612,7 @@ Tip
 <div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Keep it small. A narrow question that you answer well is better than a broad question that you answer superficially.</p></li>
+<li><p>Keep the question narrow and refined. Your final visualization should support one conclusion.</p></li>
 <li><p>Before you commit to a question, check that the data can actually answer it: are the variables you need there, and are there enough schools in each group you want to compare?</p></li>
 </ul>
 </div>

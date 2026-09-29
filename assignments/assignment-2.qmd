@@ -14,7 +14,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Instructions
 
-For the second and final assignment of the Data Visualization module, which you complete **in a group**, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). Each of RQ1–RQ4 comes with a code chunk that prepares the relevant data. You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
+For the second and final assignment of the Data Visualization module, which you complete **in a group**, the challenge is to transform raw data into a clear and compelling story. Your goal is to design a visualization using the DUO doorstroomtoets (transfer test) data that highlights meaningful patterns and provides actionable insights. You can choose one of four research questions (substantiated below), or formulate your own (RQ5). You are expected to do some further data preparation and/or filtering of this data to obtain clean, reliable results. For RQ1–RQ4, you are not expected to find data from other sources or perform complicated data manipulations to derive a variable -- focus on using the data given to create a sound data visualization.
 
 The assignment consists of two parts:
 
@@ -66,7 +66,7 @@ All group members should clone the group repository. Make a first commit and pus
 
 Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure). Additionally, it is important that you **never push data to GitHub**.
 
-Now, load in the data. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Then run the [data preparation code](#data-and-codebook) for your research question. Examine the data, and discuss with your group:
+Now, load in the data. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Examine the data, and discuss with your group:
 
 -   What is the structure of the data?\
 -   What are the main variables? Can you already make some exploratory plots to understand these variables better?\
@@ -117,9 +117,21 @@ The final report will be graded on the following elements:
 -   **Creativity and Complexity** [10%]: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
 -   **Code Quality and Styling** [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
 
-### First draft and peer review
+### Pitches
 
-We would like you to hand in a first draft of your report before Friday, October 10th, 12:00. There are no specific requirements for this draft, nor will you be graded on it. However, you will engage in a peer review session during the class, where you will give and receive feedback on the draft. This is also a Q&A moment, where you can ask questions about your project. Therefore, the more you have worked on your draft, the more you will get out of this session.
+By **Session 4 (Friday, October 9th)**, you should have a first draft of your final visualization ready. Render it in an html file, and upload to canvas. The draft is not graded, but the further along it is, the more useful the feedback you will get.
+
+In Friday's class, each group gives a short pitch of their project. Cover:
+
+-   **Your research question**: what did you want to find out, and for whom?
+-   **Your approach**: how did you tackle the question in the data?
+-   **Your conclusion**: what can you conclude, and how does your visualization support that conclusion?
+-   **Open questions**: which aspects are you still unsure about?
+
+Use the pitch to get feedback from the rest of the group, so bring the questions you would like input on. You do not need to prepare slides, or have any text on the screen. Just show your data visualization so far. 
+In this session, we would also like you to briefly share how you used AI in your project. What did you learn from it? Did you run into any obstacles, pitfalls, or risks along the way, especially ones not covered in the class? Please think about this beforehand so we can have a fruitful discussion. 
+
+The pitches should be 3 minutes for presenting your plot, followed by a 3-minute discussion with the group. 
 
 ### Submitting Part 2
 
@@ -174,91 +186,8 @@ All research questions use the DUO open data that you already worked with in the
 
 DUO hides any count below 5 and writes the text `"<5"` instead. In `referentieniveaus` and `schooladviezen` this happens *a lot*, because students are split over many small categories. If you simply drop the schools with a `"<5"` somewhere, almost no schools are left over.
 
-The code below therefore replaces `"<5"` with a number of your choice (2.5, the midpoint of 1–4, by default). This is an assumption, so **check whether your conclusion changes when you use 1 or 4 instead**, and report this in your robustness section.
+You will therefore need to decide how to handle `"<5"`, for example by replacing it with a number (such as 2.5, the midpoint of 1–4). This is an assumption, so **check whether your conclusion changes when you use 1 or 4 instead**, and report this in your robustness section.
 :::
-
-Run the chunk below first, whichever research question you choose. It loads the data and creates the helper objects that the RQ-specific chunks use.
-
-```{r data-prep}
-#| code-fold: true
-#| code-summary: "Data preparation (all RQs):"
-
-# Load packages and data. Run this from your own project (the starter
-# template): 01-get-data.R downloads the data if needed, and loads
-# eindscores, referentieniveaus, schooladviezen and schoolweging.
-source(here::here("scripts", "00-packages.R"))
-source(here::here("scripts", "01-get-data.R"))
-
-# DUO writes "<5" for counts under 5. This helper turns a count column into
-# numbers, replacing "<5" with `value`. Rerun your analysis with 1 and 4 to
-# check that your conclusion doesn't depend on this choice.
-suppressed_value <- 2.5
-
-parse_count <- function(x, value = suppressed_value) {
-  x <- as.character(x)
-  as.numeric(replace(x, x == "<5", value))
-}
-
-# Which test provider did each school use? Only eindscores has this. Most
-# schools use one provider; for the few that use more, we keep the provider
-# that tested the most students.
-school_provider <- eindscores |>
-  pivot_longer(
-    cols = ends_with("_AANTAL"),
-    names_to = "provider",
-    values_to = "n_tested"
-  ) |>
-  mutate(
-    provider = str_remove(provider, "_AANTAL"),
-    n_tested = parse_count(n_tested)
-  ) |>
-  filter(n_tested > 0) |>
-  slice_max(
-    n_tested,
-    by = c(INSTELLINGSCODE, VESTIGINGSCODE),
-    with_ties = FALSE
-  ) |>
-  select(INSTELLINGSCODE, VESTIGINGSCODE, provider, n_tested)
-
-# Schoolweging per school. OVT combines INSTELLINGSCODE and a location code
-# (e.g. "00AP|C1"), so we split it and summarise per INSTELLINGSCODE, which
-# is what we can join on (see the comments at the bottom of 01-get-data.R).
-school_weging <- schoolweging |>
-  separate_wider_delim(
-    OVT,
-    delim = "|",
-    names = c("INSTELLINGSCODE", "location")
-  ) |>
-  summarise(
-    schoolweging = weighted.mean(schoolweging, aantal_leerlingen),
-    spreiding = weighted.mean(spreiding, aantal_leerlingen),
-    n_students_school = sum(aantal_leerlingen),
-    .by = INSTELLINGSCODE
-  )
-
-# Reference levels: share of students per school reaching each level.
-# Maths (REKENEN): basic level 1F, target level 1S.
-# Reading (LV, leesvaardigheid): basic level 1F, target level 2F.
-ref_levels <- referentieniveaus |>
-  mutate(across(REKENEN_LAGER1F:TV_2F, parse_count)) |>
-  mutate(
-    n_maths = REKENEN_LAGER1F + REKENEN_1F + REKENEN_1S + REKENEN_2F,
-    pct_maths_1f = 1 - REKENEN_LAGER1F / n_maths,
-    pct_maths_1s = (REKENEN_1S + REKENEN_2F) / n_maths,
-    n_reading = LV_LAGER1F + LV_1F + LV_2F,
-    pct_reading_1f = 1 - LV_LAGER1F / n_reading,
-    pct_reading_2f = LV_2F / n_reading
-  )
-
-# School advice: number of students per secondary-school track, plus the share
-# of students with a HAVO-or-higher advice (you may define this differently!)
-advice <- schooladviezen |>
-  mutate(across(VSO:ADVIES_NIET_MOGELIJK, parse_count)) |>
-  mutate(
-    n_advice = rowSums(pick(VSO:ADVIES_NIET_MOGELIJK)),
-    pct_havo_plus = (HAVO + HAVO_VWO + VWO) / n_advice
-  )
-```
 
 ## Research Questions
 
@@ -274,38 +203,13 @@ advice <- schooladviezen |>
 
 **Target audience:** a municipal education officer or a school board.
 
-**Instruction:** Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. You can choose one of two ways to define "on track":
+**Instruction:** Choose one municipality, and visualize how each of its primary schools performs on the reference levels for maths (1F and 1S) and reading (1F and 2F). The visualization should be useful for the municipality: they should be able to see at a glance which schools are on track and which are falling behind. There could be many ways to define "on track", for example:
 
 1.  *National benchmark:* compare each school to the national average share of students reaching each level.
 
 2.  *Comparable-schools benchmark:* compare each school to schools with a similar student population, i.e. a similar `schoolweging`. A school with many disadvantaged students and 40% at 1S may be doing better than expected, while a school with very few disadvantaged students and the same 40% may not be.
 
 Good municipalities to start with are Haarlem (38 schools), Leiden (25) or Delft (25). Larger cities like Amsterdam (200+ schools) are possible, but you will need to think harder about how to keep the plot readable.
-
-```{r q-1-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Run the data preparation chunk above first.
-
-# Choose your municipality (see unique(ref_levels$GEMEENTENAAM))
-my_municipality <- "Haarlem"
-
-# National benchmark: average share per level across all schools
-national <- ref_levels |>
-  summarise(across(starts_with("pct_"), \(x) mean(x, na.rm = TRUE)))
-
-# Reference levels of the schools in your municipality, with schoolweging
-rq1_data <- ref_levels |>
-  filter(GEMEENTENAAM == my_municipality) |>
-  left_join(school_weging, by = "INSTELLINGSCODE") |>
-  select(
-    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
-    n_maths, pct_maths_1f, pct_maths_1s,
-    n_reading, pct_reading_1f, pct_reading_2f,
-    schoolweging
-  )
-```
 
 ::: {.callout-tip collapse="false"}
 -   Some schools only have 10–15 students in group 8. How reliable is a percentage based on so few students, and how does the `"<5"` replacement affect small schools in particular? (How) will you show this in your visualization?
@@ -340,30 +244,10 @@ The raw test scores (`*_GEM` in `eindscores`) are on six different scales and ca
 
 Compare these between providers, while accounting for `schoolweging` -- schools do not choose their provider at random, so a raw comparison between providers is misleading. Support your visualization with a statistical model (e.g. a linear regression with provider and schoolweging as predictors).
 
-```{r q-2-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Run the data preparation chunk above first.
-
-# Reference levels per school, with the school's provider and schoolweging
-rq2_data <- ref_levels |>
-  inner_join(school_provider, by = c("INSTELLINGSCODE", "VESTIGINGSCODE")) |>
-  left_join(school_weging, by = "INSTELLINGSCODE") |>
-  # AMN and DOE are used by too few schools to compare reliably
-  filter(provider %in% c("LIB", "IEP", "ROUTE8", "DIA")) |>
-  select(
-    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
-    GEMEENTENAAM, PROVINCIE, provider,
-    n_maths, pct_maths_1s, n_reading, pct_reading_2f,
-    schoolweging
-  )
-```
-
 ::: {.callout-tip collapse="false"}
--   First look at the raw differences between providers, then at the differences for schools with a similar schoolweging. Does the picture change? This comparison could be the core of your story.
+-   You might not be able to replicate the patterns from the article exactly. Critically check why that may be; what statistical choices could affect the final outcome? 
 
--   A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands (e.g. "x more students per class of 25")?
+-   A statistically significant difference is not necessarily a large one. How big are the differences, in terms your audience understands?
 
 -   This is school-level data: you know which provider a school used, not the scores of individual students. What can and can't you conclude from that?
 :::
@@ -386,38 +270,12 @@ rq2_data <- ref_levels |>
 
 **Instruction:** At the end of primary school, every student receives a school advice for a secondary-school track (PRO, VMBO, HAVO, VWO, see the codebook). The advice is based on the teacher's judgement and on the doorstroomtoets. In this RQ, you will investigate how closely a school's advice follows its students' test results, and whether this differs between schools with a more or less disadvantaged student population.
 
-Relate a measure of the school's advice (e.g. `pct_havo_plus`) to a measure of its test results (`pct_maths_1s` and/or `pct_reading_2f`), and test whether `schoolweging` moderates this relationship (e.g. with an interaction in a linear regression). Do two schools with the same results give the same advice, regardless of who their students are?
-
-```{r q-3-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Run the data preparation chunk above first.
-
-# Test results and school advice per school, with schoolweging
-rq3_data <- ref_levels |>
-  inner_join(
-    select(
-      advice,
-      INSTELLINGSCODE, VESTIGINGSCODE,
-      VSO:ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus
-    ),
-    by = c("INSTELLINGSCODE", "VESTIGINGSCODE")
-  ) |>
-  left_join(school_weging, by = "INSTELLINGSCODE") |>
-  select(
-    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
-    GEMEENTENAAM, PROVINCIE,
-    n_maths, pct_maths_1s, n_reading, pct_reading_2f,
-    VSO:ADVIES_NIET_MOGELIJK, n_advice, pct_havo_plus,
-    schoolweging
-  )
-```
+Relate a measure of the school's advice (e.g. `pct_havo_plus`) to a measure of its test results (`pct_maths_1s` and/or `pct_reading_2f`), and test whether `schoolweging` moderates this relationship. Do two schools with the same results give the same advice, regardless of who their students are?
 
 ::: {.callout-tip collapse="false"}
--   `pct_havo_plus` is only one way to summarise the advice. You could also turn the tracks into a numeric scale (PRO = 1, ..., VWO = 6) and compute an average advice per school. Argue your choice.
+-   `pct_havo_plus` is only one way to summarise the advice. You could also turn the tracks into a numeric scale (PRO = 1, ..., VWO = 6) and compute an average advice per school, or do something else. Argue your choice.
 
--   Suppose you find that schools with a higher schoolweging give lower advice than schools with the same test results. What are possible explanations? Is it necessarily unfair? Discuss this in your report.
+-   How will you communicate statistical differences in a simple and meaningful way?.
 :::
 
 </details>
@@ -436,7 +294,7 @@ rq3_data <- ref_levels |>
 
 **Target audience:** school boards or the Inspectorate, who could use such a model to spot schools whose advice is unexpectedly high or low.
 
-**Instruction:** Fit a model that predicts a school's share of students with a HAVO-or-higher advice (`pct_havo_plus`) from characteristics of the school and its student population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. You can choose between the following predictors:
+**Instruction:** Fit a model that predicts a school's share of students with a HAVO-or-higher advice (`pct_havo_plus`) from characteristics of the school and its student population. Deliberately leave out the test results themselves (the reference levels): we want to know how much the context alone predicts. Examples of predictions you can choose between:
 
 1.  `schoolweging` (how disadvantaged the student population is)
 2.  `spreiding` (how much the students within a school differ from each other in disadvantage)
@@ -445,34 +303,13 @@ rq3_data <- ref_levels |>
 5.  `PROVINCIE`
 6.  `DENOMINATIE_VESTIGING` (the school's religious or educational denomination)
 
-You can be selective or choose all variables. If you choose to omit certain variables, please explain why. Evaluate your model on data it hasn't seen (e.g. a train/test split) and communicate how well it performs, which predictors matter, and which schools deviate most from what the model predicts.
-
-```{r q-4-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Run the data preparation chunk above first.
-
-# School advice per school, with school context and provider
-rq4_data <- advice |>
-  left_join(school_weging, by = "INSTELLINGSCODE") |>
-  left_join(school_provider, by = c("INSTELLINGSCODE", "VESTIGINGSCODE")) |>
-  # special primary schools (Sbo) have no schoolweging
-  filter(SOORT_PO == "Bo") |>
-  select(
-    INSTELLINGSCODE, VESTIGINGSCODE, INSTELLINGSNAAM_VESTIGING,
-    GEMEENTENAAM, PROVINCIE, DENOMINATIE_VESTIGING,
-    n_advice, pct_havo_plus,
-    schoolweging, spreiding, n_students_school, provider
-  )
-```
+You can also look for more variables/data elsewhere. Evaluate your model on data it hasn't seen (e.g. a train/test split) and communicate how well it performs, which predictors matter, and which schools deviate most from what the model predicts.
 
 ::: {.callout-tip collapse="false"}
--   `DENOMINATIE_VESTIGING` has 19 categories and some providers are rare. Categories with only a handful of schools make your model unstable -- consider combining them.
+-   Some categories may only be associated with a few schools. How will you handle missing / too little data?
 
 -   A school with 8 students in group 8 will have a much noisier `pct_havo_plus` than a school with 80. How do you deal with that in your model, or in your visualization?
 
--   A school that deviates from the model's prediction is not necessarily doing something wrong. Keep this in mind when you present the "outliers".
 :::
 
 </details>
@@ -491,33 +328,20 @@ rq4_data <- advice |>
 
 **Instruction:** If none of the questions above appeal to you, you can formulate your own. The DUO data should be the core of your project, but you are welcome to combine it with other data. This option gives you more freedom, but it also asks more of you: you have to make the choices that RQ1–RQ4 make for you. Before you start working on the data, make sure you have specified the following:
 
-1.  **A very specific research question.** "Is the doorstroomtoets fair?" is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it's clear which plot and which analysis would answer it. For example: "Do schools in Limburg that use Route 8 have a lower share of students at reading level 2F than Route 8 schools in the rest of the country, when comparing schools with a similar schoolweging?"
+1.  **A very specific research question.** "Is the doorstroomtoets fair?" is a topic, not a research question. A good question names the outcome, the comparison and the population, so that it's clear which plot and which analysis would answer it. 
 
 2.  **An approach.** Is your question one of analytics, inference or prediction (see [Levels of visualization](#levels-of-visualization))? Explain why, and what statistical test or model (if any) you will use to support your visualization.
 
-3.  **A target audience.** Who is your visualization for, and what should they be able to do or conclude after seeing it? This shapes your choices just as much as the data does.
+3.  **A target audience.** Who is your visualization for, and what should they be able to do or conclude after seeing it? 
 
 State all three explicitly at the start of your report.
 
 **Adding other data.** You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (`INSTELLINGSCODE`, `VESTIGINGSCODE`), postcode (`POSTCODE_VESTIGING`) and municipality (`GEMEENTENAAM`, `GEMEENTENUMMER`) are the columns you can use to join other data to the DUO files.
 
-We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you. Make sure a dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don't), and describe in your report which data you used, where it comes from, and how you combined it.
-
-```{r q-5-data}
-#| code-fold: true
-#| code-summary: "Data:"
-
-# Run the data preparation chunk above first. Then start from whichever of
-# the prepared objects fits your question (ref_levels, advice,
-# school_provider, school_weging), or from the raw DUO files.
-
-# If you add other data, download it in a script (like 01-get-data.R) so
-# that your project stays reproducible, and save it in data/raw/ -- never
-# push data to GitHub.
-```
+We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you: Make sure the dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don't), and describe in your report which data you used, where it comes from, and how you combined it.
 
 ::: {.callout-tip collapse="false"}
--   Keep it small. A narrow question that you answer well is better than a broad question that you answer superficially.
+-   Keep the question narrow and refined. Your final visualization should support one conclusion. 
 
 -   Before you commit to a question, check that the data can actually answer it: are the variables you need there, and are there enough schools in each group you want to compare?
 :::
