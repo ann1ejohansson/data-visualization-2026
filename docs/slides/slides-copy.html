@@ -7,10 +7,12 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <meta name="author" content="Lecturers: Annie Johansson and Lilian Ye">
   <title>Data Visualization 2026 – Data Visualization</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -390,28 +392,132 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="images/coverphoto.jpg" data-background-size="auto" class="quarto-title-block center">
+<section id="title-slide" data-background-image="images/coverphoto.jpg" data-background-opacity="1.0" data-background-repeat="repeat" data-background-size="auto" class="quarto-title-block center">
   <h1 class="title"><span style="color: white;font-size: 0.7em;">Data Visualization</span></h1>
-  <p class="subtitle"><span style="color: white;">Behavioral Data Science Toolbox 2025</span></p>
+  <p class="subtitle"><span style="color: white;">Behavioral Data Science Toolbox 2026</span></p>
 
 <div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-<span style="color: white;">Lecturers: Annie Johansson and Lilian Ye</span> 
-</div>
-</div>
 </div>
 
 </section>
+<section>
+<section id="interactive-plots" class="title-slide slide level1 center" data-background-color="#8000FF">
+<h1>Interactive plots 🕹️</h1>
+
+</section>
+<section id="friday-oct-2" class="slide level2">
+<h2>Friday, Oct 2</h2>
+<ul>
+<li>Interactive visualizations with plotly</li>
+<li>Work on assignment 1</li>
+</ul>
+</section>
+<section id="section" class="slide level2 larger scrollable">
+<h2></h2>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
+<p>Some content</p>
+<p>=======</p>
+<p>Some conflicted content</p>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch</p>
+</section>
+<section id="git-conflicts" class="slide level2 smaller scrollable">
+<h2>Git conflicts</h2>
+<p><a href="images/merge_conflict.png"><img data-src="images/merge_conflict.png"></a></p>
+<ul>
+<li>Happens when two people change the same file, and then try to push to GitHub.</li>
+<li>Identify the content that you want to keep and delete the rest</li>
+<li>Delete the <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, and <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> lines</li>
+<li>Save the file, add, commit, and push again</li>
+<li><a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-using-the-command-line" target="_blank">Need to resolve via command line?</a></li>
+<li>Avoid by always starting you work session with a <code>git pull</code> (and make sure you don’t have uncommitted changes)</li>
+<li>Also communicate who is working on what</li>
+</ul>
+</section></section>
+<section>
+<section id="interactivity" class="title-slide slide level1 center" data-background-color="#8000FF">
+<h1>Interactivity 🎮</h1>
+
+</section>
+<section id="why-use-interactive-visualizations" class="slide level2">
+<h2>💬 <strong>Why use interactive visualizations?</strong></h2>
+<p><br><br></p>
+<p>What advantages/disadvantages do interactive visualizations have over static plots?</p>
+</section>
+<section id="advantages" class="slide level2">
+<h2>Advantages</h2>
+<div>
+<ul>
+<li class="fragment">Explore data dynamically</li>
+<li class="fragment">Zoom, pan, and hover for details</li>
+<li class="fragment">Reveal extra information without clutter</li>
+<li class="fragment">Enhance engagement in presentations and reports</li>
+<li class="fragment">Useful for exploratory analysis and dashboards</li>
+</ul>
+</div>
+</section>
+<section id="disadvantages" class="slide level2">
+<h2>Disadvantages</h2>
+<div>
+<ul>
+<li class="fragment">Harder to include in static formats (papers, print)</li>
+<li class="fragment">Accessibility issues (screen readers, non colorblind-friendly defaults)</li>
+<li class="fragment">Can overwhelm the audience if overused</li>
+<li class="fragment">Larger file sizes, slower rendering</li>
+<li class="fragment">Requires additional packages/libraries (e.g., <code>{plotly}</code>)</li>
+</ul>
+</div>
+</section>
+<section id="section-1" class="slide level2 center" data-background-color="#8000FF">
+<h2></h2>
+<p>🧠 <strong>Interactivity enhances, but does not replace,<br>
+the fundamentals of good data visualization</strong></p>
+</section>
+<section id="plotly" class="slide level2">
+<h2>Plotly</h2>
+<p><br><br></p>
+<ul>
+<li>Free and open-source interactive graphing library</li>
+<li>R users can access it via the <code>{plotly}</code> package: <a href="https://plotly.com/r/">plotly.com/r</a></li>
+</ul>
+</section>
+<section id="plotly-in-r" class="slide level2">
+<h2>Plotly in R</h2>
+<p><br><br></p>
+<p>Two main ways to creating a <strong>plotly</strong> object in R:</p>
+<ul>
+<li>Convert a ggplot2 object with <code>ggplotly()</code></li>
+<li>Directly initialize a plotly object with <code>plot_ly()</code></li>
+</ul>
+<p>➡️ <a href="https://ann1ejohansson.github.io/data-visualization-2026/worksheets/ggplotly-handout.html" target="_blank"><strong>ggplotly() example</strong></a></p>
+</section>
+<section id="additional-functionalities-in-plotly" class="slide level2">
+<h2>Additional functionalities in Plotly</h2>
+<p><br><br></p>
+<p>With <code>plot_ly()</code>, you can add and control interactive elements such as:</p>
+<ul>
+<li><a href="https://plotly.com/r/#controls">Adding custom controls</a></li>
+<li><a href="https://plotly.com/r/#animations">Animations</a></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="https://plotly.com/r/">plotly.com/r</a></p>
+</div>
+</section>
+<section id="requirements-assignment-1-part-b" class="slide level2">
+<h2>Requirements Assignment 1, part B</h2>
+<ul>
+<li>Make the static ggplot object interactive using the <code>{plotly}</code> package</li>
+<li>Add a customized tooltip that displays additional information when you hover over the plot</li>
+</ul>
+</section></section>
 <section>
 <section id="better-plots" class="title-slide slide level1 center" data-background-color="#8000FF">
 <h1>Better plots 🥇</h1>
 
 </section>
-<section id="tuesday-oct-7" class="slide level2">
-<h2>Tuesday, Oct 7</h2>
+<section id="tuesday-oct-6" class="slide level2">
+<h2>Tuesday, Oct 6</h2>
 <ul>
-<li>Feedback on assignment 1</li>
+<li>Feedback on assignment 1 and assignment 2, part 1</li>
 <li>Recap: what makes a good DV?</li>
 <li>More data visualization features</li>
 <li>Work on assignment 2</li>
@@ -419,6 +525,84 @@
 </section>
 <section id="tips-from-assignment-1" class="slide level2">
 <h2>Tips from Assignment 1</h2>
+<ul>
+<li>Use coherent color palettes (more on that today!)</li>
+<li>Use informative titles (for example state your conclusion in the title / subtitle). Make it bold and clearly readable.<br>
+</li>
+<li>What is the added value of a boxplot or violin plot?<br>
+</li>
+<li>Think about sample size within your groupings and how to communicate its effect.<br>
+</li>
+<li>Go from exploratory to <strong>explanatory!</strong><br>
+</li>
+<li>The audience should be able to infer the main conclusion without reading the description.</li>
+</ul>
+<div class="footer">
+<p>The flaw of boxplots: read about it <a href="https://www.r-bloggers.com/2024/06/why-you-shouldnt-use-boxplots/">here</a> and <a href="https://nightingaledvs.com/ive-stopped-using-box-plots-should-you/">here</a>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><a href="images/explore-explain-01.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="images/explore-explain-01.gif" data-fig-height="200"></a></p>
+</div><div class="column" style="width:50%;">
+<p><a href="images/explore-explain-02.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="images/explore-explain-02.gif" data-fig-height="300"></a></p>
+</div></div>
+</section>
+<section id="patchwork" class="slide level2 smaller scrollable">
+<h2><a href="https://r-graph-gallery.com/package/patchwork.html"><code>patchwork</code></a></h2>
+<ul>
+<li>Plots are combined with a <code>+</code><br>
+</li>
+<li>Add a general title with <code>plot_annotation(title = "...")</code></li>
+<li>Add a general subtitle with <code>plot_annotation(subtitle = "...")</code></li>
+<li>Change the formatting with <code>plot_annotation(theme = theme(plot.title = element_text(...)))</code></li>
+</ul>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-2"><a></a><span class="co"># Two example plots</span></span>
+<span id="cb1-3"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Fuel efficiency vs Horsepower"</span>)</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb1-9"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb1-11"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MPG by Number of Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb1-12"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb1-13"><a></a></span>
+<span id="cb1-14"><a></a><span class="co"># Combine with patchwork and add title</span></span>
+<span id="cb1-15"><a></a>combined <span class="ot">&lt;-</span> p1 <span class="sc">+</span> p2 <span class="sc">+</span></span>
+<span id="cb1-16"><a></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb1-17"><a></a>    <span class="at">title =</span> <span class="st">"Analysis of mtcars dataset"</span>,</span>
+<span id="cb1-18"><a></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(</span>
+<span id="cb1-19"><a></a>      <span class="st">"Exploring relationships between engine features"</span>,</span>
+<span id="cb1-20"><a></a>      <span class="st">"and fuel efficiency"</span></span>
+<span id="cb1-21"><a></a>    ),</span>
+<span id="cb1-22"><a></a>    <span class="at">caption =</span> <span class="st">"Data source: mtcars"</span>,</span>
+<span id="cb1-23"><a></a>    <span class="at">theme =</span> <span class="fu">theme</span>(</span>
+<span id="cb1-24"><a></a>      <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb1-25"><a></a>      <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)</span>
+<span id="cb1-26"><a></a>    )</span>
+<span id="cb1-27"><a></a>  )</span>
+<span id="cb1-28"><a></a></span>
+<span id="cb1-29"><a></a>combined</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides-copy_files/figure-revealjs/patchwork-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="slides-copy_files/figure-revealjs/patchwork-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="footer">
+<p><a href="https://r-graph-gallery.com/package/patchwork.html">Patchwork package</a></p>
+</div>
 </section>
 <section id="one-dataset-many-visualizations" class="slide level2">
 <h2>One dataset, many visualizations</h2>
@@ -427,37 +611,42 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
-<span id="cb1-2"><a></a><span class="fu">data</span>(<span class="st">"pizzaplace"</span>)</span>
-<span id="cb1-3"><a></a>pizza_top <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">factor</span>(size, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"M"</span>, <span class="st">"L"</span>))) <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a></a>  <span class="fu">count</span>(name, type, size, price, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-6"><a></a>  <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
-<span id="cb1-7"><a></a>pizza_top <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> price, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
+<span id="cb2-2"><a></a><span class="fu">data</span>(<span class="st">"pizzaplace"</span>)</span>
+<span id="cb2-3"><a></a>pizza_top <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">factor</span>(size, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"M"</span>, <span class="st">"L"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a></a>  <span class="fu">count</span>(name, type, size, price, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a></a>  <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb2-7"><a></a>pizza_top <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> price, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb2-12"><a></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="fu">paste0</span>(</span>
+<span id="cb2-13"><a></a>      <span class="st">"Source: [pizzaplace dataset]"</span>,</span>
+<span id="cb2-14"><a></a>      <span class="st">"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span></span>
+<span id="cb2-15"><a></a>    ))</span>
+<span id="cb2-16"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="icbisydtpt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#icbisydtpt table {
+<div id="eqibahdanq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#eqibahdanq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#icbisydtpt thead, #icbisydtpt tbody, #icbisydtpt tfoot, #icbisydtpt tr, #icbisydtpt td, #icbisydtpt th {
+#eqibahdanq thead, #eqibahdanq tbody, #eqibahdanq tfoot, #eqibahdanq tr, #eqibahdanq td, #eqibahdanq th {
   border-style: none;
 }
 
-#icbisydtpt p {
+#eqibahdanq p {
   margin: 0;
   padding: 0;
 }
 
-#icbisydtpt .gt_table {
+#eqibahdanq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -483,12 +672,12 @@
   border-left-color: #D3D3D3;
 }
 
-#icbisydtpt .gt_caption {
+#eqibahdanq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#icbisydtpt .gt_title {
+#eqibahdanq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -500,7 +689,7 @@
   border-bottom-width: 0;
 }
 
-#icbisydtpt .gt_subtitle {
+#eqibahdanq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -512,7 +701,7 @@
   border-top-width: 0;
 }
 
-#icbisydtpt .gt_heading {
+#eqibahdanq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -524,13 +713,13 @@
   border-right-color: #D3D3D3;
 }
 
-#icbisydtpt .gt_bottom_border {
+#eqibahdanq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_col_headings {
+#eqibahdanq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -545,7 +734,7 @@
   border-right-color: #D3D3D3;
 }
 
-#icbisydtpt .gt_col_heading {
+#eqibahdanq .gt_col_heading {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -565,7 +754,7 @@
   overflow-x: hidden;
 }
 
-#icbisydtpt .gt_column_spanner_outer {
+#eqibahdanq .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -577,15 +766,15 @@
   padding-right: 4px;
 }
 
-#icbisydtpt .gt_column_spanner_outer:first-child {
+#eqibahdanq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#icbisydtpt .gt_column_spanner_outer:last-child {
+#eqibahdanq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#icbisydtpt .gt_column_spanner {
+#eqibahdanq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -597,11 +786,11 @@
   width: 100%;
 }
 
-#icbisydtpt .gt_spanner_row {
+#eqibahdanq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#icbisydtpt .gt_group_heading {
+#eqibahdanq .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -627,7 +816,7 @@
   text-align: left;
 }
 
-#icbisydtpt .gt_empty_group_heading {
+#eqibahdanq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -642,15 +831,15 @@
   vertical-align: middle;
 }
 
-#icbisydtpt .gt_from_md > :first-child {
+#eqibahdanq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#icbisydtpt .gt_from_md > :last-child {
+#eqibahdanq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#icbisydtpt .gt_row {
+#eqibahdanq .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -669,7 +858,7 @@
   overflow-x: hidden;
 }
 
-#icbisydtpt .gt_stub {
+#eqibahdanq .gt_stub {
   color: #333333;
   background-color: #89D3FE;
   font-size: 100%;
@@ -682,7 +871,7 @@
   padding-right: 5px;
 }
 
-#icbisydtpt .gt_stub_row_group {
+#eqibahdanq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -696,15 +885,15 @@
   vertical-align: top;
 }
 
-#icbisydtpt .gt_row_group_first td {
+#eqibahdanq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#icbisydtpt .gt_row_group_first th {
+#eqibahdanq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#icbisydtpt .gt_summary_row {
+#eqibahdanq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -714,16 +903,16 @@
   padding-right: 5px;
 }
 
-#icbisydtpt .gt_first_summary_row {
+#eqibahdanq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_first_summary_row.thick {
+#eqibahdanq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#icbisydtpt .gt_last_summary_row {
+#eqibahdanq .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -733,7 +922,7 @@
   border-bottom-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_grand_summary_row {
+#eqibahdanq .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -743,7 +932,7 @@
   padding-right: 5px;
 }
 
-#icbisydtpt .gt_first_grand_summary_row {
+#eqibahdanq .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -753,7 +942,7 @@
   border-top-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_last_grand_summary_row_top {
+#eqibahdanq .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -763,11 +952,11 @@
   border-bottom-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_striped {
+#eqibahdanq .gt_striped {
   background-color: #EDF7FC;
 }
 
-#icbisydtpt .gt_table_body {
+#eqibahdanq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -776,7 +965,7 @@
   border-bottom-color: #5F5F5F;
 }
 
-#icbisydtpt .gt_footnotes {
+#eqibahdanq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -790,7 +979,7 @@
   border-right-color: #D3D3D3;
 }
 
-#icbisydtpt .gt_footnote {
+#eqibahdanq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -799,7 +988,7 @@
   padding-right: 5px;
 }
 
-#icbisydtpt .gt_sourcenotes {
+#eqibahdanq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -813,7 +1002,7 @@
   border-right-color: #D3D3D3;
 }
 
-#icbisydtpt .gt_sourcenote {
+#eqibahdanq .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -821,72 +1010,72 @@
   padding-right: 5px;
 }
 
-#icbisydtpt .gt_left {
+#eqibahdanq .gt_left {
   text-align: left;
 }
 
-#icbisydtpt .gt_center {
+#eqibahdanq .gt_center {
   text-align: center;
 }
 
-#icbisydtpt .gt_right {
+#eqibahdanq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#icbisydtpt .gt_font_normal {
+#eqibahdanq .gt_font_normal {
   font-weight: normal;
 }
 
-#icbisydtpt .gt_font_bold {
+#eqibahdanq .gt_font_bold {
   font-weight: bold;
 }
 
-#icbisydtpt .gt_font_italic {
+#eqibahdanq .gt_font_italic {
   font-style: italic;
 }
 
-#icbisydtpt .gt_super {
+#eqibahdanq .gt_super {
   font-size: 65%;
 }
 
-#icbisydtpt .gt_footnote_marks {
+#eqibahdanq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#icbisydtpt .gt_asterisk {
+#eqibahdanq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#icbisydtpt .gt_indent_1 {
+#eqibahdanq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#icbisydtpt .gt_indent_2 {
+#eqibahdanq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#icbisydtpt .gt_indent_3 {
+#eqibahdanq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#icbisydtpt .gt_indent_4 {
+#eqibahdanq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#icbisydtpt .gt_indent_5 {
+#eqibahdanq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#icbisydtpt .katex-display {
+#eqibahdanq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#icbisydtpt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#eqibahdanq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -965,60 +1154,65 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb2-2"><a></a>pizza_top <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), <span class="at">y =</span> n)) <span class="sc">+</span></span>
-<span id="cb2-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type, <span class="at">size =</span> size)) <span class="sc">+</span></span>
-<span id="cb2-5"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> price), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">30</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">x =</span> <span class="st">"name"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb3-2"><a></a>pizza_top <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb3-4"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type, <span class="at">size =</span> size)) <span class="sc">+</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> price), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">x =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/pizza-scatter-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/pizza-scatter-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="slides-copy_files/figure-revealjs/pizza-scatter-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-<section id="one-dataset-many-visualizations-1" class="slide level2">
+<section id="one-dataset-many-visualizations-1" class="slide level2 scrollable">
 <h2>One dataset, many visualizations</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
-<span id="cb3-2"><a></a>pizza_season <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">count</span>(type)</span>
-<span id="cb3-6"><a></a>pizza_season <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> month, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-10"><a></a>  <span class="fu">tab_source_note</span>(<span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: [pizzaplace dataset](https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb3-11"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(<span class="st">"gt"</span>)</span>
+<span id="cb4-2"><a></a>pizza_season <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">count</span>(type)</span>
+<span id="cb4-6"><a></a>pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> month, <span class="at">values_from =</span> n) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb4-11"><a></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="fu">paste0</span>(</span>
+<span id="cb4-12"><a></a>      <span class="st">"Source: [pizzaplace dataset]"</span>,</span>
+<span id="cb4-13"><a></a>      <span class="st">"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span></span>
+<span id="cb4-14"><a></a>    ))</span>
+<span id="cb4-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-16"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="ecviolriof" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ecviolriof table {
+<div id="vvsqypjgiv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vvsqypjgiv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ecviolriof thead, #ecviolriof tbody, #ecviolriof tfoot, #ecviolriof tr, #ecviolriof td, #ecviolriof th {
+#vvsqypjgiv thead, #vvsqypjgiv tbody, #vvsqypjgiv tfoot, #vvsqypjgiv tr, #vvsqypjgiv td, #vvsqypjgiv th {
   border-style: none;
 }
 
-#ecviolriof p {
+#vvsqypjgiv p {
   margin: 0;
   padding: 0;
 }
 
-#ecviolriof .gt_table {
+#vvsqypjgiv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1044,12 +1238,12 @@
   border-left-color: #D3D3D3;
 }
 
-#ecviolriof .gt_caption {
+#vvsqypjgiv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ecviolriof .gt_title {
+#vvsqypjgiv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1061,7 +1255,7 @@
   border-bottom-width: 0;
 }
 
-#ecviolriof .gt_subtitle {
+#vvsqypjgiv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1073,7 +1267,7 @@
   border-top-width: 0;
 }
 
-#ecviolriof .gt_heading {
+#vvsqypjgiv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1085,13 +1279,13 @@
   border-right-color: #D3D3D3;
 }
 
-#ecviolriof .gt_bottom_border {
+#vvsqypjgiv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#ecviolriof .gt_col_headings {
+#vvsqypjgiv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -1106,7 +1300,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ecviolriof .gt_col_heading {
+#vvsqypjgiv .gt_col_heading {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1126,7 +1320,7 @@
   overflow-x: hidden;
 }
 
-#ecviolriof .gt_column_spanner_outer {
+#vvsqypjgiv .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -1138,15 +1332,15 @@
   padding-right: 4px;
 }
 
-#ecviolriof .gt_column_spanner_outer:first-child {
+#vvsqypjgiv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ecviolriof .gt_column_spanner_outer:last-child {
+#vvsqypjgiv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ecviolriof .gt_column_spanner {
+#vvsqypjgiv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -1158,11 +1352,11 @@
   width: 100%;
 }
 
-#ecviolriof .gt_spanner_row {
+#vvsqypjgiv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ecviolriof .gt_group_heading {
+#vvsqypjgiv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1188,7 +1382,7 @@
   text-align: left;
 }
 
-#ecviolriof .gt_empty_group_heading {
+#vvsqypjgiv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1203,15 +1397,15 @@
   vertical-align: middle;
 }
 
-#ecviolriof .gt_from_md > :first-child {
+#vvsqypjgiv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ecviolriof .gt_from_md > :last-child {
+#vvsqypjgiv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ecviolriof .gt_row {
+#vvsqypjgiv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1230,7 +1424,7 @@
   overflow-x: hidden;
 }
 
-#ecviolriof .gt_stub {
+#vvsqypjgiv .gt_stub {
   color: #333333;
   background-color: #89D3FE;
   font-size: 100%;
@@ -1243,7 +1437,7 @@
   padding-right: 5px;
 }
 
-#ecviolriof .gt_stub_row_group {
+#vvsqypjgiv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1257,15 +1451,15 @@
   vertical-align: top;
 }
 
-#ecviolriof .gt_row_group_first td {
+#vvsqypjgiv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ecviolriof .gt_row_group_first th {
+#vvsqypjgiv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ecviolriof .gt_summary_row {
+#vvsqypjgiv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1275,16 +1469,16 @@
   padding-right: 5px;
 }
 
-#ecviolriof .gt_first_summary_row {
+#vvsqypjgiv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#ecviolriof .gt_first_summary_row.thick {
+#vvsqypjgiv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ecviolriof .gt_last_summary_row {
+#vvsqypjgiv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1294,7 +1488,7 @@
   border-bottom-color: #5F5F5F;
 }
 
-#ecviolriof .gt_grand_summary_row {
+#vvsqypjgiv .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -1304,7 +1498,7 @@
   padding-right: 5px;
 }
 
-#ecviolriof .gt_first_grand_summary_row {
+#vvsqypjgiv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1314,7 +1508,7 @@
   border-top-color: #5F5F5F;
 }
 
-#ecviolriof .gt_last_grand_summary_row_top {
+#vvsqypjgiv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1324,11 +1518,11 @@
   border-bottom-color: #5F5F5F;
 }
 
-#ecviolriof .gt_striped {
+#vvsqypjgiv .gt_striped {
   background-color: #EDF7FC;
 }
 
-#ecviolriof .gt_table_body {
+#vvsqypjgiv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -1337,7 +1531,7 @@
   border-bottom-color: #5F5F5F;
 }
 
-#ecviolriof .gt_footnotes {
+#vvsqypjgiv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1351,7 +1545,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ecviolriof .gt_footnote {
+#vvsqypjgiv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1360,7 +1554,7 @@
   padding-right: 5px;
 }
 
-#ecviolriof .gt_sourcenotes {
+#vvsqypjgiv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1374,7 +1568,7 @@
   border-right-color: #D3D3D3;
 }
 
-#ecviolriof .gt_sourcenote {
+#vvsqypjgiv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1382,72 +1576,72 @@
   padding-right: 5px;
 }
 
-#ecviolriof .gt_left {
+#vvsqypjgiv .gt_left {
   text-align: left;
 }
 
-#ecviolriof .gt_center {
+#vvsqypjgiv .gt_center {
   text-align: center;
 }
 
-#ecviolriof .gt_right {
+#vvsqypjgiv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ecviolriof .gt_font_normal {
+#vvsqypjgiv .gt_font_normal {
   font-weight: normal;
 }
 
-#ecviolriof .gt_font_bold {
+#vvsqypjgiv .gt_font_bold {
   font-weight: bold;
 }
 
-#ecviolriof .gt_font_italic {
+#vvsqypjgiv .gt_font_italic {
   font-style: italic;
 }
 
-#ecviolriof .gt_super {
+#vvsqypjgiv .gt_super {
   font-size: 65%;
 }
 
-#ecviolriof .gt_footnote_marks {
+#vvsqypjgiv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ecviolriof .gt_asterisk {
+#vvsqypjgiv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ecviolriof .gt_indent_1 {
+#vvsqypjgiv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ecviolriof .gt_indent_2 {
+#vvsqypjgiv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ecviolriof .gt_indent_3 {
+#vvsqypjgiv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ecviolriof .gt_indent_4 {
+#vvsqypjgiv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ecviolriof .gt_indent_5 {
+#vvsqypjgiv .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ecviolriof .katex-display {
+#vvsqypjgiv .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ecviolriof div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#vvsqypjgiv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1564,35 +1758,53 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
+<div class="fragment">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
-<span id="cb4-2"><a></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
-<span id="cb4-3"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
-<span id="cb4-5"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">"Month"</span>)</span>
-<span id="cb4-7"><a></a>fig_season_1</span>
-<span id="cb4-8"><a></a></span>
-<span id="cb4-9"><a></a>fig_season_2 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
-<span id="cb4-10"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
-<span id="cb4-11"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> type)) <span class="sc">+</span></span>
-<span id="cb4-12"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">"Month"</span>)</span>
-<span id="cb4-13"><a></a>fig_season_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(<span class="st">"ggplot2"</span>)</span>
+<span id="cb5-2"><a></a><span class="fu">library</span>(<span class="st">"lubridate"</span>)</span>
+<span id="cb5-3"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-7"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb5-8"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb5-9"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb5-10"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb5-11"><a></a>  )</span>
+<span id="cb5-12"><a></a>fig_season_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/pizza-timeseries-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/pizza-timeseries-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="slides-copy_files/figure-revealjs/pizza-timeseries-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>fig_season_2 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> type)) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-5"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb6-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb6-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb6-8"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb6-9"><a></a>  )</span>
+<span id="cb6-10"><a></a>fig_season_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/pizza-timeseries-2.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/pizza-timeseries-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="slides-copy_files/figure-revealjs/pizza-timeseries-2-1.png" width="960"></a></p>
 </figure>
+</div>
 </div>
 </div>
 </div>
@@ -1600,12 +1812,12 @@
 </section>
 <section id="from-data-to-viz" class="slide level2">
 <h2><a href="https://www.data-to-viz.com/">from data to viz</a></h2>
-
-<img data-src="images/data-to-viz.png" data-fig.height="600" class="r-stretch"></section>
+<p><a href="images/data-to-viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="images/data-to-viz.png" data-fig.height="600"></a></p>
+</section>
 <section id="from-data-to-viz-1" class="slide level2">
 <h2><a href="https://www.data-to-viz.com/">from data to viz</a></h2>
-
-<img data-src="images/data-to-viz-caveats.png" data-fig.height="600" class="r-stretch"></section>
+<p><a href="images/data-to-viz-caveats.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="images/data-to-viz-caveats.png" data-fig.height="600"></a></p>
+</section>
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <div class="columns">
@@ -1617,60 +1829,117 @@
 </div><div class="column" style="width:60%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/misleading.jpeg" class="quarto-figure quarto-figure-center"></p>
+<p><a href="images/misleading.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="images/misleading.jpeg" class="quarto-figure quarto-figure-center"></a></p>
 </figure>
 </div>
 </div></div>
-</section>
-<section id="more-data-visualization-features" class="slide level2">
-<h2>More data visualization features</h2>
-<ul>
-<li>Chart junk</li>
-<li>Themes</li>
-<li>Colors</li>
-<li>Color blindness</li>
-<li>Captions</li>
-<li>Typography</li>
-<li>File format/size</li>
-<li>Font embedding</li>
-</ul>
 </section>
 <section id="chart-junk" class="slide level2">
 <h2>Chart junk</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/chart_junk.png"></p>
-<figcaption>NYT</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart_junk.png" class="lightbox" data-gallery="chart-junk-gallery" title="NYT"><img data-src="images/chart_junk.png" class="quarto-figure quarto-figure-center" alt="NYT"></a></p>
 </figure>
 </div>
-</div><div class="column" style="width:40%;">
+<figcaption><a href="https://www.nytimes.com/2017/10/09/learning/whats-going-on-in-this-graph-oct-10-2017.html">NYT</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="images/chart_junk2.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart_junk2.png" class="lightbox" data-gallery="chart-junk-gallery" title="Claus Wilke"><img data-src="images/chart_junk2.png" class="quarto-figure quarto-figure-center" alt="Claus Wilke"></a></p>
+</figure>
+</div>
 <figcaption>Claus Wilke</figcaption>
 </figure>
 </div>
-</div></div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart-junk3.png" class="lightbox" data-gallery="chart-junk-gallery" title="NYT"><img data-src="images/chart-junk3.png" class="quarto-figure quarto-figure-center" alt="NYT"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://www.nytimes.com/2025/09/11/learning/whats-going-on-in-this-graph-sept-17-2025.html">NYT</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section class="slide level2">
 
 <p>You can try it yourself with <code>geom_image()</code> from <code>ggimage</code></p>
 <div class="fragment">
 <div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">library</span>(ggimage)</span>
+<span id="cb7-2"><a></a><span class="co"># aggregate to totals</span></span>
+<span id="cb7-3"><a></a>pizza_totals <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(n), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a></a>  <span class="fu">mutate</span>(<span class="at">n_icons =</span> <span class="fu">round</span>(total <span class="sc">/</span> <span class="dv">1000</span>)) <span class="co"># 1 pizza = 1000 sales</span></span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a><span class="co"># expand data: one row per pizza icon</span></span>
+<span id="cb7-9"><a></a><span class="co"># this is a trick so that each pizza icon can be plotted separately (essentially</span></span>
+<span id="cb7-10"><a></a><span class="co"># using geom_point but appearing as a bar)</span></span>
+<span id="cb7-11"><a></a>chart_junk_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb7-13"><a></a>  <span class="fu">mutate</span>(<span class="at">icon_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span>n_icons)) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a></a>  <span class="fu">unnest</span>(icon_id)</span>
+<span id="cb7-15"><a></a></span>
+<span id="cb7-16"><a></a><span class="co"># plot with 🍕</span></span>
+<span id="cb7-17"><a></a>pizza_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chart_junk_data, <span class="fu">aes</span>(<span class="at">x =</span> icon_id, <span class="at">y =</span> type)) <span class="sc">+</span></span>
+<span id="cb7-18"><a></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> <span class="st">"images/pizza.png"</span>), <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-19"><a></a>  <span class="co"># add white rectangle to cover up excess icons (taken from pizza_totals data)</span></span>
+<span id="cb7-20"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb7-21"><a></a>    <span class="at">data =</span> pizza_totals,</span>
+<span id="cb7-22"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb7-23"><a></a>      <span class="at">xmin =</span> total <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb7-24"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb7-25"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span></span>
+<span id="cb7-26"><a></a>    ),</span>
+<span id="cb7-27"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-28"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb7-29"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb7-30"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-31"><a></a>    <span class="at">title =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb7-32"><a></a>    <span class="at">x =</span> <span class="st">"Sales (Scale 1:1000)"</span>,</span>
+<span id="cb7-33"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb7-34"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb7-35"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb7-36"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-37"><a></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-38"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-39"><a></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb7-40"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb7-41"><a></a>  )</span>
+<span id="cb7-42"><a></a></span>
+<span id="cb7-43"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/chart-junk-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/chart-junk-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img data-src="slides-copy_files/figure-revealjs/chart-junk-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
 </section>
 <section id="themes" class="slide level2">
 <h2>Themes</h2>
@@ -1679,14 +1948,14 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(<span class="st">"cowplot"</span>)</span>
-<span id="cb5-2"><a></a>fig_season_2 <span class="sc">+</span></span>
-<span id="cb5-3"><a></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">library</span>(<span class="st">"cowplot"</span>)</span>
+<span id="cb8-2"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/themes-cowplot-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/themes-cowplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img data-src="slides-copy_files/figure-revealjs/themes-cowplot-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1695,24 +1964,24 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>my_theme <span class="ot">&lt;-</span> <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb6-2"><a></a>  <span class="fu">theme</span>(</span>
-<span id="cb6-3"><a></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
-<span id="cb6-4"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray20"</span>),</span>
-<span id="cb6-5"><a></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb6-6"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb6-7"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb6-8"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">18</span>),</span>
-<span id="cb6-9"><a></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
-<span id="cb6-10"><a></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb6-11"><a></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>)</span>
-<span id="cb6-12"><a></a>  )</span>
-<span id="cb6-13"><a></a>fig_season_2 <span class="sc">+</span> my_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>my_theme <span class="ot">&lt;-</span> <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb9-2"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-3"><a></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb9-4"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray20"</span>),</span>
+<span id="cb9-5"><a></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb9-6"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb9-7"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb9-8"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb9-9"><a></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb9-10"><a></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb9-11"><a></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb9-12"><a></a>  )</span>
+<span id="cb9-13"><a></a>fig_season_2 <span class="sc">+</span> my_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/themes-custom-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/themes-custom-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img data-src="slides-copy_files/figure-revealjs/themes-custom-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1721,22 +1990,24 @@
 </section>
 <section id="facets" class="slide level2 smaller">
 <h2>Facets</h2>
-<p><code>theme_cowplot</code> and <code>theme_bw()</code> format facets nicely.</p>
-<p>Change facet format manually with <code>theme(strip.text = element_text(...))</code> and <code>theme(strip.background = element_rect(...))</code>.</p>
+<ul>
+<li><p><code>theme_cowplot</code> and <code>theme_bw()</code> format facets nicely.</p></li>
+<li><p>Change facet format manually with <code>theme(strip.text = element_text(...))</code> and <code>theme(strip.background = element_rect(...))</code>.</p></li>
+</ul>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>fig_season_2 <span class="sc">+</span></span>
-<span id="cb7-2"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">theme_bw</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb10-3"><a></a>  <span class="fu">theme_bw</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/facets-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/facets-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16"><img data-src="slides-copy_files/figure-revealjs/facets-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1746,18 +2017,20 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fig_season_2 <span class="sc">+</span></span>
-<span id="cb8-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb8-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
-<span id="cb8-4"><a></a>  <span class="fu">theme_minimal</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb8-5"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb8-6"><a></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"plum4"</span>),</span>
-<span id="cb8-7"><a></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"thistle2"</span>, <span class="at">color =</span> <span class="cn">NA</span>)) <span class="co"># fill for background; color for border</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb11-4"><a></a>  <span class="fu">theme_minimal</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-6"><a></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb11-7"><a></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"plum4"</span>),</span>
+<span id="cb11-8"><a></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"thistle2"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb11-9"><a></a>  ) <span class="co"># fill for background; color for border</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/facets-2-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/facets-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-17"><img data-src="slides-copy_files/figure-revealjs/facets-2-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1770,100 +2043,106 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">mutate</span>(<span class="at">quarter =</span> <span class="fu">case_when</span>(</span>
-<span id="cb9-3"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>) <span class="sc">~</span> <span class="st">"Q1"</span>,</span>
-<span id="cb9-4"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>) <span class="sc">~</span> <span class="st">"Q2"</span>,</span>
-<span id="cb9-5"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>) <span class="sc">~</span> <span class="st">"Q3"</span>,</span>
-<span id="cb9-6"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>) <span class="sc">~</span> <span class="st">"Q4"</span></span>
-<span id="cb9-7"><a></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quarter, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
-<span id="cb9-9"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb9-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">subtitle =</span> <span class="st">"2015, split by quarter"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">""</span>)</span>
-<span id="cb9-11"><a></a></span>
-<span id="cb9-12"><a></a>fig_season_1 <span class="sc">+</span></span>
-<span id="cb9-13"><a></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>fig_quarter <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">mutate</span>(<span class="at">quarter =</span> <span class="fu">case_when</span>(</span>
+<span id="cb12-3"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>) <span class="sc">~</span> <span class="st">"Q1"</span>,</span>
+<span id="cb12-4"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>) <span class="sc">~</span> <span class="st">"Q2"</span>,</span>
+<span id="cb12-5"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>) <span class="sc">~</span> <span class="st">"Q3"</span>,</span>
+<span id="cb12-6"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>) <span class="sc">~</span> <span class="st">"Q4"</span></span>
+<span id="cb12-7"><a></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quarter, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb12-9"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-11"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb12-12"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015, split by quarter"</span>,</span>
+<span id="cb12-13"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb12-14"><a></a>    <span class="at">x =</span> <span class="st">""</span></span>
+<span id="cb12-15"><a></a>  )</span>
+<span id="cb12-16"><a></a></span>
+<span id="cb12-17"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb12-18"><a></a>  <span class="fu">scale_fill_viridis_d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides-copy_files/figure-revealjs/colors-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18"><img data-src="slides-copy_files/figure-revealjs/colors-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+</div>
+</div>
+</section>
 <section id="color-scales" class="slide level2 smaller">
 <h2>Color scales</h2>
-<ul>
-<li><em>qualitative</em> (categorical data)<br>
-</li>
-<li><em>sequential</em> (ordered data that progress from low to high)<br>
-</li>
-<li><em>diverging</em> (ordered data that progress from low to high with a critical midpoint, e.g., 0)<br>
-</li>
-</ul>
 <div class="columns">
 <div class="column" style="width:33%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>fig_season_1 <span class="sc">+</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"qual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Qualitatitive Color Scale"</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"qual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-3-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/colors-scales-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19"><img data-src="slides-copy_files/figure-revealjs/colors-scales-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>qualitative</strong><br>
+(categorical data)</p>
 </div><div class="column" style="width:33%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>fig_season_1 <span class="sc">+</span></span>
-<span id="cb11-2"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"seq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Sequential Color Scale"</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"seq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/colors-scales-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20"><img data-src="slides-copy_files/figure-revealjs/colors-scales-2-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>sequential</strong><br>
+(ordered data that progress from low to high)</p>
 </div><div class="column" style="width:33%;">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>fig_season_1 <span class="sc">+</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"div"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Diverging Color Scale"</span>) <span class="sc">+</span></span>
+<span id="cb15-3"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"div"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/colors-scales-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21"><img data-src="slides-copy_files/figure-revealjs/colors-scales-3-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>diverging</strong><br>
+(ordered data that progress from low to high with a critical midpoint, e.g., 0)</p>
 </div></div>
 </section>
 <section id="color-blindness" class="slide level2 smaller scrollable">
 <h2>Color blindness</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/colorblindness.png"></p>
-<figcaption><a href="https://clauswilke.com/dataviz/color-pitfalls.html#not-designing-for-color-vision-deficiency">Claus Wilke</a></figcaption>
-</figure>
-</div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="co"># remotes::install_github("clauswilke/colorblindr")</span></span>
-<span id="cb13-2"><a></a><span class="fu">library</span>(<span class="st">"colorblindr"</span>)</span>
-<span id="cb13-3"><a></a>colorblindr<span class="sc">::</span><span class="fu">cvd_grid</span>(fig_season_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a><span class="co"># colorblindr is installed from GitHub (clauswilke/colorblindr)</span></span>
+<span id="cb16-2"><a></a><span class="fu">library</span>(<span class="st">"colorblindr"</span>)</span>
+<span id="cb16-3"><a></a>colorblindr<span class="sc">::</span><span class="fu">cvd_grid</span>(fig_quarter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/colors-colorblindness-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22"><img data-src="slides-copy_files/figure-revealjs/colors-colorblindness-2-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1874,8 +2153,8 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(<span class="st">"MetBrewer"</span>)</span>
-<span id="cb14-2"><a></a>MetBrewer<span class="sc">::</span>colorblind_palettes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(<span class="st">"MetBrewer"</span>)</span>
+<span id="cb17-2"><a></a>MetBrewer<span class="sc">::</span>colorblind_palettes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Archambault" "Cassatt1"    "Cassatt2"    "Demuth"      "Derain"     
@@ -1889,12 +2168,14 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>fig_season_1 <span class="sc">+</span><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> MetBrewer<span class="sc">::</span><span class="fu">met.brewer</span>(<span class="st">"VanGogh3"</span>, <span class="at">n =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>fig_quarter <span class="sc">+</span> <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb19-2"><a></a>  <span class="at">values =</span> MetBrewer<span class="sc">::</span><span class="fu">met.brewer</span>(<span class="st">"VanGogh3"</span>, <span class="at">n =</span> <span class="dv">4</span>)</span>
+<span id="cb19-3"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+<p><a href="slides-copy_files/figure-revealjs/colors-colorblindness-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-23"><img data-src="slides-copy_files/figure-revealjs/colors-colorblindness-4-1.png" width="960"></a></p>
 </figure>
 </div>
 </div>
@@ -1917,14 +2198,22 @@
 </ul>
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/coloraccuracy1.jpeg"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/coloraccuracy1.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-24" title="Source: benq.com"><img data-src="images/coloraccuracy1.jpeg" class="quarto-figure quarto-figure-left" alt="Source: benq.com"></a></p>
+</figure>
+</div>
 <figcaption>Source: <a href="https://www.benq.com/en-us/knowledge-center/knowledge/how-to-maintain-color-consistency-on-different-monitors.html">benq.com</a></figcaption>
 </figure>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/coloraccuracy2.png"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/coloraccuracy2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-25" title="Source: Savi et al.&nbsp;(2018)"><img data-src="images/coloraccuracy2.png" class="quarto-figure quarto-figure-left" alt="Source: Savi et al.&nbsp;(2018)"></a></p>
+</figure>
+</div>
 <figcaption>Source: <a href="https://doi.org/10.1016/j.compedu.2017.12.008">Savi et al.&nbsp;(2018)</a></figcaption>
 </figure>
 </div>
@@ -1932,21 +2221,21 @@
 </section>
 <section id="captions" class="slide level2 smaller">
 <h2>Captions</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
 <p><strong>Title</strong> Descriptive or declarative</p>
 <p><strong>Methods</strong> Keep it brief</p>
 <p><strong>Results</strong> If not (fully captured) in title</p>
 <p><strong>Definitions</strong> Colors, line types, error bars, etc.</p>
 <p><strong>Data source</strong> If external</p>
-</div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/captions.png"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/captions.png" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Source: sketch.es"><img data-src="images/captions.png" class="quarto-figure quarto-figure-left" alt="Source: sketch.es"></a></p>
+</figure>
+</div>
 <figcaption>Source: <a href="https://www.datasketch.es/project/655-frustrations-doing-data-visualization">sketch.es</a></figcaption>
 </figure>
 </div>
-</div></div>
 <div class="footer">
 <p>Resources: <a href="https://clauswilke.com/dataviz/figure-titles-captions.html">clauswilke.com</a>, <a href="https://www.internationalscienceediting.com/how-to-write-a-figure-caption/">more</a>, <a href="https://www.aje.com/arc/writing-effective-figure-legend/">more</a>, <a href="https://blog.bioturing.com/2018/05/10/how-to-craft-a-figure-legend-for-scientific-papers/">more</a>.</p>
 </div>
@@ -1964,87 +2253,176 @@
 </p></li>
 </ul>
 </div><div class="column" style="width:70%;">
+<p>Change fonts with package <code>showtext</code> and function <code>font_add_google()</code>. <a href="https://fonts.google.com/">Browse Google Fonts</a></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">library</span>(<span class="st">"showtext"</span>)</span>
-<span id="cb17-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lekton"</span>)</span>
-<span id="cb17-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
-<span id="cb17-4"><a></a></span>
-<span id="cb17-5"><a></a>fig_season_2 <span class="sc">+</span></span>
-<span id="cb17-6"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
-<span id="cb17-7"><a></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lekton"</span>, <span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">library</span>(<span class="st">"showtext"</span>)</span>
+<span id="cb20-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lekton"</span>)</span>
+<span id="cb20-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb20-4"><a></a></span>
+<span id="cb20-5"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb20-6"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb20-7"><a></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lekton"</span>, <span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides-copy_files/figure-revealjs/typography-1.png" width="768"></p>
+<p><a href="slides-copy_files/figure-revealjs/typography-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27"><img data-src="slides-copy_files/figure-revealjs/typography-1.png" width="768"></a></p>
 </figure>
 </div>
 </div>
 </div>
 </div></div>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section class="slide level2">
+
+<h3 id="consider-your-audience">Consider your audience</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides-copy_files/figure-revealjs/pizza-plot-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-28"><img data-src="slides-copy_files/figure-revealjs/pizza-plot-1-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="slides-copy_files/figure-revealjs/chart-junk-before-1.png" width="960" class="r-stretch"></section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="consider-your-audience-1">Consider your audience</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lobster"</span>)</span>
-<span id="cb19-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lexend"</span>)</span>
-<span id="cb19-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
-<span id="cb19-4"><a></a></span>
-<span id="cb19-5"><a></a>pizza_plot <span class="sc">+</span></span>
-<span id="cb19-6"><a></a>  <span class="co"># add a geom_rect element with opacity on top of pizza bars, to highlight the biggest bar</span></span>
-<span id="cb19-7"><a></a>  <span class="fu">geom_rect</span>(</span>
-<span id="cb19-8"><a></a>    <span class="at">data =</span> pizza_totals <span class="sc">|&gt;</span></span>
-<span id="cb19-9"><a></a>      <span class="fu">mutate</span>(<span class="at">highlight =</span> <span class="fu">ifelse</span>(type <span class="sc">==</span> <span class="st">"classic"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
-<span id="cb19-10"><a></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> total<span class="sc">/</span><span class="dv">1000</span>, </span>
-<span id="cb19-11"><a></a>        <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>, </span>
-<span id="cb19-12"><a></a>        <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
-<span id="cb19-13"><a></a>        <span class="at">alpha =</span> highlight),</span>
-<span id="cb19-14"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb19-15"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
-<span id="cb19-16"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb19-17"><a></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="fl">0.3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb19-18"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"The classic is a classic for a reason."</span>,</span>
-<span id="cb19-19"><a></a>       <span class="at">subtitle =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
-<span id="cb19-20"><a></a>       <span class="at">caption =</span> <span class="st">"Source: pizzaplace dataset"</span>) <span class="sc">+</span></span>
-<span id="cb19-21"><a></a>  <span class="co"># change fonts</span></span>
-<span id="cb19-22"><a></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
-<span id="cb19-23"><a></a>                 <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>),</span>
-<span id="cb19-24"><a></a>                 <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">size =</span> <span class="dv">16</span>), </span>
-<span id="cb19-25"><a></a>                 <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
-<span id="cb19-26"><a></a>                 <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lobster"</span>)</span>
+<span id="cb22-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lexend"</span>)</span>
+<span id="cb22-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb22-4"><a></a></span>
+<span id="cb22-5"><a></a>pizza_plot <span class="sc">+</span></span>
+<span id="cb22-6"><a></a>  <span class="co"># add a geom_rect element with opacity on top of pizza bars, to highlight the</span></span>
+<span id="cb22-7"><a></a>  <span class="co"># biggest bar</span></span>
+<span id="cb22-8"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb22-9"><a></a>    <span class="at">data =</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a></a>      <span class="fu">mutate</span>(<span class="at">highlight =</span> <span class="fu">ifelse</span>(type <span class="sc">==</span> <span class="st">"classic"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb22-11"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb22-12"><a></a>      <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb22-13"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb22-14"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb22-15"><a></a>      <span class="at">alpha =</span> highlight</span>
+<span id="cb22-16"><a></a>    ),</span>
+<span id="cb22-17"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-18"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb22-19"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-20"><a></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="fl">0.3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb22-21"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-22"><a></a>    <span class="at">title =</span> <span class="st">"The classic is a classic for a reason."</span>,</span>
+<span id="cb22-23"><a></a>    <span class="at">subtitle =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb22-24"><a></a>    <span class="at">caption =</span> <span class="st">"Source: pizzaplace dataset"</span></span>
+<span id="cb22-25"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-26"><a></a>  <span class="co"># change fonts</span></span>
+<span id="cb22-27"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-28"><a></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
+<span id="cb22-29"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>),</span>
+<span id="cb22-30"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb22-31"><a></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb22-32"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>)</span>
+<span id="cb22-33"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides-copy_files/figure-revealjs/pizza-plot-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-29"><img data-src="slides-copy_files/figure-revealjs/pizza-plot-2-1.png" width="960"></a></p>
+</figure>
 </div>
-<img data-src="slides-copy_files/figure-revealjs/chart-junk-after-1.png" width="960" class="r-stretch"><div class="footer">
+</div>
+</div>
+<div class="footer">
 <p>Packages: <a href="https://github.com/yixuan/showtext">showtext</a>.</p>
 </div>
-<aside class="notes">
+</section>
+<section class="slide level2">
 
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<h3 id="consider-your-audience-2">Consider your audience</h3>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>max_sales <span class="ot">&lt;-</span> <span class="fu">max</span>(pizza_totals<span class="sc">$</span>total)</span>
+<span id="cb23-2"><a></a>best_seller <span class="ot">&lt;-</span> pizza_totals<span class="sc">$</span>type[pizza_totals<span class="sc">$</span>total <span class="sc">==</span> max_sales]</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a>plot_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a></a>  <span class="co"># Create a logical column to highlight the best seller</span></span>
+<span id="cb23-6"><a></a>  <span class="fu">mutate</span>(<span class="at">is_max =</span> total <span class="sc">==</span> max_sales) <span class="sc">|&gt;</span></span>
+<span id="cb23-7"><a></a>  <span class="co"># Order the bars by total sales (optional, but professional practice)</span></span>
+<span id="cb23-8"><a></a>  <span class="fu">mutate</span>(<span class="at">type =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(type, total, <span class="at">.desc =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb23-9"><a></a></span>
+<span id="cb23-10"><a></a><span class="co"># Define the subtitle</span></span>
+<span id="cb23-11"><a></a>main_conclusion <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb23-12"><a></a>  <span class="st">"The '"</span>, best_seller, <span class="st">"' pizza is the clear leader with "</span>,</span>
+<span id="cb23-13"><a></a>  scales<span class="sc">::</span><span class="fu">comma</span>(max_sales), <span class="st">" units sold."</span></span>
+<span id="cb23-14"><a></a>)</span>
+<span id="cb23-15"><a></a></span>
+<span id="cb23-16"><a></a>pizza_plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> total, <span class="at">fill =</span> is_max)) <span class="sc">+</span></span>
+<span id="cb23-17"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-18"><a></a>  <span class="co"># Add labels above the bars</span></span>
+<span id="cb23-19"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb23-20"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total)),</span>
+<span id="cb23-21"><a></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="co"># Position the text slightly above the bar</span></span>
+<span id="cb23-22"><a></a>    <span class="at">size =</span> <span class="dv">4</span>,</span>
+<span id="cb23-23"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb23-24"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-25"><a></a></span>
+<span id="cb23-26"><a></a>  <span class="co"># Apply manual colors: Highlight color for TRUE, Neutral gray for FALSE</span></span>
+<span id="cb23-27"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb23-28"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"tomato3"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"grey70"</span>), <span class="co"># Red for highlight</span></span>
+<span id="cb23-29"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span> <span class="co"># Remove the legend for the fill color</span></span>
+<span id="cb23-30"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-31"><a></a></span>
+<span id="cb23-32"><a></a>  <span class="co"># Customize Titles and Labels</span></span>
+<span id="cb23-33"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-34"><a></a>    <span class="at">title =</span> <span class="st">"Total Sales by Pizza Type"</span>,</span>
+<span id="cb23-35"><a></a>    <span class="at">subtitle =</span> main_conclusion,</span>
+<span id="cb23-36"><a></a>    <span class="at">x =</span> <span class="st">"Pizza Type"</span>,</span>
+<span id="cb23-37"><a></a>    <span class="at">y =</span> <span class="st">"Total Units Sold"</span></span>
+<span id="cb23-38"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-39"><a></a></span>
+<span id="cb23-40"><a></a>  <span class="co"># Apply a clean cowplot theme</span></span>
+<span id="cb23-41"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb23-42"><a></a></span>
+<span id="cb23-43"><a></a>  <span class="co"># Remove y-axis clutter)</span></span>
+<span id="cb23-44"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-45"><a></a>    <span class="co"># Align and style title/subtitle</span></span>
+<span id="cb23-46"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb23-47"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb23-48"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">color =</span> <span class="st">"grey30"</span>),</span>
+<span id="cb23-49"><a></a></span>
+<span id="cb23-50"><a></a>    <span class="co"># Hide the y-axis line, ticks, and label as the data is already on the bars</span></span>
+<span id="cb23-51"><a></a>    <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-52"><a></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-53"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-54"><a></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-55"><a></a></span>
+<span id="cb23-56"><a></a>    <span class="co"># Add a faint grid line (a cowplot feature)</span></span>
+<span id="cb23-57"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span>
+<span id="cb23-58"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb23-59"><a></a></span>
+<span id="cb23-60"><a></a>  <span class="co"># Ensure there is enough room for the labels on top</span></span>
+<span id="cb23-61"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>)))</span>
+<span id="cb23-62"><a></a></span>
+<span id="cb23-63"><a></a><span class="co"># Print the final plot</span></span>
+<span id="cb23-64"><a></a>pizza_plot2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides-copy_files/figure-revealjs/pizza-plot-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-30"><img data-src="slides-copy_files/figure-revealjs/pizza-plot-3-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="file-formatsize" class="slide level2 smaller">
 <h2>File format/size</h2>
@@ -2055,16 +2433,21 @@
 <li>File format: resizing <a href="https://www.lifewire.com/vector-and-bitmap-images-1701238">vector vs.&nbsp;bitmap/raster</a>. For bitmap images, set the plot resolution: <em>dpi = c(“retina”, “print”, “screen”)</em></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"awesome_plot.png"</span>,</span>
-<span id="cb20-2"><a></a>                <span class="at">width =</span> <span class="dv">5</span>,</span>
-<span id="cb20-3"><a></a>                <span class="at">height =</span> <span class="dv">5</span>,</span>
-<span id="cb20-4"><a></a>                <span class="at">units =</span> <span class="st">"cm"</span>,</span>
-<span id="cb20-5"><a></a>                <span class="at">dpi =</span> <span class="st">"retina"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"awesome_plot.png"</span>,</span>
+<span id="cb24-2"><a></a>  <span class="at">width =</span> <span class="dv">5</span>,</span>
+<span id="cb24-3"><a></a>  <span class="at">height =</span> <span class="dv">5</span>,</span>
+<span id="cb24-4"><a></a>  <span class="at">units =</span> <span class="st">"cm"</span>,</span>
+<span id="cb24-5"><a></a>  <span class="at">dpi =</span> <span class="st">"retina"</span></span>
+<span id="cb24-6"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/file_formats.png"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/file_formats.png" class="lightbox" data-gallery="quarto-lightbox-gallery-31" title="Source: clauswilke.com"><img data-src="images/file_formats.png" class="quarto-figure quarto-figure-left" alt="Source: clauswilke.com"></a></p>
+</figure>
+</div>
 <figcaption>Source: <a href="https://clauswilke.com/dataviz/image-file-formats.html">clauswilke.com</a></figcaption>
 </figure>
 </div>
@@ -2098,7 +2481,11 @@
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/ggplot2_book.jpg" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/ggplot2_book.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-32" title="RTFM: ggplot2 Book"><img data-src="images/ggplot2_book.jpg" class="quarto-figure quarto-figure-left" style="width:50.0%" alt="RTFM: ggplot2 Book"></a></p>
+</figure>
+</div>
 <figcaption>RTFM: ggplot2 Book</figcaption>
 </figure>
 </div>
@@ -2119,11 +2506,85 @@
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-left">
 <figure>
-<p><img data-src="images/becoming_2.jpg" height="500"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/becoming_2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-33" title="Thomas Lin Pedersen"><img data-src="images/becoming_2.jpg" class="quarto-figure quarto-figure-left" height="500" alt="Thomas Lin Pedersen"></a></p>
+</figure>
+</div>
 <figcaption><a href="https://thomaslinpedersen.art/work/becoming/">Thomas Lin Pedersen</a></figcaption>
 </figure>
 </div>
 </div></div>
+</section>
+<section id="a-note-on-fridays-class" class="slide level2">
+<h2>❗️ A note on Friday’s class</h2>
+<ul>
+<li>Hand in your first draft before Friday 12.00.<br>
+</li>
+<li>Peer review is done in class.<br>
+</li>
+<li>You will get one-on-one feedback from us; this is your last chance!</li>
+</ul>
+<p><strong>Attendance is expected!</strong></p>
+</section></section>
+<section>
+<section id="qa" class="title-slide slide level1 center" data-background-color="#8000FF">
+<h1>Q&amp;A</h1>
+
+</section>
+<section id="final-report-formatting" class="slide level2 scrollable">
+<h2>Final report formatting</h2>
+<ul>
+<li>You do not need display all your code<br>
+</li>
+<li>Hide code with <code>echo = FALSE</code></li>
+<li>or in your pre-amble:</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a></a><span class="pp">---</span></span>
+<span id="cb25-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"example rmd"</span></span>
+<span id="cb25-3"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Annie Johansson"</span></span>
+<span id="cb25-4"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-09-29"</span></span>
+<span id="cb25-5"><a></a><span class="fu">output</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb25-6"><a></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb25-7"><a></a><span class="at">    </span><span class="fu">code-folding</span><span class="kw">:</span><span class="at"> hide</span></span>
+<span id="cb25-8"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>or in your code chunk:</li>
+</ul>
+<pre><code>#| echo: true
+#| code-fold: true
+
+# your code here </code></pre>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="co"># your code here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="friday-oct-9" class="slide level2">
+<h2>Friday, Oct 9</h2>
+<p>🔗 <a href="https://canvas.uva.nl/courses/54361/assignments/627402">Peer Review on Canvas</a></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/feedback_slots.png" class="lightbox" data-gallery="quarto-lightbox-gallery-34" title="feedback sessions"><img data-src="images/feedback_slots.png" class="quarto-figure quarto-figure-left" alt="feedback sessions"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://docs.google.com/spreadsheets/d/1ppRe5PKrdawL8Q4QHAJpa6bfQfbVhmHZiWE7AxGaHSE/edit?gid=822351196#gid=822351196">feedback sessions</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="grading" class="slide level2">
+<h2>Grading</h2>
+<ul>
+<li>Assignment 1 (individual): 25% of your final grade<br>
+</li>
+<li>Assignment 2 (group): 75% of your final grade<br>
+</li>
+<li>Final grade for data viz counts 30% into your final BDS Toolbox grade &amp; needs to be <span class="math inline">\(\ge\)</span> 5.5</li>
+</ul>
 
 <div class="quarto-auto-generated-content">
 <p><img src="images/uva_logo.png" class="slide-logo"></p>
@@ -2567,6 +3028,38 @@
       }
     });
     </script>
+    <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":false,"selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>

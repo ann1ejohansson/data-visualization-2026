@@ -197,7 +197,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/working-with-ai.png" class="img-fluid figure-img"></p>
-<figcaption>“Hi ChatGPT! Can you generate an image that suits as an engaging catch, to put at the top of this worksheet?”</figcaption>
+<figcaption>“Hi Chat! Can you generate an image that suits as an engaging catch, to put at the top of this worksheet?”</figcaption>
 </figure>
 </div>
 <section id="introduction" class="level2">
@@ -205,8 +205,8 @@ ul.task-list li input[type="checkbox"] {
 <p>AI can now make a polished chart in seconds. Since this is no longer hard to make, the hard part is knowing whether it is right: whether the data means what the chart suggests, and whether the conclusion holds.</p>
 <p>This also means that your role as a data scientist changes from only building static visualizations to curating its generative system. Although the AI can build your product, you set its parameters (the question, the data, the transformations, the audience, the claim) and you judge what it produces. <strong>Remember that you are responsible for every chart you hand in (in class and in your future work), including the ones AI made.</strong></p>
 <p>Importantly, a visualization carries a message about data to people who usually don’t have access to, or the skills to understand, the raw data used to produce it. This makes data literacy more important than ever. As behavioral data scientists, you bring something the AI does not have: knowledge of psychology, statistics, and the data at hand.</p>
-<section id="five-guiding-principles" class="level3">
-<h3 class="anchored" data-anchor-id="five-guiding-principles">Five guiding principles</h3>
+<section id="six-guiding-principles" class="level3">
+<h3 class="anchored" data-anchor-id="six-guiding-principles">Six guiding principles</h3>
 <section id="you-are-the-data-scientist-the-ai-is-your-assistant" class="level4">
 <h4 class="anchored" data-anchor-id="you-are-the-data-scientist-the-ai-is-your-assistant">1. You are the data scientist; the AI is your assistant</h4>
 <p>The AI can write code and produce charts. It cannot tell you whether any of it makes sense. That depends on conceptual knowledge only you can bring:</p>
@@ -247,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
 <li>A plain chart that is correct beats a beautiful chart that is wrong.<br>
 </li>
-<li>Check how robust the trend is by creating several visualizations of the same data. Also check it’s robustness across different data decisions (item 2).</li>
+<li>Check how robust the trend is by creating several visualizations of the same data. Also check its robustness across different data decisions (item 2).</li>
 </ul>
 </section>
 <section id="curate-dont-just-prompt" class="level4">
@@ -260,6 +260,18 @@ ul.task-list li input[type="checkbox"] {
 <li>Which encodings, colors, and constraints (colorblind-safe, fits the report)?</li>
 </ul>
 <p>Then evaluate what comes back against those parameters.</p>
+</section>
+<section id="evaluate-evaluate-evaluate" class="level4">
+<h4 class="anchored" data-anchor-id="evaluate-evaluate-evaluate">6. Evaluate, evaluate, evaluate!</h4>
+<p>Decide your own verification criteria before you see the result, so that the AI’s output doesn’t set the standard it is judged by. For example:</p>
+<ul>
+<li>Counts: how many rows (schools, pupils) went in, and how many ended up in the chart? You should be able to explain every difference.</li>
+<li>Manual checks: reproduce one or two numbers from the chart (a count, a mean) manually.</li>
+<li>Plausibility: do the values fall within plausible ranges? Do they match what you know about the context?</li>
+<li>Robustness: does the pattern survive a different chart type, a different summary statistic (median instead of mean), or a different filtering decision?</li>
+<li>Independence: does a teammate, or a different model, reach the same result from the same question?</li>
+<li>Understanding: can you explain the code?</li>
+</ul>
 </section>
 </section>
 <section id="guidelines-working-with-ai." class="level3">
@@ -366,7 +378,7 @@ A checklist for AI-assisted data visualization
 </section>
 <section id="part-2-ai-for-explaining-session-3" class="level2">
 <h2 class="anchored" data-anchor-id="part-2-ai-for-explaining-session-3">Part 2: AI for explaining (Session 3)</h2>
-<p><strong>What AI is good at here:</strong> technical execution and generating alternatives. For example: annotations, highlighting a key group, <code>ggtext</code>, multiple-plot layouts, custom themes and color palettes, <code>plotly</code> tooltips, and many design options in a short time. Research shows LLMs are good at quickly producing diverse design options but weaker at contextual nuance (<a href="https://dl.acm.org/doi/10.1145/3745768">Kim et al., 2025</a>), reflecting what data scientists prefer when working with AI tools (<a href="https://arxiv.org/abs/2304.08366">Li et al., 2023</a>).</p>
+<p><strong>What AI is good at here:</strong> technical execution and generating alternatives. For example: annotations, highlighting a key group, <code>ggtext</code>, multiple-plot layouts, custom themes and color palettes, <code>plotly</code> tooltips, and many design options in a short time. Research shows LLMs are good at quickly producing diverse design options but weaker at contextual nuance (<a href="https://dl.acm.org/doi/10.1145/3745768">Kim et al., 2025</a>), reflecting what data scientists prefer when working with AI tools (<a href="https://arxiv.org/abs/2304.08366">Li et al., 2023</a>; <a href="https://www.uw-insight-lab.com/assets/papers/TiiS-AIThreads.pdf">Hong et al., 2025</a>).</p>
 <p><strong>Guiding points</strong></p>
 <ol type="1">
 <li><strong>Write your conclusion first, without AI.</strong> The AI should help you show this conclusion, but not choose it.<br>
