@@ -1,0 +1,46 @@
+/*-- scss:defaults --*/
+// Matches the course website (Bootstrap "cosmo" theme): white background,
+// dark grey text, Source Sans Pro, cosmo blue for links and accents, and the
+// dark blue-grey navbar colour for section header slides.
+$cosmo-blue: #2780e3;
+$cosmo-dark: #343a40;   // website text colour and navbar background
+$cosmo-light: #cacccd;  // website navbar text colour
+
+$body-bg: #ffffff;
+$body-color: $cosmo-dark;
+$link-color: $cosmo-blue;
+$presentation-heading-color: $cosmo-dark;
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+/*-- scss:rules --*/
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap");
+
+// Section header slides (# headings with background-color="#343a40"):
+// dark blue-grey like the website navbar, white text.
+// Emoji wrapped in [..]{.header-emoji} goes on its own line below the title.
+.reveal .slides section.slide.level1 h1 .header-emoji {
+  display: block;
+  margin-top: 0.3em;
+}
+
+.reveal .slides section.has-dark-background,
+.reveal .slides section.has-dark-background h1 {
+  color: #ffffff;
+}
+
+.reveal .slides section.has-dark-background a {
+  color: $cosmo-light;
+}
+
+// Pop-up labels revealed on click (e.g. the Speed dates slide)
+.reveal .pop {
+  background: $cosmo-blue;
+  color: #ffffff;
+  font-size: 0.75em;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 0.3em 0.7em;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: rotate(-3deg);
+}
