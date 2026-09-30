@@ -49,7 +49,7 @@ Together with your group, read the instructions for your research question in [R
 For this project, you will collaborate using Git. Follow the instructions in [Working with Git](../documents/git-workflow.qmd) to:
 
 1.  set up Git on your own computer (everyone);
-2.  create your group's **public** repository from the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template), and add your groupmates as collaborators (one group member);
+2.  create your group's **public** repository from the [template repository](https://github.com/ann1ejohansson/dv-2026-template), and add your groupmates as collaborators (one group member);
 3.  clone the repository into RStudio, and make a first commit by adding your name to the `README.md` (everyone, one at a time).
 
 If this is done correctly, the resulting repository should have the following folder structure:
@@ -60,7 +60,7 @@ If this is done correctly, the resulting repository should have the following fo
 ├── README.md
 ├── <your-repo-name>.Rproj     <- created by RStudio when you clone
 ├── assignment-1/              <- your individual Assignment 1, ignored by Git
-│   └── DV-Assignment1-Firstname-Lastname.Rmd
+│   └── assignment-1-README.md
 ├── data/
 │   └── raw/                   <- only appears after running 01-get-data.R
 ├── scripts/
@@ -188,7 +188,7 @@ Prediction focuses on using current information to forecast outcomes. At this le
 
 ## Data and codebook
 
-All research questions use the DUO open data that you already worked with in the worksheets: `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`. Start from the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template): its `scripts/01-get-data.R` downloads and loads all four files.
+All research questions use the DUO open data that you already worked with in the worksheets: `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`. Start from the [template repository](https://github.com/ann1ejohansson/dv-2026-template): its `scripts/01-get-data.R` downloads and loads all four files.
 
 -   [The data: background & codebook](../documents/data-resources.qmd) explains where the data comes from, the fairness debate these questions come from, every column in the four files, and the Dutch terms you'll run into (reference levels, school advice tracks, schoolweging).
 

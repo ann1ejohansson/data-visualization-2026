@@ -254,8 +254,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── .gitignore
 ├── README.md
 ├── &lt;your-repo-name&gt;.Rproj &lt;- created when you clone (Step 3)
-├── assignment-1/              
-│   └── DV-Assignment1-Firstname-Lastname.Rmd
+├── assignment-1/ &lt;- your individual Assignment 1, ignored by Git
+│   └── assignment-1-README.md
 ├── data/
 │   └── raw/      &lt;- appears after running 01-get-data.R
 ├── scripts/
@@ -269,6 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>scripts/01-get-data.R</code> — downloads/loads the DUO data your group is using.</li>
 <li>All external R scripts used to build dataframes, visualizations, etc, and are sourced for your final report, belong in <code>scripts/</code>. Use logical naming conventions here.</li>
 <li><code>report/</code> — your group’s report and final visualization.</li>
+<li><code>assignment-1/</code> — save your individual Assignment 1 here (the template is on Canvas). Everything in this folder except its README is ignored by Git, so your individual work never ends up in your group’s repository.</li>
 <li><code>data/raw/</code> — the DUO data, downloaded by <code>01-get-data.R</code>. This folder does not exist until you run that script, and it is ignored by Git.</li>
 <li><code>README</code> is a short, summarized description of your project goals and outcomes. You can also use this file to guide readers through your specific files, and how to run them.</li>
 <li><code>.gitignore</code> is a list of all files that won’t be git-tracked.</li>
@@ -311,7 +312,7 @@ About pushing data
 <h2 class="anchored" data-anchor-id="step-2-create-your-group-repository-one-group-member">Step 2: Create your group repository (one group member)</h2>
 <p><strong>One</strong> group member does this. The others wait until Step 3.</p>
 <ol type="1">
-<li><p>Go to the <a href="https://github.com/ann1ejohansson/dv-2026-group-template">template repository</a> and click the green <code>Use this template</code> button &gt; <code>Create a new repository</code>.</p></li>
+<li><p>Go to the <a href="https://github.com/ann1ejohansson/dv-2026-template">template repository</a> and click the green <code>Use this template</code> button &gt; <code>Create a new repository</code>.</p></li>
 <li><p>Choose yourself as the <code>Owner</code>, and give the repository a name, for example <code>dv-2026-group3</code> (use your own group number). This name will also be the name of your project folder.</p></li>
 <li><p>Set the repository to <strong>Public</strong>, and click <code>Create repository</code>. Your repository is public so that we can see it for grading. Your individual assignment also lives here, but is not tracked by git and will not be visible.</p></li>
 <li><p>Add your groupmates: in your new repository, go to <code>Settings</code> &gt; <code>Collaborators</code> &gt; <code>Add people</code>, and add each groupmate by their GitHub username. They receive an invitation by email (or at <a href="https://github.com/notifications">github.com/notifications</a>), which they need to <strong>accept</strong> before they can push.</p></li>

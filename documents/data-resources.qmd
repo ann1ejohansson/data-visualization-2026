@@ -17,7 +17,7 @@ You don't need to be Dutch, or know anything about the Dutch education system, t
 The data is downloaded by an R script, so nobody has to download files by hand and everything is reproducible:
 
 -   In the worksheets, use `data/get-data.R` from the [course repository](https://github.com/ann1ejohansson/data-visualization-2026) (see the setup section of [Worksheet 1](../worksheets/ggplot-recap.qmd)).
--   For Assignment 2, use `scripts/01-get-data.R` in the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template). It downloads the same four files and loads them into your R session.
+-   For Assignment 2, use `scripts/01-get-data.R` in the [template repository](https://github.com/ann1ejohansson/dv-2026-template). It downloads the same four files and loads them into your R session.
 
 Both scripts save the files in `data/raw/`. Never edit anything in that folder by hand. Anyone can recreate it by rerunning the script.
 

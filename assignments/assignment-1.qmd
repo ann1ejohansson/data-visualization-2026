@@ -14,7 +14,7 @@ rm(list = ls())
 
 ## Instructions
 
-Download the template for this assignment from the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026/blob/main/templates/assignment-1/DV-Assignment1-Firstname-Lastname.Rmd), and save it in an `assignment-1/` folder inside your group's project for [Assignment 2](assignment-2.qmd) (see [Working with Git](../documents/git-workflow.qmd)). That way, it uses the same scripts to load packages and data as your group project. The `assignment-1/` folder is ignored by Git, so your individual work is never pushed to your group's public repository.
+Download the template for this assignment, `DV-Assignment1-Firstname-Lastname.Rmd`, from Canvas, and replace `Firstname-Lastname` with your own name. Save it in the `assignment-1/` folder of your group's project for [Assignment 2](assignment-2.qmd) (see [Working with Git](../documents/git-workflow.qmd) for how to set up that project). There, it uses the same scripts to load packages and data as your group project. The `assignment-1/` folder is ignored by Git, so your individual work (including the knitted `.html`) stays on your own computer, and is never pushed to your group's repository.
 
 This is the first assignment for the Data Visualization module, and it is **individual**. The aim here is to get acquainted with real, public education data and to practice with some ggplot and plotly basics. Your work on the final project is a separate, group assignment: see [Assignment 2](assignment-2.qmd). Note that the first part of Assignment 2 is due on the same day as this assignment.
 
@@ -51,7 +51,7 @@ lint(rstudioapi::getSourceEditorContext()$path)
 
 This assignment uses real, public data about the **doorstroomtoets** - the standardized test Dutch primary school students take in their final year (groep 8), which feeds into their secondary-school advice. Before starting, read [The data: background & codebook](../documents/data-resources.qmd) for the background on why this data is interesting (it's the subject of an active public debate about fairness), a glossary of the Dutch terms you'll run into, and a full codebook of every column in the data files below.
 
-You don't need to download the data yourself. The setup chunk at the top of the template sources `scripts/00-packages.R` (which loads all packages you need) and `scripts/01-get-data.R` (which downloads the data into `data/raw/` and loads it as `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`).
+You don't need to download the data yourself. The setup chunk at the top of the template sources your project's `scripts/00-packages.R` (which loads all packages you need) and `scripts/01-get-data.R` (which downloads the data into `data/raw/` and loads it as `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`).
 
 ## Part A: Replicate this plot
 

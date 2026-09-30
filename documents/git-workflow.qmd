@@ -22,8 +22,8 @@ Your group repo should look like this:
 ├── .gitignore
 ├── README.md
 ├── <your-repo-name>.Rproj <- created when you clone (Step 3)
-├── assignment-1/              
-│   └── DV-Assignment1-Firstname-Lastname.Rmd
+├── assignment-1/ <- your individual Assignment 1, ignored by Git
+│   └── assignment-1-README.md
 ├── data/
 │   └── raw/      <- appears after running 01-get-data.R
 ├── scripts/
@@ -38,6 +38,7 @@ Your group repo should look like this:
 -   `scripts/01-get-data.R` — downloads/loads the DUO data your group is using.
 -   All external R scripts used to build dataframes, visualizations, etc, and are sourced for your final report, belong in `scripts/`. Use logical naming conventions here.
 -   `report/` — your group's report and final visualization.
+-   `assignment-1/` — save your individual Assignment 1 here (the template is on Canvas). Everything in this folder except its README is ignored by Git, so your individual work never ends up in your group's repository.
 -   `data/raw/` — the DUO data, downloaded by `01-get-data.R`. This folder does not exist until you run that script, and it is ignored by Git.
 -   `README` is a short, summarized description of your project goals and outcomes. You can also use this file to guide readers through your specific files, and how to run them.
 -   `.gitignore` is a list of all files that won't be git-tracked.
@@ -87,7 +88,7 @@ Every group member does this once, on their own computer.
 
 **One** group member does this. The others wait until Step 3.
 
-1.  Go to the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template) and click the green `Use this template` button \> `Create a new repository`.
+1.  Go to the [template repository](https://github.com/ann1ejohansson/dv-2026-template) and click the green `Use this template` button \> `Create a new repository`.
 
 2.  Choose yourself as the `Owner`, and give the repository a name, for example `dv-2026-group3` (use your own group number). This name will also be the name of your project folder.
 
