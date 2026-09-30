@@ -169,9 +169,9 @@ Discuss these questions with your group, then write down guidelines for the team
 2.  **Ask for alternatives, then choose and justify.** Request 3–4 different designs for the same message, keep a log and reason to yourself why you chose one.  
 3.  **Criticize added elements.** For each thing the AI adds, ask whether it makes the conclusion clearer or only decorates the chart.  
 4.  **Check the title.** Is it using unjustified causal language? Is it meaningful and does it support your conclusion? 
-5.  **Show uncertainty and sample size.** Polished charts tend to hide these; you have to ask for them explicitly.
+5.  **Show uncertainty and sample size.** Polished charts tend to hide these; ask for them explicitly and make sure you can explain how they were calculated.
 6.  **Use AI as a critic, carefully.** You can ask AI to critique your chart as a skeptical reviewer, but you decide which critiques are valid.
-7.  **Test with a naïve reader.** Show the chart to someone outside the course for five seconds. What do they conclude? Is that conclusion true?  
+7.  **Test with a naïve reader.** Show the chart to someone outside the course for a minute. What do they conclude? Is that conclusion true?  
 8.  **AI is one tool among many.**  For example, AI can probably check whether your chosen color palette is color-blind friendly, but you are also [one click away](https://www.color-blindness.com/coblis-color-blindness-simulator/) from checking it yourself. 
 
 ### Exercise 2
@@ -180,7 +180,7 @@ Discuss with your group:
 
 -   Which stages of your project (question, cleaning, exploring, designing, writing) would you hand to AI, and which would you not? Why?
 -   AI slop is a real problem. Who is responsible when a "cheap chart" misleads people?  
--   [AI consumes resources](https://news.un.org/en/story/2026/06/1167658). How can you (now and in the future) approach this responsibly?  
+-   [AI consumes resources](https://news.un.org/en/story/2026/06/1167658). How can you (now and in the future) approach this responsibly? This is part of a much bigger debate and there are no clear answers. Keep the discussion brief. 
 
 As a group, decide on a disclosure statement for your use of AI tools. Write a short "AI use" section in your final report. List what tools you used, what they were used for, and how this output was checked. This section is a requirement in your final report. 
 
