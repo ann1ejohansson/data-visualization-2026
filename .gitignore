@@ -57,6 +57,7 @@ CLAUDE.md
 drafts/
 solutions/
 plot-source-code/
+dashboard/ 
 
 # Raw course data - students should download this themselves by running
 # data/get-data.R, not pull it from GitHub
