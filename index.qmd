@@ -75,8 +75,6 @@ In this module, you will learn a wide set of data visualisation tools for both s
 
 You'll be working with Git and GitHub for the group project (Assignment 2). Refer [here](documents/git-workflow.qmd) for instructions on how to set up your project repository.
 
-Indicate your preference for a research question [here](https://docs.google.com/spreadsheets/d/1ppRe5PKrdawL8Q4QHAJpa6bfQfbVhmHZiWE7AxGaHSE/edit).
-
 ## 🚨 Deadlines
 
 -   **Assignment 1** (individual) – Sunday 4/10 23.59
