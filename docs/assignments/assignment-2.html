@@ -258,7 +258,6 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>Comment your code clearly. This not only helps us to understand your process, but your group members to collaborate efficiently.</p></li>
 <li><p>Use Git. Set up the project following the instructions in <a href="#part-1-research-question-and-exploration">Part 1</a>.</p></li>
-<li><p>Do not push data to GitHub!</p></li>
 </ul>
 </section>
 </section>
@@ -276,18 +275,29 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="b.-set-up-your-project-and-load-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="b.-set-up-your-project-and-load-the-data">B. Set up your project and load the data</h3>
-<p>For this project, you will collaborate using Git. Set up your group’s repository from the <a href="https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name">starter project</a>, and connect it to RStudio by following the instructions in <a href="../documents/git-workflow.html">Working with Git</a>. If this is done correctly, the resulting repository should have the following folder structure:</p>
-<pre><code>your-project-name/
+<p>For this project, you will collaborate using Git. Follow the instructions in <a href="../documents/git-workflow.html">Working with Git</a> to:</p>
+<ol type="1">
+<li>set up Git on your own computer (everyone);</li>
+<li>create your group’s <strong>public</strong> repository from the <a href="https://github.com/ann1ejohansson/dv-2026-group-template">template repository</a>, and add your groupmates as collaborators (one group member);</li>
+<li>clone the repository into RStudio, and make a first commit by adding your name to the <code>README.md</code> (everyone, one at a time).</li>
+</ol>
+<p>If this is done correctly, the resulting repository should have the following folder structure:</p>
+<pre><code>&lt;your-repo-name&gt;/
 ├── .gitignore
 ├── README.md
-├── your-project-name.Rproj
+├── &lt;your-repo-name&gt;.Rproj     &lt;- created by RStudio when you clone
+├── assignment-1/              &lt;- your individual Assignment 1, ignored by Git
+│   └── DV-Assignment1-Firstname-Lastname.Rmd
+├── data/
+│   └── raw/                   &lt;- only appears after running 01-get-data.R
 ├── scripts/
 │   ├── 00-packages.R
 │   └── 01-get-data.R
 └── report/
-    └── DV-Assignment2-GroupX.Rmd</code></pre>
-<p>All group members should clone the group repository. Make a first commit and push it, and check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!</p>
-<p>Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a <a href="https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure">reproducible workflow</a>. Additionally, it is important that you <strong>never push data to GitHub</strong>.</p>
+    ├── DV-Assignment2-Part1-GroupX.Rmd
+    └── DV-Assignment2-Part2-GroupX.Rmd</code></pre>
+<p>When every group member has pushed their name, and everyone can pull the others’ changes, you are properly set up to work together using Git!</p>
+<p>Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a <a href="https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure">reproducible workflow</a>.</p>
 <p>Now, load in the data. In the <code>scripts/</code> folder, first run <code>00-packages.R</code> to install and load all the packages you need, then run <code>01-get-data.R</code> to download the data into <code>data/raw/</code> and load it. Examine the data, and discuss with your group:</p>
 <ul>
 <li>What is the structure of the data?<br>
@@ -310,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="submitting-part-1" class="level3">
 <h3 class="anchored" data-anchor-id="submitting-part-1">Submitting Part 1</h3>
-<p>Write Part 1 in your group’s report, <code>report/DV-Assignment2-GroupX.Rmd</code>: fill in the <strong>Research question</strong> section (your research question, its level, and your target audience) and the <strong>Exploratory process</strong> section (your exploratory visualization and its description). You can leave the other sections empty for now. Knit the report, push your work to GitHub, and submit the <code>.Rmd</code> and <code>.html</code> files on Canvas, under “DV Assignment 2 – Part 1”.</p>
+<p>Write Part 1 in <code>report/DV-Assignment2-Part1-GroupX.Rmd</code> (rename <code>GroupX</code> to your group number): fill in the <strong>Research question</strong> section (your research question, its level, and your target audience) and the <strong>Exploratory process</strong> section (your exploratory visualization and its description). Knit the report, push your work to GitHub, and submit the <code>.Rmd</code> and <code>.html</code> files on Canvas, under “DV Assignment 2 – Part 1”. Include the link to your group’s GitHub repository in your Canvas submission.</p>
 <p>Part 1 is <strong>complete</strong> if it contains:</p>
 <ul>
 <li>a specific research question, its level (analytics, inference or prediction), and a target audience;</li>
@@ -357,9 +367,10 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="submitting-part-2" class="level3">
 <h3 class="anchored" data-anchor-id="submitting-part-2">Submitting Part 2</h3>
-<p>The final draft of your report and data visualization is due <strong>Sunday, October 11th, 23:59</strong>. You will hand in the assignment on <strong>Canvas and GitHub</strong>. Please hand in the following documents:</p>
+<p>The final draft of your report and data visualization is due <strong>Sunday, October 11th, 23:59</strong>. You will hand in the assignment on <strong>Canvas and GitHub</strong>. Please hand in the following:</p>
 <ul>
-<li><p>Your <code>.Rmd</code> file. Here we will check your code styling and documentation. Run <code>lintr</code> beforehand!</p></li>
+<li><p>The link to your group’s (public) GitHub repository, with all your code pushed.</p></li>
+<li><p>Your <code>.Rmd</code> file (<code>report/DV-Assignment2-Part2-GroupX.Rmd</code>). Here we will check your code styling and documentation. Run <code>lintr</code> beforehand!</p></li>
 <li><p>Your <code>.html</code> file. Make sure it renders correctly; we will not compile your <code>.Rmd</code> file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.</p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -407,7 +418,7 @@ General tips
 </section>
 <section id="data-and-codebook" class="level2">
 <h2 class="anchored" data-anchor-id="data-and-codebook">Data and codebook</h2>
-<p>All research questions use the DUO open data that you already worked with in the worksheets: <code>eindscores</code>, <code>referentieniveaus</code>, <code>schooladviezen</code> and <code>schoolweging</code>. Start from the <a href="https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name">starter project</a>: its <code>scripts/01-get-data.R</code> downloads and loads all four files.</p>
+<p>All research questions use the DUO open data that you already worked with in the worksheets: <code>eindscores</code>, <code>referentieniveaus</code>, <code>schooladviezen</code> and <code>schoolweging</code>. Start from the <a href="https://github.com/ann1ejohansson/dv-2026-group-template">template repository</a>: its <code>scripts/01-get-data.R</code> downloads and loads all four files.</p>
 <ul>
 <li><a href="../documents/data-resources.html">The data: background &amp; codebook</a> explains where the data comes from, the fairness debate these questions come from, every column in the four files, and the Dutch terms you’ll run into (reference levels, school advice tracks, schoolweging).</li>
 </ul>
@@ -597,7 +608,7 @@ Tip
 <li><p><strong>A target audience.</strong> Who is your visualization for, and what should they be able to do or conclude after seeing it?</p></li>
 </ol>
 <p>State all three explicitly at the start of your report.</p>
-<p><strong>Adding other data.</strong> You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (<code>INSTELLINGSCODE</code>, <code>VESTIGINGSCODE</code>), postcode (<code>POSTCODE_VESTIGING</code>) and municipality (<code>GEMEENTENAAM</code>, <code>GEMEENTENUMMER</code>) are the columns you can use to join other data to the DUO files.</p>
+<p><strong>Adding other data.</strong> You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (<code>INSTELLINGSCODE</code>, <code>VESTIGINGSCODE</code>), postcode (<code>POSTCODE_VESTIGING</code>) and municipality (<code>GEMEENTENAAM</code>, <code>GEMEENTENUMMER</code>) are the columns you can use to join other data to the DUO files. Make sure the added data is not too overwhelming and still works to support one streamlined research question.</p>
 <p>We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you: Make sure the dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don’t), and describe in your report which data you used, where it comes from, and how you combined it.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
