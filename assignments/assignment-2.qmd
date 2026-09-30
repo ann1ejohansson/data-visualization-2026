@@ -33,8 +33,6 @@ There are several guidelines on workflow which you should follow when collaborat
 
 -   Use Git. Set up the project following the instructions in [Part 1](#part-1-research-question-and-exploration).
 
--   Do not push data to GitHub!
-
 ## Part 1: Research question and exploration
 
 The goal of Part 1 is to get your project off the ground: by the end of the first week, your group should have a clear research question, a working project setup, and a first look at the data. Part 1 is graded as **complete / incomplete**: we don't grade the quality of your plot, but use it to give you feedback on your ideas early on.
@@ -48,23 +46,34 @@ Together with your group, read the instructions for your research question in [R
 
 ### B. Set up your project and load the data
 
-For this project, you will collaborate using Git. Set up your group's repository from the [starter project](https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name), and connect it to RStudio by following the instructions in [Working with Git](../documents/git-workflow.qmd). If this is done correctly, the resulting repository should have the following folder structure:
+For this project, you will collaborate using Git. Follow the instructions in [Working with Git](../documents/git-workflow.qmd) to:
+
+1.  set up Git on your own computer (everyone);
+2.  create your group's **public** repository from the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template), and add your groupmates as collaborators (one group member);
+3.  clone the repository into RStudio, and make a first commit by adding your name to the `README.md` (everyone, one at a time).
+
+If this is done correctly, the resulting repository should have the following folder structure:
 
 ```
-your-project-name/
+<your-repo-name>/
 ├── .gitignore
 ├── README.md
-├── your-project-name.Rproj
+├── <your-repo-name>.Rproj     <- created by RStudio when you clone
+├── assignment-1/              <- your individual Assignment 1, ignored by Git
+│   └── DV-Assignment1-Firstname-Lastname.Rmd
+├── data/
+│   └── raw/                   <- only appears after running 01-get-data.R
 ├── scripts/
 │   ├── 00-packages.R
 │   └── 01-get-data.R
 └── report/
-    └── DV-Assignment2-GroupX.Rmd
+    ├── DV-Assignment2-Part1-GroupX.Rmd
+    └── DV-Assignment2-Part2-GroupX.Rmd
 ```
 
-All group members should clone the group repository. Make a first commit and push it, and check that the other group members can pull these changes. If this works, you should be properly set up to work together using Git!
+When every group member has pushed their name, and everyone can pull the others' changes, you are properly set up to work together using Git!
 
-Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure). Additionally, it is important that you **never push data to GitHub**.
+Feel free to add folders or files within the repository if necessary. Make sure that you maintain the structure such that you follow a [reproducible workflow](https://tellingstorieswithdata.com/03-workflow.html#r-projects-and-file-structure).
 
 Now, load in the data. In the `scripts/` folder, first run `00-packages.R` to install and load all the packages you need, then run `01-get-data.R` to download the data into `data/raw/` and load it. Examine the data, and discuss with your group:
 
@@ -85,7 +94,7 @@ Include a short description of what the visualization shows, and what you learne
 
 ### Submitting Part 1
 
-Write Part 1 in your group's report, `report/DV-Assignment2-GroupX.Rmd`: fill in the **Research question** section (your research question, its level, and your target audience) and the **Exploratory process** section (your exploratory visualization and its description). You can leave the other sections empty for now. Knit the report, push your work to GitHub, and submit the `.Rmd` and `.html` files on Canvas, under "DV Assignment 2 – Part 1".
+Write Part 1 in `report/DV-Assignment2-Part1-GroupX.Rmd` (rename `GroupX` to your group number): fill in the **Research question** section (your research question, its level, and your target audience) and the **Exploratory process** section (your exploratory visualization and its description). Knit the report, push your work to GitHub, and submit the `.Rmd` and `.html` files on Canvas, under "DV Assignment 2 – Part 1". Include the link to your group's GitHub repository in your Canvas submission.
 
 Part 1 is **complete** if it contains:
 
@@ -135,9 +144,11 @@ The pitches should be 3 minutes for presenting your plot, followed by a 3-minute
 
 ### Submitting Part 2
 
-The final draft of your report and data visualization is due **Sunday, October 11th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following documents:
+The final draft of your report and data visualization is due **Sunday, October 11th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following:
 
--   Your `.Rmd` file. Here we will check your code styling and documentation. Run `lintr` beforehand!
+-   The link to your group's (public) GitHub repository, with all your code pushed.
+
+-   Your `.Rmd` file (`report/DV-Assignment2-Part2-GroupX.Rmd`). Here we will check your code styling and documentation. Run `lintr` beforehand!
 
 -   Your `.html` file. Make sure it renders correctly; we will not compile your `.Rmd` file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.
 
@@ -177,7 +188,7 @@ Prediction focuses on using current information to forecast outcomes. At this le
 
 ## Data and codebook
 
-All research questions use the DUO open data that you already worked with in the worksheets: `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`. Start from the [starter project](https://github.com/ann1ejohansson/data-visualization-2026/tree/main/templates/assignment-2/your-project-name): its `scripts/01-get-data.R` downloads and loads all four files.
+All research questions use the DUO open data that you already worked with in the worksheets: `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`. Start from the [template repository](https://github.com/ann1ejohansson/dv-2026-group-template): its `scripts/01-get-data.R` downloads and loads all four files.
 
 -   [The data: background & codebook](../documents/data-resources.qmd) explains where the data comes from, the fairness debate these questions come from, every column in the four files, and the Dutch terms you'll run into (reference levels, school advice tracks, schoolweging).
 
@@ -336,7 +347,7 @@ You can also look for more variables/data elsewhere. Evaluate your model on data
 
 State all three explicitly at the start of your report.
 
-**Adding other data.** You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (`INSTELLINGSCODE`, `VESTIGINGSCODE`), postcode (`POSTCODE_VESTIGING`) and municipality (`GEMEENTENAAM`, `GEMEENTENUMMER`) are the columns you can use to join other data to the DUO files.
+**Adding other data.** You can look for other data to combine with the DUO files, for example DUO data from other school years (to look at changes over time), neighbourhood statistics from CBS (Statistics Netherlands), or geographic data to make a map. The school codes (`INSTELLINGSCODE`, `VESTIGINGSCODE`), postcode (`POSTCODE_VESTIGING`) and municipality (`GEMEENTENAAM`, `GEMEENTENUMMER`) are the columns you can use to join other data to the DUO files. Make sure the added data is not too overwhelming and still works to support one streamlined research question. 
 
 We recommend using AI tools to help you with this: to sharpen your question, to find datasets that could answer it, and to figure out how to join them to the DUO data. But check what AI gives you: Make sure the dataset actually exists and comes from a trustworthy source, check how many schools actually match after joining (and which ones don't), and describe in your report which data you used, where it comes from, and how you combined it.
 

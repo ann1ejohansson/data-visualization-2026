@@ -14,7 +14,7 @@ rm(list = ls())
 
 ## Instructions
 
-Download the template for this assignment in the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026) (templates \> assignment-1).
+Download the template for this assignment from the [Github Repository](https://github.com/ann1ejohansson/data-visualization-2026/blob/main/templates/assignment-1/DV-Assignment1-Firstname-Lastname.Rmd), and save it in an `assignment-1/` folder inside your group's project for [Assignment 2](assignment-2.qmd) (see [Working with Git](../documents/git-workflow.qmd)). That way, it uses the same scripts to load packages and data as your group project. The `assignment-1/` folder is ignored by Git, so your individual work is never pushed to your group's public repository.
 
 This is the first assignment for the Data Visualization module, and it is **individual**. The aim here is to get acquainted with real, public education data and to practice with some ggplot and plotly basics. Your work on the final project is a separate, group assignment: see [Assignment 2](assignment-2.qmd). Note that the first part of Assignment 2 is due on the same day as this assignment.
 
@@ -51,7 +51,7 @@ lint(rstudioapi::getSourceEditorContext()$path)
 
 This assignment uses real, public data about the **doorstroomtoets** - the standardized test Dutch primary school students take in their final year (groep 8), which feeds into their secondary-school advice. Before starting, read [The data: background & codebook](../documents/data-resources.qmd) for the background on why this data is interesting (it's the subject of an active public debate about fairness), a glossary of the Dutch terms you'll run into, and a full codebook of every column in the data files below.
 
-Download `get-data.R` from the [course GitHub repository](https://github.com/ann1ejohansson/data-visualization-2026/blob/main/data/get-data.R) and run it once in your project folder - it downloads everything this assignment needs into `data/raw/`.
+You don't need to download the data yourself. The setup chunk at the top of the template sources `scripts/00-packages.R` (which loads all packages you need) and `scripts/01-get-data.R` (which downloads the data into `data/raw/` and loads it as `eindscores`, `referentieniveaus`, `schooladviezen` and `schoolweging`).
 
 ## Part A: Replicate this plot
 
@@ -68,53 +68,23 @@ Don't worry if you cannot reproduce the plots exactly. You can, for example, use
 
 Every plot in this assignment shows the data accurately, but none of them *explains itself* - a reader still has to do some work to find the result that matters most. For the bonus point, add ONE explanatory element to either plot that helps a reader find that result faster. Simply changing colors or a theme will not be rewarded on its own, unless it's clearly in service of highlighting a specific result. 
 
-```{r setup environment, include = TRUE, eval=FALSE}
+The setup chunk of the template loads all packages and data:
+
+```{r setup}
 knitr::opts_chunk$set(echo = TRUE) # set default echo = TRUE for all code blocks
 rm(list = ls()) # Remove any existing objects in memory
+
+# installs (if missing) and loads every package - add any new packages to
+# scripts/00-packages.R, not here
+source("../scripts/00-packages.R")
+
+# downloads the data into data/raw/ if you don't already have it, then loads
+# eindscores, referentieniveaus, schooladviezen and schoolweging
+source(here("scripts", "01-get-data.R"))
 ```
 
-```{r 1A setup-2}
-# Install Packages
-all_installed_packages <- installed.packages()[, "Package"]
-# nolint start -- trick to omit some lines from the lintr checker, only if you have a good reason!
-if (!"tidyverse" %in% all_installed_packages) {
-  install.packages("tidyverse")
-}
-if (!"cowplot" %in% all_installed_packages) {
-  install.packages("cowplot")
-}
-if (!"readODS" %in% all_installed_packages) {
-  install.packages("readODS")
-}
-if (!"lintr" %in% all_installed_packages) {
-  install.packages("lintr")
-}
-# nolint end
+For this assignment, we look at the doorstroomtoets results published by DUO, alongside two other public files: the reference-level attainment per school (`referentieniveaus`), and the school weighting (`schoolweging`, a school-level disadvantage score) published by the Education Inspectorate. All three are already loaded by the setup chunk.
 
-library(tidyverse)
-library(cowplot)
-library(readODS)
-```
-
-For this assignment, we look at the doorstroomtoets results published by DUO, alongside two other public files: the reference-level attainment per school, and the school weighting ("schoolweging" - a school-level disadvantage score) published by the Education Inspectorate.
-
-```{r 1A data}
-eindscores <- read_delim(
-  "data/raw/eindscores_2024-2025.csv",
-  delim = ";", locale = locale(decimal_mark = ",", encoding = "UTF-8"),
-  show_col_types = FALSE
-)
-
-referentieniveaus <- read_delim(
-  "data/raw/referentieniveaus_2024-2025.csv",
-  delim = ";", quote = '"', show_col_types = FALSE
-)
-
-schoolweging_raw <- read_ods(
-  "data/raw/schoolweging_2022-2025.ods",
-  sheet = "2024-2025"
-)
-```
 
 Now that we have the "raw" data, we can start to filter and prepare it. `eindscores` has one row per school with a pair of columns per test provider (`IEP_AANTAL`/`IEP_GEM`, and so on) - we need one row per (school, provider actually used) instead, so we `pivot_longer()` those pairs.
 
@@ -143,7 +113,7 @@ primary_provider <- school_provider |>
 Next, the school weighting. That file identifies schools slightly differently (an `OVT` column like `"00AP|C1"` instead of separate `INSTELLINGSCODE`/`VESTIGINGSCODE` columns), so a bit of string splitting is needed before it can be joined to anything else.
 
 ```{r 1A data-prep-2}
-schoolweging <- schoolweging_raw |>
+school_weights <- schoolweging |>
   mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) |>
   group_by(INSTELLINGSCODE) |>
   summarise(
@@ -184,7 +154,7 @@ ref_levels <- referentieniveaus |>
 
 school_data <- ref_levels |>
   inner_join(primary_provider, by = "INSTELLINGSCODE") |>
-  left_join(schoolweging, by = "INSTELLINGSCODE")
+  left_join(school_weights, by = "INSTELLINGSCODE")
 ```
 
 Now we can make the first plot: an overlapping density curve of every school's score, one per provider, for **LIB, IEP and Route8**. `geom_density()` normalizes each curve to its own area, so LIB (far more schools behind it) and Route8 stay comparable on *shape*. I used these settings in my rMarkdown code chunk: `fig.height = 5, fig.width = 5.5, fig.align = "center"`
@@ -210,7 +180,7 @@ The bonus point (0.5 pt) is for adding one meaningful explanatory element to eit
 
 ## Part B: Interactive visualizations with Plotly
 
-Copy the code below to prepare the data - the same kind of school-level dataset as Part A, but keeping every provider (not just the three highlighted ones) and bringing in a school's name, municipality and province, useful context for a tooltip but not something Part A's plots needed.
+Copy the code below to prepare the data (the packages and data are already loaded by the setup chunk) - the same kind of school-level dataset as Part A, but keeping every provider (not just the three highlighted ones) and bringing in a school's name, municipality and province, useful context for a tooltip but not something Part A's plots needed.
 
 Now, your assignment is to:
 
@@ -223,29 +193,7 @@ Now, your assignment is to:
 -   **Does the interactive plot work? \[1 pt\]**
 -   **Does the tooltip clearly display additional (meaningful) information next to the default plot values? \[1 pt\]**
 
-```{r 1B setup}
-library(tidyverse)
-library(readODS)
-library(plotly)
-```
-
 ```{r 1B data-prep-1}
-eindscores <- read_delim(
-  "data/raw/eindscores_2024-2025.csv",
-  delim = ";", locale = locale(decimal_mark = ",", encoding = "UTF-8"),
-  show_col_types = FALSE
-)
-
-referentieniveaus <- read_delim(
-  "data/raw/referentieniveaus_2024-2025.csv",
-  delim = ";", quote = '"', show_col_types = FALSE
-)
-
-schoolweging_raw <- read_ods(
-  "data/raw/schoolweging_2022-2025.ods",
-  sheet = "2024-2025"
-)
-
 # one row per (school, provider actually used)
 school_provider <- eindscores |>
   select(INSTELLINGSCODE, matches("_(AANTAL|GEM)$")) |>
@@ -277,7 +225,7 @@ school_location <- eindscores |>
   slice(1) |>
   ungroup()
 
-schoolweging <- schoolweging_raw |>
+school_weights <- schoolweging |>
   mutate(INSTELLINGSCODE = str_remove(OVT, "\\|.*$")) |>
   group_by(INSTELLINGSCODE) |>
   summarise(
@@ -321,7 +269,7 @@ ref_levels <- referentieniveaus |>
 school_data <- ref_levels |>
   inner_join(primary_provider, by = "INSTELLINGSCODE") |>
   inner_join(school_location, by = "INSTELLINGSCODE") |>
-  inner_join(schoolweging, by = "INSTELLINGSCODE") |>
+  inner_join(school_weights, by = "INSTELLINGSCODE") |>
   filter(!is.na(schoolweging))
 ```
 
