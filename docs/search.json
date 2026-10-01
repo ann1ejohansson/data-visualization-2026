@@ -1039,8 +1039,8 @@
     "objectID": "slides/slides.html#adding-interactivity-1",
     "href": "slides/slides.html#adding-interactivity-1",
     "title": "Data Visualization",
-    "section": "Adding interactivity",
-    "text": "Adding interactivity\n\nggplotly\nWhat advantages/disadvantages do interactive visualizations have over static plots?"
+    "section": "Adding interactivity 🎮",
+    "text": "Adding interactivity 🎮\n\nggplotly\nWhat advantages/disadvantages do interactive visualizations have over static plots?"
   },
   {
     "objectID": "slides/slides.html#advantages",
@@ -1060,8 +1060,8 @@
     "objectID": "slides/slides.html#adding-interactivity-2",
     "href": "slides/slides.html#adding-interactivity-2",
     "title": "Data Visualization",
-    "section": "Adding interactivity",
-    "text": "Adding interactivity\n\n\n\n\n\n\n\n✅  Advantages\n⚠️  Disadvantages\n\n\n\n\nExplore data dynamically\nHarder to include in static formats (papers, print)\n\n\nZoom, pan, and hover for details\nAccessibility issues (screen readers, non colorblind-friendly defaults)\n\n\nReveal extra information without clutter\nCan overwhelm the audience if overused\n\n\nEnhance engagement in presentations and reports\nLarger file sizes, slower rendering\n\n\nUseful for exploratory analysis and dashboards\nRequires additional packages (e.g., {plotly})"
+    "section": "Adding interactivity 🎮",
+    "text": "Adding interactivity 🎮\n\n\n\n\n\n\n\n✅  Advantages\n⚠️  Disadvantages\n\n\n\n\nExplore data dynamically\nHarder to include in static formats (papers, print)\n\n\nZoom, pan, and hover for details\nAccessibility issues (screen readers, non colorblind-friendly defaults)\n\n\nReveal extra information without clutter\nCan overwhelm the audience if overused\n\n\nEnhance engagement in presentations and reports\nLarger file sizes, slower rendering\n\n\nUseful for exploratory analysis and dashboards\nRequires additional packages (e.g., {plotly})"
   },
   {
     "objectID": "slides/slides.html#adding-interactivity-3",
@@ -1075,14 +1075,14 @@
     "href": "slides/slides.html#using-ai-for-data-exploration",
     "title": "Data Visualization",
     "section": "Using AI for Data Exploration 🤖",
-    "text": "Using AI for Data Exploration 🤖\n\n\nAI lets you explore wider  Use it for an efficient overview of the available data\nBut, every plot hides decisions  Ask the AI to list every transformation it made\nMore plots = more chances of false positives  Treat exploratory findings as a lead to continue checking, not a result\nYou bring the meaning  what does a variable measure? does the pattern make sense?\nGive the AI all the context you can  e.g. codebooks, background information\nEvaluate, evaluate, evaluate!  Before prompting, decide how you will verify the results yourself\n\n\n\n\nYou can get a distribution of every variable, and every relationship you’re curious about, in a few minutes. So use that! Look at more than you normally would. And remember, these plots don’t have to be pretty, they’re just for you.\nevery plot you get back already has choices baked into it. Which variables did it pick, did it take a mean or a median, did it filter anything out? The AI makes these choices without telling you.\nMore plots, more false patterns: If you can make 50 versions of a plot in a minute, one of them is going to show you something interesting, just by chance. So anything you find while exploring is a lead, not a result. You still have to check it.\nYou bring the meaning: the AI can make the plot, but it doesn’t know what your variables actually measure, or whether the pattern makes any sense in the real world. That part is your job. If you can’t judge whether the answer is right, the AI’s answer isn’t going to help you.\nGive the AI all the context you can: the more it knows, the less it has to guess. So don’t just give it the column names, give it the codebook, the background of the data, what your research question is. And a nice trick: ask it to describe the data back to you first. Where it gets it wrong, correct it, and now you also know where its understanding stops.\nEvaluate, evaluate, evaluate!: decide before you prompt how you’re going to check the result, otherwise the AI’s output becomes the standard you judge it by. Simple checks: how many schools went in, and how many ended up in the plot? Can you reproduce one number from the plot yourself? Does the pattern still hold with a median instead of a mean? Keeping an AI log will also help with this."
+    "text": "Using AI for Data Exploration 🤖\n\n💬 What about using AI for data exploration in visualization?"
   },
   {
     "objectID": "slides/slides.html#using-ai-for-data-exploration-1",
     "href": "slides/slides.html#using-ai-for-data-exploration-1",
     "title": "Data Visualization",
     "section": "Using AI for Data Exploration 🤖",
-    "text": "Using AI for Data Exploration 🤖\n Try it yourself!"
+    "text": "Using AI for Data Exploration 🤖\n\n\nAI lets you explore wider  Use it for an efficient overview of the available data\nBut, every plot hides decisions  Ask the AI to list every transformation it made\nMore plots = more chances of false positives  Treat exploratory findings as a lead to continue checking, not a result\nYou bring the meaning  what does a variable measure? does the pattern make sense?\nGive the AI all the context you can  e.g. codebooks, background information\nEvaluate, evaluate, evaluate!  Before prompting, decide how you will verify the results yourself\n\n\n\n\nYou can get a distribution of every variable, and every relationship you’re curious about, in a few minutes. So use that! Look at more than you normally would. And remember, these plots don’t have to be pretty, they’re just for you.\nevery plot you get back already has choices baked into it. Which variables did it pick, did it take a mean or a median, did it filter anything out? The AI makes these choices without telling you.\nMore plots, more false patterns: If you can make 50 versions of a plot in a minute, one of them is going to show you something interesting, just by chance. So anything you find while exploring is a lead, not a result. You still have to check it.\nYou bring the meaning: the AI can make the plot, but it doesn’t know what your variables actually measure, or whether the pattern makes any sense in the real world. That part is your job. If you can’t judge whether the answer is right, the AI’s answer isn’t going to help you.\nGive the AI all the context you can: the more it knows, the less it has to guess. So don’t just give it the column names, give it the codebook, the background of the data, what your research question is. And a nice trick: ask it to describe the data back to you first. Where it gets it wrong, correct it, and now you also know where its understanding stops.\nEvaluate, evaluate, evaluate!: decide before you prompt how you’re going to check the result, otherwise the AI’s output becomes the standard you judge it by. Simple checks: how many schools went in, and how many ended up in the plot? Can you reproduce one number from the plot yourself? Does the pattern still hold with a median instead of a mean? Keeping an AI log will also help with this."
   },
   {
     "objectID": "slides/slides.html",
@@ -1118,5 +1118,12 @@
     "title": "Data Visualization",
     "section": "Now",
     "text": "Now\n\n\nIn your groups:\nAI worksheet, part 1. This should help set you up for your assignment. In 30 minutes we have a short discussion about your findings\nContinue with Assignment 2, part 1.\n\n\n\n\n\n\n\n\nImage: LinkedIn"
+  },
+  {
+    "objectID": "slides/slides.html#using-ai-for-data-exploration-2",
+    "href": "slides/slides.html#using-ai-for-data-exploration-2",
+    "title": "Data Visualization",
+    "section": "Using AI for Data Exploration 🤖",
+    "text": "Using AI for Data Exploration 🤖\n Try it yourself!"
   }
 ]

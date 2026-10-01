@@ -975,6 +975,13 @@ Interactivity enhances, but does not replace, the fundamentals of good data visu
 ‼️ **Beware!** [Hack your way into scientific glory](https://stats.andrewheiss.com/hack-your-way/)
 :::
 
+## Using AI for Data Exploration 🤖 
+
+::: statement
+💬 [**What about using AI for data exploration in visualization?**]{.lead}
+::: 
+ 
+ 
 ## Using AI for Data Exploration 🤖 {.smaller}
 
 ::: spaced
