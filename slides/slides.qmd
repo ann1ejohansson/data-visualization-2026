@@ -948,12 +948,12 @@ NYT also offers very good examples of [enaging data journalism](https://www.nyti
 ::: 
  
 
-## Adding interactivity 
-*  [ggplotly](../worksheets/ggplotly.html)
+## Adding interactivity 🎮
+*  [ggplotly](../worksheets/ggplotly-handout.html)
 
 *  What advantages/disadvantages do interactive visualizations have over static plots?
 
-## Adding interactivity {.smaller}
+## Adding interactivity 🎮 {.smaller}
 
 | ✅&nbsp; Advantages | ⚠️&nbsp; Disadvantages |
 |----------------------------------|----------------------------------|
