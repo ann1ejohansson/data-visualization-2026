@@ -1754,12 +1754,24 @@ Bring a (charged) laptop! 💻</p>
 </section>
 <section id="adding-interactivity-1" class="slide level2">
 <h2>Adding interactivity 🎮</h2>
+<p>➡️ <a href="../worksheets/ggplotly-handout.html" target="_blank"><strong><code>ggplotly()</code></strong></a></p>
 <ul>
-<li><p><a href="../worksheets/ggplotly-handout.html">ggplotly</a></p></li>
-<li><p>What advantages/disadvantages do interactive visualizations have over static plots?</p></li>
+<li><p>Two main ways to creating a <strong>plotly</strong> object in R:</p>
+<ol type="1">
+<li>Convert a ggplot2 object with <code>ggplotly()</code></li>
+<li>Directly initialize a plotly object with <code>plot_ly()</code></li>
+</ol></li>
 </ul>
 </section>
-<section id="adding-interactivity-2" class="slide level2 smaller">
+<section id="adding-interactivity-2" class="slide level2">
+<h2>Adding interactivity 🎮</h2>
+<p><span class="lead"><strong>Additional functionality with</strong> <code>plot_ly()</code></span></p>
+<ul>
+<li><a href="https://plotly.com/r/#controls">Adding custom controls</a></li>
+<li><a href="https://plotly.com/r/#animations">Animations</a></li>
+</ul>
+</section>
+<section id="adding-interactivity-3" class="slide level2 smaller">
 <h2>Adding interactivity 🎮</h2>
 <table class="caption-top">
 <colgroup>
@@ -1796,7 +1808,7 @@ Bring a (charged) laptop! 💻</p>
 </tbody>
 </table>
 </section>
-<section id="adding-interactivity-3" class="slide level2">
+<section id="adding-interactivity-4" class="slide level2">
 <h2>Adding interactivity 🎮</h2>
 <div class="statement">
 <p>Interactivity enhances, but does not replace, the fundamentals of good data visualization</p>
@@ -2326,7 +2338,7 @@ Bring a (charged) laptop! 💻</p>
       }
     });
     </script>
-    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
+    <script>var lightboxQuarto = GLightbox({"loop":false,"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom"});
     (function() {
       let previousOnload = window.onload;
       window.onload = () => {

@@ -949,9 +949,22 @@ NYT also offers very good examples of [enaging data journalism](https://www.nyti
  
 
 ## Adding interactivity 🎮
-*  [ggplotly](../worksheets/ggplotly-handout.html)
 
-*  What advantages/disadvantages do interactive visualizations have over static plots?
+➡️ [**`ggplotly()`**](../worksheets/ggplotly-handout.html){target="_blank"}
+
+
+*  Two main ways to creating a **plotly** object in R:
+
+    1.   Convert a ggplot2 object with `ggplotly()`
+    2.   Directly initialize a plotly object with `plot_ly()`
+
+
+## Adding interactivity 🎮
+
+[**Additional functionality with** `plot_ly()`]{.lead}
+
+-   [Adding custom controls](https://plotly.com/r/#controls)
+-   [Animations](https://plotly.com/r/#animations)
 
 ## Adding interactivity 🎮 {.smaller}
 

@@ -1040,7 +1040,7 @@
     "href": "slides/slides.html#adding-interactivity-1",
     "title": "Data Visualization",
     "section": "Adding interactivity 🎮",
-    "text": "Adding interactivity 🎮\n\nggplotly\nWhat advantages/disadvantages do interactive visualizations have over static plots?"
+    "text": "Adding interactivity 🎮\n➡️ ggplotly()\n\nTwo main ways to creating a plotly object in R:\n\nConvert a ggplot2 object with ggplotly()\nDirectly initialize a plotly object with plot_ly()"
   },
   {
     "objectID": "slides/slides.html#advantages",
@@ -1061,14 +1061,14 @@
     "href": "slides/slides.html#adding-interactivity-2",
     "title": "Data Visualization",
     "section": "Adding interactivity 🎮",
-    "text": "Adding interactivity 🎮\n\n\n\n\n\n\n\n✅  Advantages\n⚠️  Disadvantages\n\n\n\n\nExplore data dynamically\nHarder to include in static formats (papers, print)\n\n\nZoom, pan, and hover for details\nAccessibility issues (screen readers, non colorblind-friendly defaults)\n\n\nReveal extra information without clutter\nCan overwhelm the audience if overused\n\n\nEnhance engagement in presentations and reports\nLarger file sizes, slower rendering\n\n\nUseful for exploratory analysis and dashboards\nRequires additional packages (e.g., {plotly})"
+    "text": "Adding interactivity 🎮\nAdditional functionality with plot_ly()\n\nAdding custom controls\nAnimations"
   },
   {
     "objectID": "slides/slides.html#adding-interactivity-3",
     "href": "slides/slides.html#adding-interactivity-3",
     "title": "Data Visualization",
     "section": "Adding interactivity 🎮",
-    "text": "Adding interactivity 🎮\n\nInteractivity enhances, but does not replace, the fundamentals of good data visualization\n\n\n‼️ Beware! Hack your way into scientific glory"
+    "text": "Adding interactivity 🎮\n\n\n\n\n\n\n\n✅  Advantages\n⚠️  Disadvantages\n\n\n\n\nExplore data dynamically\nHarder to include in static formats (papers, print)\n\n\nZoom, pan, and hover for details\nAccessibility issues (screen readers, non colorblind-friendly defaults)\n\n\nReveal extra information without clutter\nCan overwhelm the audience if overused\n\n\nEnhance engagement in presentations and reports\nLarger file sizes, slower rendering\n\n\nUseful for exploratory analysis and dashboards\nRequires additional packages (e.g., {plotly})"
   },
   {
     "objectID": "slides/slides.html#using-ai-for-data-exploration",
@@ -1125,5 +1125,12 @@
     "title": "Data Visualization",
     "section": "Using AI for Data Exploration 🤖",
     "text": "Using AI for Data Exploration 🤖\n Try it yourself!"
+  },
+  {
+    "objectID": "slides/slides.html#adding-interactivity-4",
+    "href": "slides/slides.html#adding-interactivity-4",
+    "title": "Data Visualization",
+    "section": "Adding interactivity 🎮",
+    "text": "Adding interactivity 🎮\n\nInteractivity enhances, but does not replace, the fundamentals of good data visualization\n\n\n‼️ Beware! Hack your way into scientific glory"
   }
 ]
