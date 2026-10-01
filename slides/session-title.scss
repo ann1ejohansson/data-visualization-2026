@@ -1,0 +1,44 @@
+/*-- scss:rules --*/
+// Session title slides: "Session N" / date / session name, stacked.
+// Usage (background colour set per deck):
+//   ## {.session-title .center background-color="#343a40"}
+//   [Session 1]{.session-number}
+//   [Tuesday, Sept. 29]{.session-date}
+//   [Fundamentals of Data Visualization]{.session-name}
+.reveal .session-title {
+  color: #ffffff;
+}
+
+.reveal .session-title .session-number {
+  display: block;
+  font-size: 0.9em;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.reveal .session-title .session-date {
+  display: block;
+  font-size: 1.3em;
+  font-weight: 300;
+  margin-top: 0.1em;
+}
+
+.reveal .session-title .session-name {
+  display: block;
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 0.9em;
+}
+
+// short accent bar between the date and the session name
+.reveal .session-title .session-name::before {
+  content: "";
+  display: block;
+  width: 2.5em;
+  height: 0.12em;
+  margin-bottom: 0.45em;
+  background: rgba(255, 255, 255, 0.6);
+}

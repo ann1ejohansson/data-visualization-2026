@@ -4,7 +4,7 @@ subtitle: "<span style='color: white;'>Behavioral Data Science Toolbox 2026</spa
 #footer: "<span style='color: white;'>Cover photo made in R by <a href='https://art.djnavarro.net' style='color: pink; text-decoration: underline;'>Danielle Navarro</a></span>"
 format: 
   revealjs:
-    theme: [default, slides-theme.scss]
+    theme: [default, slides-theme.scss, session-title.scss]
     highlight-style: arrow
     include-navbar: true
     logo: images/uva_logo.png
@@ -77,7 +77,7 @@ library(viridis)
 
 :::
 
-## 
+## About these slides
 
 :::::: columns
 :::: {.column width="50%"}
@@ -98,7 +98,7 @@ Cover photo made in R by [Danielle Navarro](https://art.djnavarro.net){target="_
 - The cover art is generative art made in R by Danielle Navarro, a nice reminder that R and ggplot can go far beyond default charts.
 :::
 
-## 📌
+## 📌 Course website
 
 ### [**data-visualization-2026**](https://ann1ejohansson.github.io/data-visualization-2026){target="_blank"}
 
@@ -131,7 +131,13 @@ Bring a (charged) laptop! 💻
 
 :::
 
-## Tuesday, Sept 29
+## {.session-title .center background-color="#343a40"}
+
+[Session 1]{.session-number}
+[Tuesday, Sept. 29]{.session-date}
+[Fundamentals of Data Visualization]{.session-name}
+
+## Today
 
 -   What is Data Visualization?  
 -   Why visualize data?
@@ -173,7 +179,7 @@ Bring a (charged) laptop! 💻
 - Every arrow is a step where information can be lost or distorted: what gets measured, how it's processed, and how it's shown and read.
 :::
 
-------------------------------------------------------------------------
+## Data visualization = Data thinking
 
 [**Your data visualization is effective only if it helps you, and your audience, understand the real world better**]{.lead}
 
@@ -191,7 +197,7 @@ This requires data thinking skills:
 Knowledge about data validty and technical choices is saved for other parts of the course. But you need to think about all of these steps when visualizing. 
 :::
 
-------------------------------------------------------------------------
+## Data visualization = Data thinking
 
 ::: {style="font-size: 75%;"}
 Especially in our age of AI, these skills are invaluable
@@ -219,7 +225,7 @@ Especially in our age of AI, these skills are invaluable
 - Move to the first big question: why visualize data at all?
 :::
 
-## 💬
+## 💬 Discussion
 
 ### Why visualize data?
 
@@ -315,7 +321,7 @@ More information: [Same Stats, Different Graphs](https://www.autodesk.com/resear
 - datasets can have with (nearly) identical means, variances, correlations, and regression lines, but they look completely different.
 :::
 
-## 💬
+## 💬 Discussion
 
 ### What is more important? An eye or an algorithm?
 
@@ -386,9 +392,7 @@ Ireland is headed straight for zero? 📉
 - Fix: reverse the y-axis so up means better, use a barplot or something that better represents discrete values. 
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -414,9 +418,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Footer: Huff's *How to Lie with Statistics* is a classic on this.
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -442,7 +444,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Also worth discussing: counts not normalized by population or number of schools.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ### Data to ink ratio
 
@@ -467,7 +469,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Tufte's principle: maximize the share of ink devoted to data; remove what doesn't add information.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ![](images/treemap.png)
 
@@ -478,9 +480,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - What perceptual element is working to tell the story, and allow an easy conclusion to be drawn?
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -501,7 +501,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - A sequential palette (light → dark) would map naturally to the ordering.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ![Do the colors make sense?](images/colors2.png)
 
@@ -511,9 +511,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Colour should map to a relevant attribute; otherwise it adds noise (and a legend people have to decode).
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -532,9 +530,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -555,16 +551,14 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Decoration competes with the data.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ![Is a zero-point needed?](images/ireland.png)
 
 ::: notes
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -584,7 +578,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - (Fragment) Only the bottom category (D) and the total share a common baseline. Every other segment floats, so comparing them across years is very hard.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ### ⚠️ Stacked bar charts ⚠️
 
@@ -604,7 +598,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Stacked bars work for showing totals, or with very few categories. Otherwise, consider side-by-side bars or small multiples.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ### ⚠️ Pie charts ⚠️
 
@@ -617,7 +611,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - A simple bar or line chart over time would be correct.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ### Visualizing proportions
 
@@ -635,7 +629,7 @@ Check out the classic from Darrel Huff [How to Lie with Statistics](https://www.
 - Choose based on what the reader needs to compare.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ![Elementary Perceptual Tasks](images/ept.png)
 
@@ -649,9 +643,7 @@ Original Source: [Cleveland & McGill (1984). 531-554](https://www.tandfonline.co
 - This explains many of the problems we saw: pie charts use angle, treemaps use area, the map uses hue.
 :::
 
-------------------------------------------------------------------------
-
-💬
+## 💬 Speed dates
 
 :::::: columns
 ::: {.column width="60%"}
@@ -671,7 +663,7 @@ Original Source: [Cleveland & McGill (1984). 531-554](https://www.tandfonline.co
 - (Fragment) It shows everything with equal weight: red accuracy bars dominate, and the interesting part (error rates) is squashed at the bottom.
 :::
 
-------------------------------------------------------------------------
+## 💬 Speed dates
 
 ### Storytelling with data - show just one conclusion!
 
@@ -682,56 +674,6 @@ Original Source: [Cleveland & McGill (1984). 531-554](https://www.tandfonline.co
 - A headline states the conclusion: "Action needed: 10 warehouses have high error rates".
 - Bars sorted, grey for context, orange only for the warehouses that need attention, and text next to the chart that explains what to do.
 - With the same data, the reader now instantly knows the point. 
-:::
-
-## Exploratory versus explanatory {.smaller .scrollable}
-
-::: notes
-Exploratory in the sense of data exploration. Exploratory in the sense of visualization exploration (as in previous example, where the same data can be plotted in several ways). In both cases, you can create ugly plots.
-
-assignment 2 = explanatory data viz (also bridge to next). Here we want beautiful plots!
-:::
-
-::::: columns
-::: {.column width="50%"}
-![Source: [Natalia Kiseleva](https://eolay.tilda.ws/datavizcomics/en)](images/exploratory-explanatory-01.png){fig-align="left" width="333"}
-:::
-
-::: {.column width="50%"}
-![Source: [Scott McCloud](https://archive.org/details/understanding-comics/)](images/exploratory-explanatory-02.gif){fig-align="left"}
-
--   **Exploratory**: examine the structure of your data.
-
--   **Explanatory:** tell a story with your data.
-:::
-:::::
-
-::: footer
-More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.html) (telling a story and making a point), [susielu.com](https://www.susielu.com/data-viz/storytelling-in-dashboards) (different interpretation of exploratory/explanatory).
-:::
-
-## Exploratory versus explanatory {.smaller .scrollable}
-
-::::: columns
-::: {.column width="50%"}
-![](images/explore-explain-01.gif){fig-height="200"}
-:::
-
-::: {.column width="50%"}
-![](images/explore-explain-02.gif){fig-height="300"}
-:::
-:::::
-
-Source: [storytellingwithdata.com](https://www.storytellingwithdata.com/blog/2014/04/exploratory-vs-explanatory-analysis)
-
-::: footer
-More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.html) (telling a story and making a point), [susielu.com](https://www.susielu.com/data-viz/storytelling-in-dashboards) (different interpretation of exploratory/explanatory).
-:::
-
-::: notes
-- Storytelling with data's metaphor: exploratory analysis is like opening 100 oysters to find a couple of pearls.
-- Explanatory: show your audience the pearls, not all the oysters.
-- For your assignments: you'll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point.
 :::
 
 
@@ -831,7 +773,7 @@ finalise_plot(
 - Takeaway for the assignments: a consistent theme and a few deliberate choices go a long way. Students can borrow ideas (or code) from both for their own plots.
 :::
 
-------------------------------------------------------------------------
+## Making good plots: the BBC way
 
 ![](images/volkskrant.png){fig-align="center" height="600"}
 
@@ -839,9 +781,6 @@ finalise_plot(
 
 ::: footer
 de Volkskrant, 27 March 2025: *Het maakt wél uit welke doorstroomtoets een school kiest*
-:::
-
-::: notes
 :::
 
 ## Break
@@ -861,12 +800,233 @@ RXKCD::getXKCD(which = "833")
 
 # Data Visualization Project [📊]{.header-emoji} {background-color="#343a40"}
 
-::: notes
-:::
 
 ## Assignment 📝
 
 [Assignment 1](../assignments/assignment-1.html){target="_blank"}
 
-::: notes
+
+# {.session-title .center background-color="#343a40"}
+
+[Session 2]{.session-number}
+[Friday, Oct. 2]{.session-date}
+[Exploratory Data Visualization]{.session-name}
+
+## Today
+
+::: spaced
+-  Exploratory data visualization 
+-  Brief introduction to interactive plots
+-  [Worksheet:]{.muted} `ggplotly`
+-  Using AI for exploratory data viz
+-  [Worksheet:]{.muted} Working with AI, pt. 1
+-  Work on your group assignment
 :::
+
+## 💬 What makes exploration useful? {.smaller}
+
+![Illustration by [Allison Horst](https://allisonhorst.com/)](images/youre-not-normal.png){height="460px" fig-align="center"}
+
+
+## Exploratory versus explanatory {.smaller}
+
+::: notes
+Exploratory in the sense of data exploration. Exploratory in the sense of visualization exploration (as in previous example, where the same data can be plotted in several ways). In both cases, you can create ugly plots.
+
+assignment 2 = explanatory data viz (also bridge to next). Here we want beautiful plots!
+:::
+
+::::: columns
+::: {.column width="30%"}
+![Source: [Natalia Kiseleva](https://eolay.tilda.ws/datavizcomics/en)](images/exploratory-explanatory-01.png){height="470px" fig-align="center"}
+:::
+
+::: {.column width="70%"}
+![Source: [Scott McCloud](https://archive.org/details/understanding-comics/)](images/exploratory-explanatory-02.gif){width="85%"}
+
+::: spaced
+-   **Exploratory:** [examine the structure of your data.]{.muted}
+-   **Explanatory:** [tell a story with your data.]{.muted}
+:::
+:::
+:::::
+
+::: footer
+More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.html) (telling a story and making a point), [susielu.com](https://www.susielu.com/data-viz/storytelling-in-dashboards) (different interpretation of exploratory/explanatory).
+:::
+
+## Exploratory versus explanatory {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+**Exploratory**
+
+![](images/explore-explain-01.gif){.framed width="100%"}
+:::
+
+::: {.column width="50%"}
+**Explanatory**
+
+![](images/explore-explain-02.gif){.framed width="100%"}
+:::
+:::::
+
+[Source: [storytellingwithdata.com](https://www.storytellingwithdata.com/blog/2014/04/exploratory-vs-explanatory-analysis)]{.detail}
+
+::: footer
+More resources: [clauswilke.com](https://clauswilke.com/dataviz/telling-a-story.html) (telling a story and making a point), [susielu.com](https://www.susielu.com/data-viz/storytelling-in-dashboards) (different interpretation of exploratory/explanatory).
+:::
+
+::: notes
+- Storytelling with data's metaphor: exploratory analysis is like opening 100 oysters to find a couple of pearls.
+- Explanatory: show your audience the pearls, not all the oysters.
+- For your assignments: you'll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point.
+:::
+
+## Using data visualizations for exploration {.smaller}
+
+1.  Understand your problem. 
+2.  Look at your data: `head()` 
+3.  What variables are available? What do they mean, what values do they take on?
+4.  Identify your target variables.  
+5.  Now plot: their distributions, relationships with other variables, explore grouping structures, etc.
+6.  What patterns do you see? Write them down, save the code.
+
+## Using data visualizations for exploration {.smaller}
+
+[**Exploratory visualizations can be ugly**]{.lead}
+
+[Use them to guide your understanding of the data, and inspire the final result you wish to present.]{.muted}
+
+::::: columns
+::: {.column width="50%"}
+![](images/exploratory-ggplot-1.png){.framed width="88%"}
+
+[One variable → its distribution]{.detail}
+:::
+
+::: {.column width="50%"}
+![](images/exploratory-ggplot2.png){.framed width="88%"}
+
+[Two variables + a group → relationships]{.detail}
+:::
+:::::
+
+::: footer
+Plots from [ds4world.cs.miami.edu](https://ds4world.cs.miami.edu/data-visualization#case-study-exploring-the-us-census){target="_blank"}
+:::
+
+## Using data visualizations for exploration {.smaller}
+
+[**Exploratory visualizations can also be beautiful**]{.lead}
+
+[When the goal is to have the receiver explore and understand the data.]{.muted}
+
+::::: columns
+::: {.column width="50%"}
+[![](images/guardian-covid-spread.png){.framed .nolightbox height="330px"}](https://www.theguardian.com/world/datablog/ng-interactive/2021/sep/09/how-contagious-delta-variant-covid-19-r0-r-factor-value-number-explainer-see-how-coronavirus-spread-infectious-flatten-the-curve){target="_blank"}
+
+[The Guardian: How coronavirus spreads ↗]{.detail}
+:::
+
+::: {.column width="50%"}
+[![](images/svt-election-count.png){.framed .nolightbox height="330px"}](https://www.svt.se/nyheter/folj-onsdagsrosterna-live){target="_blank"}
+
+[SVT: Replay the 2026 Swedish election count ↗]{.detail}
+:::
+:::::
+
+::: footer
+NYT also offers very good examples of [enaging data journalism](https://www.nytimes.com/interactive/2015/05/28/upshot/you-draw-it-how-family-income-affects-childrens-college-chances.html). <br>
+[Check out The Upshot](https://www.nytimes.com/section/upshot)
+:::
+
+## Adding interactivity 🎮
+
+::: statement
+💬 [**Why use interactive visualizations?**]{.lead}
+::: 
+ 
+
+## Adding interactivity 
+*  [ggplotly](../worksheets/ggplotly.html)
+
+*  What advantages/disadvantages do interactive visualizations have over static plots?
+
+## Adding interactivity {.smaller}
+
+| ✅&nbsp; Advantages | ⚠️&nbsp; Disadvantages |
+|----------------------------------|----------------------------------|
+| Explore data dynamically | Harder to include in static formats (papers, print) |
+| Zoom, pan, and hover for details | Accessibility issues (screen readers, non colorblind-friendly defaults) |
+| Reveal extra information without clutter | Can overwhelm the audience if overused |
+| Enhance engagement in presentations and reports | Larger file sizes, slower rendering |
+| Useful for exploratory analysis and dashboards | Requires additional packages (e.g., `{plotly}`) |
+
+: {tbl-colwidths="[50,50]"}
+
+## Adding interactivity 🎮 
+
+::: statement
+Interactivity enhances, but does not replace, the fundamentals of good data visualization
+:::
+
+::: footer
+‼️ **Beware!** [Hack your way into scientific glory](https://stats.andrewheiss.com/hack-your-way/)
+:::
+
+## Using AI for Data Exploration 🤖 {.smaller}
+
+::: spaced
+1.  **AI lets you explore wider** <br> [Use it for an efficient overview of the available data]{.muted}
+2.  **But, every plot hides decisions** <br> [Ask the AI to list every transformation it made]{.muted}
+3.  **More plots = more chances of false positives** <br> [Treat exploratory findings as a lead to continue checking, not a result]{.muted}
+4.  **You bring the meaning** <br> [what does a variable measure? does the pattern make sense?]{.muted}
+5.  **Give the AI all the context you can** <br> [e.g. codebooks, background information]{.muted}
+6.  **Evaluate, evaluate, evaluate!** <br> [Before prompting, decide how you will verify the results yourself]{.muted}
+:::
+
+::: notes
+- You can get a distribution of every variable, and every relationship you're curious about, in a few minutes. So use that! Look at more than you normally would. And remember, these plots don't have to be pretty, they're just for you.
+- every plot you get back already has choices baked into it. Which variables did it pick, did it take a mean or a median, did it filter anything out? The AI makes these choices without telling you. 
+- More plots, more false patterns: If you can make 50 versions of a plot in a minute, one of them is going to show you something interesting, just by chance. So anything you find while exploring is a lead, not a result. You still have to check it.
+- You bring the meaning: the AI can make the plot, but it doesn't know what your variables actually measure, or whether the pattern makes any sense in the real world. That part is your job. If you can't judge whether the answer is right, the AI's answer isn't going to help you.
+- Give the AI all the context you can: the more it knows, the less it has to guess. So don't just give it the column names, give it the codebook, the background of the data, what your research question is. And a nice trick: ask it to describe the data back to you first. Where it gets it wrong, correct it, and now you also know where its understanding stops.
+- Evaluate, evaluate, evaluate!: decide *before* you prompt how you're going to check the result, otherwise the AI's output becomes the standard you judge it by. Simple checks: how many schools went in, and how many ended up in the plot? Can you reproduce one number from the plot yourself? Does the pattern still hold with a median instead of a mean? Keeping an AI log will also help with this. 
+:::
+
+## Using AI for Data Exploration 🤖 
+
+<br><br>
+[Try it yourself!](../worksheets/working-with-ai.html)
+
+## Submitting Assignment 2, Part 1 {.smaller}
+
+-  [The assignment is **complete** if:]{.lead} 
+
+    1.  it contains multiple plots: show that you analysed your variable from at least 2 different perspectives.  
+    2.  Has a theme and color-scheme. Although not necessary for exploratory viz, this gives me a chance to give feedback on your styling choices for Part 2.  
+    3.  it highlights some interesting data points, for example using color or text. While this is also not necessary for exploratory viz, do this to show me the direction you will take your final visualization in, so I can give feedback. 
+    5.  it contains a short description outlining your workflow: what exploration choices led to this visualization? did you use AI? if so, how and with which model? what did you learn about the data and how can you use this to inform the final, explanatory data visualization?  
+    4.  your code runs, and the html can be downloaded and viewed on any laptop.  
+    5.  your code is lintr-proof.  
+    
+## Now {.smaller}
+::::: columns
+::: {.column width="40%"}
+[**In your groups:**]{.lead}
+
+[**AI worksheet, part 1**. This should help set you up for your assignment. In 30 minutes we have a short discussion about your findings]{.muted}
+
+[**Continue with Assignment 2, part 1.**]{.muted}
+:::
+::: {.column width="60%"}
+![](images/exploratory.jpeg){height="380px" fig-align="center"}
+:::
+:::::
+
+::: footer
+Image: [LinkedIn](https://www.linkedin.com/posts/ross-waring_victormair-gapingvoid-andreasvonderheydt-share-7201616137380376576-D7mq/){target="_blank"}
+:::
+
+

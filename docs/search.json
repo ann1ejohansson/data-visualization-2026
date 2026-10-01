@@ -11,7 +11,7 @@
     "href": "slides/slides-copy.html#section",
     "title": "Data Visualization",
     "section": "",
-    "text": "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nSome content\n=======\nSome conflicted content\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch"
+    "text": "Session 2 Friday, Oct. 2 Exploratory Data Visualization"
   },
   {
     "objectID": "slides/slides-copy.html#git-conflicts",
@@ -46,7 +46,7 @@
     "href": "slides/slides-copy.html#section-1",
     "title": "Data Visualization",
     "section": "",
-    "text": "🧠 Interactivity enhances, but does not replace,\nthe fundamentals of good data visualization"
+    "text": "&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\nSome content\n=======\nSome conflicted content\n&gt;&gt;&gt;&gt;&gt;&gt;&gt; new_branch"
   },
   {
     "objectID": "slides/slides-copy.html#plotly",
@@ -578,7 +578,7 @@
     "href": "slides/slides.html#section",
     "title": "Data Visualization",
     "section": "",
-    "text": "Slides made using quartoCover photo made in R by Danielle Navarro\n\n\n\n\n\n\n\n\n\n\nQuick housekeeping: these slides are built with Quarto, from the same repository as the course site.\nThe cover art is generative art made in R by Danielle Navarro, a nice reminder that R and ggplot can go far beyond default charts."
+    "text": "Session 1 Tuesday, Sept. 29 Fundamentals of Data Visualization"
   },
   {
     "objectID": "slides/slides.html#section-1",
@@ -619,8 +619,8 @@
     "objectID": "slides/slides.html#section-2",
     "href": "slides/slides.html#section-2",
     "title": "Data Visualization",
-    "section": "💬",
-    "text": "💬\nWhy visualize data?\n\n\nAsk the room: why visualize data? Collect a few answers.\nExpected answers: see patterns quickly, communicate results, spot errors and outliers, check assumptions.\nKeep the answers in mind; the next slides make the case for “looking at your data”."
+    "section": "",
+    "text": "Session 1 Tuesday, Sept. 29 Fundamentals of Data Visualization"
   },
   {
     "objectID": "slides/slides.html#communicating-with-the-public",
@@ -648,7 +648,7 @@
     "href": "slides/slides.html#section-3",
     "title": "Data Visualization",
     "section": "💬",
-    "text": "💬\nWhat is more important? An eye or an algorithm?\nWhat are the consequences of overrelying on statistical techniques? What are the consequences of overrelying on visualizations?\n\n\nDiscussion: what is more important, an eye or an algorithm?\nOver-relying on statistics: you miss outliers, non-linearity, data errors (Anscombe, Datasaurus).\nOver-relying on visualizations: you see patterns in noise, and plots can be designed to mislead.\nYou need both; visualization and statistics verify each other."
+    "text": "💬\nWhy visualize data?\n\n\nAsk the room: why visualize data? Collect a few answers.\nExpected answers: see patterns quickly, communicate results, spot errors and outliers, check assumptions.\nKeep the answers in mind; the next slides make the case for “looking at your data”."
   },
   {
     "objectID": "slides/slides.html#what-makes-a-bad-plot-bad",
@@ -669,14 +669,14 @@
     "href": "slides/slides.html#exploratory-versus-explanatory",
     "title": "Data Visualization",
     "section": "Exploratory versus explanatory",
-    "text": "Exploratory versus explanatory\n\nExploratory in the sense of data exploration. Exploratory in the sense of visualization exploration (as in previous example, where the same data can be plotted in several ways). In both cases, you can create ugly plots.\nassignment 2 = explanatory data viz (also bridge to next). Here we want beautiful plots!\n\n\n\n\n\n\n\n\n\n\nSource: Natalia Kiseleva\n\n\n\n\n\n\n\n\n\n\nSource: Scott McCloud\n\n\n\nExploratory: examine the structure of your data.\nExplanatory: tell a story with your data.\n\n\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory)."
+    "text": "Exploratory versus explanatory\n\nExploratory in the sense of data exploration. Exploratory in the sense of visualization exploration (as in previous example, where the same data can be plotted in several ways). In both cases, you can create ugly plots.\nassignment 2 = explanatory data viz (also bridge to next). Here we want beautiful plots!\n\n\n\n\n\n\n\n\n\n\nSource: Natalia Kiseleva\n\n\n\n\n\n\nSource: Scott McCloud\n\n\n\n\nExploratory: examine the structure of your data.\nExplanatory: tell a story with your data.\n\n\n\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory)."
   },
   {
     "objectID": "slides/slides.html#exploratory-versus-explanatory-1",
     "href": "slides/slides.html#exploratory-versus-explanatory-1",
     "title": "Data Visualization",
     "section": "Exploratory versus explanatory",
-    "text": "Exploratory versus explanatory\n\n\n\n\n\n\nSource: storytellingwithdata.com\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory).\n\n\n\nStorytelling with data’s metaphor: exploratory analysis is like opening 100 oysters to find a couple of pearls.\nExplanatory: show your audience the pearls, not all the oysters.\nFor your assignments: you’ll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point."
+    "text": "Exploratory versus explanatory\n\n\nExploratory\n\n\nExplanatory\n\n\nSource: storytellingwithdata.com\n\nMore resources: clauswilke.com (telling a story and making a point), susielu.com (different interpretation of exploratory/explanatory).\n\n\n\nStorytelling with data’s metaphor: exploratory analysis is like opening 100 oysters to find a couple of pearls.\nExplanatory: show your audience the pearls, not all the oysters.\nFor your assignments: you’ll do both. Exploratory plots to understand the data, and one explanatory plot that makes a clear point."
   },
   {
     "objectID": "slides/slides.html#tips-for-the-best-viz",
@@ -796,5 +796,320 @@
     "title": "Quickstart: the DUO Data & ggplot Basics",
     "section": "More practice",
     "text": "More practice\n\nKieran Healy, Data Visualization: A Practical Introduction, ch. 3\nKieran Healy, Data Visualization: A Practical Introduction, ch. 8\nOSU Code Club’s ggplot series: part 1, part 2, part 3\n\nA curated list of all ggplot packages, tutorials, etc.\nggplot cheatsheet"
+  },
+  {
+    "objectID": "slides/slides.html#today",
+    "href": "slides/slides.html#today",
+    "title": "Data Visualization",
+    "section": "Today",
+    "text": "Today\n\nWhat is Data Visualization?\n\nWhy visualize data?\nWhat makes a plot good (and bad)?\nGuiding principles\nData Visualization Project\n\n\n\nRoadmap for today: what data visualization is, why we visualize at all, what separates good from bad plots, a set of guiding principles, and finally an introduction to the assignments.\nThis session is more conceptual; the hands-on ggplot work comes with the worksheet."
+  },
+  {
+    "objectID": "slides/slides.html#section-4",
+    "href": "slides/slides.html#section-4",
+    "title": "Data Visualization",
+    "section": "💬",
+    "text": "💬\nWhat is more important? An eye or an algorithm?\nWhat are the consequences of overrelying on statistical techniques? What are the consequences of overrelying on visualizations?\n\n\nDiscussion: what is more important, an eye or an algorithm?\nOver-relying on statistics: you miss outliers, non-linearity, data errors (Anscombe, Datasaurus).\nOver-relying on visualizations: you see patterns in noise, and plots can be designed to mislead.\nYou need both; visualization and statistics verify each other."
+  },
+  {
+    "objectID": "slides/slides-copy.html#today",
+    "href": "slides/slides-copy.html#today",
+    "title": "Data Visualization",
+    "section": "Today",
+    "text": "Today\n\nInteractive visualizations with plotly\nWork on assignment 1"
+  },
+  {
+    "objectID": "slides/slides-copy.html#section-2",
+    "href": "slides/slides-copy.html#section-2",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "🧠 Interactivity enhances, but does not replace,\nthe fundamentals of good data visualization"
+  },
+  {
+    "objectID": "slides/slides.html#section-5",
+    "href": "slides/slides.html#section-5",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Session 2 Friday, Oct. 2 Exploratory Data Visualization"
+  },
+  {
+    "objectID": "slides/slides.html#today-1",
+    "href": "slides/slides.html#today-1",
+    "title": "Data Visualization",
+    "section": "Today",
+    "text": "Today\n\n\nExploratory data visualization\nBrief introduction to interactive plots\nWorksheet: ggplotly\nUsing AI for exploratory data viz\nWorksheet: Working with AI, pt. 1\nWork on your group assignment"
+  },
+  {
+    "objectID": "slides/slides.html#what-makes-exploration-useful",
+    "href": "slides/slides.html#what-makes-exploration-useful",
+    "title": "Data Visualization",
+    "section": "💬 What makes exploration useful?",
+    "text": "💬 What makes exploration useful?\n\n\n\n\n\n\n\nIllustration by Allison Horst"
+  },
+  {
+    "objectID": "slides/slides.html#using-data-visualizations-for-exploration",
+    "href": "slides/slides.html#using-data-visualizations-for-exploration",
+    "title": "Data Visualization",
+    "section": "Using data visualizations for exploration",
+    "text": "Using data visualizations for exploration\n\nUnderstand your problem.\nLook at your data: head()\nWhat variables are available? What do they mean, what values do they take on?\nIdentify your target variables.\n\nNow plot: their distributions, relationships with other variables, explore grouping structures, etc.\nWhat patterns do you see? Write them down, save the code."
+  },
+  {
+    "objectID": "slides/slides.html#using-data-visualizations-for-exploration-1",
+    "href": "slides/slides.html#using-data-visualizations-for-exploration-1",
+    "title": "Data Visualization",
+    "section": "Using data visualizations for exploration",
+    "text": "Using data visualizations for exploration\nExploratory visualizations can be ugly\nUse them to guide your understanding of the data, and inspire the final result you wish to present.\n\n\n\nOne variable → its distribution\n\n\nTwo variables + a group → relationships\n\n\nPlots from ds4world.cs.miami.edu"
+  },
+  {
+    "objectID": "slides/slides.html#about-these-slides",
+    "href": "slides/slides.html#about-these-slides",
+    "title": "Data Visualization",
+    "section": "About these slides",
+    "text": "About these slides\n\n\n\nSlides made using quartoCover photo made in R by Danielle Navarro\n\n\n\n\n\n\n\n\n\n\nQuick housekeeping: these slides are built with Quarto, from the same repository as the course site.\nThe cover art is generative art made in R by Danielle Navarro, a nice reminder that R and ggplot can go far beyond default charts."
+  },
+  {
+    "objectID": "slides/slides.html#course-website",
+    "href": "slides/slides.html#course-website",
+    "title": "Data Visualization",
+    "section": "📌 Course website",
+    "text": "📌 Course website\ndata-visualization-2026\nThis is our central hub! Access slides, textbook, worksheets, assignments and other resources here.\n💡 Tip: press S while viewing the slides to open the speaker notes."
+  },
+  {
+    "objectID": "slides/slides.html#data-visualization-data-thinking-2",
+    "href": "slides/slides.html#data-visualization-data-thinking-2",
+    "title": "Data Visualization",
+    "section": "Data visualization = Data thinking",
+    "text": "Data visualization = Data thinking\nYour data visualization is effective only if it helps you, and your audience, understand the real world better\nThis requires data thinking skills:\n\n\nUnderstanding of what the data represents (and what it doesn’t)\nTransparency about the transformations and aggregations done to the data to produce the visualization\nAwareness about how different visual representations affect the interpretation of the data, and an ability to justify which choice is most appropriate for your data and audience\nKnowledge about the context from which the data is taken, and later presented.\n\n\n\n\nThe goal is not a pretty plot; the goal is a better understanding of the real world, for you and your audience. Knowledge about data validty and technical choices is saved for other parts of the course. But you need to think about all of these steps when visualizing."
+  },
+  {
+    "objectID": "slides/slides.html#data-visualization-data-thinking-3",
+    "href": "slides/slides.html#data-visualization-data-thinking-3",
+    "title": "Data Visualization",
+    "section": "Data visualization = Data thinking",
+    "text": "Data visualization = Data thinking\n\nEspecially in our age of AI, these skills are invaluable\n\n\n\n\ntext-to-dashboard service; I Stopped Building Dashboards. AI Now Does It Better..\n\n\n\nAI tools can now generate polished dashboards and charts from a text prompt in seconds.\nThat makes producing a visualization easy, but doesnt judge whether it is correct, honest, or appropriate.\nThe data thinking skills from the previous slide are exactly what these tools can’t do for you.\nWe will come back to working with AI in sessions 2 and 3."
+  },
+  {
+    "objectID": "slides/slides.html#discussion",
+    "href": "slides/slides.html#discussion",
+    "title": "Data Visualization",
+    "section": "💬 Discussion",
+    "text": "💬 Discussion\nWhy visualize data?\n\n\nAsk the room: why visualize data? Collect a few answers.\nExpected answers: see patterns quickly, communicate results, spot errors and outliers, check assumptions.\nKeep the answers in mind; the next slides make the case for “looking at your data”."
+  },
+  {
+    "objectID": "slides/slides.html#discussion-1",
+    "href": "slides/slides.html#discussion-1",
+    "title": "Data Visualization",
+    "section": "💬 Discussion",
+    "text": "💬 Discussion\nWhat is more important? An eye or an algorithm?\nWhat are the consequences of overrelying on statistical techniques? What are the consequences of overrelying on visualizations?\n\n\nDiscussion: what is more important, an eye or an algorithm?\nOver-relying on statistics: you miss outliers, non-linearity, data errors (Anscombe, Datasaurus).\nOver-relying on visualizations: you see patterns in noise, and plots can be designed to mislead.\nYou need both; visualization and statistics verify each other."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-1",
+    "href": "slides/slides.html#speed-dates-1",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\n\n\n\nreddit.com/r/dataisugly\n\n\n\n\n\nMisleading (or missing) information?\nMany data visualizations might have a hidden agenda, due to e.g. marketing strategies.\n\n\n\n\nCheck out the classic from Darrel Huff How to Lie with Statistics Lessions from How to Lie with Statistics.\n\n\n\nLidl advertisement comparing the price of a basket of groceries at UK supermarkets.\n(Fragment) Missing baseline and scale: the bars don’t start at zero, so a ~£9 difference looks huge; We don’t know what’s on the axis, when/how it was measured\nMany visualizations have an agenda; always ask who made it and why.\nFooter: Huff’s How to Lie with Statistics is a classic on this."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-2",
+    "href": "slides/slides.html#speed-dates-2",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\n\n\n\nSource: reddit.com/r/dataisbeautiful\n\n\n\n\n\nData to ink ratio?\n\n\n\n\nHow to maximize the data-to-ink ratio\n\n\n\nSchool shooting incidents by country, 2009–2018.\nAsk: what do you notice about the design?\n(Fragment) Data-to-ink ratio: the proportion of ink used to show data versus everything else.\nHere, most of the chart is spent on bars for countries with 1 incident; the United States dominates, which is the story, but a lot of ink carries little information.\nAlso worth discussing: counts not normalized by population or number of schools."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-3",
+    "href": "slides/slides.html#speed-dates-3",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\nData to ink ratio\n\n\n\n\n\n\n\nHow to maximize the data-to-ink ratio\n\n\n\nCompare the two charts side by side.\nRight: US household gun ownership 1972–2023, one bar per year with a label on each. Lots of ink, and the trend (roughly flat around 40%) is hard to see.\nA simple line chart would show the same information with far less ink.\nTufte’s principle: maximize the share of ink devoted to data; remove what doesn’t add information."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-4",
+    "href": "slides/slides.html#speed-dates-4",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\nTreemap of US COVID-19 relief spending by category (NYT).\nAsk: can you compare the sizes? Is Businesses bigger or smaller than Individuals and families?\nArea is hard to compare precisely, especially across differently shaped rectangles. Treemaps are good for showing hierarchy and part-to-whole, not for precise comparison.\nWhat perceptual element is working to tell the story, and allow an easy conclusion to be drawn?"
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-5",
+    "href": "slides/slides.html#speed-dates-5",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\nDo the colors make sense?\n\n\n\n\n\nSafety index by country, 2023.\nAsk: do the colours make sense?\n(Fragment) The index is an ordered, continuous variable, but the colours are categorical hues in no logical order: red, blue, yellow, purple, green. You can’t tell at a glance whether a country is safer or less safe.\nA sequential palette (light → dark) would map naturally to the ordering."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-6",
+    "href": "slides/slides.html#speed-dates-6",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\nDo the colors make sense?\n\n\n\n\nAnother colour example: bar chart of total bill by day.\nEach bar has its own colour, but colour here encodes nothing that the x-axis doesn’t already show.\nColour should map to a relevant attribute; otherwise it adds noise (and a legend people have to decode)."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-7",
+    "href": "slides/slides.html#speed-dates-7",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\nAre all elements needed?\n\n\n\n\n\nChart might not be wrong, but a person should be able to understand the conclusion within seconds,"
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-8",
+    "href": "slides/slides.html#speed-dates-8",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\nAre the axes correct?\n\n\n\n\n\nYears on axes barely noticable, unclear why these teams are on the bars\nAlso: the Cincinnati bar (54 points, 9 games left) is compared to completed seasons; the chart shows a record chase that hasn’t happened yet.\nWhat is the evidence?\nDecoration competes with the data."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-9",
+    "href": "slides/slides.html#speed-dates-9",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\nIs a zero-point needed?"
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-10",
+    "href": "slides/slides.html#speed-dates-10",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\nIs it simple?\n\n\n\n\n\nStacked bar chart of values by type, 2005–2016.\nAsk: is it simple? Can you tell how type B changed over time?\n(Fragment) Only the bottom category (D) and the total share a common baseline. Every other segment floats, so comparing them across years is very hard."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-11",
+    "href": "slides/slides.html#speed-dates-11",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n⚠️ Stacked bar charts ⚠️\n\n\n\n\n\n\n\n\nLeft: market shares of five companies over three years. Can you see that company A is growing and E is shrinking? Only because they’re at the edges.\nRight: Brazil’s top Olympic medallists. The stacks mix gold, silver, and bronze, with photos and rotated labels on top; comparing e.g. silver medals across athletes is almost impossible.\nStacked bars work for showing totals, or with very few categories. Otherwise, consider side-by-side bars or small multiples."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-12",
+    "href": "slides/slides.html#speed-dates-12",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n⚠️ Pie charts ⚠️\n\n\n\nCBS News: Americans who have tried marijuana.\nA pie chart shows parts of a whole, but 51%, 43%, and 34% add up to 128%. These are three separate measurements from different years, not parts of a whole.\nThis is a wrong figure in Wilke’s terms.\nA simple bar or line chart over time would be correct."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-13",
+    "href": "slides/slides.html#speed-dates-13",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\nVisualizing proportions\n\nPie chart, stacked bar, or side-by-side bars?\n\n\nhttps://clauswilke.com/dataviz/visualizing-proportions.html#\n\n\nPie charts are not always wrong. Wilke’s table compares pie charts, stacked bars, and side-by-side bars.\nPie charts: good for simple fractions (1/2, 1/4) and few categories.\nStacked bars: good for many sets of proportions, e.g. over time.\nSide-by-side bars: best for comparing the relative sizes directly.\nChoose based on what the reader needs to compare."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-14",
+    "href": "slides/slides.html#speed-dates-14",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\nElementary Perceptual Tasks\n\n\n\nOriginal Source: Cleveland & McGill (1984). 531-554; Further summary and examples\n\n\n\nCleveland & McGill (1984): ranking of elementary perceptual tasks by how accurately people can read them.\nMost accurate: position along a common scale (dot plots, bar charts, scatter plots). Then position on non-aligned scales, length, direction/angle, area, volume, and least accurate: shading and colour hue.\nThis explains many of the problems we saw: pie charts use angle, treemaps use area, the map uses hue."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-15",
+    "href": "slides/slides.html#speed-dates-15",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\n\n\n\n\n\n\nDoes it support one conclusion?\n\n\n\n\n\nWarehouse accuracy rates, stacked bars for 19 warehouses.\nAsk: does this chart support one conclusion? What should the reader take away?\n(Fragment) It shows everything with equal weight: red accuracy bars dominate, and the interesting part (error rates) is squashed at the bottom."
+  },
+  {
+    "objectID": "slides/slides.html#speed-dates-16",
+    "href": "slides/slides.html#speed-dates-16",
+    "title": "Data Visualization",
+    "section": "💬 Speed dates",
+    "text": "💬 Speed dates\nStorytelling with data - show just one conclusion!\n\n\n\nThe same data redesigned to tell a story.\nA headline states the conclusion: “Action needed: 10 warehouses have high error rates”.\nBars sorted, grey for context, orange only for the warehouses that need attention, and text next to the chart that explains what to do.\nWith the same data, the reader now instantly knows the point."
+  },
+  {
+    "objectID": "slides/slides.html#making-good-plots-the-bbc-way-1",
+    "href": "slides/slides.html#making-good-plots-the-bbc-way-1",
+    "title": "Data Visualization",
+    "section": "Making good plots: the BBC way",
+    "text": "Making good plots: the BBC way\n\n\n\n\n\n\n\nde Volkskrant, 27 March 2025: Het maakt wél uit welke doorstroomtoets een school kiest"
+  },
+  {
+    "objectID": "slides/slides.html#using-data-visualizations-for-exploration-2",
+    "href": "slides/slides.html#using-data-visualizations-for-exploration-2",
+    "title": "Data Visualization",
+    "section": "Using data visualizations for exploration",
+    "text": "Using data visualizations for exploration\nExploratory visualizations can also be beautiful\nWhen the goal is to have the receiver explore and understand the data.\n\n\n\nThe Guardian: How coronavirus spreads ↗\n\n\nSVT: Replay the 2026 Swedish election count ↗\n\n\nNYT also offers very good examples of enaging data journalism.  Check out The Upshot"
+  },
+  {
+    "objectID": "slides/slides.html#adding-interactivity",
+    "href": "slides/slides.html#adding-interactivity",
+    "title": "Data Visualization",
+    "section": "Adding interactivity 🎮",
+    "text": "Adding interactivity 🎮\n\n💬 Why use interactive visualizations?"
+  },
+  {
+    "objectID": "slides/slides.html#adding-interactivity-1",
+    "href": "slides/slides.html#adding-interactivity-1",
+    "title": "Data Visualization",
+    "section": "Adding interactivity",
+    "text": "Adding interactivity\n\nggplotly\nWhat advantages/disadvantages do interactive visualizations have over static plots?"
+  },
+  {
+    "objectID": "slides/slides.html#advantages",
+    "href": "slides/slides.html#advantages",
+    "title": "Data Visualization",
+    "section": "Advantages",
+    "text": "Advantages\n\n\nExplore data dynamically\nZoom, pan, and hover for details\nReveal extra information without clutter\nEnhance engagement in presentations and reports\nUseful for exploratory analysis and dashboards"
+  },
+  {
+    "objectID": "slides/slides.html#disadvantages",
+    "href": "slides/slides.html#disadvantages",
+    "title": "Data Visualization",
+    "section": "Disadvantages",
+    "text": "Disadvantages\n\n\nHarder to include in static formats (papers, print)\nAccessibility issues (screen readers, non colorblind-friendly defaults)\nCan overwhelm the audience if overused\nLarger file sizes, slower rendering\nRequires additional packages/libraries (e.g., {plotly})"
+  },
+  {
+    "objectID": "slides/slides.html#adding-interactivity-2",
+    "href": "slides/slides.html#adding-interactivity-2",
+    "title": "Data Visualization",
+    "section": "Adding interactivity",
+    "text": "Adding interactivity\n\n\n\n\n\n\n\n✅  Advantages\n⚠️  Disadvantages\n\n\n\n\nExplore data dynamically\nHarder to include in static formats (papers, print)\n\n\nZoom, pan, and hover for details\nAccessibility issues (screen readers, non colorblind-friendly defaults)\n\n\nReveal extra information without clutter\nCan overwhelm the audience if overused\n\n\nEnhance engagement in presentations and reports\nLarger file sizes, slower rendering\n\n\nUseful for exploratory analysis and dashboards\nRequires additional packages (e.g., {plotly})"
+  },
+  {
+    "objectID": "slides/slides.html#adding-interactivity-3",
+    "href": "slides/slides.html#adding-interactivity-3",
+    "title": "Data Visualization",
+    "section": "Adding interactivity 🎮",
+    "text": "Adding interactivity 🎮\n\nInteractivity enhances, but does not replace, the fundamentals of good data visualization\n\n\n‼️ Beware! Hack your way into scientific glory"
+  },
+  {
+    "objectID": "slides/slides.html#using-ai-for-data-exploration",
+    "href": "slides/slides.html#using-ai-for-data-exploration",
+    "title": "Data Visualization",
+    "section": "Using AI for Data Exploration 🤖",
+    "text": "Using AI for Data Exploration 🤖\n\n\nAI lets you explore wider  Use it for an efficient overview of the available data\nBut, every plot hides decisions  Ask the AI to list every transformation it made\nMore plots = more chances of false positives  Treat exploratory findings as a lead to continue checking, not a result\nYou bring the meaning  what does a variable measure? does the pattern make sense?\nGive the AI all the context you can  e.g. codebooks, background information\nEvaluate, evaluate, evaluate!  Before prompting, decide how you will verify the results yourself\n\n\n\n\nYou can get a distribution of every variable, and every relationship you’re curious about, in a few minutes. So use that! Look at more than you normally would. And remember, these plots don’t have to be pretty, they’re just for you.\nevery plot you get back already has choices baked into it. Which variables did it pick, did it take a mean or a median, did it filter anything out? The AI makes these choices without telling you.\nMore plots, more false patterns: If you can make 50 versions of a plot in a minute, one of them is going to show you something interesting, just by chance. So anything you find while exploring is a lead, not a result. You still have to check it.\nYou bring the meaning: the AI can make the plot, but it doesn’t know what your variables actually measure, or whether the pattern makes any sense in the real world. That part is your job. If you can’t judge whether the answer is right, the AI’s answer isn’t going to help you.\nGive the AI all the context you can: the more it knows, the less it has to guess. So don’t just give it the column names, give it the codebook, the background of the data, what your research question is. And a nice trick: ask it to describe the data back to you first. Where it gets it wrong, correct it, and now you also know where its understanding stops.\nEvaluate, evaluate, evaluate!: decide before you prompt how you’re going to check the result, otherwise the AI’s output becomes the standard you judge it by. Simple checks: how many schools went in, and how many ended up in the plot? Can you reproduce one number from the plot yourself? Does the pattern still hold with a median instead of a mean? Keeping an AI log will also help with this."
+  },
+  {
+    "objectID": "slides/slides.html#using-ai-for-data-exploration-1",
+    "href": "slides/slides.html#using-ai-for-data-exploration-1",
+    "title": "Data Visualization",
+    "section": "Using AI for Data Exploration 🤖",
+    "text": "Using AI for Data Exploration 🤖\n Try it yourself!"
+  },
+  {
+    "objectID": "slides/slides.html",
+    "href": "slides/slides.html",
+    "title": "Data Visualization",
+    "section": "",
+    "text": "Slides made using quartoCover photo made in R by Danielle Navarro\n\n\n\n\n\n\n\n\n\n\n\nQuick housekeeping: these slides are built with Quarto, from the same repository as the course site.\nThe cover art is generative art made in R by Danielle Navarro, a nice reminder that R and ggplot can go far beyond default charts.\n\n\n\n\n\n\n\nThis is our central hub! Access slides, textbook, worksheets, assignments and other resources here.\n💡 Tip: press S while viewing the slides to open the speaker notes.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhen\nTopic\nPreparation / Worksheets / Assignments\n\n\n\n\nSession 1.Tue 29/9, 15.00–18.00GS.11\nFundamentals of DV\nRead: DV ch. 1; ch. 3Worksheet: ggplot recap\n\n\nSession 2.Fri 2/10, 12.00–15.00HvA\nExploratory viz\nWorksheet: ggplotlyWorksheet: working with AI, pt. 1🚨 Sun 4/10, 23.59Deadline Assignment 1 (individual) + Assignment 2, Part 1 (group)\n\n\nSession 3.Tue 6/10, 15.00–18.00GS.11\nExplanatory viz\nWorksheet: working with AI, pt. 2Read: DV ch. 8\n\n\nSession 4.Fri 9/10, 12.00–15.00HvA\nPitches & Q&A\n🚨 Sun 11/10, 23.59Deadline Assignment 2, Part 2 (group)\n\n\n\n\n\nFriday sessions: time to work on group project!\nBring a (charged) laptop! 💻\n\n\n\n\n\n\n\nSession 1 Tuesday, Sept. 29 Fundamentals of Data Visualization\n\n\n\n\nWhat is Data Visualization?\n\nWhy visualize data?\nWhat makes a plot good (and bad)?\nGuiding principles\nData Visualization Project\n\n\n\nRoadmap for today: what data visualization is, why we visualize at all, what separates good from bad plots, a set of guiding principles, and finally an introduction to the assignments.\nThis session is more conceptual; the hands-on ggplot work comes with the worksheet.\n\n\n\n\n\nThere are many skills involved in producing a good data visualization:\n\n\nTechnical (how to use particular tools)\nDesign (how to make visual representations that are engaging and appeal aesthetically)\nPerception (how do certain notions of visual perception and cognition affect data communication)\n\n\n\n\nMaking a good visualization draws on several different skill sets.\nTechnical: knowing your tools, e.g. ggplot. (covered in the worksheets, and a skill you’ll continue to build up over time)\nDesign: making it engaging and aesthetically pleasing. (next tuesday’s session)\nPerception: knowing how people actually read visual information (we discuss this a little bit, but more information is in your reading).\n\n\n\n\n\nMost important is to be able to derive reliable information from data using visual representations.\n\n\n\nBut underneath all of these, the most important skill is deriving reliable information from data.\nWalk through the diagram: the world → data → visualization → someone’s understanding.\nEvery arrow is a step where information can be lost or distorted: what gets measured, how it’s processed, and how it’s shown and read.\n\n\n\n\n\nYour data visualization is effective only if it helps you, and your audience, understand the real world better\nThis requires data thinking skills:\n\n\nUnderstanding of what the data represents (and what it doesn’t)\nTransparency about the transformations and aggregations done to the data to produce the visualization\nAwareness about how different visual representations affect the interpretation of the data, and an ability to justify which choice is most appropriate for your data and audience\nKnowledge about the context from which the data is taken, and later presented.\n\n\n\n\nThe goal is not a pretty plot; the goal is a better understanding of the real world, for you and your audience. Knowledge about data validty and technical choices is saved for other parts of the course. But you need to think about all of these steps when visualizing.\n\n\n\n\n\n\nEspecially in our age of AI, these skills are invaluable\n\n\n\n\ntext-to-dashboard service; I Stopped Building Dashboards. AI Now Does It Better..\n\n\n\nAI tools can now generate polished dashboards and charts from a text prompt in seconds.\nThat makes producing a visualization easy, but doesnt judge whether it is correct, honest, or appropriate.\nThe data thinking skills from the previous slide are exactly what these tools can’t do for you.\nWe will come back to working with AI in sessions 2 and 3."
+  },
+  {
+    "objectID": "slides/slides.html#submitting-assignment-2-part-1",
+    "href": "slides/slides.html#submitting-assignment-2-part-1",
+    "title": "Data Visualization",
+    "section": "Submitting Assignment 2, Part 1",
+    "text": "Submitting Assignment 2, Part 1\n\nThe assignment is complete if:\n\nit contains multiple plots: show that you analysed your variable from at least 2 different perspectives.\n\nHas a theme and color-scheme. Although not necessary for exploratory viz, this gives me a chance to give feedback on your styling choices for Part 2.\n\nit highlights some interesting data points, for example using color or text. While this is also not necessary for exploratory viz, do this to show me the direction you will take your final visualization in, so I can give feedback.\nit contains a short description outlining your workflow: what exploration choices led to this visualization? did you use AI? if so, how and with which model? what did you learn about the data and how can you use this to inform the final, explanatory data visualization?\n\nyour code runs, and the html can be downloaded and viewed on any laptop.\n\nyour code is lintr-proof."
+  },
+  {
+    "objectID": "slides/slides.html#now-work-with-your-groups",
+    "href": "slides/slides.html#now-work-with-your-groups",
+    "title": "Data Visualization",
+    "section": "Now: work with your groups",
+    "text": "Now: work with your groups\n\nAI worksheet, part 1. This should help set you up for your assignment. In 30 minutes we have a short discussion about your progress.\n\nContinue with Assignment 2, part 1."
+  },
+  {
+    "objectID": "slides/slides.html#exploratory-data-visualization",
+    "href": "slides/slides.html#exploratory-data-visualization",
+    "title": "Data Visualization",
+    "section": "Exploratory Data Visualization",
+    "text": "Exploratory Data Visualization\n\n\nIn your groups:\nAI worksheet, part 1. This should help set you up for your assignment. In 30 minutes we have a short discussion about your findings\nContinue with Assignment 2, part 1.\n\n\n\n\n\n\n\n\nImage: LinkedIn"
   }
 ]

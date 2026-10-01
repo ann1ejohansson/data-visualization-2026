@@ -33,6 +33,45 @@ $font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "
   color: $cosmo-light;
 }
 
+// Slide titles (## headings) as a small running header at the top of each
+// slide, so every slide has a title for navigation (menu, overview) without it
+// taking up space; the slide's main message goes in [..]{.lead} instead.
+// Fixed px size so {.smaller} slides get the same header.
+// Opt out with {.big-title} on the ## heading; section (#) and session title
+// slides are not affected.
+.reveal .slides section.slide.level2:not(.session-title):not(.big-title) > h2 {
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  color: $cosmo-muted;
+  padding-bottom: 0.5em;
+  margin-bottom: 1.2em;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.reveal .slides section.slide.level2.has-dark-background:not(.session-title):not(.big-title) > h2 {
+  color: $cosmo-light;
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+// ::: statement: a single key sentence, centred in the space below the
+// running header (use instead of {.center} on the slide, which would also
+// pull the header down)
+.reveal .statement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 560px;
+  max-width: 80%;
+  margin: 0 auto;
+  font-size: 1.3em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
 // Pop-up labels revealed on click (e.g. the Speed dates slide)
 .reveal .pop {
   background: $cosmo-blue;
@@ -70,4 +109,20 @@ $font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "
 // ::: spaced: more breathing room between bullets
 .reveal .spaced li {
   margin-bottom: 0.6em;
+}
+
+// ![](...){.framed}: thin border around screenshots/plots with a light background
+.reveal img.framed {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+}
+
+// framed images that link somewhere (e.g. thumbnails of live examples) lift on hover
+.reveal a img.framed {
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.reveal a:hover img.framed {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }

@@ -4,6 +4,7 @@ subtitle: "<span style='color: white;'>Behavioral Data Science Toolbox 2026</spa
 #footer: "<span style='color: white;'>Cover photo made in R by <a href='https://art.djnavarro.net' style='color: pink; text-decoration: underline;'>Danielle Navarro</a></span>"
 format: 
   revealjs:
+    theme: [default, slides-theme.scss, session-title.scss]
     highlight-style: arrow
     include-navbar: true
     logo: images/uva_logo.png
@@ -70,9 +71,15 @@ library(plotly)
 library(viridis)
 ```
 
-# Interactive plots 🕹️ {background-color="#8000FF"}
+## {.session-title .center background-color="#343a40"}
 
-## Friday, Oct 2
+[Session 2]{.session-number}
+[Friday, Oct. 2]{.session-date}
+[Exploratory Data Visualization]{.session-name}
+
+# Interactive plots [🕹️]{.header-emoji} {background-color="#343a40"}
+
+## Today
 
 -   Interactive visualizations with plotly
 -   Work on assignment 1
@@ -101,7 +108,7 @@ Some conflicted content
 -   Avoid by always starting you work session with a `git pull` (and make sure you don't have uncommitted changes)
 -   Also communicate who is working on what
 
-# Interactivity 🎮 {background-color="#8000FF"}
+# Interactivity [🎮]{.header-emoji} {background-color="#343a40"}
 
 ## 💬 **Why use interactive visualizations?**
 
@@ -129,7 +136,7 @@ What advantages/disadvantages do interactive visualizations have over static plo
 -   Requires additional packages/libraries (e.g., `{plotly}`)
 :::
 
-##  {.center background-color="#8000FF"}
+##  {.center background-color="#343a40"}
 
 🧠 **Interactivity enhances, but does not replace,\
 the fundamentals of good data visualization**
@@ -170,7 +177,7 @@ Source: [plotly.com/r](https://plotly.com/r/)
 -   Make the static ggplot object interactive using the `{plotly}` package
 -   Add a customized tooltip that displays additional information when you hover over the plot
 
-# Better plots 🥇 {background-color="#8000FF"}
+# Better plots [🥇]{.header-emoji} {background-color="#343a40"}
 
 ## Tuesday, Oct 6
 
@@ -923,7 +930,7 @@ Explorable explanations: [Nicky Case](https://ncase.me/), [Setosa](https://setos
 
 **Attendance is expected!**
 
-# Q&A {background-color="#8000FF"}
+# Q&A {background-color="#343a40"}
 
 ## Final report formatting {.scrollable}
 
