@@ -179,6 +179,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#part-2-final-report" id="toc-part-2-final-report" class="nav-link" data-scroll-target="#part-2-final-report">Part 2: Final report</a>
   <ul class="collapse">
   <li><a href="#the-report" id="toc-the-report" class="nav-link" data-scroll-target="#the-report">The report</a></li>
+  <li><a href="#ai-use-section" id="toc-ai-use-section" class="nav-link" data-scroll-target="#ai-use-section">AI use section</a></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a></li>
   <li><a href="#pitches" id="toc-pitches" class="nav-link" data-scroll-target="#pitches">Pitches</a></li>
   <li><a href="#submitting-part-2" id="toc-submitting-part-2" class="nav-link" data-scroll-target="#submitting-part-2">Submitting Part 2</a></li>
@@ -333,13 +334,26 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="part-2-final-report">Part 2: Final report</h2>
 <section id="the-report" class="level3">
 <h3 class="anchored" data-anchor-id="the-report">The report</h3>
-<p>You will write the assignment in R Markdown (or Quarto), to produce a report-style document of no more than 1000 words. The final version should be compiled into <code>.html</code> format.</p>
+<p>You will write the assignment in R Markdown (or Quarto), to produce a report-style document of around 1000 words. The final version should be compiled into <code>.html</code> format.</p>
 <p>The report should be a description of the process that led to your final data visualization. You should include:</p>
 <ul>
 <li><p>An explanation of your research question and the target audience for your visualization. What did you want to communicate?</p></li>
 <li><p>A description of your exploratory process, including at least one exploratory graph. This can be the graph that you created in Part 1, or an updated one. While this graph is intended to illustrate your thought process, its aesthetic- and communicative quality will not be graded. However, we will grade the quality of the report as a whole, which includes communication about how the exploratory graph helped you to understand the data, and influenced your choices for the final, explanatory, data visualization.</p></li>
 <li><p>Your final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question &amp; exploration).</p></li>
+<li><p>An <strong>AI use</strong> section, at the end of your report (see below).</p></li>
 </ul>
+</section>
+<section id="ai-use-section" class="level3">
+<h3 class="anchored" data-anchor-id="ai-use-section">AI use section</h3>
+<p>We encourage you to use AI tools in this project, but you remain responsible for every chart and every claim in your report, including the parts AI helped with. Close your report with a short section titled <strong>AI use</strong> (around 150–250 words), in which your group discloses and reflects on how you used AI. Use the AI log and the team guidelines you wrote in the <a href="../worksheets/working-with-ai.html">AI worksheet</a> as your starting point. Cover:</p>
+<ul>
+<li><strong>Tools:</strong> which AI tools and models did you use (e.g.&nbsp;ChatGPT with GPT-5, Claude Sonnet, GitHub Copilot)?</li>
+<li><strong>Tasks:</strong> for which stages of the project did you use them (sharpening the question, cleaning, exploring, designing, coding, writing), and for which did you deliberately <em>not</em> use them? Why?</li>
+<li><strong>Context and constraints:</strong> what did you give the AI to work with (e.g.&nbsp;the codebook, your research question, a shared context file), and what did you ask it to do or not do?</li>
+<li><strong>Verification:</strong> how did you check the output?</li>
+<li><strong>Reflection:</strong> what did you learn from working with AI on this project, and which obstacles or risks did you run into? If it happened, also give examples of things the AI got wrong, decided silently, or added that didn’t serve your message (and what you did about it).</li>
+</ul>
+<p>If you did not use AI at all, state this in the AI use section, and briefly explain why.</p>
 </section>
 <section id="grading" class="level3">
 <h3 class="anchored" data-anchor-id="grading">Grading</h3>
@@ -347,7 +361,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong>Aesthetics</strong> [30%]: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?</li>
 <li><strong>Communication</strong> [30%]: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?</li>
-<li><strong>Description</strong> [20%]: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?</li>
+<li><strong>Description</strong> [20%]: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory? Does it include an <a href="#ai-use-section">AI use</a> section that clearly describes which tools you used, what for, and how you checked their output? Has AI use been evaluated?</li>
 <li><strong>Creativity and Complexity</strong> [10%]: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?</li>
 <li><strong>Code Quality and Styling</strong> [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?</li>
 </ul>
@@ -363,14 +377,14 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Open questions</strong>: which aspects are you still unsure about?</li>
 </ul>
 <p>Use the pitch to get feedback from the rest of the group, so bring the questions you would like input on. You do not need to prepare slides, or have any text on the screen. Just show your data visualization so far. In this session, we would also like you to briefly share how you used AI in your project. What did you learn from it? Did you run into any obstacles, pitfalls, or risks along the way, especially ones not covered in the class? Please think about this beforehand so we can have a fruitful discussion.</p>
-<p>The pitches should be 3 minutes for presenting your plot, followed by a 3-minute discussion with the group.</p>
+<p>The pitches should be 4-5 minutes for presenting your plot, followed by a 3-minute discussion with the group.</p>
 </section>
 <section id="submitting-part-2" class="level3">
 <h3 class="anchored" data-anchor-id="submitting-part-2">Submitting Part 2</h3>
-<p>The final draft of your report and data visualization is due <strong>Sunday, October 11th, 23:59</strong>. You will hand in the assignment on <strong>Canvas and GitHub</strong>. Please hand in the following:</p>
+<p>The final draft of your report and data visualization is due <strong>Sunday, October 11th, 23:59</strong>. You will hand in the assignment on <strong>Canvas</strong>. Please hand in the following:</p>
 <ul>
-<li><p>The link to your group’s (public) GitHub repository, with all your code pushed.</p></li>
-<li><p>Your <code>.Rmd</code> file (<code>report/DV-Assignment2-Part2-GroupX.Rmd</code>). Here we will check your code styling and documentation. Run <code>lintr</code> beforehand!</p></li>
+<li><p>The link to your group’s (public) GitHub repository, with all your code pushed. Make sure your GitHub Repo can be cloned, and we can reproduce all your work.</p></li>
+<li><p>Your <code>.Rmd</code> file (<code>report/DV-Assignment2-Part2-GroupX.Rmd</code>). Here we will check your code styling and documentation. Run <code>lintr</code> beforehand! Please add your group number in the file name.</p></li>
 <li><p>Your <code>.html</code> file. Make sure it renders correctly; we will not compile your <code>.Rmd</code> file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.</p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">

@@ -106,7 +106,7 @@ Part 1 is **complete** if it contains:
 
 ### The report
 
-You will write the assignment in R Markdown (or Quarto), to produce a report-style document of no more than 1000 words. The final version should be compiled into `.html` format.
+You will write the assignment in R Markdown (or Quarto), to produce a report-style document of around 1000 words. The final version should be compiled into `.html` format.
 
 The report should be a description of the process that led to your final data visualization. You should include:
 
@@ -116,13 +116,27 @@ The report should be a description of the process that led to your final data vi
 
 -   Your final, explanatory, data visualization. Clearly mark which one of your visualizations this is. Include the visualization, along with an explanation of what it aims to communicate. Importantly, what can you conclude from this visualization? Why is this the best way to communicate this conclusion? How robust are your findings? This should follow logically from the introduction of your report (research question & exploration).
 
+-   An **AI use** section, at the end of your report (see below).
+
+### AI use section
+
+We encourage you to use AI tools in this project, but you remain responsible for every chart and every claim in your report, including the parts AI helped with. Close your report with a short section titled **AI use** (around 150–250 words), in which your group discloses and reflects on how you used AI. Use the AI log and the team guidelines you wrote in the [AI worksheet](../worksheets/working-with-ai.qmd) as your starting point. Cover:
+
+-   **Tools:** which AI tools and models did you use (e.g. ChatGPT with GPT-5, Claude Sonnet, GitHub Copilot)?
+-   **Tasks:** for which stages of the project did you use them (sharpening the question, cleaning, exploring, designing, coding, writing), and for which did you deliberately *not* use them? Why?
+-   **Context and constraints:** what did you give the AI to work with (e.g. the codebook, your research question, a shared context file), and what did you ask it to do or not do?
+-   **Verification:** how did you check the output? 
+-   **Reflection:** what did you learn from working with AI on this project, and which obstacles or risks did you run into? If it happened, also give examples of things the AI got wrong, decided silently, or added that didn't serve your message (and what you did about it).
+
+If you did not use AI at all, state this in the AI use section, and briefly explain why.
+
 ### Grading
 
 The final report will be graded on the following elements:
 
 -   **Aesthetics** [30%]: The overall visual quality of the plot. Is it clear and legible, with no unnecessary clutter? Do choices like color, labels, or scales enhance readability and interpretation?
 -   **Communication** [30%]: How well the visualization conveys its intended message. Can the main point be understood quickly with minimal explanation? Do the title, labels, and layout support effective communication?
--   **Description** [20%]: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory?
+-   **Description** [20%]: The quality of the written report. Does it clearly state the research question, what you wanted to communicate, and why this visualization is appropriate? Does it provide a concise interpretation of what can be concluded from the data? Is it explanatory? Does it include an [AI use](#ai-use-section) section that clearly describes which tools you used, what for, and how you checked their output? Has AI use been evaluated? 
 -   **Creativity and Complexity** [10%]: The thoughtfulness and depth of the visualization. Does it go beyond a default chart type when appropriate? Were creative or more complex techniques used in a way that adds value without obscuring the message?
 -   **Code Quality and Styling** [10%]: The clarity and reproducibility of the R code. Does the code run without errors and generate the submitted plot? Is it well-structured, readable, and consistent with good style practices (i.e., lintr-proof)?
 
@@ -140,15 +154,15 @@ In Friday's class, each group gives a short pitch of their project. Cover:
 Use the pitch to get feedback from the rest of the group, so bring the questions you would like input on. You do not need to prepare slides, or have any text on the screen. Just show your data visualization so far. 
 In this session, we would also like you to briefly share how you used AI in your project. What did you learn from it? Did you run into any obstacles, pitfalls, or risks along the way, especially ones not covered in the class? Please think about this beforehand so we can have a fruitful discussion. 
 
-The pitches should be 3 minutes for presenting your plot, followed by a 3-minute discussion with the group. 
+The pitches should be 4-5 minutes for presenting your plot, followed by a 3-minute discussion with the group. 
 
 ### Submitting Part 2
 
-The final draft of your report and data visualization is due **Sunday, October 11th, 23:59**. You will hand in the assignment on **Canvas and GitHub**. Please hand in the following:
+The final draft of your report and data visualization is due **Sunday, October 11th, 23:59**. You will hand in the assignment on **Canvas**. Please hand in the following:
 
--   The link to your group's (public) GitHub repository, with all your code pushed.
+-   The link to your group's (public) GitHub repository, with all your code pushed. Make sure your GitHub Repo can be cloned, and we can reproduce all your work. 
 
--   Your `.Rmd` file (`report/DV-Assignment2-Part2-GroupX.Rmd`). Here we will check your code styling and documentation. Run `lintr` beforehand!
+-   Your `.Rmd` file (`report/DV-Assignment2-Part2-GroupX.Rmd`). Here we will check your code styling and documentation. Run `lintr` beforehand! Please add your group number in the file name.  
 
 -   Your `.html` file. Make sure it renders correctly; we will not compile your `.Rmd` file ourselves. Here, we will grade your report and visualization. Thus if any components are missing, we will not be able to give you points for them.
 
