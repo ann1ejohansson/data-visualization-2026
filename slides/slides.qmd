@@ -1894,6 +1894,14 @@ Explorable explanations: [Nicky Case](https://ncase.me/), [Setosa](https://setos
 <br><br>
 [Try it yourself!](../worksheets/working-with-ai.html)
 
+## AI: Final note
+
+![[Beware the Slop Zone](https://www.frank.computer/blog/2026/03/prototyping-bottleneck.html)](images/ai-slop.png)
+
+::: footer
+Sibinga, E. (2026). [Critically evaluating LLMs](https://nightingaledvs.com/critically-evaluating-llms/). *Nightingale*.
+:::
+
 ## Pitches: Friday, Oct. 9 {.smaller}
 
 [**Bring a first draft of your final visualization**]{.lead}
@@ -1960,8 +1968,8 @@ output:
 ::: {.column width="50%"}
 Or per code chunk:
 
-```` markdown
-```{r}
+```` r
+```{{r}}
 #| echo: false
 
 # your code here
@@ -1970,12 +1978,12 @@ Or per code chunk:
 :::
 :::::
 
-## Now
+## Now 
 
 [**In your groups:**]{.lead}
 
 ::: spaced
-1.  **AI worksheet, part 2** [then a short discussion of your findings]{.muted}
+1.  **AI worksheet, part 2** 
 2.  **Continue with Assignment 2, part 2**
 :::
 
