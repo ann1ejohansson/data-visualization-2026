@@ -1187,7 +1187,6 @@ Resources: [clauswilke.com](https://clauswilke.com/dataviz/figure-titles-caption
 
 ## Step 2: Adapt it to your audience {.smaller}
 
-[**Example: the Assignment 1 line plot, with a title and caption**]{.lead}
 
 ```{r s2-lineplot-titled}
 #| echo: true
