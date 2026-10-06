@@ -1895,6 +1895,1715 @@ Bring a (charged) laptop! 💻</p>
 <div class="footer">
 <p>Image: <a href="https://www.linkedin.com/posts/ross-waring_victormair-gapingvoid-andreasvonderheydt-share-7201616137380376576-D7mq/" target="_blank">LinkedIn</a></p>
 </div>
+</section></section>
+<section>
+<section id="section-2" class="title-slide slide level1 session-title center" data-background-color="#343a40">
+<h1></h1>
+<p><span class="session-number">Session 3</span> <span class="session-date">Tuesday, Oct.&nbsp;6</span> <span class="session-name">Explanatory Data Visualization</span></p>
+</section>
+<section id="today-2" class="slide level2">
+<h2>Today</h2>
+<p><span class="lead"><strong>Better plots 🥇</strong></span></p>
+<ul>
+<li>General feedback assignments</li>
+<li>Going from exploratory to explanatory</li>
+<li>Advanced DV features</li>
+<li>Using AI for explanatory DVs</li>
+</ul>
+</section>
+<section id="feedback-on-assignment-2-part-1" class="slide level2 smaller">
+<h2>Feedback on Assignment 2, Part 1</h2>
+<div class="spaced">
+<ul>
+<li><strong>Use informative titles</strong>: state your conclusion in the title or subtitle in a declarative manner</li>
+<li><strong>Text: Increase font size, use bold-face in main statements</strong><br>
+</li>
+<li><strong>Visualize reliability</strong>: show sample size, confidence intervals, etc. Especially if using bins/groupings.<br>
+</li>
+<li><strong>What is the added value of a boxplot?</strong></li>
+<li><strong>Go from exploratory to explanatory!</strong> <br>the audience should get the main conclusion without reading the description</li>
+</ul>
+</div>
+</section>
+<section id="use-point-size-to-your-advantage" class="slide level2 smaller">
+<h2>Use point size to your advantage</h2>
+<p><a href="images/point-size.png" class="lightbox" data-gallery="quarto-lightbox-gallery-39"><img data-src="images/point-size.png" style="width:75.0%"></a></p>
+</section>
+<section id="boxplots" class="slide level2 smaller">
+<h2>Boxplots</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/boxplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-40" title="The Anatomy of a Boxplot"><img data-src="images/boxplot.png" alt="The Anatomy of a Boxplot"></a></p>
+<figcaption><a href="https://www.data-to-viz.com/caveat/boxplot.html">The Anatomy of a Boxplot</a></figcaption>
+</figure>
+</div>
+<div class="footer">
+<p>The flaw of boxplots: read more about it <a href="https://www.r-bloggers.com/2024/06/why-you-shouldnt-use-boxplots/">here</a> and <a href="https://nightingaledvs.com/ive-stopped-using-box-plots-should-you/">here</a>.</p>
+</div>
+</section>
+<section id="exploratory-versus-explanatory-2" class="slide level2 smaller">
+<h2>Exploratory versus explanatory</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Exploratory</strong></p>
+<p><a href="images/explore-explain-01.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-41"><img data-src="images/explore-explain-01.gif" class="framed" style="width:100.0%"></a></p>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<p><strong>Explanatory</strong></p>
+<p><a href="images/explore-explain-02.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-42"><img data-src="images/explore-explain-02.gif" class="framed" style="width:100.0%"></a></p>
+</div>
+</div></div>
+<p><span class="detail">Source: <a href="https://www.storytellingwithdata.com/blog/2014/04/exploratory-vs-explanatory-analysis">storytellingwithdata.com</a></span></p>
+</section>
+<section id="making-an-explanatory-dv" class="slide level2">
+<h2>Making an explanatory DV</h2>
+<div class="spaced">
+<ol type="1">
+<li>Start from your conclusion</li>
+<li>Adapt it to your audience</li>
+<li>Choose a chart type that fits the conclusion and the data</li>
+<li>Highlight your main conclusion</li>
+</ol>
+</div>
+<aside class="notes">
+<ul>
+<li>These four steps are the structure for the rest of today’s lecture.</li>
+<li>1: what is the main thing you learned from the data, that you want to show in the DV?</li>
+<li>2: how do you say that to your audience, so they understand it?</li>
+<li>3: different chart types are more or less appropriate depending on context.</li>
+<li>4: there are more advanced techniques to make the details, and your main point, clear to the audience.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-1-start-from-your-conclusion" class="slide level2 smaller">
+<h2>Step 1: Start from your conclusion</h2>
+<p><span class="lead"><strong>What is the main thing you learned from the data?</strong></span></p>
+<div class="spaced">
+<ul>
+<li><strong>Pick one main statement.</strong></li>
+<li><strong>Write down how you got there.</strong> <br><span class="muted">Which inferential or modeling choices led to this conclusion?</span></li>
+<li><strong>Justify</strong> <br><span class="muted">Why is this relevant, and why do you think it is correct? <br>How confident are you in the validity, reliability, and robustness of the results?</span></li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li>Pick one main statement that you want the DV to show. Everything else in the plot is there to support that one statement.</li>
+<li>Write down which inferential/modeling choices led to this conclusion: which schools did you keep, how did you handle missing values, mean or median, which comparison.</li>
+<li>Why do you think it is relevant, and why do you think it is correct? If you can’t answer that, go back to exploring.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-2-adapt-it-to-your-audience" class="slide level2 smaller">
+<h2>Step 2: Adapt it to your audience</h2>
+<p><span class="lead"><strong>Formulate your conclusion so your audience understands it.</strong></span></p>
+<div class="spaced">
+<ul>
+<li><strong>Who are they?</strong> <br><span class="muted">Each research question has a target audience: a municipal officer, policymakers, newspaper readers, school boards…</span></li>
+<li><strong>Which details do they need?</strong> <br><span class="muted">Pick the inferential/modeling details you want to show, and explain how they were derived.</span></li>
+<li><strong>Can they get it without reading your report?</strong> <br><span class="muted">Use the title and labels to carry the message.</span></li>
+</ul>
+</div>
+<aside class="notes">
+<ul>
+<li>Choose a formulation of your conclusion that is understandable to your audience. A municipal officer wants to see at a glance which schools are behind; a newspaper reader needs one clear message.</li>
+<li>Pick which inferential/modeling details you want to display to the audience, and make sure you include an explanation of how those were derived (e.g.&nbsp;in a subtitle or caption).</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-2-adapt-it-to-your-audience-1" class="slide level2 smaller">
+<h2>Step 2: Adapt it to your audience</h2>
+<p><span class="lead"><strong>Use your title and caption to do the explaining</strong></span></p>
+<div class="columns">
+<div class="column" style="width:45%;">
+<div class="spaced">
+<ul>
+<li><strong>Title:</strong> <span class="muted">descriptive or declarative (state your conclusion!)</span></li>
+<li><strong>Methods:</strong> <span class="muted">keep it brief, if needed at all</span></li>
+<li><strong>Results:</strong> <span class="muted">only if not (fully) captured in the title</span></li>
+<li><strong>Definitions</strong> <span class="muted">of colors, line types, error bars, etc.</span></li>
+<li><strong>Data source</strong> <span class="muted">if external</span></li>
+<li><strong>Date and name</strong> <span class="muted">for crediting</span></li>
+</ul>
+</div>
+</div><div class="column" style="width:55%;">
+<p><a href="images/captions.png" class="lightbox" data-gallery="quarto-lightbox-gallery-43"><img data-src="images/captions.png" class="framed" style="width:100.0%"></a></p>
+<p><span class="detail">Source: <a href="https://www.datasketch.es/project/655-frustrations-doing-data-visualization">datasketch.es</a></span></p>
+</div></div>
+<div class="footer">
+<p>Resources: <a href="https://clauswilke.com/dataviz/figure-titles-captions.html" target="_blank">clauswilke.com</a></p>
+</div>
+</section>
+<section id="step-2-adapt-it-to-your-audience-2" class="slide level2 smaller">
+<h2>Step 2: Adapt it to your audience</h2>
+<p><span class="lead"><strong>Example: the Assignment 1 line plot, with a title and caption</strong></span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="co"># lineplot = the original plot from Assignment 1</span></span>
+<span id="cb4-2"><a></a>title_text <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb4-3"><a></a>  <span class="st">"LIB has the highest percentage of students reaching the target level,"</span>,</span>
+<span id="cb4-4"><a></a>  <span class="st">"and Route8 the lowest. This gap holds even when accounting for the"</span>,</span>
+<span id="cb4-5"><a></a>  <span class="st">"socio-economic status of schools."</span></span>
+<span id="cb4-6"><a></a>)</span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>caption_text <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb4-9"><a></a>  <span class="st">"Data: DUO Open Onderwijsdata, doorstroomtoets results and reference "</span>,</span>
+<span id="cb4-10"><a></a>  <span class="st">"levels, school year 2024-2025;</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-11"><a></a>  <span class="st">"Inspectie van het Onderwijs, schoolweging 2024-2025.</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb4-12"><a></a>  <span class="st">"Chart: Annie Johansson | "</span>,</span>
+<span id="cb4-13"><a></a>  <span class="fu">format</span>(<span class="fu">Sys.Date</span>(), <span class="st">"%e %B %Y"</span>) <span class="sc">|&gt;</span> <span class="fu">str_trim</span>()</span>
+<span id="cb4-14"><a></a>)</span>
+<span id="cb4-15"><a></a></span>
+<span id="cb4-16"><a></a>legend_labels_oneline <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb4-17"><a></a>  <span class="fu">paste0</span>(</span>
+<span id="cb4-18"><a></a>    provider_n<span class="sc">$</span>provider,</span>
+<span id="cb4-19"><a></a>    <span class="st">" (n = "</span>, <span class="fu">format</span>(provider_n<span class="sc">$</span>n_pupils, <span class="at">big.mark =</span> <span class="st">","</span>, <span class="at">trim =</span> <span class="cn">TRUE</span>), <span class="st">")"</span></span>
+<span id="cb4-20"><a></a>  ),</span>
+<span id="cb4-21"><a></a>  provider_n<span class="sc">$</span>provider</span>
+<span id="cb4-22"><a></a>)</span>
+<span id="cb4-23"><a></a></span>
+<span id="cb4-24"><a></a>lineplot_titled <span class="ot">&lt;-</span> lineplot <span class="sc">+</span></span>
+<span id="cb4-25"><a></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb4-26"><a></a>    <span class="at">values =</span> provider_colors,</span>
+<span id="cb4-27"><a></a>    <span class="at">breaks =</span> highlighted_providers, <span class="co"># legend in the same order as the lines</span></span>
+<span id="cb4-28"><a></a>    <span class="at">labels =</span> legend_labels_oneline,</span>
+<span id="cb4-29"><a></a>    <span class="at">name =</span> <span class="st">"Test provider"</span></span>
+<span id="cb4-30"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb4-31"><a></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb4-32"><a></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb4-33"><a></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">100</span>, <span class="dv">25</span>),</span>
+<span id="cb4-34"><a></a>    <span class="at">labels =</span> \(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>),</span>
+<span id="cb4-35"><a></a>    <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.02</span>))</span>
+<span id="cb4-36"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb4-37"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-38"><a></a>    <span class="at">title =</span> <span class="fu">str_wrap</span>(title_text, <span class="at">width =</span> <span class="dv">62</span>),</span>
+<span id="cb4-39"><a></a>    <span class="at">y =</span> <span class="st">"Students reaching target level"</span>,</span>
+<span id="cb4-40"><a></a>    <span class="at">caption =</span> caption_text</span>
+<span id="cb4-41"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb4-42"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-43"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb4-44"><a></a>     <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">18</span>, <span class="at">lineheight =</span> <span class="fl">1.1</span>,</span>
+<span id="cb4-45"><a></a>     <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">12</span>)</span>
+<span id="cb4-46"><a></a>    ),</span>
+<span id="cb4-47"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb4-48"><a></a>    <span class="at">plot.caption =</span> <span class="fu">element_text</span>(</span>
+<span id="cb4-49"><a></a>      <span class="at">color =</span> <span class="st">"grey40"</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">lineheight =</span> <span class="fl">1.2</span>,</span>
+<span id="cb4-50"><a></a>      <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">14</span>)</span>
+<span id="cb4-51"><a></a>    ),</span>
+<span id="cb4-52"><a></a>    <span class="at">plot.caption.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb4-53"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey25"</span>, <span class="at">size =</span> <span class="dv">13</span>),</span>
+<span id="cb4-54"><a></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">8</span>)),</span>
+<span id="cb4-55"><a></a>    <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">8</span>)),</span>
+<span id="cb4-56"><a></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"grey35"</span>, <span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb4-57"><a></a>    <span class="at">axis.line.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey60"</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>),</span>
+<span id="cb4-58"><a></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-59"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"grey90"</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>),</span>
+<span id="cb4-60"><a></a>    <span class="at">legend.justification =</span> <span class="st">"left"</span>,</span>
+<span id="cb4-61"><a></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="fl">12.5</span>),</span>
+<span id="cb4-62"><a></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
+<span id="cb4-63"><a></a>    <span class="at">legend.margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">0</span>),</span>
+<span id="cb4-64"><a></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">16</span>, <span class="dv">20</span>, <span class="dv">12</span>, <span class="dv">16</span>),</span>
+<span id="cb4-65"><a></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb4-66"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/lineplot-titled.png" class="lightbox" data-gallery="quarto-lightbox-gallery-44"><img data-src="images/lineplot-titled.png" class="quarto-figure quarto-figure-center" height="480"></a></p>
+</figure>
+</div>
+</section>
+<section id="step-3-choose-a-chart-type" class="slide level2 smaller">
+<h2>Step 3: Choose a chart type</h2>
+<p><span class="lead"><strong>One dataset, many visualizations</strong></span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">data</span>(<span class="st">"pizzaplace"</span>)</span>
+<span id="cb5-2"><a></a>pizza_top <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">factor</span>(size, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"M"</span>, <span class="st">"L"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a></a>  <span class="fu">count</span>(name, type, size, price, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">top_n</span>(<span class="at">n =</span> <span class="dv">5</span>)</span>
+<span id="cb5-6"><a></a>pizza_top <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a></a>  <span class="fu">fmt_currency</span>(<span class="at">columns =</span> price, <span class="at">currency =</span> <span class="st">"USD"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a></a>  <span class="fu">tab_source_note</span>(</span>
+<span id="cb5-11"><a></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="fu">paste0</span>(</span>
+<span id="cb5-12"><a></a>      <span class="st">"Source: [pizzaplace dataset]"</span>,</span>
+<span id="cb5-13"><a></a>      <span class="st">"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"</span></span>
+<span id="cb5-14"><a></a>    ))</span>
+<span id="cb5-15"><a></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="nrktanreeh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nrktanreeh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#nrktanreeh thead, #nrktanreeh tbody, #nrktanreeh tfoot, #nrktanreeh tr, #nrktanreeh td, #nrktanreeh th {
+  border-style: none;
+}
+
+#nrktanreeh p {
+  margin: 0;
+  padding: 0;
+}
+
+#nrktanreeh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#nrktanreeh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#nrktanreeh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#nrktanreeh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#nrktanreeh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nrktanreeh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#nrktanreeh .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #0076BA;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#nrktanreeh .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #0076BA;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#nrktanreeh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#nrktanreeh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#nrktanreeh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#nrktanreeh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#nrktanreeh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#nrktanreeh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#nrktanreeh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#nrktanreeh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#nrktanreeh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#nrktanreeh .gt_stub {
+  color: #333333;
+  background-color: #89D3FE;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D5D5D5;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nrktanreeh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#nrktanreeh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#nrktanreeh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#nrktanreeh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nrktanreeh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#nrktanreeh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nrktanreeh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_striped {
+  background-color: #EDF7FC;
+}
+
+#nrktanreeh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#nrktanreeh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nrktanreeh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nrktanreeh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#nrktanreeh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#nrktanreeh .gt_left {
+  text-align: left;
+}
+
+#nrktanreeh .gt_center {
+  text-align: center;
+}
+
+#nrktanreeh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#nrktanreeh .gt_font_normal {
+  font-weight: normal;
+}
+
+#nrktanreeh .gt_font_bold {
+  font-weight: bold;
+}
+
+#nrktanreeh .gt_font_italic {
+  font-style: italic;
+}
+
+#nrktanreeh .gt_super {
+  font-size: 65%;
+}
+
+#nrktanreeh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#nrktanreeh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#nrktanreeh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#nrktanreeh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#nrktanreeh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#nrktanreeh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#nrktanreeh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#nrktanreeh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#nrktanreeh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header gt_heading">
+<th colspan="5" class="gt_heading gt_title gt_font_normal">Pizza Top 5</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">2015</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
+<th id="type" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">type</th>
+<th id="size" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">size</th>
+<th id="price" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">price</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">big_meat</td>
+<td class="gt_row gt_left" headers="type">classic</td>
+<td class="gt_row gt_center" headers="size">S</td>
+<td class="gt_row gt_right" headers="price">$12.00</td>
+<td class="gt_row gt_right" headers="n">1914</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="name">thai_ckn</td>
+<td class="gt_row gt_left gt_striped" headers="type">chicken</td>
+<td class="gt_row gt_center gt_striped" headers="size">L</td>
+<td class="gt_row gt_right gt_striped" headers="price">$20.75</td>
+<td class="gt_row gt_right gt_striped" headers="n">1410</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">five_cheese</td>
+<td class="gt_row gt_left" headers="type">veggie</td>
+<td class="gt_row gt_center" headers="size">L</td>
+<td class="gt_row gt_right" headers="price">$18.50</td>
+<td class="gt_row gt_right" headers="n">1409</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="name">four_cheese</td>
+<td class="gt_row gt_left gt_striped" headers="type">veggie</td>
+<td class="gt_row gt_center gt_striped" headers="size">L</td>
+<td class="gt_row gt_right gt_striped" headers="price">$17.95</td>
+<td class="gt_row gt_right gt_striped" headers="n">1316</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name">classic_dlx</td>
+<td class="gt_row gt_left" headers="type">classic</td>
+<td class="gt_row gt_center" headers="size">M</td>
+<td class="gt_row gt_right" headers="price">$16.00</td>
+<td class="gt_row gt_right" headers="n">1181</td>
+</tr>
+</tbody><tfoot class="gt_sourcenotes">
+<tr class="even">
+<td colspan="5" class="gt_sourcenote"><p>Source: <a href="https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace">pizzaplace dataset</a></p></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>pizza_top <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(name, n, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb6-3"><a></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> type, <span class="at">size =</span> size)) <span class="sc">+</span></span>
+<span id="cb6-4"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> price), <span class="at">nudge_y =</span> <span class="sc">-</span><span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Top 5"</span>, <span class="at">subtitle =</span> <span class="st">"2015"</span>, <span class="at">x =</span> <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-pizza-scatter-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-45"><img data-src="slides_files/figure-revealjs/s3-pizza-scatter-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li>The same data can be shown as a table or as a plot. Which one is better depends on what you want your audience to take away.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-3-choose-a-chart-type-1" class="slide level2 smaller">
+<h2>Step 3: Choose a chart type</h2>
+<p><span class="lead"><strong>One dataset, many visualizations</strong></span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>pizza_season <span class="ot">&lt;-</span> pizzaplace <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a></a>  <span class="fu">count</span>(type)</span>
+<span id="cb7-5"><a></a></span>
+<span id="cb7-6"><a></a>fig_season_1 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb7-8"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-10"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb7-11"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb7-12"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb7-13"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb7-14"><a></a>  )</span>
+<span id="cb7-15"><a></a>fig_season_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-pizza-season-bars-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-46"><img data-src="slides_files/figure-revealjs/s3-pizza-season-bars-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>fig_season_2 <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> type)) <span class="sc">+</span></span>
+<span id="cb8-4"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-5"><a></a>    <span class="at">title =</span> <span class="st">"Pizza Season"</span>,</span>
+<span id="cb8-6"><a></a>    <span class="at">subtitle =</span> <span class="st">"2015"</span>,</span>
+<span id="cb8-7"><a></a>    <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>,</span>
+<span id="cb8-8"><a></a>    <span class="at">x =</span> <span class="st">"Month"</span></span>
+<span id="cb8-9"><a></a>  )</span>
+<span id="cb8-10"><a></a>fig_season_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-pizza-season-lines-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-47"><img data-src="slides_files/figure-revealjs/s3-pizza-season-lines-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+<aside class="notes">
+<ul>
+<li>Stacked bars: you can see the total per month, but its hard to compare one pizza type over time (only the bottom one has a common baseline, remember the speed dates!).</li>
+<li>Lines: good for comparing the types over time. Harder to see the total.</li>
+<li>Which one you choose depends on your conclusion.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-3-choose-a-chart-type-2" class="slide level2">
+<h2>Step 3: Choose a chart type</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/data-to-viz.png" class="lightbox" data-gallery="quarto-lightbox-gallery-48"><img data-src="images/data-to-viz.png" class="quarto-figure quarto-figure-center" height="520"></a></p>
+</figure>
+</div>
+<div class="footer">
+<p><a href="https://www.data-to-viz.com/" target="_blank">from data to viz</a></p>
+</div>
+</section>
+<section id="step-3-choose-a-chart-type-3" class="slide level2">
+<h2>Step 3: Choose a chart type</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/data-to-viz-caveats.png" class="lightbox" data-gallery="quarto-lightbox-gallery-49"><img data-src="images/data-to-viz-caveats.png" class="quarto-figure quarto-figure-center" height="520"></a></p>
+</figure>
+</div>
+<div class="footer">
+<p><a href="https://www.data-to-viz.com/" target="_blank">from data to viz</a>: also check the caveats for each chart type!</p>
+</div>
+</section>
+<section id="step-4-highlight-your-main-conclusion" class="slide level2 smaller">
+<h2>Step 4: Highlight your main conclusion</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>Decide <strong>where</strong> you want the viewer to look first.</li>
+<li>Use visual elements (colors, arrows, highlights) to guide that.</li>
+</ul>
+</div><div class="column" style="width:70%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/highlight-conclusion.png" class="lightbox" data-gallery="quarto-lightbox-gallery-50"><img data-src="images/highlight-conclusion.png" alt=""></a></p>
+<figcaption><a href="https://www.storytellingwithdata.com/makeovers"></a></figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="step-4-highlight-your-main-conclusion-1" class="slide level2 smaller">
+<h2>Step 4: Highlight your main conclusion</h2>
+<p><span class="lead"><strong>Advanced DV features</strong></span></p>
+<p><span class="muted">There are more advanced techniques available to you to make certain details, and your main point, clear to the audience.</span></p>
+<div class="spaced">
+<ul>
+<li><strong>Declutter</strong> <span class="muted">remove what doesn’t add information</span></li>
+<li><strong>Themes, facets, layouts</strong> <span class="muted">for structure and consistency</span></li>
+<li><strong>Color</strong> <span class="muted">e.g., gray-scale with one accent color</span></li>
+<li><strong>Typography and annotation</strong> <span class="muted">guide the eye to your conclusion</span></li>
+<li><strong>Uncertainty</strong> <span class="muted">show how sure you are</span></li>
+</ul>
+</div>
+<div class="footer">
+<p>Also revisit the <a href="#//tips-for-the-best-viz">guiding principles</a> from session 1.</p>
+</div>
+</section>
+<section id="chart-junk" class="slide level2">
+<h2>Chart junk</h2>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart_junk.png" class="lightbox" data-gallery="chart-junk-gallery" title="NYT"><img data-src="images/chart_junk.png" class="quarto-figure quarto-figure-center" alt="NYT"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://www.nytimes.com/2017/10/09/learning/whats-going-on-in-this-graph-oct-10-2017.html">NYT</a></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart_junk2.png" class="lightbox" data-gallery="chart-junk-gallery" title="Claus Wilke"><img data-src="images/chart_junk2.png" class="quarto-figure quarto-figure-center" alt="Claus Wilke"></a></p>
+</figure>
+</div>
+<figcaption>Claus Wilke</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chart-junk3.png" class="lightbox" data-gallery="chart-junk-gallery" title="NYT"><img data-src="images/chart-junk3.png" class="quarto-figure quarto-figure-center" alt="NYT"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://www.nytimes.com/2025/09/11/learning/whats-going-on-in-this-graph-sept-17-2025.html">NYT</a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="chart-junk-1" class="slide level2">
+<h2>Chart junk</h2>
+<p><span class="muted">You can try it yourself with <code>geom_image()</code> from <code>ggimage</code></span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a><span class="fu">library</span>(ggimage)</span>
+<span id="cb9-2"><a></a><span class="co"># aggregate to totals</span></span>
+<span id="cb9-3"><a></a>pizza_totals <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(n), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a></a>  <span class="fu">mutate</span>(<span class="at">n_icons =</span> <span class="fu">round</span>(total <span class="sc">/</span> <span class="dv">1000</span>)) <span class="co"># 1 pizza = 1000 sales</span></span>
+<span id="cb9-7"><a></a></span>
+<span id="cb9-8"><a></a><span class="co"># expand data: one row per pizza icon</span></span>
+<span id="cb9-9"><a></a><span class="co"># this is a trick so that each pizza icon can be plotted separately (essentially</span></span>
+<span id="cb9-10"><a></a><span class="co"># using geom_point but appearing as a bar)</span></span>
+<span id="cb9-11"><a></a>chart_junk_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a></a>  <span class="fu">mutate</span>(<span class="at">icon_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span>n_icons)) <span class="sc">|&gt;</span></span>
+<span id="cb9-14"><a></a>  <span class="fu">unnest</span>(icon_id)</span>
+<span id="cb9-15"><a></a></span>
+<span id="cb9-16"><a></a><span class="co"># plot with 🍕</span></span>
+<span id="cb9-17"><a></a>pizza_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(chart_junk_data, <span class="fu">aes</span>(<span class="at">x =</span> icon_id, <span class="at">y =</span> type)) <span class="sc">+</span></span>
+<span id="cb9-18"><a></a>  <span class="fu">geom_image</span>(<span class="fu">aes</span>(<span class="at">image =</span> <span class="st">"images/pizza.png"</span>), <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a></a>  <span class="co"># add white rectangle to cover up excess icons (taken from pizza_totals data)</span></span>
+<span id="cb9-20"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb9-21"><a></a>    <span class="at">data =</span> pizza_totals,</span>
+<span id="cb9-22"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb9-23"><a></a>      <span class="at">xmin =</span> total <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span> <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb9-24"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb9-25"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span></span>
+<span id="cb9-26"><a></a>    ),</span>
+<span id="cb9-27"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb9-28"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb9-29"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-30"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-31"><a></a>    <span class="at">title =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb9-32"><a></a>    <span class="at">x =</span> <span class="st">"Sales (Scale 1:1000)"</span>,</span>
+<span id="cb9-33"><a></a>    <span class="at">y =</span> <span class="cn">NULL</span></span>
+<span id="cb9-34"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb9-35"><a></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">14</span>) <span class="sc">+</span></span>
+<span id="cb9-36"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-37"><a></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-38"><a></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-39"><a></a>    <span class="at">panel.grid.minor.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb9-40"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb9-41"><a></a>  )</span>
+<span id="cb9-42"><a></a></span>
+<span id="cb9-43"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-chart-junk-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-54"><img data-src="slides_files/figure-revealjs/s3-chart-junk-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="themes" class="slide level2">
+<h2>Themes</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">theme_cowplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-themes-cowplot-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-55"><img data-src="slides_files/figure-revealjs/s3-themes-cowplot-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>my_theme <span class="ot">&lt;-</span> <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb11-2"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-3"><a></a>    <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray90"</span>),</span>
+<span id="cb11-4"><a></a>    <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray20"</span>),</span>
+<span id="cb11-5"><a></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"italic"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb11-6"><a></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb11-7"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb11-8"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">18</span>),</span>
+<span id="cb11-9"><a></a>    <span class="at">legend.position =</span> <span class="st">"top"</span>,</span>
+<span id="cb11-10"><a></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb11-11"><a></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>)</span>
+<span id="cb11-12"><a></a>  )</span>
+<span id="cb11-13"><a></a>fig_season_2 <span class="sc">+</span> my_theme</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-themes-custom-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-56"><img data-src="slides_files/figure-revealjs/s3-themes-custom-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="facets" class="slide level2 smaller">
+<h2>Facets</h2>
+<ul>
+<li><code>theme_cowplot</code> and <code>theme_bw()</code> format facets nicely.</li>
+<li>Change facet format manually with <code>theme(strip.text = element_text(...))</code> and <code>theme(strip.background = element_rect(...))</code>.</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb12-2"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">theme_bw</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-facets-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-57"><img data-src="slides_files/figure-revealjs/s3-facets-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">"solid"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>type) <span class="sc">+</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">theme_minimal</span>(<span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-6"><a></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb13-7"><a></a>    <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"plum4"</span>),</span>
+<span id="cb13-8"><a></a>    <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"thistle2"</span>, <span class="at">color =</span> <span class="cn">NA</span>)</span>
+<span id="cb13-9"><a></a>  ) <span class="co"># fill for background; color for border</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-facets-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-58"><img data-src="slides_files/figure-revealjs/s3-facets-2-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="combining-plots-patchwork" class="slide level2 smaller">
+<h2>Combining plots: <code>patchwork</code></h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="spaced">
+<ul>
+<li>Combine plots with <code>+</code></li>
+<li>Add a shared title, subtitle, and caption with <code>plot_annotation()</code></li>
+<li>Style them with <code>plot_annotation(theme = theme(...))</code></li>
+</ul>
+</div>
+</div><div class="column" style="width:65%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb14-2"><a></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb14-4"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Fuel efficiency vs Horsepower"</span>)</span>
+<span id="cb14-6"><a></a></span>
+<span id="cb14-7"><a></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb14-8"><a></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb14-9"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"MPG by Number of Cylinders"</span>)</span>
+<span id="cb14-11"><a></a></span>
+<span id="cb14-12"><a></a>p1 <span class="sc">+</span> p2 <span class="sc">+</span></span>
+<span id="cb14-13"><a></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb14-14"><a></a>    <span class="at">title =</span> <span class="st">"Analysis of mtcars dataset"</span>,</span>
+<span id="cb14-15"><a></a>    <span class="at">caption =</span> <span class="st">"Data source: mtcars"</span>,</span>
+<span id="cb14-16"><a></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">16</span>))</span>
+<span id="cb14-17"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-patchwork-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-59"><img data-src="slides_files/figure-revealjs/s3-patchwork-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+<div class="footer">
+<p><a href="https://r-graph-gallery.com/package/patchwork.html" target="_blank">patchwork package</a></p>
+</div>
+</section>
+<section id="color-scales" class="slide level2 smaller">
+<h2>Color scales</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>fig_quarter <span class="ot">&lt;-</span> pizza_season <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a></a>  <span class="fu">mutate</span>(<span class="at">quarter =</span> <span class="fu">case_when</span>(</span>
+<span id="cb15-3"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Feb"</span>, <span class="st">"Mar"</span>) <span class="sc">~</span> <span class="st">"Q1"</span>,</span>
+<span id="cb15-4"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Apr"</span>, <span class="st">"May"</span>, <span class="st">"Jun"</span>) <span class="sc">~</span> <span class="st">"Q2"</span>,</span>
+<span id="cb15-5"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Jul"</span>, <span class="st">"Aug"</span>, <span class="st">"Sep"</span>) <span class="sc">~</span> <span class="st">"Q3"</span>,</span>
+<span id="cb15-6"><a></a>    month <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Oct"</span>, <span class="st">"Nov"</span>, <span class="st">"Dec"</span>) <span class="sc">~</span> <span class="st">"Q4"</span></span>
+<span id="cb15-7"><a></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quarter, <span class="at">y =</span> n, <span class="at">group =</span> type)) <span class="sc">+</span></span>
+<span id="cb15-9"><a></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb15-10"><a></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pizza Season"</span>, <span class="at">y =</span> <span class="st">"Number of pizzas sold"</span>, <span class="at">x =</span> <span class="st">""</span>)</span>
+<span id="cb15-11"><a></a></span>
+<span id="cb15-12"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb15-13"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Qualitative color scale"</span>) <span class="sc">+</span></span>
+<span id="cb15-14"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"qual"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-colors-qual-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-60"><img data-src="slides_files/figure-revealjs/s3-colors-qual-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>qualitative</strong><br>
+<span class="muted">categorical data</span></p>
+</div><div class="column" style="width:33%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Sequential color scale"</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"seq"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-colors-seq-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-61"><img data-src="slides_files/figure-revealjs/s3-colors-seq-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>sequential</strong><br>
+<span class="muted">ordered data, from low to high</span></p>
+</div><div class="column" style="width:33%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>fig_quarter <span class="sc">+</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Diverging color scale"</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">type =</span> <span class="st">"div"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-colors-div-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-62"><img data-src="slides_files/figure-revealjs/s3-colors-div-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>diverging</strong><br>
+<span class="muted">ordered data with a critical midpoint, e.g.&nbsp;0</span></p>
+</div></div>
+<div class="footer">
+<p>🎨 Check out this <a href="https://projects.susielu.com/viz-palette">color picker tool</a> by Susie Lu.</p>
+</div>
+</section>
+<section id="color-blindness" class="slide level2 smaller scrollable">
+<h2>Color blindness</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># colorblindr is installed from GitHub (clauswilke/colorblindr)</span></span>
+<span id="cb18-2"><a></a>colorblindr<span class="sc">::</span><span class="fu">cvd_grid</span>(fig_quarter)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-colorblindness-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-63"><img data-src="slides_files/figure-revealjs/s3-colorblindness-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="muted">The package <code>MetBrewer</code> has many colorblind-friendly palettes, e.g.&nbsp;<code>scale_fill_manual(values = MetBrewer::met.brewer("VanGogh3", n = 4))</code></span></p>
+<div class="footer">
+<p>Packages: <a href="https://packages.tesselle.org/khroma/">khroma</a>, <a href="https://sjmgarnier.github.io/viridis/">viridis</a>, <a href="https://github.com/BlakeRMills/MetBrewer">MetBrewer</a>, <a href="https://vankesteren.github.io/rijkspalette/">rijkspalette</a>, <a href="https://github.com/clauswilke/colorblindr">colorblindr</a>. Or check it yourself with a <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/">simulator</a>.</p>
+</div>
+</section>
+<section id="typography" class="slide level2 smaller">
+<h2>Typography</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li>Learn everything about <a href="https://practicaltypography.com/">typography</a>.</li>
+<li>Choose a font for <a href="https://nightingaledvs.com/choosing-fonts-for-your-data-visualization/">data visualizations</a>.</li>
+<li>Pick good <a href="https://fontjoy.com/">font combinations</a>.</li>
+<li>Or just use <a href="https://pubs.acs.org/doi/10.1021/acs.chemmater.6b00306">arial or helvetica</a>.</li>
+</ul>
+</div><div class="column" style="width:70%;">
+<p>Change fonts with package <code>showtext</code> and function <code>font_add_google()</code>. <a href="https://fonts.google.com/">Browse Google Fonts</a></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">library</span>(showtext)</span>
+<span id="cb19-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lekton"</span>)</span>
+<span id="cb19-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb19-4"><a></a></span>
+<span id="cb19-5"><a></a>fig_season_2 <span class="sc">+</span></span>
+<span id="cb19-6"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lekton"</span>, <span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-typography-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-64"><img data-src="slides_files/figure-revealjs/s3-typography-1.png" width="768"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="show-uncertainty" class="slide level2 smaller">
+<h2>Show uncertainty</h2>
+<p><span class="lead"><strong>How sure are you of your conclusion? Show it.</strong></span></p>
+<div class="spaced">
+<ul>
+<li><strong>Sample size</strong> <span class="muted">how many schools (or students) is each group based on?</span></li>
+<li><strong>Spread:</strong> <span class="muted">is it informative to show the distribution, or error bars / intervals, not just the mean?</span></li>
+<li><strong>Missing data</strong> <span class="muted">how did you handle them, and does it matter? If yes, add a note in the caption.</span></li>
+<li><strong>Confidence intervals</strong> <span class="muted">(+ explain them in a way your audience understands.)</span></li>
+</ul>
+</div>
+<div class="footer">
+<p>Read more: <a href="https://clauswilke.com/dataviz/visualizing-uncertainty.html" target="_blank">clauswilke.com</a> (visualizing uncertainty)</p>
+</div>
+<aside class="notes">
+<ul>
+<li>Polished charts tend to hide uncertainty. But your audience needs to know how sure you are.</li>
+<li>This is also part of your report: how robust are your findings?</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="putting-it-together" class="slide level2 smaller">
+<h2>Putting it together</h2>
+<p><span class="lead"><strong>Consider your audience:</strong></span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>pizza_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-audience-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-65"><img data-src="slides_files/figure-revealjs/s3-audience-1-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-together-1" class="slide level2 smaller">
+<h2>Putting it together</h2>
+<p><span class="lead"><strong>Consider your audience:</strong></span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lobster"</span>)</span>
+<span id="cb21-2"><a></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Lexend"</span>)</span>
+<span id="cb21-3"><a></a>showtext<span class="sc">::</span><span class="fu">showtext_auto</span>()</span>
+<span id="cb21-4"><a></a></span>
+<span id="cb21-5"><a></a>pizza_plot <span class="sc">+</span></span>
+<span id="cb21-6"><a></a>  <span class="co"># add a geom_rect element with opacity on top of pizza bars, to highlight the</span></span>
+<span id="cb21-7"><a></a>  <span class="co"># biggest bar</span></span>
+<span id="cb21-8"><a></a>  <span class="fu">geom_rect</span>(</span>
+<span id="cb21-9"><a></a>    <span class="at">data =</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb21-10"><a></a>      <span class="fu">mutate</span>(<span class="at">highlight =</span> <span class="fu">ifelse</span>(type <span class="sc">==</span> <span class="st">"classic"</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)),</span>
+<span id="cb21-11"><a></a>    <span class="fu">aes</span>(</span>
+<span id="cb21-12"><a></a>      <span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> total <span class="sc">/</span> <span class="dv">1000</span>,</span>
+<span id="cb21-13"><a></a>      <span class="at">ymin =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">-</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-14"><a></a>      <span class="at">ymax =</span> <span class="fu">as.numeric</span>(<span class="fu">factor</span>(type)) <span class="sc">+</span> <span class="fl">0.5</span>,</span>
+<span id="cb21-15"><a></a>      <span class="at">alpha =</span> highlight</span>
+<span id="cb21-16"><a></a>    ),</span>
+<span id="cb21-17"><a></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb21-18"><a></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb21-19"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb21-20"><a></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="dv">0</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="fl">0.3</span>), <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb21-21"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb21-22"><a></a>    <span class="at">title =</span> <span class="st">"The classic is a classic for a reason."</span>,</span>
+<span id="cb21-23"><a></a>    <span class="at">subtitle =</span> <span class="st">"Total Pizza Sales in 2015"</span>,</span>
+<span id="cb21-24"><a></a>    <span class="at">caption =</span> <span class="st">"Source: pizzaplace dataset"</span></span>
+<span id="cb21-25"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb21-26"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb21-27"><a></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">color =</span> <span class="st">"gray30"</span>),</span>
+<span id="cb21-28"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">20</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>),</span>
+<span id="cb21-29"><a></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lexend"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb21-30"><a></a>    <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb21-31"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Lobster"</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"tomato3"</span>)</span>
+<span id="cb21-32"><a></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-audience-2-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-66"><img data-src="slides_files/figure-revealjs/s3-audience-2-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-together-2" class="slide level2 smaller">
+<h2>Putting it together</h2>
+<p><span class="lead"><strong>Consider your audience:</strong></span></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>max_sales <span class="ot">&lt;-</span> <span class="fu">max</span>(pizza_totals<span class="sc">$</span>total)</span>
+<span id="cb22-2"><a></a>best_seller <span class="ot">&lt;-</span> pizza_totals<span class="sc">$</span>type[pizza_totals<span class="sc">$</span>total <span class="sc">==</span> max_sales]</span>
+<span id="cb22-3"><a></a></span>
+<span id="cb22-4"><a></a>plot_data <span class="ot">&lt;-</span> pizza_totals <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a></a>  <span class="fu">mutate</span>(<span class="at">is_max =</span> total <span class="sc">==</span> max_sales) <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a></a>  <span class="fu">mutate</span>(<span class="at">type =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(type, total, <span class="at">.desc =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb22-7"><a></a></span>
+<span id="cb22-8"><a></a><span class="co"># the best seller is colored in the subtitle, like its bar (needs ggtext)</span></span>
+<span id="cb22-9"><a></a>main_conclusion <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb22-10"><a></a>  <span class="st">"The &lt;span style='color:tomato3;'&gt;"</span>, best_seller, <span class="st">" pizza&lt;/span&gt; "</span>,</span>
+<span id="cb22-11"><a></a>  <span class="st">"is the clear leader with "</span>, scales<span class="sc">::</span><span class="fu">comma</span>(max_sales), <span class="st">" units sold."</span></span>
+<span id="cb22-12"><a></a>)</span>
+<span id="cb22-13"><a></a></span>
+<span id="cb22-14"><a></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">y =</span> total, <span class="at">fill =</span> is_max)) <span class="sc">+</span></span>
+<span id="cb22-15"><a></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb22-16"><a></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb22-17"><a></a>    <span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total)),</span>
+<span id="cb22-18"><a></a>    <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb22-19"><a></a>    <span class="at">size =</span> <span class="dv">4</span>,</span>
+<span id="cb22-20"><a></a>    <span class="at">fontface =</span> <span class="st">"bold"</span></span>
+<span id="cb22-21"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-22"><a></a>  <span class="co"># highlight color for the best seller, neutral gray for the rest</span></span>
+<span id="cb22-23"><a></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb22-24"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"tomato3"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"grey70"</span>),</span>
+<span id="cb22-25"><a></a>    <span class="at">guide =</span> <span class="st">"none"</span></span>
+<span id="cb22-26"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-27"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb22-28"><a></a>    <span class="at">title =</span> <span class="st">"Total Sales by Pizza Type"</span>,</span>
+<span id="cb22-29"><a></a>    <span class="at">subtitle =</span> main_conclusion,</span>
+<span id="cb22-30"><a></a>    <span class="at">x =</span> <span class="st">"Pizza Type"</span>,</span>
+<span id="cb22-31"><a></a>    <span class="at">y =</span> <span class="st">"Total Units Sold"</span></span>
+<span id="cb22-32"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-33"><a></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb22-34"><a></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-35"><a></a>    <span class="at">plot.title.position =</span> <span class="st">"plot"</span>,</span>
+<span id="cb22-36"><a></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb22-37"><a></a>    <span class="at">plot.subtitle =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">color =</span> <span class="st">"grey30"</span>),</span>
+<span id="cb22-38"><a></a>    <span class="co"># the values are already on the bars, so the y-axis can go</span></span>
+<span id="cb22-39"><a></a>    <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-40"><a></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-41"><a></a>    <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-42"><a></a>    <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb22-43"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb22-44"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.15</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><a href="slides_files/figure-revealjs/s3-audience-3-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-67"><img data-src="slides_files/figure-revealjs/s3-audience-3-1.png" width="960"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li>Same data, three plots. The first is chart junk; the second is fun and highlights the winner (fine for a pizza menu!); the third states the conclusion in the subtitle, highlights it with color, and removes everything that doesn’t help.</li>
+<li>Which one is right depends on your audience.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="final-considerations" class="slide level2">
+<h2>Final considerations</h2>
+<ul>
+<li>Are all visual elements necessary? (borders, gridlines, etc.)</li>
+<li>Are names informative and adapted to the audience?</li>
+<li>Is text big enough and legible at all plot sizes?</li>
+<li>Can the plot render nicely on a presentation screen?</li>
+</ul>
+<div class="footer">
+<p><strong>Color Accuracy:</strong> Print-proof, <a href="https://www.benq.com/en-us/knowledge-center/knowledge/how-to-maintain-color-consistency-on-different-monitors.html">monitor/beamer-proof</a>, colorblind-proof?, <a href="https://en.wikipedia.org/wiki/Color_coding_in_data_visualization">color-coding</a><br><strong>File format:</strong> resizing <a href="https://www.lifewire.com/vector-and-bitmap-images-1701238">vector vs.&nbsp;bitmap/raster</a>. For bitmap images, set the plot resolution: <em>dpi = c(“retina”, “print”, “screen”)</em></p>
+</div>
+</section>
+<section id="some-good-examples-1" class="slide level2">
+<h2>Some good examples 🏆</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/good-example-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-68"><img data-src="images/good-example-1.png" class="quarto-figure quarto-figure-center" height="560"></a></p>
+</figure>
+</div>
+</section>
+<section id="some-good-examples-2" class="slide level2">
+<h2>Some good examples 🏆</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/good-example-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-69"><img data-src="images/good-example-2.png" class="quarto-figure quarto-figure-center" height="560"></a></p>
+</figure>
+</div>
+</section>
+<section id="continue-learning" class="slide level2 smaller">
+<h2>Continue learning</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Viz types and examples: <a href="https://www.data-to-viz.com/#explore">From Data to Viz</a>, <a href="https://r-graph-gallery.com/">The R Graph Gallery</a>, <a href="https://clauswilke.com/dataviz/directory-of-visualizations.html">clauswilke.com</a></p>
+<p>Extensions: <a href="https://exts.ggplot2.tidyverse.org/gallery/">ggplot2 Extensions Gallery</a></p>
+<p>Books: <a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a></p>
+<p>NYT: <a href="https://www.nytimes.com/column/whats-going-on-in-this-graph">What’s going on in this graph?</a></p>
+<p>Data: <a href="https://edwindj.github.io/cbsodataR/">Statistics Netherlands</a> or <code>data()</code></p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/ggplot2_book.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-70" title="RTFM: ggplot2 Book"><img data-src="images/ggplot2_book.jpg" class="quarto-figure quarto-figure-left" style="width:50.0%" alt="RTFM: ggplot2 Book"></a></p>
+</figure>
+</div>
+<figcaption>RTFM: ggplot2 Book</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="get-inspiration" class="slide level2 smaller">
+<h2>Get inspiration</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Podcasts: <a href="https://datastori.es/">Data Stories</a>, <a href="https://www.visualisingdata.com/podcast/">Explore Explain</a>, <a href="https://dataviztoday.com/">Data Viz Today</a></p>
+<p>Blogs: <a href="https://flowingdata.com/">FlowingData</a></p>
+<p>Journals: <a href="https://nightingaledvs.com/">Nightingale</a></p>
+<p>Comics: <a href="https://medium.com/@MattIanHong">Matt-Heun Hong</a>, <a href="https://twitter.com/martintelefont/status/1147737522182742017">Martin Telefont</a>, <a href="https://eolay.tilda.ws/datavizcomics/en">Natalia Kiseleva</a></p>
+<p>Generative art: <a href="https://clauswilke.com/art/">Clause O. Wilke</a>, <a href="https://art.djnavarro.net/">Danielle Navarro</a>, <a href="https://www.data-imaginist.com/art">Thomas Lin Pedersen</a></p>
+<p>Awards: <a href="https://www.informationisbeautifulawards.com/showcase?action=index&amp;controller=showcase&amp;page=1&amp;pcategory=winner&amp;type=awards">Information is Beautiful</a></p>
+<p>Interactive visualizations: <a href="https://rpsychologist.com/viz">R Psychologist</a></p>
+<p>Explorable explanations: <a href="https://ncase.me/">Nicky Case</a>, <a href="https://setosa.io/">Setosa</a></p>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><a href="images/becoming_2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-71" title="Thomas Lin Pedersen"><img data-src="images/becoming_2.jpg" class="quarto-figure quarto-figure-left" height="500" alt="Thomas Lin Pedersen"></a></p>
+</figure>
+</div>
+<figcaption><a href="https://thomaslinpedersen.art/work/becoming/">Thomas Lin Pedersen</a></figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="using-ai-for-explanatory-dvs" class="slide level2 smaller">
+<h2>Using AI for explanatory DVs 🤖</h2>
+<div class="spaced">
+<ol type="1">
+<li><strong>Write your conclusion first, without AI</strong> <br> <span class="muted">The AI should help you show your conclusion, not choose it</span></li>
+<li><strong>Let it do the technical work</strong> <br> <span class="muted">Annotations, highlighting, themes, layouts, color palettes</span></li>
+<li><strong>Ask for alternatives</strong> <br> <span class="muted">3–4 different designs for the same message; then choose and justify</span></li>
+<li><strong>Criticize everything it adds</strong> <br> <span class="muted">Does it make the conclusion clearer, or only decorate? Check the title for causal language</span></li>
+<li><strong>Use it as a critic, carefully</strong> <br> <span class="muted">Ask for a skeptical review; you decide which critiques are valid</span></li>
+<li><strong>Test with a naïve reader</strong> <br> <span class="muted">What do they conclude? Is that conclusion true?</span></li>
+</ol>
+</div>
+<aside class="notes">
+<ul>
+<li>For explaining, AI is mostly useful for the technical features: all the things from the previous slides, it can write that code for you quickly.</li>
+<li>But also experiment with using it for feedback, and for alternative visualizations of the same message.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="using-ai-for-explanatory-dvs-1" class="slide level2">
+<h2>Using AI for explanatory DVs 🤖</h2>
+<p><br><br> <a href="../worksheets/working-with-ai.html">Try it yourself!</a></p>
+</section>
+<section id="pitches-friday-oct.-9" class="slide level2 smaller">
+<h2>Pitches: Friday, Oct.&nbsp;9</h2>
+<p><span class="lead"><strong>Bring a first draft of your final visualization</strong></span></p>
+<p><span class="muted">Render it in an html or pdf file and upload it to Canvas. The draft is not graded, but the further along it is, the more useful the feedback. No slides needed!</span></p>
+<div class="spaced">
+<ul>
+<li><strong>4-5 minutes pitch</strong> <br><span class="muted">research question, approach, conclusion, open questions</span></li>
+<li><strong>3-4 minutes discussion</strong> <br><span class="muted">bring the questions you would like input on</span></li>
+<li><strong>AI use</strong> <br><span class="muted">how did you use it, what did you learn, which obstacles or risks did you run into?</span></li>
+</ul>
+</div>
+</section>
+<section id="handing-in-assignment-2-part-2" class="slide level2 smaller">
+<h2>Handing in Assignment 2, Part 2</h2>
+<p><span class="lead"><strong>Deadline: Sunday, October 11th, 23:59</strong></span></p>
+<p><strong>Hand in, on Canvas:</strong></p>
+<div class="spaced">
+<ol type="1">
+<li><strong>The link</strong> to your group’s (public) GitHub repository, with all your code pushed</li>
+</ol>
+<ul>
+<li>Your report, as:
+<ol start="2" type="1">
+<li><strong><code>.Rmd</code></strong> <br>with all code (lintr-proof!) to produce your final DV and report. <br>(A quarto document as <code>.qmd</code> is also fine.)</li>
+<li><strong><code>.html</code></strong> <br>compiles only the final DV and report text. <br>Hide your code by setting <code>code_folding = TRUE</code> in the preamble. <br>make sure it knits correctly; we will not compile your <code>.Rmd</code> for you</li>
+</ol></li>
+</ul>
+</div>
+<p><strong>And make sure I can clone your Github repo and completely reproduce your results.</strong></p>
+</section>
+<section id="handing-in-assignment-2-part-2-1" class="slide level2 smaller">
+<h2>Handing in Assignment 2, Part 2</h2>
+<p><span class="lead"><strong>Grading</strong></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 70%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Aesthetics <span class="muted">30%</span></td>
+<td>Clear and legible, no unnecessary clutter; color, labels and scales enhance readability</td>
+</tr>
+<tr class="even">
+<td>Communication <span class="muted">30%</span></td>
+<td>Can the main point be understood quickly, with minimal explanation?</td>
+</tr>
+<tr class="odd">
+<td>Description <span class="muted">20%</span></td>
+<td>Research question, what you wanted to communicate, why this visualization, what you can conclude. AI statement</td>
+</tr>
+<tr class="even">
+<td>Creativity and Complexity <span class="muted">10%</span></td>
+<td>ex. Going beyond a default chart type, where it adds value without obscuring the message; adding consistent themes and styling matching the target audience / context.</td>
+</tr>
+<tr class="odd">
+<td>Code Quality and Styling <span class="muted">10%</span></td>
+<td>Runs without errors, readable, lintr-proof</td>
+</tr>
+</tbody>
+</table>
+<div class="footer">
+<p>Full instructions: <a href="../assignments/assignment-2.html" target="_blank">Assignment 2</a></p>
+</div>
+</section>
+<section id="final-report-formatting" class="slide level2 smaller">
+<h2>Final report formatting</h2>
+<p><span class="lead">You do not need to display all your code.</span></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Hide or fold all code in your preamble:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a></a><span class="pp">---</span></span>
+<span id="cb23-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"example rmd"</span></span>
+<span id="cb23-3"><a></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb23-4"><a></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb23-5"><a></a><span class="at">    </span><span class="fu">code_folding</span><span class="kw">:</span><span class="at"> hide</span></span>
+<span id="cb23-6"><a></a><span class="pp">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:50%;">
+<p>Or per code chunk:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a></a>::: {.cell}</span>
+<span id="cb24-2"><a></a></span>
+<span id="cb24-3"><a></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section>
+<section id="now-1" class="slide level2">
+<h2>Now</h2>
+<p><span class="lead"><strong>In your groups:</strong></span></p>
+<div class="spaced">
+<ol type="1">
+<li><strong>AI worksheet, part 2</strong> <span class="muted">then a short discussion of your findings</span></li>
+<li><strong>Continue with Assignment 2, part 2</strong></li>
+</ol>
+</div>
+<p><span class="muted">Ask questions and consult me when needed!</span></p>
 
 <div class="quarto-auto-generated-content">
 <p><img src="images/uva_logo.png" class="slide-logo"></p>

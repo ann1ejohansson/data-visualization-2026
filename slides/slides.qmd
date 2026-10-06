@@ -57,6 +57,9 @@ if (!"plotly" %in% all_installed_packages) {
 if (!"viridis" %in% all_installed_packages) {
   install.packages("viridis")
 }
+if (!"ggtext" %in% all_installed_packages) {
+  install.packages("ggtext")
+}
 # nolint end
 
 # Load Required Packages
@@ -1049,4 +1052,931 @@ Interactivity enhances, but does not replace, the fundamentals of good data visu
 Image: [LinkedIn](https://www.linkedin.com/posts/ross-waring_victormair-gapingvoid-andreasvonderheydt-share-7201616137380376576-D7mq/){target="_blank"}
 :::
 
+# {.session-title .center background-color="#343a40"}
 
+[Session 3]{.session-number}
+[Tuesday, Oct. 6]{.session-date}
+[Explanatory Data Visualization]{.session-name}
+
+## Today
+
+[**Better plots 🥇**]{.lead}
+
+-  General feedback assignments
+-  Going from exploratory to explanatory
+-  Advanced DV features 
+-  Using AI for explanatory DVs
+
+## Feedback on Assignment 2, Part 1 {.smaller}
+
+::: spaced
+-   **Use informative titles**: state your conclusion in the title or subtitle in a declarative manner
+-   **Text: Increase font size, use bold-face in main statements**  
+-   **Visualize reliability**: show sample size, confidence intervals, etc. Especially if using bins/groupings.  
+-   **What is the added value of a boxplot?**
+-   **Go from exploratory to explanatory!** <br>the audience should get the main conclusion without reading the description
+:::
+
+## Use point size to your advantage {.smaller}
+
+![](images/point-size.png){width="75%"}
+
+## Boxplots {.smaller}
+
+![[The Anatomy of a Boxplot](https://www.data-to-viz.com/caveat/boxplot.html)](images/boxplot.png)
+
+::: footer
+The flaw of boxplots: read more about it [here](https://www.r-bloggers.com/2024/06/why-you-shouldnt-use-boxplots/) and [here](https://nightingaledvs.com/ive-stopped-using-box-plots-should-you/).
+:::
+
+## Exploratory versus explanatory {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+**Exploratory**
+
+![](images/explore-explain-01.gif){.framed width="100%"}
+:::
+
+::: {.column width="50%"}
+::: fragment
+**Explanatory**
+
+![](images/explore-explain-02.gif){.framed width="100%"}
+:::
+:::
+:::::
+
+[Source: [storytellingwithdata.com](https://www.storytellingwithdata.com/blog/2014/04/exploratory-vs-explanatory-analysis)]{.detail}
+
+
+## Making an explanatory DV
+
+::: spaced
+1.  Start from your conclusion 
+2.  Adapt it to your audience 
+3.  Choose a chart type that fits the conclusion and the data
+4.  Highlight your main conclusion
+:::
+
+::: notes
+- These four steps are the structure for the rest of today's lecture.
+- 1: what is the main thing you learned from the data, that you want to show in the DV?
+- 2: how do you say that to your audience, so they understand it?
+- 3: different chart types are more or less appropriate depending on context.
+- 4: there are more advanced techniques to make the details, and your main point, clear to the audience.
+:::
+
+## Step 1: Start from your conclusion {.smaller}
+
+[**What is the main thing you learned from the data?**]{.lead}
+
+::: spaced
+-   **Pick one main statement.**
+-   **Write down how you got there.** <br>[Which inferential or modeling choices led to this conclusion?]{.muted}
+-   **Justify** <br>[Why is this relevant, and why do you think it is correct? <br>How confident are you in the validity, reliability, and robustness of the results?]{.muted}
+:::
+
+::: notes
+- Pick one main statement that you want the DV to show. Everything else in the plot is there to support that one statement.
+- Write down which inferential/modeling choices led to this conclusion: which schools did you keep, how did you handle missing values, mean or median, which comparison.
+- Why do you think it is relevant, and why do you think it is correct? If you can't answer that, go back to exploring.
+:::
+
+## Step 2: Adapt it to your audience {.smaller}
+
+[**Formulate your conclusion so your audience understands it.**]{.lead}
+
+::: spaced
+-   **Who are they?** <br>[Each research question has a target audience: a municipal officer, policymakers, newspaper readers, school boards...]{.muted}
+-   **Which details do they need?** <br>[Pick the inferential/modeling details you want to show, and explain how they were derived.]{.muted}
+-   **Can they get it without reading your report?** <br>[Use the title and labels to carry the message.]{.muted}
+:::
+
+::: notes
+- Choose a formulation of your conclusion that is understandable to your audience. A municipal officer wants to see at a glance which schools are behind; a newspaper reader needs one clear message.
+- Pick which inferential/modeling details you want to display to the audience, and make sure you include an explanation of how those were derived (e.g. in a subtitle or caption).
+:::
+
+## Step 2: Adapt it to your audience {.smaller}
+
+[**Use your title and caption to do the explaining**]{.lead}
+
+::::: columns
+::: {.column width="45%"}
+::: spaced
+-   **Title:** [descriptive or declarative (state your conclusion!)]{.muted}
+-   **Methods:** [keep it brief, if needed at all]{.muted}
+-   **Results:** [only if not (fully) captured in the title]{.muted}
+-   **Definitions** [of colors, line types, error bars, etc.]{.muted}
+-   **Data source** [if external]{.muted}
+-   **Date and name** [for crediting]{.muted}
+:::
+:::
+
+::: {.column width="55%"}
+![](images/captions.png){.framed width="100%"}
+
+[Source: [datasketch.es](https://www.datasketch.es/project/655-frustrations-doing-data-visualization)]{.detail}
+:::
+:::::
+
+::: footer
+Resources: [clauswilke.com](https://clauswilke.com/dataviz/figure-titles-captions.html){target="_blank"}
+:::
+
+## Step 2: Adapt it to your audience {.smaller}
+
+[**Example: the Assignment 1 line plot, with a title and caption**]{.lead}
+
+```{r s2-lineplot-titled}
+#| echo: true
+#| eval: false
+#| code-fold: true
+# lineplot = the original plot from Assignment 1
+title_text <- paste(
+  "LIB has the highest percentage of students reaching the target level,",
+  "and Route8 the lowest. This gap holds even when accounting for the",
+  "socio-economic status of schools."
+)
+
+caption_text <- paste0(
+  "Data: DUO Open Onderwijsdata, doorstroomtoets results and reference ",
+  "levels, school year 2024-2025;\n",
+  "Inspectie van het Onderwijs, schoolweging 2024-2025.\n",
+  "Chart: Annie Johansson | ",
+  format(Sys.Date(), "%e %B %Y") |> str_trim()
+)
+
+legend_labels_oneline <- setNames(
+  paste0(
+    provider_n$provider,
+    " (n = ", format(provider_n$n_pupils, big.mark = ",", trim = TRUE), ")"
+  ),
+  provider_n$provider
+)
+
+lineplot_titled <- lineplot +
+  scale_color_manual(
+    values = provider_colors,
+    breaks = highlighted_providers, # legend in the same order as the lines
+    labels = legend_labels_oneline,
+    name = "Test provider"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 100),
+    breaks = seq(0, 100, 25),
+    labels = \(x) paste0(x, "%"),
+    expand = expansion(mult = c(0, 0.02))
+  ) +
+  labs(
+    title = str_wrap(title_text, width = 62),
+    y = "Students reaching target level",
+    caption = caption_text
+  ) +
+  theme(
+    plot.title = element_text(
+     face = "bold", size = 18, lineheight = 1.1,
+     margin = margin(b = 12)
+    ),
+    plot.title.position = "plot",
+    plot.caption = element_text(
+      color = "grey40", size = 10, hjust = 0, lineheight = 1.2,
+      margin = margin(t = 14)
+    ),
+    plot.caption.position = "plot",
+    axis.title = element_text(color = "grey25", size = 13),
+    axis.title.x = element_text(margin = margin(t = 8)),
+    axis.title.y = element_text(margin = margin(r = 8)),
+    axis.text = element_text(color = "grey35", size = 12),
+    axis.line.x = element_line(color = "grey60", linewidth = 0.4),
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_line(color = "grey90", linewidth = 0.4),
+    legend.justification = "left",
+    legend.title = element_text(face = "bold", size = 12.5),
+    legend.text = element_text(size = 12),
+    legend.margin = margin(b = 0),
+    plot.margin = margin(16, 20, 12, 16),
+    plot.background = element_rect(fill = "white", color = NA)
+  )
+```
+
+![](images/lineplot-titled.png){fig-align="center" height="480px"}
+
+
+## Step 3: Choose a chart type {.smaller}
+
+[**One dataset, many visualizations**]{.lead}
+
+::::: columns
+::: {.column width="50%"}
+```{r s3-pizza-table}
+#| echo: true
+#| code-fold: true
+data("pizzaplace")
+pizza_top <- pizzaplace |>
+  mutate(size = factor(size, levels = c("S", "M", "L"))) |>
+  count(name, type, size, price, sort = TRUE) |>
+  top_n(n = 5)
+pizza_top |>
+  gt() |>
+  tab_header(title = "Pizza Top 5", subtitle = "2015") |>
+  fmt_currency(columns = price, currency = "USD") |>
+  tab_source_note(
+    source_note = md(paste0(
+      "Source: [pizzaplace dataset]",
+      "(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)"
+    ))
+  ) |>
+  opt_stylize(style = 6)
+```
+:::
+
+::: {.column width="50%"}
+```{r s3-pizza-scatter, warning=FALSE}
+#| echo: true
+#| code-fold: true
+pizza_top |>
+  ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +
+  geom_point(aes(color = type, size = size)) +
+  geom_text(aes(label = price), nudge_y = -30) +
+  labs(title = "Pizza Top 5", subtitle = "2015", x = "name")
+```
+:::
+:::::
+
+::: notes
+- The same data can be shown as a table or as a plot. Which one is better depends on what you want your audience to take away.
+:::
+
+## Step 3: Choose a chart type {.smaller}
+
+[**One dataset, many visualizations**]{.lead}
+
+::::: columns
+::: {.column width="50%"}
+```{r s3-pizza-season-bars, fig.height=5}
+#| echo: true
+#| code-fold: true
+pizza_season <- pizzaplace |>
+  mutate(month = lubridate::month(date, label = TRUE)) |>
+  group_by(month) |>
+  count(type)
+
+fig_season_1 <- pizza_season |>
+  ggplot(aes(x = month, y = n, group = type)) +
+  geom_bar(aes(fill = type), stat = "identity") +
+  labs(
+    title = "Pizza Season",
+    subtitle = "2015",
+    y = "Number of pizzas sold",
+    x = "Month"
+  )
+fig_season_1
+```
+:::
+
+::: {.column width="50%"}
+::: fragment
+```{r s3-pizza-season-lines, fig.height=5}
+#| echo: true
+#| code-fold: true
+fig_season_2 <- pizza_season |>
+  ggplot(aes(x = month, y = n, group = type)) +
+  geom_line(aes(linetype = type)) +
+  labs(
+    title = "Pizza Season",
+    subtitle = "2015",
+    y = "Number of pizzas sold",
+    x = "Month"
+  )
+fig_season_2
+```
+:::
+:::
+:::::
+
+::: notes
+- Stacked bars: you can see the total per month, but its hard to compare one pizza type over time (only the bottom one has a common baseline, remember the speed dates!).
+- Lines: good for comparing the types over time. Harder to see the total.
+- Which one you choose depends on your conclusion.
+:::
+
+## Step 3: Choose a chart type
+
+![](images/data-to-viz.png){height="520px" fig-align="center"}
+
+::: footer
+[from data to viz](https://www.data-to-viz.com/){target="_blank"}
+:::
+
+## Step 3: Choose a chart type
+
+![](images/data-to-viz-caveats.png){height="520px" fig-align="center"}
+
+::: footer
+[from data to viz](https://www.data-to-viz.com/){target="_blank"}: also check the caveats for each chart type!
+:::
+
+## Step 4: Highlight your main conclusion {.smaller}
+
+::::: columns
+::: {.column width="30%"}
+-  Decide **where** you want the viewer to look first. 
+-  Use visual elements (colors, arrows, highlights) to guide that. 
+:::
+::: {.column width="70%"}
+![[](https://www.storytellingwithdata.com/makeovers)](images/highlight-conclusion.png)
+:::
+:::::
+## Step 4: Highlight your main conclusion {.smaller}
+
+[**Advanced DV features**]{.lead}
+
+[There are more advanced techniques available to you to make certain details, and your main point, clear to the audience.]{.muted}
+
+::: spaced
+-   **Declutter** [remove what doesn't add information]{.muted}
+-   **Themes, facets, layouts** [for structure and consistency]{.muted}
+-   **Color** [e.g., gray-scale with one accent color]{.muted}
+-   **Typography and annotation** [guide the eye to your conclusion]{.muted}
+-   **Uncertainty** [show how sure you are]{.muted}
+:::
+
+::: footer
+Also revisit the [guiding principles](#/tips-for-the-best-viz) from session 1.
+:::
+
+## Chart junk
+
+::: {layout-ncol="3"}
+![[NYT](https://www.nytimes.com/2017/10/09/learning/whats-going-on-in-this-graph-oct-10-2017.html)](images/chart_junk.png){group="chart-junk-gallery" fig-align="center"}
+
+![Claus Wilke](images/chart_junk2.png){group="chart-junk-gallery" fig-align="center"}
+
+![[NYT](https://www.nytimes.com/2025/09/11/learning/whats-going-on-in-this-graph-sept-17-2025.html)](images/chart-junk3.png){group="chart-junk-gallery" fig-align="center"}
+:::
+
+## Chart junk
+
+[You can try it yourself with `geom_image()` from `ggimage`]{.muted}
+
+```{r s3-chart-junk, message=FALSE, fig.height=4, fig.width=10}
+#| echo: true
+#| code-fold: true
+library(ggimage)
+# aggregate to totals
+pizza_totals <- pizza_season |>
+  group_by(type) |>
+  summarise(total = sum(n), .groups = "drop") |>
+  mutate(n_icons = round(total / 1000)) # 1 pizza = 1000 sales
+
+# expand data: one row per pizza icon
+# this is a trick so that each pizza icon can be plotted separately (essentially
+# using geom_point but appearing as a bar)
+chart_junk_data <- pizza_totals |>
+  rowwise() |>
+  mutate(icon_id = list(1:n_icons)) |>
+  unnest(icon_id)
+
+# plot with 🍕
+pizza_plot <- ggplot(chart_junk_data, aes(x = icon_id, y = type)) +
+  geom_image(aes(image = "images/pizza.png"), size = 0.2) +
+  # add white rectangle to cover up excess icons (taken from pizza_totals data)
+  geom_rect(
+    data = pizza_totals,
+    aes(
+      xmin = total / 1000, xmax = total / 1000 + 2,
+      ymin = as.numeric(factor(type)) - 0.5,
+      ymax = as.numeric(factor(type)) + 0.5
+    ),
+    inherit.aes = FALSE,
+    fill = "white"
+  ) +
+  labs(
+    title = "Total Pizza Sales in 2015",
+    x = "Sales (Scale 1:1000)",
+    y = NULL
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    axis.ticks = element_blank()
+  )
+
+pizza_plot
+```
+
+## Themes
+
+::::: columns
+::: {.column width="50%"}
+```{r s3-themes-cowplot}
+#| echo: true
+#| code-fold: true
+fig_season_2 +
+  theme_cowplot()
+```
+:::
+
+::: {.column width="50%"}
+```{r s3-themes-custom}
+#| echo: true
+#| code-fold: true
+my_theme <- theme_cowplot() +
+  theme(
+    panel.grid.major = element_line(color = "gray90"),
+    axis.ticks = element_line(color = "gray20"),
+    axis.text = element_text(color = "gray20", face = "italic", size = 16),
+    axis.title = element_text(color = "gray20", face = "bold", size = 16),
+    plot.title = element_text(hjust = 0.5, size = 20, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 18),
+    legend.position = "top",
+    legend.title = element_text(size = 16, face = "bold"),
+    legend.text = element_text(size = 16)
+  )
+fig_season_2 + my_theme
+```
+:::
+:::::
+
+## Facets {.smaller}
+
+-   `theme_cowplot` and `theme_bw()` format facets nicely.
+-   Change facet format manually with `theme(strip.text = element_text(...))` and `theme(strip.background = element_rect(...))`.
+
+:::::: columns
+::: {.column width="50%"}
+```{r s3-facets}
+#| echo: true
+#| code-fold: true
+fig_season_2 +
+  facet_wrap(~type) +
+  theme_bw(12) +
+  theme(legend.position = "none")
+```
+:::
+
+:::: {.column width="50%"}
+::: fragment
+```{r s3-facets-2}
+#| echo: true
+#| code-fold: true
+fig_season_2 +
+  geom_line(linetype = "solid", color = "gray30", linewidth = 0.5) +
+  facet_wrap(~type) +
+  theme_minimal(12) +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(face = "bold", color = "plum4"),
+    strip.background = element_rect(fill = "thistle2", color = NA)
+  ) # fill for background; color for border
+```
+:::
+::::
+::::::
+
+## Combining plots: `patchwork` {.smaller}
+
+::::: columns
+::: {.column width="35%"}
+::: spaced
+-   Combine plots with `+`
+-   Add a shared title, subtitle, and caption with `plot_annotation()`
+-   Style them with `plot_annotation(theme = theme(...))`
+:::
+:::
+
+::: {.column width="65%"}
+```{r s3-patchwork, warning=FALSE, message=FALSE, fig.height=4.5}
+#| echo: true
+#| code-fold: true
+library(patchwork)
+p1 <- ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point(color = "steelblue", size = 3, alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Fuel efficiency vs Horsepower")
+
+p2 <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+  geom_boxplot(fill = "steelblue", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "MPG by Number of Cylinders")
+
+p1 + p2 +
+  plot_annotation(
+    title = "Analysis of mtcars dataset",
+    caption = "Data source: mtcars",
+    theme = theme(plot.title = element_text(face = "bold", size = 16))
+  )
+```
+:::
+:::::
+
+::: footer
+[patchwork package](https://r-graph-gallery.com/package/patchwork.html){target="_blank"}
+:::
+
+## Color scales {.smaller}
+
+:::::: columns
+::: {.column width="33%"}
+```{r s3-colors-qual}
+#| echo: true
+#| code-fold: true
+fig_quarter <- pizza_season |>
+  mutate(quarter = case_when(
+    month %in% c("Jan", "Feb", "Mar") ~ "Q1",
+    month %in% c("Apr", "May", "Jun") ~ "Q2",
+    month %in% c("Jul", "Aug", "Sep") ~ "Q3",
+    month %in% c("Oct", "Nov", "Dec") ~ "Q4"
+  )) |>
+  ggplot(aes(x = quarter, y = n, group = type)) +
+  geom_bar(aes(fill = type), stat = "identity", position = "dodge") +
+  labs(title = "Pizza Season", y = "Number of pizzas sold", x = "")
+
+fig_quarter +
+  labs(subtitle = "Qualitative color scale") +
+  scale_fill_brewer(type = "qual")
+```
+
+**qualitative**\
+[categorical data]{.muted}
+:::
+
+::: {.column width="33%"}
+```{r s3-colors-seq}
+#| echo: true
+#| code-fold: true
+fig_quarter +
+  labs(subtitle = "Sequential color scale") +
+  scale_fill_brewer(type = "seq")
+```
+
+**sequential**\
+[ordered data, from low to high]{.muted}
+:::
+
+::: {.column width="33%"}
+```{r s3-colors-div}
+#| echo: true
+#| code-fold: true
+fig_quarter +
+  labs(subtitle = "Diverging color scale") +
+  scale_fill_brewer(type = "div")
+```
+
+**diverging**\
+[ordered data with a critical midpoint, e.g. 0]{.muted}
+:::
+::::::
+
+::: footer
+🎨 Check out this [color picker tool](https://projects.susielu.com/viz-palette) by Susie Lu.
+:::
+
+## Color blindness {.smaller .scrollable}
+
+```{r s3-colorblindness, fig.height=5}
+#| echo: true
+#| code-fold: true
+# colorblindr is installed from GitHub (clauswilke/colorblindr)
+colorblindr::cvd_grid(fig_quarter)
+```
+
+[The package `MetBrewer` has many colorblind-friendly palettes, e.g. `scale_fill_manual(values = MetBrewer::met.brewer("VanGogh3", n = 4))`]{.muted}
+
+::: footer
+Packages: [khroma](https://packages.tesselle.org/khroma/), [viridis](https://sjmgarnier.github.io/viridis/), [MetBrewer](https://github.com/BlakeRMills/MetBrewer), [rijkspalette](https://vankesteren.github.io/rijkspalette/), [colorblindr](https://github.com/clauswilke/colorblindr). Or check it yourself with a [simulator](https://www.color-blindness.com/coblis-color-blindness-simulator/).
+:::
+
+## Typography {.smaller}
+
+::::: columns
+::: {.column width="30%"}
+-   Learn everything about [typography](https://practicaltypography.com/).
+-   Choose a font for [data visualizations](https://nightingaledvs.com/choosing-fonts-for-your-data-visualization/).
+-   Pick good [font combinations](https://fontjoy.com/).
+-   Or just use [arial or helvetica](https://pubs.acs.org/doi/10.1021/acs.chemmater.6b00306).
+:::
+
+::: {.column width="70%"}
+Change fonts with package `showtext` and function `font_add_google()`. [Browse Google Fonts](https://fonts.google.com/)
+
+```{r s3-typography, fig.width=8, fig.height=4.5}
+#| echo: true
+#| code-fold: true
+library(showtext)
+sysfonts::font_add_google("Lekton")
+showtext::showtext_auto()
+
+fig_season_2 +
+  theme_cowplot() +
+  theme(text = element_text(family = "Lekton", size = 20))
+```
+:::
+:::::
+
+## Show uncertainty {.smaller}
+
+[**How sure are you of your conclusion? Show it.**]{.lead}
+
+::: spaced
+-   **Sample size** [how many schools (or students) is each group based on?]{.muted}
+-   **Spread:** [is it informative to show the distribution, or error bars / intervals, not just the mean?]{.muted}
+-   **Missing data** [how did you handle them, and does it matter? If yes, add a note in the caption.]{.muted}
+-   **Confidence intervals** [(+ explain them in a way your audience understands.)]{.muted}
+:::
+
+::: footer
+Read more: [clauswilke.com](https://clauswilke.com/dataviz/visualizing-uncertainty.html){target="_blank"} (visualizing uncertainty)
+:::
+
+::: notes
+- Polished charts tend to hide uncertainty. But your audience needs to know how sure you are.
+- This is also part of your report: how robust are your findings?
+:::
+
+## Putting it together {.smaller}
+
+[**Consider your audience:**]{.lead}
+
+```{r s3-audience-1, fig.height=3.8, fig.width=10}
+#| echo: true
+#| code-fold: true
+pizza_plot
+```
+
+## Putting it together {.smaller}
+
+[**Consider your audience:**]{.lead}
+
+```{r s3-audience-2, fig.height=3.8, fig.width=10}
+#| echo: true
+#| code-fold: true
+sysfonts::font_add_google("Lobster")
+sysfonts::font_add_google("Lexend")
+showtext::showtext_auto()
+
+pizza_plot +
+  # add a geom_rect element with opacity on top of pizza bars, to highlight the
+  # biggest bar
+  geom_rect(
+    data = pizza_totals |>
+      mutate(highlight = ifelse(type == "classic", TRUE, FALSE)),
+    aes(
+      xmin = 0, xmax = total / 1000,
+      ymin = as.numeric(factor(type)) - 0.5,
+      ymax = as.numeric(factor(type)) + 0.5,
+      alpha = highlight
+    ),
+    inherit.aes = FALSE,
+    fill = "white"
+  ) +
+  scale_alpha_manual(values = c("TRUE" = 0, "FALSE" = 0.3), guide = "none") +
+  labs(
+    title = "The classic is a classic for a reason.",
+    subtitle = "Total Pizza Sales in 2015",
+    caption = "Source: pizzaplace dataset"
+  ) +
+  theme(
+    text = element_text(family = "Lexend", color = "gray30"),
+    plot.title = element_text(family = "Lobster", size = 20, color = "tomato3"),
+    plot.subtitle = element_text(family = "Lexend", size = 16),
+    axis.title.x = element_text(family = "Lobster", size = 16),
+    axis.text.y = element_text(family = "Lobster", size = 16, color = "tomato3")
+  )
+```
+
+## Putting it together {.smaller}
+
+[**Consider your audience:**]{.lead}
+
+```{r s3-audience-3, fig.height=3.8, fig.width=10}
+#| echo: true
+#| code-fold: true
+max_sales <- max(pizza_totals$total)
+best_seller <- pizza_totals$type[pizza_totals$total == max_sales]
+
+plot_data <- pizza_totals |>
+  mutate(is_max = total == max_sales) |>
+  mutate(type = forcats::fct_reorder(type, total, .desc = TRUE))
+
+# the best seller is colored in the subtitle, like its bar (needs ggtext)
+main_conclusion <- paste0(
+  "The <span style='color:tomato3;'>", best_seller, " pizza</span> ",
+  "is the clear leader with ", scales::comma(max_sales), " units sold."
+)
+
+ggplot(plot_data, aes(x = type, y = total, fill = is_max)) +
+  geom_col(width = 0.7) +
+  geom_text(
+    aes(label = scales::comma(total)),
+    vjust = -0.5,
+    size = 4,
+    fontface = "bold"
+  ) +
+  # highlight color for the best seller, neutral gray for the rest
+  scale_fill_manual(
+    values = c("TRUE" = "tomato3", "FALSE" = "grey70"),
+    guide = "none"
+  ) +
+  labs(
+    title = "Total Sales by Pizza Type",
+    subtitle = main_conclusion,
+    x = "Pizza Type",
+    y = "Total Units Sold"
+  ) +
+  theme_cowplot() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = ggtext::element_markdown(size = 16, color = "grey30"),
+    # the values are already on the bars, so the y-axis can go
+    axis.line.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank()
+  ) +
+  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))
+```
+
+::: notes
+- Same data, three plots. The first is chart junk; the second is fun and highlights the winner (fine for a pizza menu!); the third states the conclusion in the subtitle, highlights it with color, and removes everything that doesn't help.
+- Which one is right depends on your audience.
+:::
+
+## Final considerations
+
+-  Are all visual elements necessary? (borders, gridlines, etc.) 
+-  Are names informative and adapted to the audience? 
+-  Is text big enough and legible at all plot sizes? 
+-  Can the plot render nicely on a presentation screen? 
+
+:::footer
+**Color Accuracy:** Print-proof, [monitor/beamer-proof](https://www.benq.com/en-us/knowledge-center/knowledge/how-to-maintain-color-consistency-on-different-monitors.html), colorblind-proof?, [color-coding](https://en.wikipedia.org/wiki/Color_coding_in_data_visualization)<br>**File format:** resizing [vector vs. bitmap/raster](https://www.lifewire.com/vector-and-bitmap-images-1701238). For bitmap images, set the plot resolution: *dpi = c("retina", "print", "screen")*
+:::
+
+
+## Some good examples 🏆
+
+![](images/good-example-1.png){height="560px" fig-align="center"}
+
+## Some good examples 🏆
+
+![](images/good-example-2.png){height="560px" fig-align="center"}
+
+## Continue learning {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+Viz types and examples: [From Data to Viz](https://www.data-to-viz.com/#explore), [The R Graph Gallery](https://r-graph-gallery.com/), [clauswilke.com](https://clauswilke.com/dataviz/directory-of-visualizations.html)
+
+Extensions: [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/gallery/)
+
+Books: [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+
+NYT: [What's going on in this graph?](https://www.nytimes.com/column/whats-going-on-in-this-graph)
+
+Data: [Statistics Netherlands](https://edwindj.github.io/cbsodataR/) or `data()`
+:::
+
+::: {.column width="50%"}
+![RTFM: ggplot2 Book](images/ggplot2_book.jpg){fig-align="left" width="50%"}
+:::
+:::::
+
+## Get inspiration {.smaller}
+
+::::: columns
+::: {.column width="50%"}
+Podcasts: [Data Stories](https://datastori.es/), [Explore Explain](https://www.visualisingdata.com/podcast/), [Data Viz Today](https://dataviztoday.com/)
+
+Blogs: [FlowingData](https://flowingdata.com/)
+
+Journals: [Nightingale](https://nightingaledvs.com/)
+
+Comics: [Matt-Heun Hong](https://medium.com/@MattIanHong), [Martin Telefont](https://twitter.com/martintelefont/status/1147737522182742017), [Natalia Kiseleva](https://eolay.tilda.ws/datavizcomics/en)
+
+Generative art: [Clause O. Wilke](https://clauswilke.com/art/), [Danielle Navarro](https://art.djnavarro.net/), [Thomas Lin Pedersen](https://www.data-imaginist.com/art)
+
+Awards: [Information is Beautiful](https://www.informationisbeautifulawards.com/showcase?action=index&controller=showcase&page=1&pcategory=winner&type=awards)
+
+Interactive visualizations: [R Psychologist](https://rpsychologist.com/viz)
+
+Explorable explanations: [Nicky Case](https://ncase.me/), [Setosa](https://setosa.io/)
+:::
+
+::: {.column width="50%"}
+![[Thomas Lin Pedersen](https://thomaslinpedersen.art/work/becoming/)](images/becoming_2.jpg){fig-align="left" height="500"}
+:::
+:::::
+
+## Using AI for explanatory DVs 🤖 {.smaller}
+
+::: spaced
+1.  **Write your conclusion first, without AI** <br> [The AI should help you show your conclusion, not choose it]{.muted}
+2.  **Let it do the technical work** <br> [Annotations, highlighting, themes, layouts, color palettes]{.muted}
+3.  **Ask for alternatives** <br> [3–4 different designs for the same message; then choose and justify]{.muted}
+4.  **Criticize everything it adds** <br> [Does it make the conclusion clearer, or only decorate? Check the title for causal language]{.muted}
+5.  **Use it as a critic, carefully** <br> [Ask for a skeptical review; you decide which critiques are valid]{.muted}
+6.  **Test with a naïve reader** <br> [What do they conclude? Is that conclusion true?]{.muted}
+:::
+
+::: notes
+- For explaining, AI is mostly useful for the technical features: all the things from the previous slides, it can write that code for you quickly.
+- But also experiment with using it for feedback, and for alternative visualizations of the same message.
+:::
+
+## Using AI for explanatory DVs 🤖
+
+<br><br>
+[Try it yourself!](../worksheets/working-with-ai.html)
+
+## Pitches: Friday, Oct. 9 {.smaller}
+
+[**Bring a first draft of your final visualization**]{.lead}
+
+[Render it in an html or pdf file and upload it to Canvas. The draft is not graded, but the further along it is, the more useful the feedback. No slides needed!]{.muted}
+
+::: spaced
+-   **4-5 minutes pitch** <br>[research question, approach, conclusion, open questions]{.muted}
+-   **3-4 minutes discussion** <br>[bring the questions you would like input on]{.muted}
+-   **AI use** <br>[how did you use it, what did you learn, which obstacles or risks did you run into?]{.muted}
+:::
+
+## Handing in Assignment 2, Part 2 {.smaller}
+
+[**Deadline: Sunday, October 11th, 23:59**]{.lead} 
+
+**Hand in, on Canvas:**
+
+::: spaced
+1.   **The link** to your group's (public) GitHub repository, with all your code pushed
+-   Your report, as: 
+    2.  **`.Rmd`** <br>with all code (lintr-proof!) to produce your final DV and report. <br>(A quarto document as `.qmd` is also fine.)
+    3.   **`.html`** <br>compiles only the final DV and report text. <br>Hide your code by setting `code_folding = TRUE` in the preamble. <br>make sure it knits correctly; we will not compile your `.Rmd` for you
+:::
+
+**And make sure I can clone your Github repo and completely reproduce your results.**
+
+## Handing in Assignment 2, Part 2 {.smaller}
+
+[**Grading**]{.lead}
+
+| | |
+|-----------------------|---------------------------------------------------------------|
+| Aesthetics [30%]{.muted} | Clear and legible, no unnecessary clutter; color, labels and scales enhance readability |
+| Communication [30%]{.muted} | Can the main point be understood quickly, with minimal explanation? |
+| Description [20%]{.muted} | Research question, what you wanted to communicate, why this visualization, what you can conclude. AI statement |
+| Creativity and Complexity [10%]{.muted} | ex. Going beyond a default chart type, where it adds value without obscuring the message; adding consistent themes and styling matching the target audience / context. |
+| Code Quality and Styling [10%]{.muted} | Runs without errors, readable, lintr-proof |
+
+: {tbl-colwidths="[30,70]"}
+
+::: footer
+Full instructions: [Assignment 2](../assignments/assignment-2.html){target="_blank"}
+:::
+
+## Final report formatting {.smaller}
+
+[You do not need to display all your code.]{.lead}
+
+::::: columns
+::: {.column width="50%"}
+Hide or fold all code in your preamble:
+
+```yaml
+---
+title: "example rmd"
+output:
+  html_document:
+    code_folding: hide
+---
+```
+:::
+
+::: {.column width="50%"}
+Or per code chunk:
+
+```` markdown
+```{r}
+#| echo: false
+
+# your code here
+```
+````
+:::
+:::::
+
+## Now
+
+[**In your groups:**]{.lead}
+
+::: spaced
+1.  **AI worksheet, part 2** [then a short discussion of your findings]{.muted}
+2.  **Continue with Assignment 2, part 2**
+:::
+
+[Ask questions and consult me when needed!]{.muted}

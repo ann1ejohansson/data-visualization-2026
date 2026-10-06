@@ -1132,5 +1132,334 @@
     "title": "Data Visualization",
     "section": "Adding interactivity 🎮",
     "text": "Adding interactivity 🎮\n\nInteractivity enhances, but does not replace, the fundamentals of good data visualization\n\n\n‼️ Beware! Hack your way into scientific glory"
+  },
+  {
+    "objectID": "slides/slides.html#better-plots",
+    "href": "slides/slides.html#better-plots",
+    "title": "Data Visualization",
+    "section": "Better plots 🥇",
+    "text": "Better plots 🥇\n\nGeneral feedback assignments\nGoing from exploratory to explanatory\nAdvanced DV features\nUsing AI for explanatory DVs"
+  },
+  {
+    "objectID": "slides/slides.html#exploratory-versus-explanatory-2",
+    "href": "slides/slides.html#exploratory-versus-explanatory-2",
+    "title": "Data Visualization",
+    "section": "Exploratory versus explanatory",
+    "text": "Exploratory versus explanatory\n\n\nExploratory\n\n\n\nExplanatory\n\n\n\nSource: storytellingwithdata.com"
+  },
+  {
+    "objectID": "slides/slides.html#making-an-explanatory-dv",
+    "href": "slides/slides.html#making-an-explanatory-dv",
+    "title": "Data Visualization",
+    "section": "Making an explanatory DV",
+    "text": "Making an explanatory DV\n\n\nStart from your conclusion\nAdapt it to your audience\nChoose a chart type that fits the conclusion and the data\nHighlight your main conclusion\n\n\n\n\nThese four steps are the structure for the rest of today’s lecture.\n1: what is the main thing you learned from the data, that you want to show in the DV?\n2: how do you say that to your audience, so they understand it?\n3: different chart types are more or less appropriate depending on context.\n4: there are more advanced techniques to make the details, and your main point, clear to the audience."
+  },
+  {
+    "objectID": "slides/slides.html#feedback-on-the-assignments",
+    "href": "slides/slides.html#feedback-on-the-assignments",
+    "title": "Data Visualization",
+    "section": "Feedback on the assignments",
+    "text": "Feedback on the assignments\nFirst draft: update after grading Assignment 1 and Assignment 2, Part 1\n\n\nUse informative titles state your conclusion in the title or subtitle\nUse coherent color palettes more on that today!\nThink about sample size within your groupings, and how to communicate its effect\nWhat is the added value of a boxplot or violin plot?\nGo from exploratory to explanatory! the audience should get the main conclusion without reading the description\n\n\n\nThe flaw of boxplots: read about it here and here."
+  },
+  {
+    "objectID": "slides/slides.html#step-1-start-from-your-conclusion",
+    "href": "slides/slides.html#step-1-start-from-your-conclusion",
+    "title": "Data Visualization",
+    "section": "Step 1: Start from your conclusion",
+    "text": "Step 1: Start from your conclusion\nWhat is the main thing you learned from the data?\n\n\nPick one main statement.\nWrite down how you got there. Which inferential or modeling choices led to this conclusion?\nJustify Why is this relevant, and why do you think it is correct? How confident are you in the validity, reliability, and robustness of the results?\n\n\n\n\nPick one main statement that you want the DV to show. Everything else in the plot is there to support that one statement.\nWrite down which inferential/modeling choices led to this conclusion: which schools did you keep, how did you handle missing values, mean or median, which comparison.\nWhy do you think it is relevant, and why do you think it is correct? If you can’t answer that, go back to exploring."
+  },
+  {
+    "objectID": "slides/slides.html#step-2-adapt-it-to-your-audience",
+    "href": "slides/slides.html#step-2-adapt-it-to-your-audience",
+    "title": "Data Visualization",
+    "section": "Step 2: Adapt it to your audience",
+    "text": "Step 2: Adapt it to your audience\nFormulate your conclusion so your audience understands it.\n\n\nWho are they? Each research question has a target audience: a municipal officer, policymakers, newspaper readers, school boards…\nWhich details do they need? Pick the inferential/modeling details you want to show, and explain how they were derived.\nCan they get it without reading your report? Use the title and labels to carry the message.\n\n\n\n\nChoose a formulation of your conclusion that is understandable to your audience. A municipal officer wants to see at a glance which schools are behind; a newspaper reader needs one clear message.\nPick which inferential/modeling details you want to display to the audience, and make sure you include an explanation of how those were derived (e.g. in a subtitle or caption)."
+  },
+  {
+    "objectID": "slides/slides.html#step-2-adapt-it-to-your-audience-1",
+    "href": "slides/slides.html#step-2-adapt-it-to-your-audience-1",
+    "title": "Data Visualization",
+    "section": "Step 2: Adapt it to your audience",
+    "text": "Step 2: Adapt it to your audience\nUse your title and caption to do the explaining\n\n\n\n\nTitle: descriptive or declarative (state your conclusion!)\nMethods: keep it brief, if needed at all\nResults: only if not (fully) captured in the title\nDefinitions of colors, line types, error bars, etc.\nData source if external\nDate and name for crediting\n\n\n\n\nSource: datasketch.es\n\n\nResources: clauswilke.com"
+  },
+  {
+    "objectID": "slides/slides.html#step-3-choose-a-chart-type",
+    "href": "slides/slides.html#step-3-choose-a-chart-type",
+    "title": "Data Visualization",
+    "section": "Step 3: Choose a chart type",
+    "text": "Step 3: Choose a chart type\nOne dataset, many visualizations\n\n\n\n\nCode\ndata(\"pizzaplace\")\npizza_top &lt;- pizzaplace |&gt;\n  mutate(size = factor(size, levels = c(\"S\", \"M\", \"L\"))) |&gt;\n  count(name, type, size, price, sort = TRUE) |&gt;\n  top_n(n = 5)\npizza_top |&gt;\n  gt() |&gt;\n  tab_header(title = \"Pizza Top 5\", subtitle = \"2015\") |&gt;\n  fmt_currency(columns = price, currency = \"USD\") |&gt;\n  tab_source_note(\n    source_note = md(paste0(\n      \"Source: [pizzaplace dataset]\",\n      \"(https://gt.rstudio.com/articles/gt-datasets.html#pizzaplace)\"\n    ))\n  ) |&gt;\n  opt_stylize(style = 6)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPizza Top 5\n\n\n2015\n\n\nname\ntype\nsize\nprice\nn\n\n\n\n\nbig_meat\nclassic\nS\n$12.00\n1914\n\n\nthai_ckn\nchicken\nL\n$20.75\n1410\n\n\nfive_cheese\nveggie\nL\n$18.50\n1409\n\n\nfour_cheese\nveggie\nL\n$17.95\n1316\n\n\nclassic_dlx\nclassic\nM\n$16.00\n1181\n\n\n\nSource: pizzaplace dataset\n\n\n\n\n\n\n\n\n\n\n\nCode\npizza_top |&gt;\n  ggplot(aes(x = reorder(name, n, decreasing = TRUE), y = n)) +\n  geom_point(aes(color = type, size = size)) +\n  geom_text(aes(label = price), nudge_y = -30) +\n  labs(title = \"Pizza Top 5\", subtitle = \"2015\", x = \"name\")\n\n\n\n\n\n\n\n\n\n\n\n\nThe same data can be shown as a table or as a plot. Which one is better depends on what you want your audience to take away."
+  },
+  {
+    "objectID": "slides/slides.html#step-3-choose-a-chart-type-1",
+    "href": "slides/slides.html#step-3-choose-a-chart-type-1",
+    "title": "Data Visualization",
+    "section": "Step 3: Choose a chart type",
+    "text": "Step 3: Choose a chart type\nOne dataset, many visualizations\n\n\n\n\nCode\npizza_season &lt;- pizzaplace |&gt;\n  mutate(month = lubridate::month(date, label = TRUE)) |&gt;\n  group_by(month) |&gt;\n  count(type)\n\nfig_season_1 &lt;- pizza_season |&gt;\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\") +\n  labs(\n    title = \"Pizza Season\",\n    subtitle = \"2015\",\n    y = \"Number of pizzas sold\",\n    x = \"Month\"\n  )\nfig_season_1\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_2 &lt;- pizza_season |&gt;\n  ggplot(aes(x = month, y = n, group = type)) +\n  geom_line(aes(linetype = type)) +\n  labs(\n    title = \"Pizza Season\",\n    subtitle = \"2015\",\n    y = \"Number of pizzas sold\",\n    x = \"Month\"\n  )\nfig_season_2\n\n\n\n\n\n\n\n\n\n\n\n\n\nStacked bars: you can see the total per month, but its hard to compare one pizza type over time (only the bottom one has a common baseline, remember the speed dates!).\nLines: good for comparing the types over time. Harder to see the total.\nWhich one you choose depends on your conclusion."
+  },
+  {
+    "objectID": "slides/slides.html#step-3-choose-a-chart-type-2",
+    "href": "slides/slides.html#step-3-choose-a-chart-type-2",
+    "title": "Data Visualization",
+    "section": "Step 3: Choose a chart type",
+    "text": "Step 3: Choose a chart type\n\n\n\n\n\n\nfrom data to viz"
+  },
+  {
+    "objectID": "slides/slides.html#step-3-choose-a-chart-type-3",
+    "href": "slides/slides.html#step-3-choose-a-chart-type-3",
+    "title": "Data Visualization",
+    "section": "Step 3: Choose a chart type",
+    "text": "Step 3: Choose a chart type\n\n\n\n\n\n\nfrom data to viz: also check the caveats for each chart type!"
+  },
+  {
+    "objectID": "slides/slides.html#step-4-highlight-your-main-conclusion",
+    "href": "slides/slides.html#step-4-highlight-your-main-conclusion",
+    "title": "Data Visualization",
+    "section": "Step 4: Highlight your main conclusion",
+    "text": "Step 4: Highlight your main conclusion\n\n\n\nDecide where you want the viewer to look first.\nUse visual elements (colors, arrows, highlights) to guide that."
+  },
+  {
+    "objectID": "slides/slides.html#declutter-chart-junk",
+    "href": "slides/slides.html#declutter-chart-junk",
+    "title": "Data Visualization",
+    "section": "Declutter: chart junk",
+    "text": "Declutter: chart junk\n\n\n\n\n\n\n\n\n\n\n\n\n\nNYT\n\n\n\n\n\n\n\n\n\n\n\nClaus Wilke\n\n\n\n\n\n\n\n\n\n\n\nNYT"
+  },
+  {
+    "objectID": "slides/slides.html#declutter-chart-junk-1",
+    "href": "slides/slides.html#declutter-chart-junk-1",
+    "title": "Data Visualization",
+    "section": "Declutter: chart junk",
+    "text": "Declutter: chart junk\nYou can try it yourself with geom_image() from ggimage\n\n\nCode\nlibrary(ggimage)\n# aggregate to totals\npizza_totals &lt;- pizza_season |&gt;\n  group_by(type) |&gt;\n  summarise(total = sum(n), .groups = \"drop\") |&gt;\n  mutate(n_icons = round(total / 1000)) # 1 pizza = 1000 sales\n\n# expand data: one row per pizza icon\n# this is a trick so that each pizza icon can be plotted separately (essentially\n# using geom_point but appearing as a bar)\nchart_junk_data &lt;- pizza_totals |&gt;\n  rowwise() |&gt;\n  mutate(icon_id = list(1:n_icons)) |&gt;\n  unnest(icon_id)\n\n# plot with 🍕\npizza_plot &lt;- ggplot(chart_junk_data, aes(x = icon_id, y = type)) +\n  geom_image(aes(image = \"images/pizza.png\"), size = 0.2) +\n  # add white rectangle to cover up excess icons (taken from pizza_totals data)\n  geom_rect(\n    data = pizza_totals,\n    aes(\n      xmin = total / 1000, xmax = total / 1000 + 2,\n      ymin = as.numeric(factor(type)) - 0.5,\n      ymax = as.numeric(factor(type)) + 0.5\n    ),\n    inherit.aes = FALSE,\n    fill = \"white\"\n  ) +\n  labs(\n    title = \"Total Pizza Sales in 2015\",\n    x = \"Sales (Scale 1:1000)\",\n    y = NULL\n  ) +\n  theme_minimal(base_size = 14) +\n  theme(\n    panel.grid.minor.y = element_blank(),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor.x = element_blank(),\n    axis.ticks = element_blank()\n  )\n\npizza_plot"
+  },
+  {
+    "objectID": "slides/slides.html#themes",
+    "href": "slides/slides.html#themes",
+    "title": "Data Visualization",
+    "section": "Themes",
+    "text": "Themes\n\n\n\n\nCode\nfig_season_2 +\n  theme_cowplot()\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nmy_theme &lt;- theme_cowplot() +\n  theme(\n    panel.grid.major = element_line(color = \"gray90\"),\n    axis.ticks = element_line(color = \"gray20\"),\n    axis.text = element_text(color = \"gray20\", face = \"italic\", size = 16),\n    axis.title = element_text(color = \"gray20\", face = \"bold\", size = 16),\n    plot.title = element_text(hjust = 0.5, size = 20, face = \"bold\"),\n    plot.subtitle = element_text(hjust = 0.5, size = 18),\n    legend.position = \"top\",\n    legend.title = element_text(size = 16, face = \"bold\"),\n    legend.text = element_text(size = 16)\n  )\nfig_season_2 + my_theme"
+  },
+  {
+    "objectID": "slides/slides.html#facets",
+    "href": "slides/slides.html#facets",
+    "title": "Data Visualization",
+    "section": "Facets",
+    "text": "Facets\n\ntheme_cowplot and theme_bw() format facets nicely.\nChange facet format manually with theme(strip.text = element_text(...)) and theme(strip.background = element_rect(...)).\n\n\n\n\n\nCode\nfig_season_2 +\n  facet_wrap(~type) +\n  theme_bw(12) +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nfig_season_2 +\n  geom_line(linetype = \"solid\", color = \"gray30\", linewidth = 0.5) +\n  facet_wrap(~type) +\n  theme_minimal(12) +\n  theme(\n    legend.position = \"none\",\n    strip.text = element_text(face = \"bold\", color = \"plum4\"),\n    strip.background = element_rect(fill = \"thistle2\", color = NA)\n  ) # fill for background; color for border"
+  },
+  {
+    "objectID": "slides/slides.html#combining-plots-patchwork",
+    "href": "slides/slides.html#combining-plots-patchwork",
+    "title": "Data Visualization",
+    "section": "Combining plots: patchwork",
+    "text": "Combining plots: patchwork\n\n\n\n\nCombine plots with +\nAdd a shared title, subtitle, and caption with plot_annotation()\nStyle them with plot_annotation(theme = theme(...))\n\n\n\n\n\nCode\nlibrary(patchwork)\np1 &lt;- ggplot(mtcars, aes(x = hp, y = mpg)) +\n  geom_point(color = \"steelblue\", size = 3, alpha = 0.7) +\n  theme_minimal() +\n  labs(title = \"Fuel efficiency vs Horsepower\")\n\np2 &lt;- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +\n  geom_boxplot(fill = \"steelblue\", alpha = 0.7) +\n  theme_minimal() +\n  labs(title = \"MPG by Number of Cylinders\")\n\np1 + p2 +\n  plot_annotation(\n    title = \"Analysis of mtcars dataset\",\n    caption = \"Data source: mtcars\",\n    theme = theme(plot.title = element_text(face = \"bold\", size = 16))\n  )\n\n\n\n\n\n\n\n\n\n\n\npatchwork package"
+  },
+  {
+    "objectID": "slides/slides.html#color-scales",
+    "href": "slides/slides.html#color-scales",
+    "title": "Data Visualization",
+    "section": "Color scales",
+    "text": "Color scales\n\n\n\n\nCode\nfig_quarter &lt;- pizza_season |&gt;\n  mutate(quarter = case_when(\n    month %in% c(\"Jan\", \"Feb\", \"Mar\") ~ \"Q1\",\n    month %in% c(\"Apr\", \"May\", \"Jun\") ~ \"Q2\",\n    month %in% c(\"Jul\", \"Aug\", \"Sep\") ~ \"Q3\",\n    month %in% c(\"Oct\", \"Nov\", \"Dec\") ~ \"Q4\"\n  )) |&gt;\n  ggplot(aes(x = quarter, y = n, group = type)) +\n  geom_bar(aes(fill = type), stat = \"identity\", position = \"dodge\") +\n  labs(title = \"Pizza Season\", y = \"Number of pizzas sold\", x = \"\")\n\nfig_quarter +\n  labs(subtitle = \"Qualitative color scale\") +\n  scale_fill_brewer(type = \"qual\")\n\n\n\n\n\n\n\n\n\nqualitative\ncategorical data\n\n\n\nCode\nfig_quarter +\n  labs(subtitle = \"Sequential color scale\") +\n  scale_fill_brewer(type = \"seq\")\n\n\n\n\n\n\n\n\n\nsequential\nordered data, from low to high\n\n\n\nCode\nfig_quarter +\n  labs(subtitle = \"Diverging color scale\") +\n  scale_fill_brewer(type = \"div\")\n\n\n\n\n\n\n\n\n\ndiverging\nordered data with a critical midpoint, e.g. 0\n\n\n🎨 Check out this color picker tool by Susie Lu."
+  },
+  {
+    "objectID": "slides/slides.html#color-blindness",
+    "href": "slides/slides.html#color-blindness",
+    "title": "Data Visualization",
+    "section": "Color blindness",
+    "text": "Color blindness\n\n\nCode\n# colorblindr is installed from GitHub (clauswilke/colorblindr)\ncolorblindr::cvd_grid(fig_quarter)\n\n\n\n\n\n\n\n\n\nThe package MetBrewer has many colorblind-friendly palettes, e.g. scale_fill_manual(values = MetBrewer::met.brewer(\"VanGogh3\", n = 4))\n\nPackages: khroma, viridis, MetBrewer, rijkspalette, colorblindr. Or check it yourself with a simulator."
+  },
+  {
+    "objectID": "slides/slides.html#typography",
+    "href": "slides/slides.html#typography",
+    "title": "Data Visualization",
+    "section": "Typography",
+    "text": "Typography\n\n\n\nLearn everything about typography.\nChoose a font for data visualizations.\nPick good font combinations.\nOr just use arial or helvetica.\n\n\nChange fonts with package showtext and function font_add_google(). Browse Google Fonts\n\n\nCode\nlibrary(showtext)\nsysfonts::font_add_google(\"Lekton\")\nshowtext::showtext_auto()\n\nfig_season_2 +\n  theme_cowplot() +\n  theme(text = element_text(family = \"Lekton\", size = 20))"
+  },
+  {
+    "objectID": "slides/slides.html#putting-it-together",
+    "href": "slides/slides.html#putting-it-together",
+    "title": "Data Visualization",
+    "section": "Putting it together",
+    "text": "Putting it together\nConsider your audience:\n\n\nCode\npizza_plot"
+  },
+  {
+    "objectID": "slides/slides.html#putting-it-together-1",
+    "href": "slides/slides.html#putting-it-together-1",
+    "title": "Data Visualization",
+    "section": "Putting it together",
+    "text": "Putting it together\nConsider your audience:\n\n\nCode\nsysfonts::font_add_google(\"Lobster\")\nsysfonts::font_add_google(\"Lexend\")\nshowtext::showtext_auto()\n\npizza_plot +\n  # add a geom_rect element with opacity on top of pizza bars, to highlight the\n  # biggest bar\n  geom_rect(\n    data = pizza_totals |&gt;\n      mutate(highlight = ifelse(type == \"classic\", TRUE, FALSE)),\n    aes(\n      xmin = 0, xmax = total / 1000,\n      ymin = as.numeric(factor(type)) - 0.5,\n      ymax = as.numeric(factor(type)) + 0.5,\n      alpha = highlight\n    ),\n    inherit.aes = FALSE,\n    fill = \"white\"\n  ) +\n  scale_alpha_manual(values = c(\"TRUE\" = 0, \"FALSE\" = 0.3), guide = \"none\") +\n  labs(\n    title = \"The classic is a classic for a reason.\",\n    subtitle = \"Total Pizza Sales in 2015\",\n    caption = \"Source: pizzaplace dataset\"\n  ) +\n  theme(\n    text = element_text(family = \"Lexend\", color = \"gray30\"),\n    plot.title = element_text(family = \"Lobster\", size = 20, color = \"tomato3\"),\n    plot.subtitle = element_text(family = \"Lexend\", size = 16),\n    axis.title.x = element_text(family = \"Lobster\", size = 16),\n    axis.text.y = element_text(family = \"Lobster\", size = 16, color = \"tomato3\")\n  )"
+  },
+  {
+    "objectID": "slides/slides.html#putting-it-together-2",
+    "href": "slides/slides.html#putting-it-together-2",
+    "title": "Data Visualization",
+    "section": "Putting it together",
+    "text": "Putting it together\nConsider your audience:\n\n\nCode\nmax_sales &lt;- max(pizza_totals$total)\nbest_seller &lt;- pizza_totals$type[pizza_totals$total == max_sales]\n\nplot_data &lt;- pizza_totals |&gt;\n  mutate(is_max = total == max_sales) |&gt;\n  mutate(type = forcats::fct_reorder(type, total, .desc = TRUE))\n\n# the best seller is colored in the subtitle, like its bar (needs ggtext)\nmain_conclusion &lt;- paste0(\n  \"The &lt;span style='color:tomato3;'&gt;\", best_seller, \" pizza&lt;/span&gt; \",\n  \"is the clear leader with \", scales::comma(max_sales), \" units sold.\"\n)\n\nggplot(plot_data, aes(x = type, y = total, fill = is_max)) +\n  geom_col(width = 0.7) +\n  geom_text(\n    aes(label = scales::comma(total)),\n    vjust = -0.5,\n    size = 4,\n    fontface = \"bold\"\n  ) +\n  # highlight color for the best seller, neutral gray for the rest\n  scale_fill_manual(\n    values = c(\"TRUE\" = \"tomato3\", \"FALSE\" = \"grey70\"),\n    guide = \"none\"\n  ) +\n  labs(\n    title = \"Total Sales by Pizza Type\",\n    subtitle = main_conclusion,\n    x = \"Pizza Type\",\n    y = \"Total Units Sold\"\n  ) +\n  theme_cowplot() +\n  theme(\n    plot.title.position = \"plot\",\n    plot.title = element_text(size = 16, face = \"bold\"),\n    plot.subtitle = ggtext::element_markdown(size = 16, color = \"grey30\"),\n    # the values are already on the bars, so the y-axis can go\n    axis.line.y = element_blank(),\n    axis.ticks.y = element_blank(),\n    axis.text.y = element_blank(),\n    axis.title.y = element_blank()\n  ) +\n  scale_y_continuous(expand = expansion(mult = c(0, 0.15)))\n\n\n\n\n\n\n\n\n\n\n\nSame data, three plots. The first is chart junk; the second is fun and highlights the winner (fine for a pizza menu!); the third states the conclusion in the subtitle, highlights it with color, and removes everything that doesn’t help.\nWhich one is right depends on your audience."
+  },
+  {
+    "objectID": "slides/slides.html#show-uncertainty",
+    "href": "slides/slides.html#show-uncertainty",
+    "title": "Data Visualization",
+    "section": "Show uncertainty",
+    "text": "Show uncertainty\nHow sure are you of your conclusion? Show it.\n\n\nSample size how many schools (or students) is each group based on?\nSpread: is it informative to show the distribution, or error bars / intervals, not just the mean?\nMissing data how did you handle them, and does it matter? If yes, add a note in the caption.\nConfidence intervals (+ explain them in a way your audience understands.)\n\n\n\nRead more: clauswilke.com (visualizing uncertainty)\n\n\n\nPolished charts tend to hide uncertainty. But your audience needs to know how sure you are.\nThis is also part of your report: how robust are your findings?"
+  },
+  {
+    "objectID": "slides/slides.html#using-ai-for-explanatory-dvs",
+    "href": "slides/slides.html#using-ai-for-explanatory-dvs",
+    "title": "Data Visualization",
+    "section": "Using AI for explanatory DVs 🤖",
+    "text": "Using AI for explanatory DVs 🤖\n\n\nWrite your conclusion first, without AI  The AI should help you show your conclusion, not choose it\nLet it do the technical work  Annotations, highlighting, themes, layouts, color palettes\nAsk for alternatives  3–4 different designs for the same message; then choose and justify\nCriticize everything it adds  Does it make the conclusion clearer, or only decorate? Check the title for causal language\nUse it as a critic, carefully  Ask for a skeptical review; you decide which critiques are valid\nTest with a naïve reader  What do they conclude? Is that conclusion true?\n\n\n\n\nFor explaining, AI is mostly useful for the technical features: all the things from the previous slides, it can write that code for you quickly.\nBut also experiment with using it for feedback, and for alternative visualizations of the same message."
+  },
+  {
+    "objectID": "slides/slides.html#using-ai-for-explanatory-dvs-1",
+    "href": "slides/slides.html#using-ai-for-explanatory-dvs-1",
+    "title": "Data Visualization",
+    "section": "Using AI for explanatory DVs 🤖",
+    "text": "Using AI for explanatory DVs 🤖\n Try it yourself!"
+  },
+  {
+    "objectID": "slides/slides.html#pitches-friday-oct.-9",
+    "href": "slides/slides.html#pitches-friday-oct.-9",
+    "title": "Data Visualization",
+    "section": "Pitches: Friday, Oct. 9",
+    "text": "Pitches: Friday, Oct. 9\nBring a first draft of your final visualization\nRender it in an html or pdf file and upload it to Canvas. The draft is not graded, but the further along it is, the more useful the feedback. No slides needed!\n\n\n4-5 minutes pitch research question, approach, conclusion, open questions\n3-4 minutes discussion bring the questions you would like input on\nAI use how did you use it, what did you learn, which obstacles or risks did you run into?"
+  },
+  {
+    "objectID": "slides/slides.html#handing-in-assignment-2-part-2",
+    "href": "slides/slides.html#handing-in-assignment-2-part-2",
+    "title": "Data Visualization",
+    "section": "Handing in Assignment 2, Part 2",
+    "text": "Handing in Assignment 2, Part 2\nDeadline: Sunday, October 11th, 23:59\nHand in, on Canvas:\n\n\nThe link to your group’s (public) GitHub repository, with all your code pushed\n\n\nYour report, as:\n\n.Rmd with all code (lintr-proof!) to produce your final DV and report. (A quarto document as .qmd is also fine.)\n.html compiles only the final DV and report text. Hide your code by setting code_folding = TRUE in the preamble. make sure it knits correctly; we will not compile your .Rmd for you\n\n\n\nAnd make sure I can clone your Github repo and completely reproduce your results."
+  },
+  {
+    "objectID": "slides/slides.html#handing-in-assignment-2-part-2-1",
+    "href": "slides/slides.html#handing-in-assignment-2-part-2-1",
+    "title": "Data Visualization",
+    "section": "Handing in Assignment 2, Part 2",
+    "text": "Handing in Assignment 2, Part 2\nGrading\n\n\n\n\n\n\n\nAesthetics 30%\nClear and legible, no unnecessary clutter; color, labels and scales enhance readability\n\n\nCommunication 30%\nCan the main point be understood quickly, with minimal explanation?\n\n\nDescription 20%\nResearch question, what you wanted to communicate, why this visualization, what you can conclude. AI statement\n\n\nCreativity and Complexity 10%\nex. Going beyond a default chart type, where it adds value without obscuring the message; adding consistent themes and styling matching the target audience / context.\n\n\nCode Quality and Styling 10%\nRuns without errors, readable, lintr-proof\n\n\n\n\nFull instructions: Assignment 2"
+  },
+  {
+    "objectID": "slides/slides.html#final-report-formatting",
+    "href": "slides/slides.html#final-report-formatting",
+    "title": "Data Visualization",
+    "section": "Final report formatting",
+    "text": "Final report formatting\nYou do not need to display all your code.\n\n\nHide or fold all code in your preamble:\n---\ntitle: \"example rmd\"\noutput:\n  html_document:\n    code_folding: hide\n---\n\nOr per code chunk:\n::: {.cell}\n\n:::"
+  },
+  {
+    "objectID": "slides/slides.html#now-1",
+    "href": "slides/slides.html#now-1",
+    "title": "Data Visualization",
+    "section": "Now",
+    "text": "Now\nIn your groups:\n\n\nAI worksheet, part 2 then a short discussion of your findings\nContinue with Assignment 2, part 2\n\n\nAsk questions and consult me when needed!"
+  },
+  {
+    "objectID": "slides/slides.html#today-2",
+    "href": "slides/slides.html#today-2",
+    "title": "Data Visualization",
+    "section": "Today",
+    "text": "Today\nBetter plots 🥇\n\nGeneral feedback assignments\nGoing from exploratory to explanatory\nAdvanced DV features\nUsing AI for explanatory DVs"
+  },
+  {
+    "objectID": "slides/slides.html#step-4-highlight-your-main-conclusion-1",
+    "href": "slides/slides.html#step-4-highlight-your-main-conclusion-1",
+    "title": "Data Visualization",
+    "section": "Step 4: Highlight your main conclusion",
+    "text": "Step 4: Highlight your main conclusion\nAdvanced DV features\nThere are more advanced techniques available to you to make certain details, and your main point, clear to the audience.\n\n\nDeclutter remove what doesn’t add information\nThemes, facets, layouts for structure and consistency\nColor e.g., gray-scale with one accent color\nTypography and annotation guide the eye to your conclusion\nUncertainty show how sure you are\n\n\n\nAlso revisit the guiding principles from session 1."
+  },
+  {
+    "objectID": "slides/slides.html#chart-junk",
+    "href": "slides/slides.html#chart-junk",
+    "title": "Data Visualization",
+    "section": "Chart junk",
+    "text": "Chart junk\n\n\n\n\n\n\n\n\n\n\n\n\n\nNYT\n\n\n\n\n\n\n\n\n\n\n\nClaus Wilke\n\n\n\n\n\n\n\n\n\n\n\nNYT"
+  },
+  {
+    "objectID": "slides/slides.html#chart-junk-1",
+    "href": "slides/slides.html#chart-junk-1",
+    "title": "Data Visualization",
+    "section": "Chart junk",
+    "text": "Chart junk\nYou can try it yourself with geom_image() from ggimage\n\n\nCode\nlibrary(ggimage)\n# aggregate to totals\npizza_totals &lt;- pizza_season |&gt;\n  group_by(type) |&gt;\n  summarise(total = sum(n), .groups = \"drop\") |&gt;\n  mutate(n_icons = round(total / 1000)) # 1 pizza = 1000 sales\n\n# expand data: one row per pizza icon\n# this is a trick so that each pizza icon can be plotted separately (essentially\n# using geom_point but appearing as a bar)\nchart_junk_data &lt;- pizza_totals |&gt;\n  rowwise() |&gt;\n  mutate(icon_id = list(1:n_icons)) |&gt;\n  unnest(icon_id)\n\n# plot with 🍕\npizza_plot &lt;- ggplot(chart_junk_data, aes(x = icon_id, y = type)) +\n  geom_image(aes(image = \"images/pizza.png\"), size = 0.2) +\n  # add white rectangle to cover up excess icons (taken from pizza_totals data)\n  geom_rect(\n    data = pizza_totals,\n    aes(\n      xmin = total / 1000, xmax = total / 1000 + 2,\n      ymin = as.numeric(factor(type)) - 0.5,\n      ymax = as.numeric(factor(type)) + 0.5\n    ),\n    inherit.aes = FALSE,\n    fill = \"white\"\n  ) +\n  labs(\n    title = \"Total Pizza Sales in 2015\",\n    x = \"Sales (Scale 1:1000)\",\n    y = NULL\n  ) +\n  theme_minimal(base_size = 14) +\n  theme(\n    panel.grid.minor.y = element_blank(),\n    panel.grid.major.y = element_blank(),\n    panel.grid.minor.x = element_blank(),\n    axis.ticks = element_blank()\n  )\n\npizza_plot"
+  },
+  {
+    "objectID": "slides/slides.html#putting-it-together-3",
+    "href": "slides/slides.html#putting-it-together-3",
+    "title": "Data Visualization",
+    "section": "Putting it together",
+    "text": "Putting it together"
+  },
+  {
+    "objectID": "slides/slides.html#some-good-examples-1",
+    "href": "slides/slides.html#some-good-examples-1",
+    "title": "Data Visualization",
+    "section": "Some good examples 🏆",
+    "text": "Some good examples 🏆"
+  },
+  {
+    "objectID": "slides/slides.html#some-good-examples-2",
+    "href": "slides/slides.html#some-good-examples-2",
+    "title": "Data Visualization",
+    "section": "Some good examples 🏆",
+    "text": "Some good examples 🏆"
+  },
+  {
+    "objectID": "slides/slides.html#feedback-on-assignment-2-part-1",
+    "href": "slides/slides.html#feedback-on-assignment-2-part-1",
+    "title": "Data Visualization",
+    "section": "Feedback on Assignment 2, Part 1",
+    "text": "Feedback on Assignment 2, Part 1\n\n\nUse informative titles: state your conclusion in the title or subtitle in a declarative manner\nText: Increase font size, use bold-face in main statements\n\nVisualize reliability: show sample size, confidence intervals, etc. Especially if using bins/groupings.\n\nWhat is the added value of a boxplot?\nGo from exploratory to explanatory! the audience should get the main conclusion without reading the description"
+  },
+  {
+    "objectID": "slides/slides.html#feedback-on-assignment-2-part-1-1",
+    "href": "slides/slides.html#feedback-on-assignment-2-part-1-1",
+    "title": "Data Visualization",
+    "section": "Feedback on Assignment 2, Part 1",
+    "text": "Feedback on Assignment 2, Part 1"
+  },
+  {
+    "objectID": "slides/slides.html#feedback-on-assignment-2-part-1-2",
+    "href": "slides/slides.html#feedback-on-assignment-2-part-1-2",
+    "title": "Data Visualization",
+    "section": "Feedback on Assignment 2, Part 1",
+    "text": "Feedback on Assignment 2, Part 1\n\n\n\nThe Anatomy of a Boxplot\n\n\n\nThe flaw of boxplots: read about it here and here."
+  },
+  {
+    "objectID": "slides/slides.html#use-point-size-to-your-advantage",
+    "href": "slides/slides.html#use-point-size-to-your-advantage",
+    "title": "Data Visualization",
+    "section": "Use point size to your advantage",
+    "text": "Use point size to your advantage"
+  },
+  {
+    "objectID": "slides/slides.html#boxplots",
+    "href": "slides/slides.html#boxplots",
+    "title": "Data Visualization",
+    "section": "Boxplots",
+    "text": "Boxplots\n\n\n\nThe Anatomy of a Boxplot\n\n\n\nThe flaw of boxplots: read more about it here and here."
+  },
+  {
+    "objectID": "slides/slides.html#step-2-adapt-it-to-your-audience-2",
+    "href": "slides/slides.html#step-2-adapt-it-to-your-audience-2",
+    "title": "Data Visualization",
+    "section": "Step 2: Adapt it to your audience",
+    "text": "Step 2: Adapt it to your audience\nExample: the Assignment 1 line plot, with a title and caption\n\n\nCode\n# lineplot = the original plot from Assignment 1\ntitle_text &lt;- paste(\n  \"LIB has the highest percentage of students reaching the target level,\",\n  \"and Route8 the lowest. This gap holds even when accounting for the\",\n  \"socio-economic status of schools.\"\n)\n\ncaption_text &lt;- paste0(\n  \"Data: DUO Open Onderwijsdata, doorstroomtoets results and reference \",\n  \"levels, school year 2024-2025;\\n\",\n  \"Inspectie van het Onderwijs, schoolweging 2024-2025.\\n\",\n  \"Chart: Annie Johansson | \",\n  format(Sys.Date(), \"%e %B %Y\") |&gt; str_trim()\n)\n\nlegend_labels_oneline &lt;- setNames(\n  paste0(\n    provider_n$provider,\n    \" (n = \", format(provider_n$n_pupils, big.mark = \",\", trim = TRUE), \")\"\n  ),\n  provider_n$provider\n)\n\nlineplot_titled &lt;- lineplot +\n  scale_color_manual(\n    values = provider_colors,\n    breaks = highlighted_providers, # legend in the same order as the lines\n    labels = legend_labels_oneline,\n    name = \"Test provider\"\n  ) +\n  scale_y_continuous(\n    limits = c(0, 100),\n    breaks = seq(0, 100, 25),\n    labels = \\(x) paste0(x, \"%\"),\n    expand = expansion(mult = c(0, 0.02))\n  ) +\n  labs(\n    title = str_wrap(title_text, width = 62),\n    y = \"Students reaching target level\",\n    caption = caption_text\n  ) +\n  theme(\n    plot.title = element_text(\n     face = \"bold\", size = 18, lineheight = 1.1,\n     margin = margin(b = 12)\n    ),\n    plot.title.position = \"plot\",\n    plot.caption = element_text(\n      color = \"grey40\", size = 10, hjust = 0, lineheight = 1.2,\n      margin = margin(t = 14)\n    ),\n    plot.caption.position = \"plot\",\n    axis.title = element_text(color = \"grey25\", size = 13),\n    axis.title.x = element_text(margin = margin(t = 8)),\n    axis.title.y = element_text(margin = margin(r = 8)),\n    axis.text = element_text(color = \"grey35\", size = 12),\n    axis.line.x = element_line(color = \"grey60\", linewidth = 0.4),\n    panel.grid.major.x = element_blank(),\n    panel.grid.major.y = element_line(color = \"grey90\", linewidth = 0.4),\n    legend.justification = \"left\",\n    legend.title = element_text(face = \"bold\", size = 12.5),\n    legend.text = element_text(size = 12),\n    legend.margin = margin(b = 0),\n    plot.margin = margin(16, 20, 12, 16),\n    plot.background = element_rect(fill = \"white\", color = NA)\n  )"
+  },
+  {
+    "objectID": "slides/slides.html#final-considerations",
+    "href": "slides/slides.html#final-considerations",
+    "title": "Data Visualization",
+    "section": "Final considerations",
+    "text": "Final considerations\n\nAre all visual elements necessary? (borders, gridlines, etc.)\nAre names informative and adapted to the audience?\nIs text big enough and legible at all plot sizes?\nCan the plot render nicely on a presentation screen?\n\n\nColor Accuracy: Print-proof, monitor/beamer-proof, colorblind-proof?, color-codingFile format: resizing vector vs. bitmap/raster. For bitmap images, set the plot resolution: dpi = c(“retina”, “print”, “screen”)"
+  },
+  {
+    "objectID": "slides/slides.html#continue-learning",
+    "href": "slides/slides.html#continue-learning",
+    "title": "Data Visualization",
+    "section": "Continue learning",
+    "text": "Continue learning\n\n\nViz types and examples: From Data to Viz, The R Graph Gallery, clauswilke.com\nExtensions: ggplot2 Extensions Gallery\nBooks: Fundamentals of Data Visualization\nNYT: What’s going on in this graph?\nData: Statistics Netherlands or data()\n\n\n\n\n\n\n\n\nRTFM: ggplot2 Book"
+  },
+  {
+    "objectID": "slides/slides.html#get-inspiration",
+    "href": "slides/slides.html#get-inspiration",
+    "title": "Data Visualization",
+    "section": "Get inspiration",
+    "text": "Get inspiration\n\n\nPodcasts: Data Stories, Explore Explain, Data Viz Today\nBlogs: FlowingData\nJournals: Nightingale\nComics: Matt-Heun Hong, Martin Telefont, Natalia Kiseleva\nGenerative art: Clause O. Wilke, Danielle Navarro, Thomas Lin Pedersen\nAwards: Information is Beautiful\nInteractive visualizations: R Psychologist\nExplorable explanations: Nicky Case, Setosa\n\n\n\n\n\n\n\n\nThomas Lin Pedersen"
   }
 ]
