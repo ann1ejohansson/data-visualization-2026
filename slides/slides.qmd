@@ -673,10 +673,7 @@ Original Source: [Cleveland & McGill (1984). 531-554](https://www.tandfonline.co
 ![](images/storytelling_after.png)
 
 ::: notes
-- The same data redesigned to tell a story.
-- A headline states the conclusion: "Action needed: 10 warehouses have high error rates".
-- Bars sorted, grey for context, orange only for the warehouses that need attention, and text next to the chart that explains what to do.
-- With the same data, the reader now instantly knows the point. 
+
 :::
 
 
